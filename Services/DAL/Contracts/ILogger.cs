@@ -1,4 +1,4 @@
-﻿using Microsoft.IdentityModel.Abstractions;
+﻿using Services.Domain.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "m4gdYjbcBLo=",
+  "dgSpecHash": "xktFtWAPQz8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\BLL\\BLL.csproj",
+  "projectFilePath": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thiag\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\thiag\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

@@ -1,8 +1,8 @@
-﻿using Microsoft.IdentityModel.Abstractions;
-using Services.DAL.Contracts;
+﻿using Services.DAL.Contracts;
 using Services.Domain.Logging;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,36 +11,35 @@ namespace Services.DAL.Loggers
 {
     public class FileLogger : ILogger
     {
-        private readonly string logFilePath;
-        private readonly LogLevel minimunLogLevel;
-        private readonly StreamWriter writer;
+        private readonly string logDirectory;
 
-        public FileLogger(string logFilePath, LogLevel minimunLogLevel)
+        public FileLogger()
         {
-            this.logFilePath = logFilePath;
-            this.minimunLogLevel = minimunLogLevel;
+            this.logDirectory = ConfigurationManager.AppSettings["LogDirectory"];
 
-            string directoryPath = Path.GetDirectoryName(logFilePath);
-            if (!Directory.Exists(directoryPath))
+            if (!Directory.Exists(logDirectory))
             {
-                Directory.CreateDirectory(directoryPath);
+                Directory.CreateDirectory(logDirectory);
             }
-
-            writer = new StreamWriter(logFilePath, true);
         }
 
-        public void WriteLog()
+        public void WriteLog(LogEntry log)
         {
             try
             {
+                string fileName = $"log_{DateTime.Now:yyyy-MM-dd}.txt";
+                string filePath = Path.Combine(logDirectory, fileName);
+
+                string line = log.ToString();
+
+                using (var writer = new StreamWriter(filePath, true))
+                {
+                    writer.WriteLine(line);
+                }
             }
             catch (Exception ex)
             {
                 throw;
-            }
-            finally
-            {
-                writer.Close();
             }
         }
     }
