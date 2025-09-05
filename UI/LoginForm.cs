@@ -59,8 +59,7 @@ namespace UI
                 //UsuarioService.Current.AddComponente(admin, familiaVentas);
                 //UsuarioService.Current.AddComponente(admin, patenteLogOut);
                 SesionService.Login(txtCorreo.Text, txtPassword.Text);
-                LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Debug, $"El usuario {UsuarioLogueado.Current.Usuario.Nombre} inició sesión."));
-
+                LoggerService.WriteLog(new LogEntry(DateTime.Now, LogLevel.Debug, "Ocurrió un inicio de sesión."));
                 MainForm mf = new MainForm();
                 mf.ShowDialog();
             }
