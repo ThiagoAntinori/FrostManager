@@ -20,6 +20,8 @@ namespace Services.Domain.Logging
             this.Timestamp = timestamp;
             this.Level = level;
             this.Message = message;
+            this.Exception = null;
+            this.Usuario = UsuarioLogueado.Current != null ? UsuarioLogueado.Current.Usuario : null;
         }
 
         public LogEntry(DateTime timestamp, LogLevel level, string message, Exception ex)
@@ -28,13 +30,14 @@ namespace Services.Domain.Logging
             this.Level = level;
             this.Message = message;
             this.Exception = ex;
+            this.Usuario = UsuarioLogueado.Current != null ? UsuarioLogueado.Current.Usuario : null;
         }
 
         public override string ToString()
         {
-            string exceptionInfo = Exception != null ? $"\tExcepción: {Exception}, StackTrace: {Exception.StackTrace}" : "";
+            string exceptionInfo = Exception != null ? $"Excepción: {Exception}, StackTrace: {Exception.StackTrace}" : "";
             string userInfo = Usuario != null ? $"Usuario logueado: {Usuario.Nombre}, ID: {Usuario.IdUsuario}" : "";
-            return $"[{Timestamp: yyyy-MM-dd HH:mm:ss.fff zzz}] [{Level.ToString().ToUpper()}] {Message} [Exception: {exceptionInfo}] [Usuario: {userInfo}]";
+            return $"[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}] [{Level.ToString().ToUpper()}] {Message} [{exceptionInfo}] [{userInfo}]";
         }
     }
 }

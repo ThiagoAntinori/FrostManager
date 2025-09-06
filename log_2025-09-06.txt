@@ -1,0 +1,6 @@
+[ 2025-09-06 00:31:46.899 -03:00] [DEBUG] Ocurrió un inicio de sesión. [Exception: ] [Usuario: Usuario logueado: admin, ID: ba5851b5-72ed-4a07-b851-7a1334d52361]
+[ 2025-09-06 00:56:33.999 -03:00] [DEBUG] Ocurrió un inicio de sesión. [Exception: ] [Usuario: ]
+[ 2025-09-06 00:59:38.528 -03:00] [DEBUG] Ocurrió un inicio de sesión. [Exception: ] [Usuario: ]
+[ 2025-09-06 11:44:49.040 -03:00] [DEBUG] Ocurrió un inicio de sesión. [Exception: ] [Usuario: ]
+[ 2025-09-06 11:54:28.595 -03:00] [DEBUG] Ocurrió un inicio de sesión. [Exception: ] [Usuario: Usuario logueado: admin, ID: ba5851b5-72ed-4a07-b851-7a1334d52361]
+[2025-09-06 14:35:37.153 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: La contraseña es incorrecta. Intenta nuevamente [] []

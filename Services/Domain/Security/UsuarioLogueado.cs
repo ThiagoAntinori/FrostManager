@@ -16,6 +16,7 @@ namespace Services.Domain.Security
         {
             get
             {
+                if (_instance == null) return null;
                 return _instance;
             }
         }

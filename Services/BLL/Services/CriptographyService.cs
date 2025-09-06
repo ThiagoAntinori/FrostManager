@@ -9,7 +9,7 @@ namespace Services.BLL.Services
 {
     public static class CriptographyService
     {
-        public static string HashPassword(string textPlainPass)
+        public static string HashMd5(string textPlainPass)
         {
             StringBuilder sb = new StringBuilder();
 

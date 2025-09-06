@@ -69,15 +69,15 @@ namespace Services.DAL.Implementations
             throw new NotImplementedException();
         }
 
-        public Usuario GetByCorreoElectronico(string correo)
+        public Usuario GetByNombreUsuario(string nombreUsuario)
         {
             try
             {
                 Usuario usuarioABuscar = null;
-                using (var Reader = SqlHelper.ExecuteReader("SELECT IdUsuario, CorreoElectronico, Nombre, Password, EstaHabilitado FROM USUARIO WHERE CorreoElectronico = @CorreoElectronico",
+                using (var Reader = SqlHelper.ExecuteReader("SELECT IdUsuario, CorreoElectronico, Nombre, Password, EstaHabilitado FROM USUARIO WHERE Nombre = @Nombre",
                     System.Data.CommandType.Text,
                     new SqlParameter[]{
-                        new SqlParameter("@CorreoElectronico", correo)
+                        new SqlParameter("@Nombre", nombreUsuario)
                     }))
                 {
                     object[] values = new object[Reader.FieldCount];

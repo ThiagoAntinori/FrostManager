@@ -19,22 +19,5 @@ namespace Services.BLL.Services
             var config = new LoggerConfiguration();
             return config.CreateFileLogger();
         }
-
-        public static void WriteLog(LogEntry log)
-        {
-            try
-            {
-                if (log == null)
-                {
-                    throw new Exception("No se pudo registrar en bitácora.");
-                }
-                log.Usuario = UsuarioLogueado.Current.Usuario;
-                GetLogger().WriteLog(log);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
     }
 }

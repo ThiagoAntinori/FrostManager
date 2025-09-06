@@ -32,26 +32,28 @@ namespace Services.DAL.Implementations
         {
             try
             {
-                foreach(var item in obj.Familias)
+                foreach(var item in obj.Privilegios)
                 {
-                    SqlHelper.ExecuteNonQuery(@" IF NOT EXISTS (
+                    if(item is Familia familia)
+                    {
+                        SqlHelper.ExecuteNonQuery(@" IF NOT EXISTS (
                                                     SELECT 1 FROM USUARIO_FAMILIA 
                                                     WHERE IdFamilia = @IdFamilia AND IdUsuario = @IdUsuario
                                                     )
                                                 BEGIN
                                                     INSERT INTO USUARIO_FAMILIA (IdFamilia, IdUsuario)
                                                     VALUES (@IdFamilia, @IdUsuario)
-                                                    END", 
+                                                    END",
                             CommandType.Text,
                             new SqlParameter[]
                             {
-                                new SqlParameter("@IdFamilia", item.IdComponente),
+                                new SqlParameter("@IdFamilia", familia.IdComponente),
                                 new SqlParameter("@IdUsuario", obj.IdUsuario)
                             });
-                }
-                foreach(var item in obj.Patentes)
-                {
-                    SqlHelper.ExecuteNonQuery("IF NOT EXISTS (" +
+                    }
+                    else if(item is Patente patente)
+                    {
+                        SqlHelper.ExecuteNonQuery("IF NOT EXISTS (" +
                             "SELECT 1 FROM USUARIO_PATENTE " +
                             "WHERE IdUsuario = @IdUsuario AND IdPatente = @IdPatente) " +
                             "BEGIN" +
@@ -61,8 +63,9 @@ namespace Services.DAL.Implementations
                             new SqlParameter[]
                             {
                                 new SqlParameter("@IdUsuario", obj.IdUsuario),
-                                new SqlParameter("@IdPatente", item.IdComponente)
+                                new SqlParameter("@IdPatente", patente.IdComponente)
                             });
+                    }
                 }
             }
             catch (Exception ex)
@@ -98,7 +101,7 @@ namespace Services.DAL.Implementations
                         reader.GetValues(values);
                         Guid idFamilia = Guid.Parse(values[1].ToString());
                         familiaGet = FamiliaRepository.Current.GetById(idFamilia);
-                        obj.Familias.Add(familiaGet);
+                        obj.Privilegios.Add(familiaGet);
                     }
                 }
 
@@ -117,7 +120,7 @@ namespace Services.DAL.Implementations
                         reader.GetValues(values);
                         Guid idPatente = Guid.Parse(values[1].ToString());
                         patenteGet = PatenteRepository.Current.GetById(idPatente);
-                        obj.Familias.Add(familiaGet);
+                        obj.Privilegios.Add(familiaGet);
                     }
                 }
             }

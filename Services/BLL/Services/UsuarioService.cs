@@ -1,4 +1,5 @@
 ﻿using Services.BLL.Contracts;
+using Services.BLL.Extensions;
 using Services.DAL.Implementations;
 using Services.Domain.Security;
 using System;
@@ -46,15 +47,15 @@ namespace Services.BLL.Services
                 }
                 if (ExisteUsuario(obj))
                 {
-                    throw new Exception("Ya existe un usuario con ese correo electrónico.");
+                    throw new Exception("Ya existe un usuario con ese nombre de usuario.");
                 }
-                obj.Password = CriptographyService.HashPassword(obj.Password);
+                obj.Password = CriptographyService.HashMd5(obj.Password);
                 obj.EstaHabilitado = true;
                 UsuarioRepository.Current.Insert(obj);
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionExtension.Handle(ex);
             }
         }
 
@@ -86,7 +87,7 @@ namespace Services.BLL.Services
                 {
                     throw new Exception("No es posible buscar el usuario");
                 }
-                if (this.GetByCorreoElectronico(usuario.CorreoElectronico) == null)
+                if (UsuarioRepository.Current.GetByNombreUsuario(usuario.Nombre) == null)
                 {
                     return false;
                 }
@@ -94,6 +95,7 @@ namespace Services.BLL.Services
             }
             catch(Exception ex)
             {
+                ExceptionExtension.Handle(ex);
                 throw;
             }
         }
@@ -110,36 +112,28 @@ namespace Services.BLL.Services
                 {
                     throw new Exception("Usuario invalido");
                 }
-                if(componente.ChildrenCount() > 0)
-                {
-                    usuario.Familias.Add((Familia)componente);
-                }
-                else if(componente.ChildrenCount() == 0)
-                {
-                    usuario.Patentes.Add((Patente)componente);
-                }
+                usuario.Privilegios.Add(componente);
                 UsuarioComponenteRepository.Current.Add(usuario);
             }
             catch (Exception ex)
             {
-
-                throw;
+                ExceptionExtension.Handle(ex);
             }
         }
 
-        public Usuario GetByCorreoElectronico(string correo)
+        public Usuario GetByNombreUsuario(string nombreUsuario)
         {
             try
             {
-                if (string.IsNullOrEmpty(correo))
+                if (string.IsNullOrEmpty(nombreUsuario))
                 {
-                    throw new Exception("No se pudo buscar el usuario por correo electrónico.");
+                    throw new Exception("No se pudo buscar el usuario por su nombre.");
                 }
-                return UsuarioRepository.Current.GetByCorreoElectronico(correo);
+                return UsuarioRepository.Current.GetByNombreUsuario(nombreUsuario);
             }
             catch (Exception ex)
             {
-
+                ExceptionExtension.Handle(ex);
                 throw;
             }
         }
@@ -147,7 +141,6 @@ namespace Services.BLL.Services
         public string GenerarPassword(int longitud = 8)
         {
             string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            Random random = new Random();
             byte[] bytesAleatorios = new byte[longitud];
             char[] passwordChars = new char[longitud];
 

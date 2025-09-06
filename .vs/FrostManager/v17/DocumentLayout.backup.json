@@ -3,36 +3,116 @@
   "WorkspaceRootPath": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|solutionrelative:ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\ui\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|solutionrelative:ui\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\bll\\extensions\\exceptionextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\bll\\extensions\\exceptionextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\bll\\services\\loggerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\bll\\services\\loggerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\domain\\logging\\logentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\domain\\logging\\logentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|solutionrelative:ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\dal\\loggers\\filelogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\dal\\loggers\\filelogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|solutionrelative:ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\domain\\logging\\logentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\domain\\logging\\logentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\bll\\extensions\\loggerconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\bll\\extensions\\loggerconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\bll\\services\\sesionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\bll\\services\\sesionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\bll\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\bll\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\domain\\security\\usuariologueado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\domain\\security\\usuariologueado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\dal\\contracts\\ilogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\dal\\contracts\\ilogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|solutionrelative:ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\domain\\exceptions\\businessexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\domain\\exceptions\\businessexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\domain\\exceptions\\dataaccessexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\domain\\exceptions\\dataaccessexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|solutionrelative:ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|solutionrelative:ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\ui\\primary forms\\altaclienteform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|solutionrelative:ui\\primary forms\\altaclienteform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\ui\\ui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|solutionrelative:ui\\ui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\bll\\services\\criptographyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\bll\\services\\criptographyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\dal\\implementations\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\dal\\implementations\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\dal\\adapter\\familiaadapter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\dal\\adapter\\familiaadapter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\dal\\adapter\\usuarioadapter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\dal\\adapter\\usuarioadapter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\dal\\implementations\\usuariocomponenterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\dal\\implementations\\usuariocomponenterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\bll\\services\\patenteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\bll\\services\\patenteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\domain\\security\\componente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\domain\\security\\componente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\domain\\security\\patente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\domain\\security\\patente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\domain\\security\\familia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\domain\\security\\familia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\domain\\security\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|solutionrelative:services\\domain\\security\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\ui\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{213B706B-D59B-4CF5-BC04-6EC87DD874BF}|UI\\UI.csproj|solutionrelative:ui\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{02402E7E-168B-4F7B-8B91-A351F363BF3B}|Services\\Services.csproj|c:\\users\\thiag\\desktop\\projects\\trabajo de diploma\\frostmanager_\\frostmanager\\frostmanager\\services\\domain\\logging\\loglevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,19 +131,335 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ExceptionExtension.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Extensions\\ExceptionExtension.cs",
+              "RelativeDocumentMoniker": "Services\\BLL\\Extensions\\ExceptionExtension.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Extensions\\ExceptionExtension.cs",
+              "RelativeToolTip": "Services\\BLL\\Extensions\\ExceptionExtension.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAowGcAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T12:52:05.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoggerService.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\LoggerService.cs",
+              "RelativeDocumentMoniker": "Services\\BLL\\Services\\LoggerService.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\LoggerService.cs",
+              "RelativeToolTip": "Services\\BLL\\Services\\LoggerService.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAnwBQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T01:45:44.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoggerConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Extensions\\LoggerConfiguration.cs",
+              "RelativeDocumentMoniker": "Services\\BLL\\Extensions\\LoggerConfiguration.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Extensions\\LoggerConfiguration.cs",
+              "RelativeToolTip": "Services\\BLL\\Extensions\\LoggerConfiguration.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAnwBAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T21:20:58.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FileLogger.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Loggers\\FileLogger.cs",
+              "RelativeDocumentMoniker": "Services\\DAL\\Loggers\\FileLogger.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Loggers\\FileLogger.cs",
+              "RelativeToolTip": "Services\\DAL\\Loggers\\FileLogger.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAnwCsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T21:26:04.68Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LogEntry.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Logging\\LogEntry.cs",
+              "RelativeDocumentMoniker": "Services\\Domain\\Logging\\LogEntry.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Logging\\LogEntry.cs",
+              "RelativeToolTip": "Services\\Domain\\Logging\\LogEntry.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAewCgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T21:11:44.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "LoginForm.cs",
               "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\LoginForm.cs",
               "RelativeDocumentMoniker": "UI\\LoginForm.cs",
               "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\LoginForm.cs",
               "RelativeToolTip": "UI\\LoginForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAnwEQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-05T12:58:35.244Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 15,
+              "Title": "AltaClienteForm.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\Primary Forms\\AltaClienteForm.cs",
+              "RelativeDocumentMoniker": "UI\\Primary Forms\\AltaClienteForm.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\Primary Forms\\AltaClienteForm.cs [Dise\u00F1o]",
+              "RelativeToolTip": "UI\\Primary Forms\\AltaClienteForm.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:42:11.576Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SesionService.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\SesionService.cs",
+              "RelativeDocumentMoniker": "Services\\BLL\\Services\\SesionService.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\SesionService.cs",
+              "RelativeToolTip": "Services\\BLL\\Services\\SesionService.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAgwCsAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:25:43.68Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LoginForm.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\LoginForm.cs",
+              "RelativeDocumentMoniker": "UI\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\LoginForm.cs [Dise\u00F1o]",
+              "RelativeToolTip": "UI\\LoginForm.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T12:58:01.358Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "Services\\BLL\\Services\\UsuarioService.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\UsuarioService.cs",
+              "RelativeToolTip": "Services\\BLL\\Services\\UsuarioService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:23:00.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UsuarioLogueado.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Security\\UsuarioLogueado.cs",
+              "RelativeDocumentMoniker": "Services\\Domain\\Security\\UsuarioLogueado.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Security\\UsuarioLogueado.cs",
+              "RelativeToolTip": "Services\\Domain\\Security\\UsuarioLogueado.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T01:46:21.336Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ILogger.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Contracts\\ILogger.cs",
+              "RelativeDocumentMoniker": "Services\\DAL\\Contracts\\ILogger.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Contracts\\ILogger.cs",
+              "RelativeToolTip": "Services\\DAL\\Contracts\\ILogger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAewAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T21:22:55.256Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DataAccessException.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Exceptions\\DataAccessException.cs",
+              "RelativeDocumentMoniker": "Services\\Domain\\Exceptions\\DataAccessException.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Exceptions\\DataAccessException.cs",
+              "RelativeToolTip": "Services\\Domain\\Exceptions\\DataAccessException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T13:59:02.901Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "BusinessException.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Exceptions\\BusinessException.cs",
+              "RelativeDocumentMoniker": "Services\\Domain\\Exceptions\\BusinessException.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Exceptions\\BusinessException.cs",
+              "RelativeToolTip": "Services\\Domain\\Exceptions\\BusinessException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T14:19:05.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\MainForm.cs",
+              "RelativeDocumentMoniker": "UI\\MainForm.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\MainForm.cs [Design]",
+              "RelativeToolTip": "UI\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T01:52:14.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\MainForm.cs",
+              "RelativeDocumentMoniker": "UI\\MainForm.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\MainForm.cs",
+              "RelativeToolTip": "UI\\MainForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T01:52:38.827Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "UI.csproj",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\UI.csproj",
+              "RelativeDocumentMoniker": "UI\\UI.csproj",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\UI.csproj",
+              "RelativeToolTip": "UI\\UI.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-06T03:38:57.707Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Implementations\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "Services\\DAL\\Implementations\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Implementations\\UsuarioRepository.cs",
+              "RelativeToolTip": "Services\\DAL\\Implementations\\UsuarioRepository.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAAAE8AAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:21:50.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "FamiliaAdapter.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Adapter\\FamiliaAdapter.cs",
+              "RelativeDocumentMoniker": "Services\\DAL\\Adapter\\FamiliaAdapter.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Adapter\\FamiliaAdapter.cs",
+              "RelativeToolTip": "Services\\DAL\\Adapter\\FamiliaAdapter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:22:03.156Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CriptographyService.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\CriptographyService.cs",
+              "RelativeDocumentMoniker": "Services\\BLL\\Services\\CriptographyService.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\CriptographyService.cs",
+              "RelativeToolTip": "Services\\BLL\\Services\\CriptographyService.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAA0AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:28:31.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "UsuarioComponenteRepository.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Implementations\\UsuarioComponenteRepository.cs",
+              "RelativeDocumentMoniker": "Services\\DAL\\Implementations\\UsuarioComponenteRepository.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Implementations\\UsuarioComponenteRepository.cs",
+              "RelativeToolTip": "Services\\DAL\\Implementations\\UsuarioComponenteRepository.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAwwEEAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:18:31.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "UsuarioAdapter.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Adapter\\UsuarioAdapter.cs",
+              "RelativeDocumentMoniker": "Services\\DAL\\Adapter\\UsuarioAdapter.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Adapter\\UsuarioAdapter.cs",
+              "RelativeToolTip": "Services\\DAL\\Adapter\\UsuarioAdapter.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAA9wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:18:17.144Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "PatenteService.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\PatenteService.cs",
+              "RelativeDocumentMoniker": "Services\\BLL\\Services\\PatenteService.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\PatenteService.cs",
+              "RelativeToolTip": "Services\\BLL\\Services\\PatenteService.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:17:56.092Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Componente.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Security\\Componente.cs",
+              "RelativeDocumentMoniker": "Services\\Domain\\Security\\Componente.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Security\\Componente.cs",
+              "RelativeToolTip": "Services\\Domain\\Security\\Componente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:17:45.398Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Patente.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Security\\Patente.cs",
+              "RelativeDocumentMoniker": "Services\\Domain\\Security\\Patente.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Security\\Patente.cs",
+              "RelativeToolTip": "Services\\Domain\\Security\\Patente.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:17:38.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Familia.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Security\\Familia.cs",
+              "RelativeDocumentMoniker": "Services\\Domain\\Security\\Familia.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Security\\Familia.cs",
+              "RelativeToolTip": "Services\\Domain\\Security\\Familia.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAA4wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T03:17:33.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Security\\Usuario.cs",
+              "RelativeDocumentMoniker": "Services\\Domain\\Security\\Usuario.cs",
+              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Security\\Usuario.cs",
+              "RelativeToolTip": "Services\\Domain\\Security\\Usuario.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAmwBUAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T01:57:46.523Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\App.config",
               "RelativeDocumentMoniker": "UI\\App.config",
@@ -71,84 +467,11 @@
               "RelativeToolTip": "UI\\App.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAB8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-09-05T12:44:37.905Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-05T12:44:37.905Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LoggerService.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\LoggerService.cs",
-              "RelativeDocumentMoniker": "Services\\BLL\\Services\\LoggerService.cs",
-              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Services\\LoggerService.cs",
-              "RelativeToolTip": "Services\\BLL\\Services\\LoggerService.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAMwCIAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-02T01:45:44.552Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FileLogger.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Loggers\\FileLogger.cs",
-              "RelativeDocumentMoniker": "Services\\DAL\\Loggers\\FileLogger.cs",
-              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Loggers\\FileLogger.cs",
-              "RelativeToolTip": "Services\\DAL\\Loggers\\FileLogger.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T21:26:04.68Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ILogger.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Contracts\\ILogger.cs",
-              "RelativeDocumentMoniker": "Services\\DAL\\Contracts\\ILogger.cs",
-              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\DAL\\Contracts\\ILogger.cs",
-              "RelativeToolTip": "Services\\DAL\\Contracts\\ILogger.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T21:22:55.256Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LogEntry.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Logging\\LogEntry.cs",
-              "RelativeDocumentMoniker": "Services\\Domain\\Logging\\LogEntry.cs",
-              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Logging\\LogEntry.cs",
-              "RelativeToolTip": "Services\\Domain\\Logging\\LogEntry.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAACQAAACbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T21:11:44.169Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LoginForm.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\LoginForm.cs",
-              "RelativeDocumentMoniker": "UI\\LoginForm.cs",
-              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\UI\\LoginForm.cs [Dise\u00F1o]",
-              "RelativeToolTip": "UI\\LoginForm.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T12:58:01.358Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "LoggerConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Extensions\\LoggerConfiguration.cs",
-              "RelativeDocumentMoniker": "Services\\BLL\\Extensions\\LoggerConfiguration.cs",
-              "ToolTip": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\BLL\\Extensions\\LoggerConfiguration.cs",
-              "RelativeToolTip": "Services\\BLL\\Extensions\\LoggerConfiguration.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T21:20:58.599Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 28,
               "Title": "LogLevel.cs",
               "DocumentMoniker": "C:\\Users\\thiag\\Desktop\\PROJECTS\\TRABAJO DE DIPLOMA\\FrostManager_\\FrostManager\\FrostManager\\Services\\Domain\\Logging\\LogLevel.cs",
               "RelativeDocumentMoniker": "Services\\Domain\\Logging\\LogLevel.cs",

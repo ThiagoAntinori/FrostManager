@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Primary_Forms;
 
 namespace UI
 {
@@ -30,7 +31,7 @@ namespace UI
             }
         }
 
-        public void CargarMenu()
+        private void CargarMenu()
         {
             try
             {
@@ -48,10 +49,45 @@ namespace UI
                     ToolStripMenuItem item = new ToolStripMenuItem(patente.MenuItemName);
                     msMenuPrincipal.Items.Add(item);
                 }
+                cargarMenuConfiguracion(msMenuPrincipal);
             }
             catch(Exception ex)
             {
                 throw;
+            }
+        }
+
+        private void cargarMenuConfiguracion(MenuStrip menu)
+        {
+            ToolStripMenuItem itemConfiguracion = new ToolStripMenuItem("Configuracion");
+            itemConfiguracion.DropDownItems.AddRange([
+                new ToolStripMenuItem("Cambiar Idioma", null, toolStripMenuItem_Click),
+                new ToolStripMenuItem("Cerrar Sesion", null, toolStripMenuItem_Click)
+                ]);
+            menu.Items.Add(itemConfiguracion);
+        }
+
+        private void toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if((sender as ToolStripMenuItem).Name == "Registrar Cliente")
+                {
+                    AltaClienteForm altaClienteForm = new AltaClienteForm();
+                    altaClienteForm.ShowDialog();
+                }
+                if((sender as ToolStripMenuItem).Name == "Cerrar Sesión")
+                {
+                    if(MessageBox.Show("¿Desea cerrar sesión?", "FROSTMANAGER", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        UsuarioLogueado.CerrarSesion();
+                        this.Close();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
