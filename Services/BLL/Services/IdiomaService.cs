@@ -5,6 +5,7 @@ using Services.Domain.Exceptions;
 using Services.Domain.Logging;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,8 +69,10 @@ namespace Services.BLL.Services
         {
             try
             {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(cultura);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultura);
 
-                foreach(var traducible in traducibles)
+                foreach(var traducible in suscriptores)
                 {
                     traducible.CambiarIdioma();
                 }

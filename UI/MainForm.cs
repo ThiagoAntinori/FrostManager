@@ -1,4 +1,6 @@
-﻿using Services.Domain.Security;
+﻿using Services.BLL.Contracts;
+using Services.BLL.Services;
+using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +14,7 @@ using UI.Primary_Forms;
 
 namespace UI
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, ITraducible
     {
         private Dictionary<string, Button> mapaPermisos;
         public MainForm()
@@ -38,6 +40,7 @@ namespace UI
                 {"REPORTE_ENTREGAS", btnReporteEntregas },
                 {"REPORTE_PROYECCION", btnReporteProyecciones }
             };
+            IdiomaService.Current.Suscribir(this);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -99,6 +102,63 @@ namespace UI
             try
             {
                 openChildForm(new AltaClienteForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void panelChildForm_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        public void CambiarIdioma()
+        {
+            try
+            {
+                TraducirControles(this.Controls);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private void TraducirControles(Control.ControlCollection controles)
+        {
+            try
+            {
+                foreach (Control ctrl in controles)
+                {
+                    if (ctrl.Name != null)
+                    {
+                        if(ctrl.Visible == true && ctrl is Button)
+                        {
+                            ctrl.Text = IdiomaService.Current.Traducir(ctrl.Name);
+                        }
+                    }
+                    if (ctrl.HasChildren)
+                    {
+                        TraducirControles(ctrl.Controls);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private void btnConfiguracion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("¿Desea cambiar de idioma a en-US?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    IdiomaService.Current.CambiarIdioma("en-US");
+                }
             }
             catch(Exception ex)
             {

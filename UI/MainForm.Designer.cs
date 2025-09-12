@@ -186,6 +186,7 @@
             btnConfiguracion.TabIndex = 1;
             btnConfiguracion.Text = "Configuracion";
             btnConfiguracion.UseVisualStyleBackColor = false;
+            btnConfiguracion.Click += btnConfiguracion_Click;
             // 
             // btnCerrarSesion
             // 
@@ -336,6 +337,7 @@
             panelChildForm.Name = "panelChildForm";
             panelChildForm.Size = new Size(619, 561);
             panelChildForm.TabIndex = 1;
+            panelChildForm.Paint += panelChildForm_Paint;
             // 
             // pictureBox2
             // 
