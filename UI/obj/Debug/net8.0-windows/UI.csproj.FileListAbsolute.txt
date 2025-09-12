@@ -152,3 +152,4 @@ C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\Fr
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.genruntimeconfig.cache
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\ref\UI.dll
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.AltaClienteForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Properties.Resources.resources

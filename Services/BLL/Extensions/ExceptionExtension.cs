@@ -93,7 +93,6 @@ namespace Services.BLL.Extensions
             {
                 throw;
             }
-
         }
 
         private static void HandleServiceException(Exception ex)

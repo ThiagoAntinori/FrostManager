@@ -1,0 +1,83 @@
+﻿using Services.BLL.Contracts;
+using Services.BLL.Extensions;
+using Services.DAL.Implementations;
+using Services.Domain.Exceptions;
+using Services.Domain.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Services.BLL.Services
+{
+    public sealed class IdiomaService
+    {
+
+        private readonly static IdiomaService _instance = new IdiomaService();
+
+        public static IdiomaService Current
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        private IdiomaService()
+        {
+            // Implement here the initialization of your singleton
+        }
+
+        private readonly List<ITraducible> suscriptores = new List<ITraducible>();
+
+        public void Suscribir(ITraducible suscriptor)
+        {
+            if (!suscriptores.Contains(suscriptor))
+            {
+                suscriptores.Add(suscriptor);
+            }
+        }
+
+        public void Desuscribir(ITraducible suscriptor)
+        {
+            if (suscriptores.Contains(suscriptor))
+            {
+                suscriptores.Remove(suscriptor);
+            }
+        }
+
+        public string Traducir(string word)
+        {
+            try
+            {
+                return IdiomaRepository.Current.Traducir(word);
+            }
+            catch (WordNotFoundException ex)
+            {
+                //Podría aplicar una nueva política
+                IdiomaRepository.Current.AgregarDataKey(word);
+                //Esto seguramente vaya a una bitácora
+                LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Error, $"No se encontró una palabra buscada ({word})", ex));
+
+                return word;
+            }
+        }
+
+        public void CambiarIdioma(string cultura)
+        {
+            try
+            {
+
+                foreach(var traducible in traducibles)
+                {
+                    traducible.CambiarIdioma();
+                }
+            }
+            catch(Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }
+        }
+    }
+}

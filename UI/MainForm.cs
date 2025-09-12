@@ -14,9 +14,30 @@ namespace UI
 {
     public partial class MainForm : Form
     {
+        private Dictionary<string, Button> mapaPermisos;
         public MainForm()
         {
             InitializeComponent();
+            mapaPermisos = new Dictionary<string, Button>()
+            {
+                {"REGISTRAR_VENTA", btnRegistrarVenta },
+                {"REGISTRAR_CLIENTE", btnRegistrarCliente },
+                {"MODIFICAR_CLIENTE", btnModificarCliente },
+                {"CONSULTAR_CLIENTE", btnConsultarCliente },
+                {"VER_PEDIDOS", btnVerPedidos },
+                {"ACTUALIZAR_PEDIDO", btnActualizarPedido },
+                {"CANCELAR_PEDIDO", btnCancelarPedido },
+                {"REGISTAR_INGRESO", btnRegistrarIngreso },
+                {"REGISTRAR_EGRESO", btnRegistrarEgreso },
+                {"REGISTRAR_INSUMO", btnRegistrarInsumo },
+                {"AJUSTAR_STOCK", btnAjustarStock },
+                {"CONSULTAR_STOCK", btnConsultarStock },
+                {"REPORTE_VENTAS", btnReporteVentas },
+                {"CIERRE_CAJA", btnCierreCaja },
+                {"REPORTE_SABORES", btnReporteSabores },
+                {"REPORTE_ENTREGAS", btnReporteEntregas },
+                {"REPORTE_PROYECCION", btnReporteProyecciones }
+            };
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -25,7 +46,7 @@ namespace UI
             {
                 CargarMenu();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -35,55 +56,49 @@ namespace UI
         {
             try
             {
-                if (UsuarioLogueado.Current.Usuario == null)
+                if (UsuarioLogueado.Current == null || UsuarioLogueado.Current.Usuario == null)
                 {
                     throw new Exception("Error al mostrar permisos. Contacte al admistrador.");
                 }
-                List<Patente> patentesUsuario = UsuarioLogueado.Current.Usuario.GetAllPatentes();
-                if (patentesUsuario.Count == 0)
+                List<string> nombresPatente = UsuarioLogueado.Current.Usuario.GetAllPatentes().Select(p => p.Nombre).ToList();
+                if (nombresPatente.Count == 0)
                 {
                     throw new Exception("No se le asignó ningún permiso. Contacte al administrador.");
                 }
-                foreach (var patente in patentesUsuario)
+                foreach (var keyValue in mapaPermisos)
                 {
-                    ToolStripMenuItem item = new ToolStripMenuItem(patente.MenuItemName);
-                    msMenuPrincipal.Items.Add(item);
+                    keyValue.Value.Visible = nombresPatente.Contains(keyValue.Key);
                 }
-                cargarMenuConfiguracion(msMenuPrincipal);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }
         }
 
-        private void cargarMenuConfiguracion(MenuStrip menu)
+        private Form activeForm = null;
+
+        private void openChildForm(Form childForm)
         {
-            ToolStripMenuItem itemConfiguracion = new ToolStripMenuItem("Configuracion");
-            itemConfiguracion.DropDownItems.AddRange([
-                new ToolStripMenuItem("Cambiar Idioma", null, toolStripMenuItem_Click),
-                new ToolStripMenuItem("Cerrar Sesion", null, toolStripMenuItem_Click)
-                ]);
-            menu.Items.Add(itemConfiguracion);
+            if (activeForm != null)
+            {
+                activeForm.Close();
+            }
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelChildForm.Controls.Add(childForm);
+            panelChildForm.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
 
-        private void toolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnRegistrarCliente_Click(object sender, EventArgs e)
         {
             try
             {
-                if((sender as ToolStripMenuItem).Name == "Registrar Cliente")
-                {
-                    AltaClienteForm altaClienteForm = new AltaClienteForm();
-                    altaClienteForm.ShowDialog();
-                }
-                if((sender as ToolStripMenuItem).Name == "Cerrar Sesión")
-                {
-                    if(MessageBox.Show("¿Desea cerrar sesión?", "FROSTMANAGER", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        UsuarioLogueado.CerrarSesion();
-                        this.Close();
-                    }
-                }
+                openChildForm(new AltaClienteForm());
             }
             catch(Exception ex)
             {
