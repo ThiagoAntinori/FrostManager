@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panelSideMenu = new Panel();
             btnReporteProyecciones = new Button();
             btnReporteEntregas = new Button();
@@ -344,7 +345,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.FrostManager_Logo;
+            pictureBox1.Image = Properties.Resources.FrostManagerLogo;
             pictureBox1.Location = new Point(71, 5);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(100, 100);
@@ -366,7 +367,7 @@
             // pictureBox2
             // 
             pictureBox2.Anchor = AnchorStyles.None;
-            pictureBox2.Image = Properties.Resources.FrostManager_Logo;
+            pictureBox2.Image = Properties.Resources.FrostManagerLogo;
             pictureBox2.Location = new Point(163, 127);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(311, 213);
@@ -383,6 +384,7 @@
             Controls.Add(panelChildForm);
             Controls.Add(panelSideMenu);
             ForeColor = SystemColors.Control;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(900, 600);
             Name = "MainForm";
             Text = "FROSTMANAGER";

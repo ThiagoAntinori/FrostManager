@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Services.BLL.Services
 {
@@ -17,10 +18,12 @@ namespace Services.BLL.Services
 			{
                 using (var smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("thiagoantinori4@gmail.com", "kqzotnrkgwdbnxse");
+                    string user = ConfigurationManager.AppSettings["SmtpUser"];
+                    string password = ConfigurationManager.AppSettings["SmtpPassword"];
+                    smtp.Credentials = new NetworkCredential(user, password);
                     smtp.EnableSsl = true; // Usa TLS
 
-                    var mail = new MailMessage("thiagoantinori4@gmail.com", destinatario, asunto, cuerpo);
+                    var mail = new MailMessage(user, destinatario, asunto, cuerpo);
                     smtp.Send(mail);
                 }
             }

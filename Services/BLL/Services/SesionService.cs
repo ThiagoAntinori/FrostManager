@@ -86,5 +86,34 @@ namespace Services.BLL.Services
                 ExceptionExtension.Handle(ex);
             }
         }
+
+        public static void IniciarSesionToken(string token)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(token))
+                {
+                    throw new Exception("Ingrese un token para iniciar sesión");
+                }
+                PasswordToken resetToken = PasswordTokenRepository.Current.GetByToken(token);
+                if(resetToken == null)
+                {
+                    throw new Exception("No se encontró el token ingresado");
+                }
+                if(resetToken.FechaVencimiento < DateTime.Now)
+                {
+                    throw new Exception("El token ya expiró. Solicite uno nuevo");
+                }
+                if(resetToken.Usuario == null || resetToken.Usuario.EstaHabilitado == false)
+                {
+                    throw new Exception("El usuario no existe o está deshabilitado");
+                }
+                UsuarioLogueado.IniciarSesion(resetToken.Usuario);
+            }
+            catch(Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }
+        }
     }
 }

@@ -31,6 +31,21 @@ namespace UI
                 SesionService.RecuperarContraseña(usuarioIngresado);
                 MessageBox.Show("Se envío un token de recuperación a su correo electrónico");
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SesionService.IniciarSesionToken(txtToken.Text);
+                MainForm mainForm = new MainForm();
+                mainForm.Show();
+                this.Close();
+            }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);

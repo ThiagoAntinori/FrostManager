@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             txtNombreUsuario = new TextBox();
             txtPassword = new TextBox();
             btnIngresar = new Button();
@@ -105,11 +106,11 @@
             // pictureBox2
             // 
             pictureBox2.Anchor = AnchorStyles.None;
-            pictureBox2.Image = Properties.Resources.FrostManager_Logo;
-            pictureBox2.Location = new Point(79, 8);
+            pictureBox2.Image = Properties.Resources.FrostManagerLogo;
+            pictureBox2.Location = new Point(108, 12);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(190, 118);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.Size = new Size(136, 125);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 6;
             pictureBox2.TabStop = false;
             // 
@@ -149,6 +150,7 @@
             Controls.Add(btnIngresar);
             Controls.Add(txtPassword);
             Controls.Add(txtNombreUsuario);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(360, 370);
             Name = "LoginForm";
             Text = "FROSTMANAGER";

@@ -85,5 +85,39 @@ namespace Services.DAL.Implementations
                 throw;
             }
         }
+
+        public PasswordToken GetByToken(string token)
+        {
+            try
+            {
+                PasswordToken passwordToken = null;
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT Token, IdUsuario, FechaVencimiento FROM PASSWORD_RESET WHERE Token = @Token",
+                    CommandType.Text,
+                    new SqlParameter[]
+                    {
+                        new SqlParameter("@Token", token)
+                    }))
+                {
+                    object[] values = new object[reader.FieldCount];
+
+                    if (reader.Read())
+                    {
+                        reader.GetValues(values);
+                        passwordToken = new PasswordToken
+                        {
+                            Token = values[0].ToString(),
+                            FechaVencimiento = Convert.ToDateTime(values[2].ToString())
+                        };
+                        passwordToken.Usuario = UsuarioRepository.Current.GetById(Guid.Parse(values[1].ToString()));
+                        return passwordToken;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
