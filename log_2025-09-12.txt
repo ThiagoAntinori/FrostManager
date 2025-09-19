@@ -20,3 +20,8 @@
 [2025-09-12 09:32:38.183 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: No se pudo traducir una palabra [] [Usuario logueado: admin, ID: 224f5bf1-5f1b-4ff1-a11e-390d9c346e1d]
 [2025-09-12 09:32:38.587 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ocurrió un error en la configuración del sistema - No se pudo traducir una palabra [] [Usuario logueado: admin, ID: 224f5bf1-5f1b-4ff1-a11e-390d9c346e1d]
 [2025-09-12 09:34:33.315 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: 224f5bf1-5f1b-4ff1-a11e-390d9c346e1d]
+[2025-09-12 23:12:54.718 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: bf67e5b2-5b89-48c3-8820-18e8d5527e80]
+[2025-09-12 23:25:17.924 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: bf67e5b2-5b89-48c3-8820-18e8d5527e80]
+[2025-09-12 23:32:46.110 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: bf67e5b2-5b89-48c3-8820-18e8d5527e80]
+[2025-09-12 23:33:16.420 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: No se pudo traducir una palabra [] [Usuario logueado: admin, ID: bf67e5b2-5b89-48c3-8820-18e8d5527e80]
+[2025-09-12 23:33:17.202 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ocurrió un error en la configuración del sistema - No se pudo traducir una palabra [] [Usuario logueado: admin, ID: bf67e5b2-5b89-48c3-8820-18e8d5527e80]

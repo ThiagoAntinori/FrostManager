@@ -20,26 +20,6 @@ namespace UI
         public MainForm()
         {
             InitializeComponent();
-            mapaPermisos = new Dictionary<string, Button>()
-            {
-                {"REGISTRAR_VENTA", btnRegistrarVenta },
-                {"REGISTRAR_CLIENTE", btnRegistrarCliente },
-                {"MODIFICAR_CLIENTE", btnModificarCliente },
-                {"CONSULTAR_CLIENTE", btnConsultarCliente },
-                {"VER_PEDIDOS", btnVerPedidos },
-                {"ACTUALIZAR_PEDIDO", btnActualizarPedido },
-                {"CANCELAR_PEDIDO", btnCancelarPedido },
-                {"REGISTAR_INGRESO", btnRegistrarIngreso },
-                {"REGISTRAR_EGRESO", btnRegistrarEgreso },
-                {"REGISTRAR_INSUMO", btnRegistrarInsumo },
-                {"AJUSTAR_STOCK", btnAjustarStock },
-                {"CONSULTAR_STOCK", btnConsultarStock },
-                {"REPORTE_VENTAS", btnReporteVentas },
-                {"CIERRE_CAJA", btnCierreCaja },
-                {"REPORTE_SABORES", btnReporteSabores },
-                {"REPORTE_ENTREGAS", btnReporteEntregas },
-                {"REPORTE_PROYECCION", btnReporteProyecciones }
-            };
             IdiomaService.Current.Suscribir(this);
         }
 
@@ -63,14 +43,17 @@ namespace UI
                 {
                     throw new Exception("Error al mostrar permisos. Contacte al admistrador.");
                 }
-                List<string> nombresPatente = UsuarioLogueado.Current.Usuario.GetAllPatentes().Select(p => p.Nombre).ToList();
-                if (nombresPatente.Count == 0)
+                List<Patente> patentesUsuario = UsuarioLogueado.Current.Usuario.GetAllPatentes().ToList();
+                if (patentesUsuario.Count == 0)
                 {
                     throw new Exception("No se le asignó ningún permiso. Contacte al administrador.");
                 }
-                foreach (var keyValue in mapaPermisos)
+                foreach (Control ctrl in panelSideMenu.Controls)
                 {
-                    keyValue.Value.Visible = nombresPatente.Contains(keyValue.Key);
+                    if (ctrl is Button)
+                    {
+                        ctrl.Visible = patentesUsuario.Select(p => p.MenuItemName).Contains(ctrl.Name);
+                    }
                 }
             }
             catch (Exception ex)
@@ -85,7 +68,14 @@ namespace UI
         {
             if (activeForm != null)
             {
-                activeForm.Close();
+                if(MessageBox.Show("¿Desea cerrar la ventana actual? Se borrará todo progreso no guardado", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    activeForm.Close();
+                }
+                else 
+                {
+                    return;
+                }
             }
             activeForm = childForm;
             childForm.TopLevel = false;
@@ -126,7 +116,7 @@ namespace UI
             }
         }
 
-        private void TraducirControles(Control.ControlCollection controles)
+        public static void TraducirControles(Control.ControlCollection controles)
         {
             try
             {
@@ -134,9 +124,13 @@ namespace UI
                 {
                     if (ctrl.Name != null)
                     {
-                        if(ctrl.Visible == true && ctrl is Button)
+                        if (ctrl.Visible == true)
                         {
-                            ctrl.Text = IdiomaService.Current.Traducir(ctrl.Name);
+                            if (ctrl is Button || ctrl is Label)
+                            {
+                                string nuevoTexto = IdiomaService.Current.Traducir(ctrl.Name)!;
+                                ctrl.Text = nuevoTexto == null ? ctrl.Text : nuevoTexto;
+                            }
                         }
                     }
                     if (ctrl.HasChildren)
@@ -155,10 +149,37 @@ namespace UI
         {
             try
             {
-                if (MessageBox.Show("¿Desea cambiar de idioma a en-US?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (MessageBox.Show("¿Desea cambiar de idioma a Inglés?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     IdiomaService.Current.CambiarIdioma("en-US");
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+                this.Close();
+                UsuarioLogueado.CerrarSesion();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private void btnRegistrarVenta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new VentaForm());
             }
             catch(Exception ex)
             {

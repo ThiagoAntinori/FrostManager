@@ -10,5 +10,11 @@
     <Compile Update="Primary Forms\AltaClienteForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Primary Forms\VentaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RecuperarContraseñaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

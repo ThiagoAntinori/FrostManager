@@ -56,12 +56,10 @@ namespace Services.BLL.Services
             }
             catch (WordNotFoundException ex)
             {
-                //Podría aplicar una nueva política
                 IdiomaRepository.Current.AgregarDataKey(word);
-                //Esto seguramente vaya a una bitácora
                 LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Error, $"No se encontró una palabra buscada ({word})", ex));
 
-                return word;
+                return null;
             }
         }
 
@@ -76,6 +74,11 @@ namespace Services.BLL.Services
                 {
                     traducible.CambiarIdioma();
                 }
+            }
+            catch(WordNotFoundException wordNotFoundEx)
+            {
+                CambiarIdioma(cultura);
+                ExceptionExtension.Handle(wordNotFoundEx);
             }
             catch(Exception ex)
             {

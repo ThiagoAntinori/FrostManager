@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Services.BLL.Extensions;
+using Services.DAL.Implementations;
+using System.Net.Mail;
+using System.Net;
 
 namespace Services.BLL.Services
 {
@@ -48,6 +51,40 @@ namespace Services.BLL.Services
         private static bool VerificarContraseña(Usuario usuario, string password)
         {
             return usuario.Password == CriptographyService.HashMd5(password);
+        }
+
+        public static void RecuperarContraseña(Usuario usuarioARecuperar)
+        {
+            try
+            {
+                if (usuarioARecuperar == null)
+                {
+                    throw new Exception("No se encontró un usuario con ese nombre. Intente nuevamente");
+                }
+                if (!usuarioARecuperar.EstaHabilitado)
+                {
+                    throw new Exception("El usuario no se encuentra habilitado. Contacte al administrador");
+                }
+                List<PasswordToken> tokens = PasswordTokenRepository.Current.GetByIdUsuario(usuarioARecuperar.IdUsuario);
+                if (tokens.Where(t => t.FechaVencimiento > DateTime.Now).ToList().Count > 0)
+                {
+                    throw new Exception("Ya hay un token activo. Revise su correo electrónico");
+                }
+                PasswordToken nuevoToken = new PasswordToken(Guid.NewGuid().ToString(), usuarioARecuperar, DateTime.Now.AddMinutes(15));
+                PasswordTokenRepository.Current.Insert(nuevoToken);
+                string asunto = "Recuperación de contraseña - FrostManager";
+                string cuerpo = $"Hola {usuarioARecuperar.Nombre},\n\n" +
+                                "Hemos recibido una solicitud para restablecer tu contraseña.\n" +
+                                $"Tu código de recuperación es: {nuevoToken.Token}\n" +
+                                $"Este código expira el {nuevoToken.FechaVencimiento}.\n\n" +
+                                "Si no solicitaste este cambio, ignora este mensaje.";
+
+                EmailService.EnviarEmail(usuarioARecuperar.CorreoElectronico, asunto, cuerpo);
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }
         }
     }
 }

@@ -1,0 +1,4 @@
+[2025-09-19 01:16:24.081 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ya existe un usuario con ese nombre de usuario. [] []
+[2025-09-19 01:19:28.513 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ya existe un usuario con ese nombre de usuario. [] []
+[2025-09-19 01:22:48.625 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ya existe un usuario con ese nombre de usuario. [] []
+[2025-09-19 01:23:03.625 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: No se encontró un usuario con ese nombre. Intente nuevamente [] []

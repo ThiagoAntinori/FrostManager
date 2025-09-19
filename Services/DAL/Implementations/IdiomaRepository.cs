@@ -45,11 +45,6 @@ namespace Services.DAL.Implementations
 
                 string localPath = $"{path}.{cultura}";
 
-                //if (!Directory.Exists(localPath))
-                //{
-                //    Directory.CreateDirectory(localPath);
-                //}
-
                 using(StreamReader sr = new StreamReader(localPath))
                 {
                     while (!sr.EndOfStream)
@@ -66,6 +61,11 @@ namespace Services.DAL.Implementations
                     }
                 }
                 throw new WordNotFoundException();
+            }
+            catch(WordNotFoundException wordNotFound)
+            {
+                AgregarDataKey(word);
+                throw;
             }
             catch(Exception ex)
             {

@@ -120,7 +120,7 @@ namespace Services.DAL.Implementations
                         reader.GetValues(values);
                         Guid idPatente = Guid.Parse(values[1].ToString());
                         patenteGet = PatenteRepository.Current.GetById(idPatente);
-                        obj.Privilegios.Add(familiaGet);
+                        obj.Privilegios.Add(patenteGet);
                     }
                 }
             }

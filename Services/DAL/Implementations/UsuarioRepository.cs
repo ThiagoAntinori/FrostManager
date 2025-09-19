@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Services.BLL.Extensions;
 using Services.DAL.Adapter;
 using Services.DAL.Contracts;
 using Services.DAL.Tools;
@@ -66,7 +67,30 @@ namespace Services.DAL.Implementations
 
         public Usuario GetById(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Usuario usuarioABuscar = null;
+                using (var Reader = SqlHelper.ExecuteReader("SELECT IdUsuario, CorreoElectronico, Nombre, Password, EstaHabilitado FROM USUARIO WHERE IdUsuario = @IdUsuario",
+                    System.Data.CommandType.Text,
+                    new SqlParameter[]{
+                        new SqlParameter("@IdUsuario", id)
+                    }))
+                {
+                    object[] values = new object[Reader.FieldCount];
+
+                    if (Reader.Read())
+                    {
+                        Reader.GetValues(values);
+                        usuarioABuscar = UsuarioAdapter.Current.Adapt(values);
+                    }
+                    return usuarioABuscar;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
 
         public Usuario GetByNombreUsuario(string nombreUsuario)

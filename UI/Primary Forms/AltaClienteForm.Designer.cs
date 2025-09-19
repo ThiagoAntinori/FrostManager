@@ -28,72 +28,172 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
+            lblDatosCliente = new Label();
+            lblNombre = new Label();
+            txtNombre = new TextBox();
+            btnRegistrar = new Button();
+            btnSalir = new Button();
+            txtApellido = new TextBox();
+            lblApellido = new Label();
+            txtDni = new TextBox();
+            lblDni = new Label();
+            txtTelefono = new TextBox();
+            lblTelefono = new Label();
+            txtDireccion = new TextBox();
+            lblDireccion = new Label();
             SuspendLayout();
             // 
-            // label1
+            // lblDatosCliente
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            label1.AutoSize = true;
-            label1.Location = new Point(61, 61);
-            label1.Name = "label1";
-            label1.Size = new Size(155, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Ingrese los datos del cliente:";
+            lblDatosCliente.Anchor = AnchorStyles.None;
+            lblDatosCliente.AutoSize = true;
+            lblDatosCliente.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDatosCliente.ForeColor = SystemColors.ActiveCaptionText;
+            lblDatosCliente.Location = new Point(149, 62);
+            lblDatosCliente.Name = "lblDatosCliente";
+            lblDatosCliente.Size = new Size(222, 17);
+            lblDatosCliente.TabIndex = 0;
+            lblDatosCliente.Text = "Ingrese los datos del nuevo cliente:";
             // 
-            // label2
+            // lblNombre
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            label2.AutoSize = true;
-            label2.Location = new Point(61, 115);
-            label2.Name = "label2";
-            label2.Size = new Size(51, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Nombre";
+            lblNombre.Anchor = AnchorStyles.None;
+            lblNombre.AutoSize = true;
+            lblNombre.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNombre.Location = new Point(149, 103);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(58, 17);
+            lblNombre.TabIndex = 1;
+            lblNombre.Text = "Nombre";
             // 
-            // textBox1
+            // txtNombre
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(118, 112);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(194, 23);
-            textBox1.TabIndex = 2;
+            txtNombre.Anchor = AnchorStyles.None;
+            txtNombre.Location = new Point(149, 123);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(317, 23);
+            txtNombre.TabIndex = 2;
             // 
-            // button1
+            // btnRegistrar
             // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button1.Location = new Point(61, 309);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 3;
-            button1.Text = "Registrar";
-            button1.UseVisualStyleBackColor = true;
+            btnRegistrar.Anchor = AnchorStyles.None;
+            btnRegistrar.BackColor = Color.Lavender;
+            btnRegistrar.FlatStyle = FlatStyle.Popup;
+            btnRegistrar.Location = new Point(340, 470);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(126, 29);
+            btnRegistrar.TabIndex = 3;
+            btnRegistrar.Text = "Registrar";
+            btnRegistrar.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnSalir
             // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button2.Location = new Point(500, 28);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 4;
-            button2.Text = "X";
-            button2.UseVisualStyleBackColor = true;
+            btnSalir.Anchor = AnchorStyles.None;
+            btnSalir.Location = new Point(524, 22);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(75, 23);
+            btnSalir.TabIndex = 4;
+            btnSalir.Text = "X";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
+            // txtApellido
+            // 
+            txtApellido.Anchor = AnchorStyles.None;
+            txtApellido.Location = new Point(149, 189);
+            txtApellido.Name = "txtApellido";
+            txtApellido.Size = new Size(317, 23);
+            txtApellido.TabIndex = 6;
+            // 
+            // lblApellido
+            // 
+            lblApellido.Anchor = AnchorStyles.None;
+            lblApellido.AutoSize = true;
+            lblApellido.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblApellido.Location = new Point(149, 169);
+            lblApellido.Name = "lblApellido";
+            lblApellido.Size = new Size(57, 17);
+            lblApellido.TabIndex = 5;
+            lblApellido.Text = "Apellido";
+            // 
+            // txtDni
+            // 
+            txtDni.Anchor = AnchorStyles.None;
+            txtDni.Location = new Point(149, 258);
+            txtDni.Name = "txtDni";
+            txtDni.Size = new Size(317, 23);
+            txtDni.TabIndex = 8;
+            // 
+            // lblDni
+            // 
+            lblDni.Anchor = AnchorStyles.None;
+            lblDni.AutoSize = true;
+            lblDni.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDni.Location = new Point(149, 238);
+            lblDni.Name = "lblDni";
+            lblDni.Size = new Size(31, 17);
+            lblDni.TabIndex = 7;
+            lblDni.Text = "DNI";
+            // 
+            // txtTelefono
+            // 
+            txtTelefono.Anchor = AnchorStyles.None;
+            txtTelefono.Location = new Point(149, 333);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(317, 23);
+            txtTelefono.TabIndex = 10;
+            // 
+            // lblTelefono
+            // 
+            lblTelefono.Anchor = AnchorStyles.None;
+            lblTelefono.AutoSize = true;
+            lblTelefono.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTelefono.Location = new Point(149, 313);
+            lblTelefono.Name = "lblTelefono";
+            lblTelefono.Size = new Size(59, 17);
+            lblTelefono.TabIndex = 9;
+            lblTelefono.Text = "Teléfono";
+            // 
+            // txtDireccion
+            // 
+            txtDireccion.Anchor = AnchorStyles.None;
+            txtDireccion.Location = new Point(149, 407);
+            txtDireccion.Name = "txtDireccion";
+            txtDireccion.Size = new Size(317, 23);
+            txtDireccion.TabIndex = 12;
+            // 
+            // lblDireccion
+            // 
+            lblDireccion.Anchor = AnchorStyles.None;
+            lblDireccion.AutoSize = true;
+            lblDireccion.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDireccion.Location = new Point(149, 387);
+            lblDireccion.Name = "lblDireccion";
+            lblDireccion.Size = new Size(63, 17);
+            lblDireccion.TabIndex = 11;
+            lblDireccion.Text = "Dirección";
             // 
             // AltaClienteForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(603, 522);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            BackColor = Color.MintCream;
+            ClientSize = new Size(624, 561);
+            Controls.Add(txtDireccion);
+            Controls.Add(lblDireccion);
+            Controls.Add(txtTelefono);
+            Controls.Add(lblTelefono);
+            Controls.Add(txtDni);
+            Controls.Add(lblDni);
+            Controls.Add(txtApellido);
+            Controls.Add(lblApellido);
+            Controls.Add(btnSalir);
+            Controls.Add(btnRegistrar);
+            Controls.Add(txtNombre);
+            Controls.Add(lblNombre);
+            Controls.Add(lblDatosCliente);
             FormBorderStyle = FormBorderStyle.None;
+            MinimumSize = new Size(624, 561);
             Name = "AltaClienteForm";
             Text = "AltaClienteForm";
             ResumeLayout(false);
@@ -102,10 +202,18 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private TextBox textBox1;
-        private Button button1;
-        private Button button2;
+        private Label lblDatosCliente;
+        private Label lblNombre;
+        private TextBox txtNombre;
+        private Button btnRegistrar;
+        private Button btnSalir;
+        private TextBox txtApellido;
+        private Label lblApellido;
+        private TextBox txtDni;
+        private Label lblDni;
+        private TextBox txtTelefono;
+        private Label lblTelefono;
+        private TextBox txtDireccion;
+        private Label lblDireccion;
     }
 }

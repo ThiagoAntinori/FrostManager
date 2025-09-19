@@ -63,9 +63,9 @@ namespace UI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _1144760 {
+        internal static System.Drawing.Bitmap FrostManager_Logo {
             get {
-                object obj = ResourceManager.GetObject("1144760", resourceCulture);
+                object obj = ResourceManager.GetObject("FrostManager-Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace UI.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Ice_Cream_Dark_Green_Vector_Apps {
+        internal static System.Drawing.Bitmap Password_icon {
             get {
-                object obj = ResourceManager.GetObject("Ice-Cream-Dark-Green-Vector-Apps", resourceCulture);
+                object obj = ResourceManager.GetObject("Password-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
