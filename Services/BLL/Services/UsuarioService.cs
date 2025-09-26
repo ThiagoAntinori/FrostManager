@@ -61,7 +61,30 @@ namespace Services.BLL.Services
 
         public void Update(Usuario obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (string.IsNullOrEmpty(obj.Nombre))
+                {
+                    throw new Exception("El usuario debe tener un nombre");
+                }
+                if (string.IsNullOrEmpty(obj.CorreoElectronico))
+                {
+                    throw new Exception("El usuario debe tener un correo electrónico");
+                }
+                if (!obj.CorreoElectronico.Contains('@'))
+                {
+                    throw new Exception("El correo electrónico debe tener el formato correcto: user@example.com");
+                }
+                if (ExisteUsuario(obj))
+                {
+                    throw new Exception("Ya existe un usuario con ese nombre");
+                }
+                UsuarioRepository.Current.Update(obj);
+            }
+            catch(Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }
         }
 
         public void Delete(Guid id)
@@ -71,7 +94,15 @@ namespace Services.BLL.Services
 
         public List<Usuario> SelectAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return UsuarioRepository.Current.GetAll();
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
 
         public Usuario SelectOne(Guid id)
@@ -121,6 +152,22 @@ namespace Services.BLL.Services
             }
         }
 
+        public void CambiarEstado(Usuario usuario)
+        {
+            try
+            {
+                if(usuario == null)
+                {
+                    throw new ArgumentNullException(nameof(usuario));
+                }
+                UsuarioRepository.Current.CambiarEstado(usuario);
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }
+        }
+
         public Usuario GetByNombreUsuario(string nombreUsuario)
         {
             try
@@ -138,18 +185,18 @@ namespace Services.BLL.Services
             }
         }
 
-        public string GenerarPassword(int longitud = 8)
+        public string GenerarPassword()
         {
             string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            byte[] bytesAleatorios = new byte[longitud];
-            char[] passwordChars = new char[longitud];
+            byte[] bytesAleatorios = new byte[8];
+            char[] passwordChars = new char[8];
 
             using (var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(bytesAleatorios);
             }
 
-            for (int i = 0; i < longitud; i++)
+            for (int i = 0; i < 8; i++)
             {
                 int index = bytesAleatorios[i] % caracteres.Length;
                 passwordChars[i] = caracteres[index];

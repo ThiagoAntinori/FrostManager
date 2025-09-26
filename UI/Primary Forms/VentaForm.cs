@@ -1,5 +1,6 @@
 ﻿using Services.BLL.Contracts;
 using Services.BLL.Services;
+using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +27,22 @@ namespace UI.Primary_Forms
             {
                 MainForm.TraducirControles(this.Controls);
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private void VentaForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if(UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
+                {
+                    CambiarIdioma();
+                }
+            }
+            catch (Exception ex)
             {
                 throw;
             }

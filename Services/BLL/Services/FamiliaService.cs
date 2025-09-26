@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Services.BLL.Contracts;
+using Services.BLL.Extensions;
 using Services.DAL.Contracts;
 using Services.DAL.Implementations;
 using Services.DAL.Tools;
@@ -61,12 +62,28 @@ namespace Services.BLL.Services
 
         public List<Familia> SelectAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return FamiliaRepository.Current.GetAll();
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
 
         public Familia SelectOne(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return FamiliaRepository.Current.GetById(id);
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
 
         public void Update(Familia obj)

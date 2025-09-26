@@ -74,6 +74,7 @@
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.None;
+            pictureBox1.Image = Properties.Resources.User;
             pictureBox1.Location = new Point(42, 153);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(20, 20);
@@ -117,6 +118,7 @@
             // pictureBox3
             // 
             pictureBox3.Anchor = AnchorStyles.None;
+            pictureBox3.Image = Properties.Resources.Password;
             pictureBox3.Location = new Point(42, 207);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(20, 20);

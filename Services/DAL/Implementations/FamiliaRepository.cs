@@ -66,7 +66,7 @@ namespace Services.DAL.Implementations
             {
                 List<Familia> familias = new List<Familia>();
                 Familia familiaGet = null;
-                using(var reader = SqlHelper.ExecuteReader("SELECT (IdFamilia, Nombre) FROM FAMILIA",
+                using(var reader = SqlHelper.ExecuteReader("SELECT IdFamilia, Nombre FROM FAMILIA",
                                                             System.Data.CommandType.Text,
                                                             new SqlParameter[] {}))
                 {

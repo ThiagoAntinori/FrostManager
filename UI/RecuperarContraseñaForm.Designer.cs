@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecuperarContraseñaForm));
             lblIngresarNombreUsuario = new Label();
             txtNombreUsuario = new TextBox();
             btnEnviarToken = new Button();
@@ -39,7 +40,7 @@
             // lblIngresarNombreUsuario
             // 
             lblIngresarNombreUsuario.AutoSize = true;
-            lblIngresarNombreUsuario.Location = new Point(38, 30);
+            lblIngresarNombreUsuario.Location = new Point(38, 44);
             lblIngresarNombreUsuario.Name = "lblIngresarNombreUsuario";
             lblIngresarNombreUsuario.Size = new Size(166, 15);
             lblIngresarNombreUsuario.TabIndex = 0;
@@ -47,14 +48,14 @@
             // 
             // txtNombreUsuario
             // 
-            txtNombreUsuario.Location = new Point(38, 48);
+            txtNombreUsuario.Location = new Point(38, 62);
             txtNombreUsuario.Name = "txtNombreUsuario";
-            txtNombreUsuario.Size = new Size(219, 23);
+            txtNombreUsuario.Size = new Size(260, 23);
             txtNombreUsuario.TabIndex = 1;
             // 
             // btnEnviarToken
             // 
-            btnEnviarToken.Location = new Point(288, 47);
+            btnEnviarToken.Location = new Point(38, 91);
             btnEnviarToken.Name = "btnEnviarToken";
             btnEnviarToken.Size = new Size(89, 23);
             btnEnviarToken.TabIndex = 2;
@@ -65,7 +66,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(38, 114);
+            label1.Location = new Point(38, 162);
             label1.Name = "label1";
             label1.Size = new Size(168, 15);
             label1.TabIndex = 3;
@@ -73,14 +74,14 @@
             // 
             // txtToken
             // 
-            txtToken.Location = new Point(38, 132);
+            txtToken.Location = new Point(38, 180);
             txtToken.Name = "txtToken";
-            txtToken.Size = new Size(219, 23);
+            txtToken.Size = new Size(260, 23);
             txtToken.TabIndex = 4;
             // 
             // btnIngresar
             // 
-            btnIngresar.Location = new Point(288, 132);
+            btnIngresar.Location = new Point(38, 209);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(89, 23);
             btnIngresar.TabIndex = 5;
@@ -92,15 +93,17 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(420, 205);
+            BackColor = Color.LightSteelBlue;
+            ClientSize = new Size(348, 278);
             Controls.Add(btnIngresar);
             Controls.Add(txtToken);
             Controls.Add(label1);
             Controls.Add(btnEnviarToken);
             Controls.Add(txtNombreUsuario);
             Controls.Add(lblIngresarNombreUsuario);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "RecuperarContraseñaForm";
-            Text = "RecuperarContraseñaForm";
+            Text = "Recuperación de Contraseña";
             ResumeLayout(false);
             PerformLayout();
         }

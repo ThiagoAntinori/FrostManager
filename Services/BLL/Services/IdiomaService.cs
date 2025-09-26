@@ -3,6 +3,7 @@ using Services.BLL.Extensions;
 using Services.DAL.Implementations;
 using Services.Domain.Exceptions;
 using Services.Domain.Logging;
+using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -74,6 +75,8 @@ namespace Services.BLL.Services
                 {
                     traducible.CambiarIdioma();
                 }
+
+                UsuarioLogueado.Current.CambiarIdiomaSeleccionado(cultura);
             }
             catch(WordNotFoundException wordNotFoundEx)
             {

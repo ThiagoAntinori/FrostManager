@@ -1,5 +1,9 @@
-﻿using Services.BLL.Contracts;
+﻿using BLL.Implementations;
+using Domain;
+using Services.BLL.Contracts;
+using Services.BLL.Extensions;
 using Services.BLL.Services;
+using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +30,7 @@ namespace UI.Primary_Forms
             {
                 MainForm.TraducirControles(this.Controls);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -34,9 +38,38 @@ namespace UI.Primary_Forms
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            this.Close();
+            MainForm.closeChildForm(this);
         }
 
+        private void AltaClienteForm_Load(object sender, EventArgs e)
+        {
+            if (UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
+            {
+                CambiarIdioma();
+            }
+        }
 
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cliente clienteARegistrar = new Cliente
+                {
+                    IdCliente = Guid.NewGuid(),
+                    Nombre = txtNombre.Text,
+                    Apellido = txtApellido.Text,
+                    DNI = txtDni.Text,
+                    Telefono = txtTelefono.Text,
+                    Direccion = txtDireccion.Text
+                };
+                ClienteService.Current.Add(clienteARegistrar);
+                MessageBox.Show("Cliente creado exitosamente");
+                MainForm.LimpiarCampos(this.Controls);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

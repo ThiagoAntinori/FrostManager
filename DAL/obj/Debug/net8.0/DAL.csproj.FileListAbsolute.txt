@@ -33,3 +33,5 @@ C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\Fr
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\obj\Debug\net8.0\refint\DAL.dll
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\obj\Debug\net8.0\DAL.pdb
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\obj\Debug\net8.0\ref\DAL.dll
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\bin\Debug\net8.0\DAL.runtimeconfig.json
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache

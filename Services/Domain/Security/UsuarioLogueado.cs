@@ -9,6 +9,7 @@ namespace Services.Domain.Security
     public class UsuarioLogueado
     {
         public Usuario Usuario { get; private set; }
+        public string IdiomaSeleccionado { get; private set; }
         private static UsuarioLogueado _instance;
         private static readonly object _lock = new object();
 
@@ -24,6 +25,7 @@ namespace Services.Domain.Security
         private UsuarioLogueado(Usuario usuario)
         {
             this.Usuario = usuario;
+            this.IdiomaSeleccionado = "es-ES";
         }
 
         public static void IniciarSesion(Usuario usuario)
@@ -43,6 +45,11 @@ namespace Services.Domain.Security
             {
                 _instance = null;
             }
+        }
+
+        public void CambiarIdiomaSeleccionado(string nuevoIdioma)
+        {
+            this.IdiomaSeleccionado = nuevoIdioma;
         }
 
     }

@@ -30,6 +30,7 @@ namespace UI
                 Usuario usuarioIngresado = UsuarioService.Current.GetByNombreUsuario(txtNombreUsuario.Text);
                 SesionService.RecuperarContraseña(usuarioIngresado);
                 MessageBox.Show("Se envío un token de recuperación a su correo electrónico");
+                txtNombreUsuario.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -43,8 +44,8 @@ namespace UI
             {
                 SesionService.IniciarSesionToken(txtToken.Text);
                 MainForm mainForm = new MainForm();
-                mainForm.Show();
                 this.Close();
+                mainForm.Show();
             }
             catch(Exception ex)
             {

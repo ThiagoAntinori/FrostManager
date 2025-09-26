@@ -18,10 +18,10 @@ namespace Services.BLL.Services
 			{
                 using (var smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    string user = ConfigurationManager.AppSettings["SmtpUser"];
-                    string password = ConfigurationManager.AppSettings["SmtpPassword"];
+                    string user = "frostmanagerservice@gmail.com";
+                    string password = "nzwrkkjrvdsivgql";
                     smtp.Credentials = new NetworkCredential(user, password);
-                    smtp.EnableSsl = true; // Usa TLS
+                    smtp.EnableSsl = true;
 
                     var mail = new MailMessage(user, destinatario, asunto, cuerpo);
                     smtp.Send(mail);

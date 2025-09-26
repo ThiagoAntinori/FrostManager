@@ -4,19 +4,21 @@ using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Administrative_Forms;
 using UI.Primary_Forms;
 
 namespace UI
 {
     public partial class MainForm : Form, ITraducible
     {
-        private Dictionary<string, Button> mapaPermisos;
         public MainForm()
         {
             InitializeComponent();
@@ -68,14 +70,7 @@ namespace UI
         {
             if (activeForm != null)
             {
-                if(MessageBox.Show("¿Desea cerrar la ventana actual? Se borrará todo progreso no guardado", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
-                {
-                    activeForm.Close();
-                }
-                else 
-                {
-                    return;
-                }
+                closeChildForm(activeForm);
             }
             activeForm = childForm;
             childForm.TopLevel = false;
@@ -85,6 +80,14 @@ namespace UI
             panelChildForm.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+        }
+
+        public static void closeChildForm(Form childForm)
+        {
+            if (MessageBox.Show("¿Desea cerrar la ventana? Se perderán los datos no guardados", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                childForm.Close();
+            }
         }
 
         private void btnRegistrarCliente_Click(object sender, EventArgs e)
@@ -128,8 +131,36 @@ namespace UI
                         {
                             if (ctrl is Button || ctrl is Label)
                             {
-                                string nuevoTexto = IdiomaService.Current.Traducir(ctrl.Name)!;
+                                string nuevoTexto = IdiomaService.Current.Traducir(ctrl.Name);
                                 ctrl.Text = nuevoTexto == null ? ctrl.Text : nuevoTexto;
+                            }
+                        }
+                    }
+                    if (ctrl.HasChildren)
+                    {
+                        TraducirControles(ctrl.Controls);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public static void LimpiarCampos(Control.ControlCollection controles)
+        {
+            try
+            {
+                foreach (Control ctrl in controles)
+                {
+                    if (ctrl.Name != null)
+                    {
+                        if (ctrl.Visible == true)
+                        {
+                            if (ctrl is TextBox)
+                            {
+                                ctrl.Text = string.Empty;
                             }
                         }
                     }
@@ -181,9 +212,47 @@ namespace UI
             {
                 openChildForm(new VentaForm());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnRespaldarDatos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Backup files (*.bak) | *.bak";
+                    saveFileDialog.Title = "Guardar respaldo de Base de datos";
+                    saveFileDialog.InitialDirectory = @"C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\";
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        BackupService.Current.HacerBackup(saveFileDialog.FileName,
+                            ConfigurationManager.ConnectionStrings["BusinessConString"].ConnectionString);
+                        MessageBox.Show("La base de datos fue respaldada con éxito.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAbrirPanelAdministrativo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainAdministrativeForm mainAdminForm = new MainAdministrativeForm();
+                this.WindowState = FormWindowState.Minimized;
+                mainAdminForm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
             }
         }
     }

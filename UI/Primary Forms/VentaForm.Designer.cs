@@ -48,15 +48,19 @@
             // txtBuscarProducto
             // 
             txtBuscarProducto.Anchor = AnchorStyles.None;
+            txtBuscarProducto.Font = new Font("Segoe UI", 9.75F);
+            txtBuscarProducto.ForeColor = SystemColors.WindowText;
             txtBuscarProducto.Location = new Point(42, 67);
             txtBuscarProducto.Name = "txtBuscarProducto";
             txtBuscarProducto.PlaceholderText = "Buscar por nombre";
-            txtBuscarProducto.Size = new Size(162, 23);
+            txtBuscarProducto.Size = new Size(162, 25);
             txtBuscarProducto.TabIndex = 0;
             // 
             // lvProductos
             // 
             lvProductos.Anchor = AnchorStyles.None;
+            lvProductos.Font = new Font("Segoe UI", 9.75F);
+            lvProductos.ForeColor = SystemColors.WindowText;
             lvProductos.Location = new Point(42, 106);
             lvProductos.Name = "lvProductos";
             lvProductos.Size = new Size(162, 239);
@@ -67,9 +71,11 @@
             // 
             lblSeleccioneProducto.Anchor = AnchorStyles.None;
             lblSeleccioneProducto.AutoSize = true;
+            lblSeleccioneProducto.Font = new Font("Segoe UI", 9.75F);
+            lblSeleccioneProducto.ForeColor = SystemColors.WindowText;
             lblSeleccioneProducto.Location = new Point(41, 34);
             lblSeleccioneProducto.Name = "lblSeleccioneProducto";
-            lblSeleccioneProducto.Size = new Size(180, 15);
+            lblSeleccioneProducto.Size = new Size(200, 17);
             lblSeleccioneProducto.TabIndex = 2;
             lblSeleccioneProducto.Text = "Seleccione un producto a añadir:";
             // 
@@ -77,23 +83,29 @@
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.75F);
+            label1.ForeColor = SystemColors.WindowText;
             label1.Location = new Point(41, 370);
             label1.Name = "label1";
-            label1.Size = new Size(109, 15);
+            label1.Size = new Size(122, 17);
             label1.TabIndex = 3;
             label1.Text = "Ingrese la cantidad:";
             // 
             // numericUpDown1
             // 
             numericUpDown1.Anchor = AnchorStyles.None;
+            numericUpDown1.Font = new Font("Segoe UI", 9.75F);
+            numericUpDown1.ForeColor = SystemColors.WindowText;
             numericUpDown1.Location = new Point(156, 368);
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(48, 23);
+            numericUpDown1.Size = new Size(48, 25);
             numericUpDown1.TabIndex = 4;
             // 
             // button1
             // 
             button1.Anchor = AnchorStyles.None;
+            button1.Font = new Font("Segoe UI", 9.75F);
+            button1.ForeColor = SystemColors.WindowText;
             button1.Location = new Point(108, 418);
             button1.Name = "button1";
             button1.Size = new Size(96, 23);
@@ -104,6 +116,8 @@
             // listView1
             // 
             listView1.Anchor = AnchorStyles.None;
+            listView1.Font = new Font("Segoe UI", 9.75F);
+            listView1.ForeColor = SystemColors.WindowText;
             listView1.Location = new Point(291, 106);
             listView1.Name = "listView1";
             listView1.Size = new Size(312, 239);
@@ -114,15 +128,19 @@
             // 
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9.75F);
+            label2.ForeColor = SystemColors.WindowText;
             label2.Location = new Point(519, 370);
             label2.Name = "label2";
-            label2.Size = new Size(44, 15);
+            label2.Size = new Size(46, 17);
             label2.TabIndex = 7;
             label2.Text = "TOTAL:";
             // 
             // button2
             // 
             button2.Anchor = AnchorStyles.None;
+            button2.Font = new Font("Segoe UI", 9.75F);
+            button2.ForeColor = SystemColors.WindowText;
             button2.Location = new Point(291, 366);
             button2.Name = "button2";
             button2.Size = new Size(138, 23);
@@ -133,6 +151,8 @@
             // button3
             // 
             button3.Anchor = AnchorStyles.None;
+            button3.Font = new Font("Segoe UI", 9.75F);
+            button3.ForeColor = SystemColors.WindowText;
             button3.Location = new Point(291, 418);
             button3.Name = "button3";
             button3.Size = new Size(138, 23);
@@ -144,9 +164,11 @@
             // 
             checkBox1.Anchor = AnchorStyles.None;
             checkBox1.AutoSize = true;
+            checkBox1.Font = new Font("Segoe UI", 9.75F);
+            checkBox1.ForeColor = SystemColors.WindowText;
             checkBox1.Location = new Point(291, 520);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(91, 19);
+            checkBox1.Size = new Size(101, 21);
             checkBox1.TabIndex = 11;
             checkBox1.Text = "¿Es delivery?";
             checkBox1.UseVisualStyleBackColor = true;
@@ -154,6 +176,8 @@
             // button4
             // 
             button4.Anchor = AnchorStyles.None;
+            button4.Font = new Font("Segoe UI", 9.75F);
+            button4.ForeColor = SystemColors.WindowText;
             button4.Location = new Point(475, 515);
             button4.Name = "button4";
             button4.Size = new Size(128, 26);
@@ -165,9 +189,11 @@
             // 
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9.75F);
+            label3.ForeColor = SystemColors.WindowText;
             label3.Location = new Point(295, 37);
             label3.Name = "label3";
-            label3.Size = new Size(91, 15);
+            label3.Size = new Size(102, 17);
             label3.TabIndex = 13;
             label3.Text = "Detalle de venta";
             // 
@@ -175,9 +201,11 @@
             // 
             lblMontoTotal.Anchor = AnchorStyles.None;
             lblMontoTotal.AutoSize = true;
+            lblMontoTotal.Font = new Font("Segoe UI", 9.75F);
+            lblMontoTotal.ForeColor = SystemColors.WindowText;
             lblMontoTotal.Location = new Point(519, 399);
             lblMontoTotal.Name = "lblMontoTotal";
-            lblMontoTotal.Size = new Size(13, 15);
+            lblMontoTotal.Size = new Size(15, 17);
             lblMontoTotal.TabIndex = 14;
             lblMontoTotal.Text = "0";
             // 
@@ -203,6 +231,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "VentaForm";
             Text = "Form1";
+            Load += VentaForm_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();

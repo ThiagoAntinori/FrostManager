@@ -48,7 +48,7 @@
             lblDatosCliente.Anchor = AnchorStyles.None;
             lblDatosCliente.AutoSize = true;
             lblDatosCliente.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDatosCliente.ForeColor = SystemColors.ActiveCaptionText;
+            lblDatosCliente.ForeColor = SystemColors.WindowText;
             lblDatosCliente.Location = new Point(149, 62);
             lblDatosCliente.Name = "lblDatosCliente";
             lblDatosCliente.Size = new Size(222, 17);
@@ -60,6 +60,7 @@
             lblNombre.Anchor = AnchorStyles.None;
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNombre.ForeColor = SystemColors.WindowText;
             lblNombre.Location = new Point(149, 103);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(58, 17);
@@ -69,6 +70,7 @@
             // txtNombre
             // 
             txtNombre.Anchor = AnchorStyles.None;
+            txtNombre.ForeColor = SystemColors.WindowText;
             txtNombre.Location = new Point(149, 123);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(317, 23);
@@ -79,16 +81,19 @@
             btnRegistrar.Anchor = AnchorStyles.None;
             btnRegistrar.BackColor = Color.Lavender;
             btnRegistrar.FlatStyle = FlatStyle.Popup;
+            btnRegistrar.ForeColor = SystemColors.WindowText;
             btnRegistrar.Location = new Point(340, 470);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(126, 29);
             btnRegistrar.TabIndex = 3;
             btnRegistrar.Text = "Registrar";
             btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // btnSalir
             // 
             btnSalir.Anchor = AnchorStyles.None;
+            btnSalir.ForeColor = SystemColors.WindowText;
             btnSalir.Location = new Point(524, 22);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(75, 23);
@@ -100,6 +105,7 @@
             // txtApellido
             // 
             txtApellido.Anchor = AnchorStyles.None;
+            txtApellido.ForeColor = SystemColors.WindowText;
             txtApellido.Location = new Point(149, 189);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(317, 23);
@@ -110,6 +116,7 @@
             lblApellido.Anchor = AnchorStyles.None;
             lblApellido.AutoSize = true;
             lblApellido.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblApellido.ForeColor = SystemColors.WindowText;
             lblApellido.Location = new Point(149, 169);
             lblApellido.Name = "lblApellido";
             lblApellido.Size = new Size(57, 17);
@@ -119,6 +126,7 @@
             // txtDni
             // 
             txtDni.Anchor = AnchorStyles.None;
+            txtDni.ForeColor = SystemColors.WindowText;
             txtDni.Location = new Point(149, 258);
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(317, 23);
@@ -129,6 +137,7 @@
             lblDni.Anchor = AnchorStyles.None;
             lblDni.AutoSize = true;
             lblDni.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDni.ForeColor = SystemColors.WindowText;
             lblDni.Location = new Point(149, 238);
             lblDni.Name = "lblDni";
             lblDni.Size = new Size(31, 17);
@@ -138,6 +147,7 @@
             // txtTelefono
             // 
             txtTelefono.Anchor = AnchorStyles.None;
+            txtTelefono.ForeColor = SystemColors.WindowText;
             txtTelefono.Location = new Point(149, 333);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(317, 23);
@@ -148,6 +158,7 @@
             lblTelefono.Anchor = AnchorStyles.None;
             lblTelefono.AutoSize = true;
             lblTelefono.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTelefono.ForeColor = SystemColors.WindowText;
             lblTelefono.Location = new Point(149, 313);
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(59, 17);
@@ -157,6 +168,7 @@
             // txtDireccion
             // 
             txtDireccion.Anchor = AnchorStyles.None;
+            txtDireccion.ForeColor = SystemColors.WindowText;
             txtDireccion.Location = new Point(149, 407);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(317, 23);
@@ -167,6 +179,7 @@
             lblDireccion.Anchor = AnchorStyles.None;
             lblDireccion.AutoSize = true;
             lblDireccion.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDireccion.ForeColor = SystemColors.WindowText;
             lblDireccion.Location = new Point(149, 387);
             lblDireccion.Name = "lblDireccion";
             lblDireccion.Size = new Size(63, 17);
@@ -196,6 +209,7 @@
             MinimumSize = new Size(624, 561);
             Name = "AltaClienteForm";
             Text = "AltaClienteForm";
+            Load += AltaClienteForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

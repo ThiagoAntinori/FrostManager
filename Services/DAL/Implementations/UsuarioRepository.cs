@@ -6,6 +6,7 @@ using Services.DAL.Tools;
 using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +47,7 @@ namespace Services.DAL.Implementations
             }
             catch(Exception ex)
             {
-                throw;
+                ExceptionExtension.Handle(ex);
             }
         }
 
@@ -57,12 +58,49 @@ namespace Services.DAL.Implementations
 
         public void Update(Usuario item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                SqlHelper.ExecuteNonQuery("UPDATE USUARIO SET Nombre = @Nombre, CorreoElectronico = @CorreoElectronico WHERE IdUsuario = @IdUsuario",
+                    CommandType.Text,
+                    new SqlParameter[]
+                    {
+                        new SqlParameter("@Nombre", item.Nombre),
+                        new SqlParameter("@CorreoElectronico", item.CorreoElectronico),
+                        new SqlParameter("@IdUsuario", item.IdUsuario)
+                    });
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }
         }
 
         public List<Usuario> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                Usuario usuarioGet = null;
+                List<Usuario> usuarios = new List<Usuario>();
+                using (var Reader = SqlHelper.ExecuteReader("SELECT IdUsuario, CorreoElectronico, Nombre, Password, EstaHabilitado FROM USUARIO",
+                    System.Data.CommandType.Text,
+                    new SqlParameter[]{}))
+                {
+                    object[] values = new object[Reader.FieldCount];
+
+                    while (Reader.Read())
+                    {
+                        Reader.GetValues(values);
+                        usuarioGet = UsuarioAdapter.Current.Adapt(values);
+                        usuarios.Add(usuarioGet);
+                    }
+                    return usuarios;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
 
         public Usuario GetById(Guid id)
@@ -116,8 +154,26 @@ namespace Services.DAL.Implementations
             }
             catch (Exception ex)
             {
-
+                ExceptionExtension.Handle(ex);
                 throw;
+            }
+        }
+
+        public void CambiarEstado(Usuario usuario)
+        {
+            try
+            {
+                SqlHelper.ExecuteNonQuery("UPDATE USUARIO SET EstaHabilitado = @EstaHabilitado WHERE IdUsuario = @IdUsuario",
+                    CommandType.Text,
+                    new SqlParameter[]
+                    {
+                        new SqlParameter("@EstaHabilitado", !usuario.EstaHabilitado),
+                        new SqlParameter("@IdUsuario", usuario.IdUsuario)
+                    });
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
             }
         }
     }
