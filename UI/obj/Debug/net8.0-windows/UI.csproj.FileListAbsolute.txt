@@ -173,3 +173,4 @@ C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\Fr
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Administrative_Forms.CambiarEstadoUsuarioForm.resources
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Administrative_Forms.ModificarUsuarioForm.resources
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Administrative_Forms.VerUsuariosForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.ModificarClienteForm.resources

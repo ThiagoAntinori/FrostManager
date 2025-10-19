@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,8 +36,8 @@ namespace DAL.Implementations
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO CLIENTE (IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH)" +
-                    "                       VALUES (@IdCliente, @Nombre, @Apellido, @DNI, @Telefono, @Direccion, @DVH)",
+                SqlHelper.ExecuteNonQuery("INSERT INTO CLIENTE (IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH, Borrado)" +
+                    "                       VALUES (@IdCliente, @Nombre, @Apellido, @DNI, @Telefono, @Direccion, @DVH, FALSE)",
                                             CommandType.Text,
                                             new SqlParameter[]
                                             {
@@ -57,22 +58,100 @@ namespace DAL.Implementations
 
         public void Update(Cliente obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                SqlHelper.ExecuteNonQuery("UPDATE CLIENTE SET Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, Telefono = @Telefono, Direccion = @Direccion, DVH = @DVH WHERE IdCliente = @IdCliente",
+                    CommandType.Text,
+                    new SqlParameter[]
+                    {
+                        new SqlParameter("@Nombre", obj.Nombre),
+                        new SqlParameter("@Apellido", obj.Apellido),
+                        new SqlParameter("@DNI", obj.DNI),
+                        new SqlParameter("@Telefono", obj.Telefono),
+                        new SqlParameter("@Direccion", obj.Direccion),
+                        new SqlParameter("@DVH", obj.DVH),
+                        new SqlParameter("@IdCliente", obj.IdCliente)
+                    });
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }
         }
 
         public void Delete(Cliente obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                SqlHelper.ExecuteNonQuery("UPDATE CLIENTE SET Borrado = TRUE WHERE IdCliente = @IdCliente",
+                    CommandType.Text,
+                    new SqlParameter[]
+                    {
+                        new SqlParameter("@IdCliente", obj.IdCliente)
+                    });
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
 
-        public Cliente GetById(Cliente obj)
+        public Cliente GetById(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Cliente clienteGet = null;
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE IdCliente = @IdCliente AND Borrado = FALSE",
+                                                                    CommandType.Text,
+                                                                    new SqlParameter[]
+                                                                    {
+                                                                        new SqlParameter("@IdCliente", id)
+                                                                    }))
+                {
+                    object[] values = new object[reader.FieldCount];
+
+                    if (reader.Read())
+                    {
+                        reader.GetValues(values);
+                        clienteGet = ClienteAdapter.Current.Adapt(values);
+                    }
+                }
+                return clienteGet;
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
 
         public IEnumerable<Cliente> GetAll(Cliente obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Cliente> clientes = new List<Cliente>();
+                Cliente clienteGet = null;
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE Borrado = FALSE",
+                    CommandType.Text,
+                    new SqlParameter[] { }))
+                {
+                    object[] values = new object[reader.FieldCount];
+
+                    while (reader.Read())
+                    {
+                        reader.GetValues(values);
+                        clienteGet = ClienteAdapter.Current.Adapt(values);
+                        clientes.Add(clienteGet);
+                    }
+                    return clientes;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
 
         public bool ExisteCliente(string DNI)
@@ -80,7 +159,7 @@ namespace DAL.Implementations
             try
             {
                 bool existeCliente = false;
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT * FROM CLIENTE WHERE DNI = @DNI",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT * FROM CLIENTE WHERE DNI = @DNI AND Borrado = FALSE",
                                                                     CommandType.Text,
                                                                     new SqlParameter[]
                                                                     {
@@ -106,7 +185,7 @@ namespace DAL.Implementations
             try
             {
                 Cliente clienteGet = null;
-                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdUsuario, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE DNI = @DNI",
+                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE DNI = @DNI AND Borrado = FALSE",
                                                                     CommandType.Text,
                                                                     new SqlParameter[]
                                                                     {

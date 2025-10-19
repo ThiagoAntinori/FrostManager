@@ -226,7 +226,7 @@ namespace UI
                 {
                     saveFileDialog.Filter = "Backup files (*.bak) | *.bak";
                     saveFileDialog.Title = "Guardar respaldo de Base de datos";
-                    saveFileDialog.InitialDirectory = @"C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\";
+                    saveFileDialog.InitialDirectory = @"C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\Backup";
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         BackupService.Current.HacerBackup(saveFileDialog.FileName,

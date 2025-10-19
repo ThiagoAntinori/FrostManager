@@ -11,7 +11,7 @@ namespace DAL.Contracts
         void Insert(T obj);
         void Update(T obj);
         void Delete(T obj);
-        T GetById(T obj);
+        T GetById(Guid id);
         IEnumerable<T> GetAll(T obj);
     }
 }
