@@ -8,8 +8,6 @@ namespace Domain
 {
     public class Envase : Insumo
     {
-        public Guid IdEnvase { get; set; }
-        public string Descripcion { get; set; }
         public int CapacidadEnGramos { get; set; }
     }
 }

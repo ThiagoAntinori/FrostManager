@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panelSideMenu = new Panel();
+            button1 = new Button();
+            btnEliminarProducto = new Button();
+            btnModificarProducto = new Button();
+            btnCrearProducto = new Button();
             btnReporteProyecciones = new Button();
             btnReporteEntregas = new Button();
             btnReporteSabores = new Button();
@@ -51,8 +55,7 @@
             panel3 = new Panel();
             pictureBox1 = new PictureBox();
             panelConfiguracion = new Panel();
-            btnRespaldarDatos = new Button();
-            btnCambiarIdioma = new Button();
+            btnConfiguracion = new Button();
             btnCerrarSesion = new Button();
             panelChildForm = new Panel();
             pictureBox2 = new PictureBox();
@@ -68,6 +71,10 @@
             // 
             panelSideMenu.AutoScroll = true;
             panelSideMenu.BackColor = Color.LightSteelBlue;
+            panelSideMenu.Controls.Add(button1);
+            panelSideMenu.Controls.Add(btnEliminarProducto);
+            panelSideMenu.Controls.Add(btnModificarProducto);
+            panelSideMenu.Controls.Add(btnCrearProducto);
             panelSideMenu.Controls.Add(btnReporteProyecciones);
             panelSideMenu.Controls.Add(btnReporteEntregas);
             panelSideMenu.Controls.Add(btnReporteSabores);
@@ -92,6 +99,55 @@
             panelSideMenu.Name = "panelSideMenu";
             panelSideMenu.Size = new Size(260, 516);
             panelSideMenu.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Teal;
+            button1.Dock = DockStyle.Top;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(0, 951);
+            button1.Name = "button1";
+            button1.Size = new Size(243, 40);
+            button1.TabIndex = 31;
+            button1.Text = "Registrar Repartidor";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // btnEliminarProducto
+            // 
+            btnEliminarProducto.BackColor = Color.Teal;
+            btnEliminarProducto.Dock = DockStyle.Top;
+            btnEliminarProducto.FlatStyle = FlatStyle.Flat;
+            btnEliminarProducto.Location = new Point(0, 911);
+            btnEliminarProducto.Name = "btnEliminarProducto";
+            btnEliminarProducto.Size = new Size(243, 40);
+            btnEliminarProducto.TabIndex = 30;
+            btnEliminarProducto.Text = "Eliminar Producto";
+            btnEliminarProducto.UseVisualStyleBackColor = false;
+            // 
+            // btnModificarProducto
+            // 
+            btnModificarProducto.BackColor = Color.Teal;
+            btnModificarProducto.Dock = DockStyle.Top;
+            btnModificarProducto.FlatStyle = FlatStyle.Flat;
+            btnModificarProducto.Location = new Point(0, 871);
+            btnModificarProducto.Name = "btnModificarProducto";
+            btnModificarProducto.Size = new Size(243, 40);
+            btnModificarProducto.TabIndex = 29;
+            btnModificarProducto.Text = "Modificar Producto";
+            btnModificarProducto.UseVisualStyleBackColor = false;
+            // 
+            // btnCrearProducto
+            // 
+            btnCrearProducto.BackColor = Color.Teal;
+            btnCrearProducto.Dock = DockStyle.Top;
+            btnCrearProducto.FlatStyle = FlatStyle.Flat;
+            btnCrearProducto.Location = new Point(0, 831);
+            btnCrearProducto.Name = "btnCrearProducto";
+            btnCrearProducto.Size = new Size(243, 40);
+            btnCrearProducto.TabIndex = 28;
+            btnCrearProducto.Text = "Crear Producto";
+            btnCrearProducto.UseVisualStyleBackColor = false;
+            btnCrearProducto.Click += btnCrearProducto_Click;
             // 
             // btnReporteProyecciones
             // 
@@ -186,8 +242,9 @@
             btnRegistrarInsumo.Name = "btnRegistrarInsumo";
             btnRegistrarInsumo.Size = new Size(243, 40);
             btnRegistrarInsumo.TabIndex = 15;
-            btnRegistrarInsumo.Text = "Registrar nuevo insumo";
+            btnRegistrarInsumo.Text = "Crear insumo";
             btnRegistrarInsumo.UseVisualStyleBackColor = false;
+            btnRegistrarInsumo.Click += btnRegistrarInsumo_Click;
             // 
             // btnRegistrarEgreso
             // 
@@ -212,6 +269,7 @@
             btnRegistrarIngreso.TabIndex = 13;
             btnRegistrarIngreso.Text = "Registrar Ingreso de insumo";
             btnRegistrarIngreso.UseVisualStyleBackColor = false;
+            btnRegistrarIngreso.Click += btnRegistrarIngreso_Click;
             // 
             // btnCancelarPedido
             // 
@@ -272,6 +330,7 @@
             btnModificarCliente.TabIndex = 10;
             btnModificarCliente.Text = "Modificar Cliente";
             btnModificarCliente.UseVisualStyleBackColor = false;
+            btnModificarCliente.Click += btnModificarCliente_Click;
             // 
             // btnRegistrarCliente
             // 
@@ -336,8 +395,7 @@
             // panelConfiguracion
             // 
             panelConfiguracion.BackColor = Color.LightSteelBlue;
-            panelConfiguracion.Controls.Add(btnRespaldarDatos);
-            panelConfiguracion.Controls.Add(btnCambiarIdioma);
+            panelConfiguracion.Controls.Add(btnConfiguracion);
             panelConfiguracion.Controls.Add(btnCerrarSesion);
             panelConfiguracion.Dock = DockStyle.Bottom;
             panelConfiguracion.Location = new Point(0, 516);
@@ -345,29 +403,17 @@
             panelConfiguracion.Size = new Size(884, 45);
             panelConfiguracion.TabIndex = 16;
             // 
-            // btnRespaldarDatos
+            // btnConfiguracion
             // 
-            btnRespaldarDatos.BackColor = Color.DarkCyan;
-            btnRespaldarDatos.FlatStyle = FlatStyle.Popup;
-            btnRespaldarDatos.Location = new Point(260, 10);
-            btnRespaldarDatos.Name = "btnRespaldarDatos";
-            btnRespaldarDatos.Size = new Size(100, 23);
-            btnRespaldarDatos.TabIndex = 2;
-            btnRespaldarDatos.Text = "Respaldar datos";
-            btnRespaldarDatos.UseVisualStyleBackColor = false;
-            btnRespaldarDatos.Click += btnRespaldarDatos_Click;
-            // 
-            // btnCambiarIdioma
-            // 
-            btnCambiarIdioma.BackColor = Color.DarkCyan;
-            btnCambiarIdioma.FlatStyle = FlatStyle.Popup;
-            btnCambiarIdioma.Location = new Point(135, 10);
-            btnCambiarIdioma.Name = "btnCambiarIdioma";
-            btnCambiarIdioma.Size = new Size(100, 23);
-            btnCambiarIdioma.TabIndex = 1;
-            btnCambiarIdioma.Text = "Cambiar idioma";
-            btnCambiarIdioma.UseVisualStyleBackColor = false;
-            btnCambiarIdioma.Click += btnConfiguracion_Click;
+            btnConfiguracion.BackColor = Color.DarkCyan;
+            btnConfiguracion.FlatStyle = FlatStyle.Popup;
+            btnConfiguracion.Location = new Point(772, 10);
+            btnConfiguracion.Name = "btnConfiguracion";
+            btnConfiguracion.Size = new Size(100, 23);
+            btnConfiguracion.TabIndex = 3;
+            btnConfiguracion.Text = "Configuracion";
+            btnConfiguracion.UseVisualStyleBackColor = false;
+            btnConfiguracion.Click += btnConfiguracion_Click_1;
             // 
             // btnCerrarSesion
             // 
@@ -454,12 +500,15 @@
         private Button btnCerrarSesion;
         private Button btnActualizarPedido;
         private Button btnCancelarPedido;
-        private Button btnCambiarIdioma;
         private Panel panel3;
         private PictureBox pictureBox1;
         private Panel panelChildForm;
         private PictureBox pictureBox2;
-        private Button btnRespaldarDatos;
         private Button btnAbrirPanelAdministrativo;
+        private Button btnConfiguracion;
+        private Button button1;
+        private Button btnEliminarProducto;
+        private Button btnModificarProducto;
+        private Button btnCrearProducto;
     }
 }

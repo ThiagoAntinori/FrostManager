@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Tools;
 
 namespace UI.Primary_Forms
 {
@@ -28,7 +29,7 @@ namespace UI.Primary_Forms
         {
             try
             {
-                MainForm.TraducirControles(this.Controls);
+                UIHelper.TraducirControles(this.Controls);
             }
             catch (Exception ex)
             {
@@ -64,7 +65,7 @@ namespace UI.Primary_Forms
                 };
                 ClienteService.Current.Add(clienteARegistrar);
                 MessageBox.Show("Cliente creado exitosamente");
-                MainForm.LimpiarCampos(this.Controls);
+                UIHelper.LimpiarCampos(this.Controls);
             }
             catch (Exception ex)
             {

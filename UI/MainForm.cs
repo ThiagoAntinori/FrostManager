@@ -1,4 +1,5 @@
 ﻿using Services.BLL.Contracts;
+using Services.BLL.Extensions;
 using Services.BLL.Services;
 using Services.Domain.Security;
 using System;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.Administrative_Forms;
 using UI.Primary_Forms;
+using UI.Tools;
 
 namespace UI
 {
@@ -50,13 +52,13 @@ namespace UI
                 {
                     throw new Exception("No se le asignó ningún permiso. Contacte al administrador.");
                 }
-                foreach (Control ctrl in panelSideMenu.Controls)
-                {
-                    if (ctrl is Button)
-                    {
-                        ctrl.Visible = patentesUsuario.Select(p => p.MenuItemName).Contains(ctrl.Name);
-                    }
-                }
+                //foreach (Control ctrl in panelSideMenu.Controls)
+                //{
+                //    if (ctrl is Button)
+                //    {
+                //        ctrl.Visible = patentesUsuario.Select(p => p.MenuItemName).Contains(ctrl.Name);
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -111,7 +113,7 @@ namespace UI
         {
             try
             {
-                TraducirControles(this.Controls);
+                UIHelper.TraducirControles(this.Controls);
             }
             catch (Exception ex)
             {
@@ -138,35 +140,7 @@ namespace UI
                     }
                     if (ctrl.HasChildren)
                     {
-                        TraducirControles(ctrl.Controls);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        public static void LimpiarCampos(Control.ControlCollection controles)
-        {
-            try
-            {
-                foreach (Control ctrl in controles)
-                {
-                    if (ctrl.Name != null)
-                    {
-                        if (ctrl.Visible == true)
-                        {
-                            if (ctrl is TextBox)
-                            {
-                                ctrl.Text = string.Empty;
-                            }
-                        }
-                    }
-                    if (ctrl.HasChildren)
-                    {
-                        TraducirControles(ctrl.Controls);
+                        UIHelper.TraducirControles(ctrl.Controls);
                     }
                 }
             }
@@ -195,10 +169,9 @@ namespace UI
         {
             try
             {
-                LoginForm loginForm = new LoginForm();
-                loginForm.Show();
-                this.Close();
                 UsuarioLogueado.CerrarSesion();
+                this.DialogResult = DialogResult.Retry;
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -218,28 +191,7 @@ namespace UI
             }
         }
 
-        private void btnRespaldarDatos_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-                {
-                    saveFileDialog.Filter = "Backup files (*.bak) | *.bak";
-                    saveFileDialog.Title = "Guardar respaldo de Base de datos";
-                    saveFileDialog.InitialDirectory = @"C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\Backup";
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        BackupService.Current.HacerBackup(saveFileDialog.FileName,
-                            ConfigurationManager.ConnectionStrings["BusinessConString"].ConnectionString);
-                        MessageBox.Show("La base de datos fue respaldada con éxito.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+
 
         private void btnAbrirPanelAdministrativo_Click(object sender, EventArgs e)
         {
@@ -253,6 +205,69 @@ namespace UI
             {
                 MessageBox.Show(ex.Message);
                 throw;
+            }
+        }
+
+        private void btnConfiguracion_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new SettingsForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
+
+        private void btnCrearProducto_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                openChildForm(new CrearProductoForm());
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }
+        }
+
+        private void btnRegistrarInsumo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new CrearInsumoForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnModificarCliente_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                openChildForm(new ModificarClienteForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnRegistrarIngreso_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new RegistrarIngresoForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

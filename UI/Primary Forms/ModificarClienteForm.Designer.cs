@@ -39,14 +39,14 @@
             btnRegistrar = new Button();
             txtNombre = new TextBox();
             lblNombre = new Label();
-            lblDatosCliente = new Label();
+            btnBuscar = new Button();
             SuspendLayout();
             // 
             // txtDireccion
             // 
             txtDireccion.Anchor = AnchorStyles.None;
             txtDireccion.ForeColor = SystemColors.WindowText;
-            txtDireccion.Location = new Point(154, 407);
+            txtDireccion.Location = new Point(70, 398);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(317, 23);
             txtDireccion.TabIndex = 24;
@@ -57,7 +57,7 @@
             lblDireccion.AutoSize = true;
             lblDireccion.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDireccion.ForeColor = SystemColors.WindowText;
-            lblDireccion.Location = new Point(154, 387);
+            lblDireccion.Location = new Point(70, 378);
             lblDireccion.Name = "lblDireccion";
             lblDireccion.Size = new Size(63, 17);
             lblDireccion.TabIndex = 23;
@@ -67,7 +67,7 @@
             // 
             txtTelefono.Anchor = AnchorStyles.None;
             txtTelefono.ForeColor = SystemColors.WindowText;
-            txtTelefono.Location = new Point(154, 333);
+            txtTelefono.Location = new Point(70, 324);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(317, 23);
             txtTelefono.TabIndex = 22;
@@ -78,7 +78,7 @@
             lblTelefono.AutoSize = true;
             lblTelefono.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTelefono.ForeColor = SystemColors.WindowText;
-            lblTelefono.Location = new Point(154, 313);
+            lblTelefono.Location = new Point(70, 304);
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(59, 17);
             lblTelefono.TabIndex = 21;
@@ -88,9 +88,9 @@
             // 
             txtDni.Anchor = AnchorStyles.None;
             txtDni.ForeColor = SystemColors.WindowText;
-            txtDni.Location = new Point(154, 258);
+            txtDni.Location = new Point(306, 97);
             txtDni.Name = "txtDni";
-            txtDni.Size = new Size(317, 23);
+            txtDni.Size = new Size(158, 23);
             txtDni.TabIndex = 20;
             // 
             // lblDni
@@ -99,17 +99,17 @@
             lblDni.AutoSize = true;
             lblDni.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDni.ForeColor = SystemColors.WindowText;
-            lblDni.Location = new Point(154, 238);
+            lblDni.Location = new Point(70, 98);
             lblDni.Name = "lblDni";
-            lblDni.Size = new Size(31, 17);
+            lblDni.Size = new Size(230, 17);
             lblDni.TabIndex = 19;
-            lblDni.Text = "DNI";
+            lblDni.Text = "Ingrese el DNI del cliente a modificar";
             // 
             // txtApellido
             // 
             txtApellido.Anchor = AnchorStyles.None;
             txtApellido.ForeColor = SystemColors.WindowText;
-            txtApellido.Location = new Point(154, 189);
+            txtApellido.Location = new Point(70, 254);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(317, 23);
             txtApellido.TabIndex = 18;
@@ -120,7 +120,7 @@
             lblApellido.AutoSize = true;
             lblApellido.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblApellido.ForeColor = SystemColors.WindowText;
-            lblApellido.Location = new Point(154, 169);
+            lblApellido.Location = new Point(70, 234);
             lblApellido.Name = "lblApellido";
             lblApellido.Size = new Size(57, 17);
             lblApellido.TabIndex = 17;
@@ -132,18 +132,19 @@
             btnRegistrar.BackColor = Color.Lavender;
             btnRegistrar.FlatStyle = FlatStyle.Popup;
             btnRegistrar.ForeColor = SystemColors.WindowText;
-            btnRegistrar.Location = new Point(345, 470);
+            btnRegistrar.Location = new Point(439, 487);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(126, 29);
             btnRegistrar.TabIndex = 16;
             btnRegistrar.Text = "Registrar";
             btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // txtNombre
             // 
             txtNombre.Anchor = AnchorStyles.None;
             txtNombre.ForeColor = SystemColors.WindowText;
-            txtNombre.Location = new Point(154, 123);
+            txtNombre.Location = new Point(70, 188);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(317, 23);
             txtNombre.TabIndex = 15;
@@ -154,29 +155,28 @@
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNombre.ForeColor = SystemColors.WindowText;
-            lblNombre.Location = new Point(154, 103);
+            lblNombre.Location = new Point(70, 168);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(58, 17);
             lblNombre.TabIndex = 14;
             lblNombre.Text = "Nombre";
             // 
-            // lblDatosCliente
+            // btnBuscar
             // 
-            lblDatosCliente.Anchor = AnchorStyles.None;
-            lblDatosCliente.AutoSize = true;
-            lblDatosCliente.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDatosCliente.ForeColor = SystemColors.WindowText;
-            lblDatosCliente.Location = new Point(154, 62);
-            lblDatosCliente.Name = "lblDatosCliente";
-            lblDatosCliente.Size = new Size(222, 17);
-            lblDatosCliente.TabIndex = 13;
-            lblDatosCliente.Text = "Ingrese los datos del nuevo cliente:";
+            btnBuscar.Location = new Point(483, 98);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(91, 23);
+            btnBuscar.TabIndex = 25;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // ModificarClienteForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(624, 561);
+            Controls.Add(btnBuscar);
             Controls.Add(txtDireccion);
             Controls.Add(lblDireccion);
             Controls.Add(txtTelefono);
@@ -188,7 +188,6 @@
             Controls.Add(btnRegistrar);
             Controls.Add(txtNombre);
             Controls.Add(lblNombre);
-            Controls.Add(lblDatosCliente);
             FormBorderStyle = FormBorderStyle.None;
             MinimumSize = new Size(624, 561);
             Name = "ModificarClienteForm";
@@ -210,6 +209,6 @@
         private Button btnRegistrar;
         private TextBox txtNombre;
         private Label lblNombre;
-        private Label lblDatosCliente;
+        private Button btnBuscar;
     }
 }

@@ -174,3 +174,8 @@ C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\Fr
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Administrative_Forms.ModificarUsuarioForm.resources
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Administrative_Forms.VerUsuariosForm.resources
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.ModificarClienteForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Administrative_Forms.RespaldoForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.SettingsForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.CrearProductoForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.CrearInsumoForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.RegistrarIngresoForm.resources

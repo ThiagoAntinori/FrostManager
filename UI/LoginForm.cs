@@ -2,6 +2,8 @@ using Services.BLL.Services;
 using Services.Domain.Security;
 using Services.Domain.Logging;
 using Services.BLL.Contracts;
+using BLL.Implementations;
+using Domain;
 
 namespace UI
 {
@@ -30,9 +32,8 @@ namespace UI
             try
             {
                 SesionService.Login(txtNombreUsuario.Text, txtPassword.Text);
-                this.Hide();
-                MainForm mf = new MainForm();
-                mf.ShowDialog();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -84,8 +85,16 @@ namespace UI
         {
             try
             {
-                RecuperarContraseñaForm recuperarContraseñaForm = new RecuperarContraseñaForm();
-                recuperarContraseñaForm.Show();
+                using (var formRecuperar = new RecuperarContraseñaForm())
+                {
+                    var resultado = formRecuperar.ShowDialog();
+
+                    if (resultado == DialogResult.OK)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                }
             }
             catch(Exception ex)
             {

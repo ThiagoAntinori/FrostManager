@@ -70,6 +70,5 @@ namespace Services.BLL.Services
                 throw;
             }
         }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using Services.DAL.Contracts;
+﻿using Services.BLL.Extensions;
+using Services.DAL.Contracts;
 using Services.Domain.Logging;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace Services.DAL.Loggers
             }
             catch (Exception ex)
             {
-                throw;
+                ExceptionExtension.Handle(ex);
             }
         }
     }

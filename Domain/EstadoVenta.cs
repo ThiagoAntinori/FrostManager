@@ -8,6 +8,9 @@ namespace Domain
 {
     public enum EstadoVenta
     {
-        
+        EnCurso,
+        PendienteDePago,
+        PendienteDeEntrega,
+        Finalizada
     }
 }

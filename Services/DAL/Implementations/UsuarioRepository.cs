@@ -176,5 +176,36 @@ namespace Services.DAL.Implementations
                 ExceptionExtension.Handle(ex);
             }
         }
+
+        public Usuario GetByCredentials(string nombreUsuario, string password)
+        {
+            try
+            {
+                Usuario usuarioGet = null;
+
+                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdUsuario, CorreoElectronico, Nombre, Password, EstaHabilitado FROM USUARIO WHERE Nombre = @Nombre AND Password = @Password",
+                                                                        CommandType.Text,
+                                                                        new SqlParameter[]
+                                                                        {
+                                                                            new SqlParameter("@Nombre", nombreUsuario),
+                                                                            new SqlParameter("@Password", password)
+                                                                        }))
+                {
+                    object[] values = new object[reader.FieldCount];
+
+                    if (reader.Read())
+                    {
+                        reader.GetValues(values);
+                        usuarioGet = UsuarioAdapter.Current.Adapt(values);
+                    }
+                }
+                return usuarioGet;
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
+        }
     }
 }

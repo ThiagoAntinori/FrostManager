@@ -38,6 +38,7 @@
             pictureBox1 = new PictureBox();
             panelChildForm = new Panel();
             pictureBox2 = new PictureBox();
+            btnRespaldo = new Button();
             panelSideMenu.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -47,6 +48,7 @@
             // 
             // panelSideMenu
             // 
+            panelSideMenu.Controls.Add(btnRespaldo);
             panelSideMenu.Controls.Add(btnVerUsuarios);
             panelSideMenu.Controls.Add(btnCambiarEstadoUsuario);
             panelSideMenu.Controls.Add(btnEditarUsuario);
@@ -159,6 +161,21 @@
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
             // 
+            // btnRespaldo
+            // 
+            btnRespaldo.Dock = DockStyle.Top;
+            btnRespaldo.FlatAppearance.BorderSize = 0;
+            btnRespaldo.FlatStyle = FlatStyle.Flat;
+            btnRespaldo.Font = new Font("Microsoft JhengHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRespaldo.ForeColor = SystemColors.ControlLightLight;
+            btnRespaldo.Location = new Point(0, 287);
+            btnRespaldo.Name = "btnRespaldo";
+            btnRespaldo.Size = new Size(200, 40);
+            btnRespaldo.TabIndex = 5;
+            btnRespaldo.Text = "Respaldar Datos";
+            btnRespaldo.UseVisualStyleBackColor = true;
+            btnRespaldo.Click += btnRespaldo_Click;
+            // 
             // MainAdministrativeForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -189,5 +206,6 @@
         private Button btnRegistrarUsuario;
         private Panel panelChildForm;
         private PictureBox pictureBox2;
+        private Button btnRespaldo;
     }
 }

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Services.BLL.Extensions
 {
@@ -56,7 +57,7 @@ namespace Services.BLL.Extensions
             }
             catch(Exception exception)
             {
-                
+                throw;
             }
         }
 
@@ -74,6 +75,7 @@ namespace Services.BLL.Extensions
                 {
                     bllException = new BusinessException("Ocurrió un error en la lógica de negocio - Detalle: " + ex.Message, ex);
                 }
+                throw bllException;
             }
             catch(Exception exception)
             {
@@ -104,7 +106,7 @@ namespace Services.BLL.Extensions
             }
             catch (Exception exception)
             {
-                throw;
+                throw exception;
             }
         }
 
@@ -117,7 +119,7 @@ namespace Services.BLL.Extensions
             }
             catch(Exception exception)
             {
-                throw;
+                throw exception;
             }
         }
     }

@@ -37,7 +37,7 @@ namespace DAL.Implementations
             try
             {
                 SqlHelper.ExecuteNonQuery("INSERT INTO CLIENTE (IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH, Borrado)" +
-                    "                       VALUES (@IdCliente, @Nombre, @Apellido, @DNI, @Telefono, @Direccion, @DVH, FALSE)",
+                    "                       VALUES (@IdCliente, @Nombre, @Apellido, @DNI, @Telefono, @Direccion, @DVH, 0)",
                                             CommandType.Text,
                                             new SqlParameter[]
                                             {
@@ -60,7 +60,7 @@ namespace DAL.Implementations
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("UPDATE CLIENTE SET Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, Telefono = @Telefono, Direccion = @Direccion, DVH = @DVH WHERE IdCliente = @IdCliente",
+                SqlHelper.ExecuteNonQuery("UPDATE CLIENTE SET Nombre = @Nombre, Apellido = @Apellido, DNI = @DNI, Telefono = @Telefono, Direccion = @Direccion, DVH = @DVH WHERE IdCliente = @IdCliente AND Borrado = 0",
                     CommandType.Text,
                     new SqlParameter[]
                     {
@@ -83,7 +83,7 @@ namespace DAL.Implementations
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("UPDATE CLIENTE SET Borrado = TRUE WHERE IdCliente = @IdCliente",
+                SqlHelper.ExecuteNonQuery("UPDATE CLIENTE SET Borrado = 1 WHERE IdCliente = @IdCliente",
                     CommandType.Text,
                     new SqlParameter[]
                     {
@@ -102,7 +102,7 @@ namespace DAL.Implementations
             try
             {
                 Cliente clienteGet = null;
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE IdCliente = @IdCliente AND Borrado = FALSE",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE IdCliente = @IdCliente AND Borrado = 0",
                                                                     CommandType.Text,
                                                                     new SqlParameter[]
                                                                     {
@@ -126,13 +126,13 @@ namespace DAL.Implementations
             }
         }
 
-        public IEnumerable<Cliente> GetAll(Cliente obj)
+        public IEnumerable<Cliente> GetAll()
         {
             try
             {
                 List<Cliente> clientes = new List<Cliente>();
                 Cliente clienteGet = null;
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE Borrado = FALSE",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE Borrado = 0",
                     CommandType.Text,
                     new SqlParameter[] { }))
                 {
@@ -159,7 +159,7 @@ namespace DAL.Implementations
             try
             {
                 bool existeCliente = false;
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT * FROM CLIENTE WHERE DNI = @DNI AND Borrado = FALSE",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT * FROM CLIENTE WHERE DNI = @DNI AND Borrado = 0",
                                                                     CommandType.Text,
                                                                     new SqlParameter[]
                                                                     {
@@ -185,7 +185,7 @@ namespace DAL.Implementations
             try
             {
                 Cliente clienteGet = null;
-                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE DNI = @DNI AND Borrado = FALSE",
+                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE DNI = @DNI AND Borrado = 0",
                                                                     CommandType.Text,
                                                                     new SqlParameter[]
                                                                     {

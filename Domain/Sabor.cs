@@ -8,7 +8,6 @@ namespace Domain
 {
     public class Sabor : Insumo
     {
-        public Guid IdSabor { get; set; }
-        public string Descripcion { get; set; }
+
     }
 }

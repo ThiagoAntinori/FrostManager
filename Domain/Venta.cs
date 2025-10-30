@@ -14,5 +14,6 @@ namespace Domain
         public TimeOnly Hora { get; set; }
         public MedioPago MedioDePago { get; set; }
         public EstadoVenta EstadoVenta { get; set; }
+        public List<DetalleVenta> Detalles { get; set; }
     }
 }

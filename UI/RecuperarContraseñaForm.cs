@@ -43,9 +43,8 @@ namespace UI
             try
             {
                 SesionService.IniciarSesionToken(txtToken.Text);
-                MainForm mainForm = new MainForm();
+                this.DialogResult = DialogResult.OK;
                 this.Close();
-                mainForm.Show();
             }
             catch(Exception ex)
             {

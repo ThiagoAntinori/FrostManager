@@ -1,4 +1,5 @@
 ﻿using BLL.Contracts;
+using BLL.Tools;
 using DAL.Implementations;
 using Domain;
 using Services.BLL.Extensions;
@@ -34,40 +35,31 @@ namespace BLL.Implementations
         {
             try
             {
-                if(item == null)
-                {
-                    throw new ArgumentNullException(nameof(item));
-                }
-                if (string.IsNullOrEmpty(item.Nombre))
-                {
-                    throw new Exception("El cliente debe tener un nombre");
-                }
-                if (string.IsNullOrEmpty(item.Apellido))
-                {
-                    throw new Exception("El cliente debe tener un apellido");
-                }
-                if (string.IsNullOrEmpty(item.Telefono))
-                {
-                    throw new Exception("El cliente debe tener un teléfono");
-                }
+                ValidationHelper.NotNull(item, nameof(item));
+                ValidationHelper.NotEmpty(item.Nombre, nameof(item.Nombre));
+                ValidationHelper.NotEmpty(item.Apellido, nameof(item.Apellido));
+                ValidationHelper.NotEmpty(item.Telefono, nameof(item.Telefono));
+                ValidationHelper.NotEmpty(item.Direccion, nameof(item.DNI));
+
                 if (item.Telefono.Length != 10)
                 {
                     throw new Exception("El telefono debe tener 10 dígitos");
                 }
-                if (string.IsNullOrEmpty(item.Direccion))
-                {
-                    throw new Exception("El cliente debe tener una dirección");
-                }
+
                 if(item.DNI.Length < 7 || item.DNI.Length > 8)
                 {
                     throw new Exception("El DNI debe tener entre 7 y 8 caracteres");
                 }
+
                 if (this.ExisteCliente(item.DNI))
                 {
                     throw new Exception("Ya existe un cliente con el mismo DNI");
                 }
+
                 item.DVH = DigitoVerificadorService.Current.CalcularDigitoVerificadorHorizontal(item);
+
                 ClienteRepository.Current.Insert(item);
+                LoggerHelper.RegistrarAlta(item);
             }
             catch(Exception ex)
             {
@@ -79,11 +71,11 @@ namespace BLL.Implementations
         {
             try
             {
-                if(item == null)
-                {
-                    throw new ArgumentNullException(nameof(item));
-                }
+                ValidationHelper.NotNull(item, nameof(item));
+                ValidationHelper.NotEmptyGuid(item.IdCliente, nameof(item.IdCliente));
 
+                ClienteRepository.Current.Delete(item);
+                LoggerHelper.RegistrarBaja(item);
             }
             catch(Exception ex)
             {
@@ -98,32 +90,32 @@ namespace BLL.Implementations
 
         public Cliente SelectOne(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ValidationHelper.NotEmptyGuid(id, "ID");
+                return ClienteRepository.Current.GetById(id);
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
 
         public void Update(Cliente item)
         {
             try
             {
-                if (string.IsNullOrEmpty(item.Nombre))
-                {
-                    throw new Exception("El cliente debe tener un nombre");
-                }
-                if (string.IsNullOrEmpty(item.Apellido))
-                {
-                    throw new Exception("El cliente debe tener un apellido");
-                }
-                if (string.IsNullOrEmpty(item.Telefono))
-                {
-                    throw new Exception("El cliente debe tener un teléfono");
-                }
+                ValidationHelper.NotNull(item, nameof(item));
+                ValidationHelper.NotEmptyGuid(item.IdCliente, nameof(item.IdCliente));
+                ValidationHelper.NotEmpty(item.Nombre, nameof(item.Nombre));
+                ValidationHelper.NotEmpty(item.Apellido, nameof(item.Apellido));
+                ValidationHelper.NotEmpty(item.Telefono, nameof(item.Telefono));
+                ValidationHelper.NotEmpty(item.Direccion, nameof(item.Direccion));
+
                 if (item.Telefono.Length != 10)
                 {
                     throw new Exception("El telefono debe tener 10 dígitos");
-                }
-                if (string.IsNullOrEmpty(item.Direccion))
-                {
-                    throw new Exception("El cliente debe tener una dirección");
                 }
                 if (item.DNI.Length < 7 || item.DNI.Length > 8)
                 {
@@ -133,12 +125,9 @@ namespace BLL.Implementations
                 {
                     throw new Exception("No fue posible encontrar al cliente");
                 }
-                if (this.ExisteCliente(item.DNI))
-                {
-                    throw new Exception("Ya existe un cliente con el mismo DNI");
-                }
                 item.DVH = DigitoVerificadorService.Current.CalcularDigitoVerificadorHorizontal(item);
                 ClienteRepository.Current.Update(item);
+                LoggerHelper.RegistrarModificacion(item);
             }
             catch (Exception ex)
             {
@@ -146,11 +135,32 @@ namespace BLL.Implementations
             }
         }
 
-        public bool ExisteCliente(string DNI)
+        public bool ExisteCliente(string dni)
         {
             try
             {
-                return ClienteRepository.Current.ExisteCliente(DNI);
+                ValidationHelper.NotEmpty(dni, "DNI");
+                return ClienteRepository.Current.ExisteCliente(dni);
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
+        }
+
+        public Cliente SelectByDNI(string DNI)
+        {
+
+            try
+            {
+                ValidationHelper.NotEmpty(DNI, "DNI");
+                Cliente clienteGet = ClienteRepository.Current.GetByDNI(DNI);
+                if(clienteGet == null)
+                {
+                    throw new Exception("No se pudo encontrar al cliente con el DNI ingresado");
+                }
+                return clienteGet;
             }
             catch (Exception ex)
             {

@@ -185,6 +185,20 @@ namespace Services.BLL.Services
             }
         }
 
+        public Usuario GetByCredentials(string nombreUsuario, string password)
+        {
+            try
+            {
+                string hashPassword = CriptographyService.HashMd5(password);
+                return UsuarioRepository.Current.GetByCredentials(nombreUsuario, hashPassword);
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
+        }
+
         public string GenerarPassword()
         {
             string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

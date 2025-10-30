@@ -97,5 +97,17 @@ namespace UI.Administrative_Forms
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnRespaldo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenChildForm(new RespaldoForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

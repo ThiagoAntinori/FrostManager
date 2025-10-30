@@ -26,14 +26,10 @@ namespace Services.BLL.Services
                 {
                     throw new Exception("Ingrese una contraseña para iniciar sesión.");
                 }
-                Usuario usuarioRegistrado = UsuarioService.Current.GetByNombreUsuario(nombreUsuario);
+                Usuario usuarioRegistrado = UsuarioService.Current.GetByCredentials(nombreUsuario, password);
                 if(usuarioRegistrado == null)
                 {
-                    throw new Exception("No se encontró un usuario con el nombre ingresado");
-                }
-                if(!VerificarContraseña(usuarioRegistrado, password))
-                {
-                    throw new Exception("La contraseña es incorrecta. Intenta nuevamente");
+                    throw new Exception("Usuario o contraseña incorrectos");
                 }
                 if (!usuarioRegistrado.EstaHabilitado)
                 {
@@ -46,11 +42,6 @@ namespace Services.BLL.Services
             {
                 ExceptionExtension.Handle(ex);
             }
-        }
-
-        private static bool VerificarContraseña(Usuario usuario, string password)
-        {
-            return usuario.Password == CriptographyService.HashMd5(password);
         }
 
         public static void RecuperarContraseña(Usuario usuarioARecuperar)

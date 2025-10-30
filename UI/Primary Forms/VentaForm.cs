@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Tools;
 
 namespace UI.Primary_Forms
 {
@@ -25,7 +26,7 @@ namespace UI.Primary_Forms
         {
             try
             {
-                MainForm.TraducirControles(this.Controls);
+                UIHelper.TraducirControles(this.Controls);
             }
             catch (Exception ex)
             {

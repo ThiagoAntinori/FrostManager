@@ -1,4 +1,5 @@
 ﻿using BLL.Contracts;
+using BLL.Tools;
 using DAL.Implementations;
 using Domain;
 using Services.BLL.Extensions;
@@ -12,31 +13,35 @@ namespace BLL.Implementations
 {
     public class ProductoService : IGenericService<Producto>
     {
+
+        private readonly static ProductoService _instance = new ProductoService();
+
+        public static ProductoService Current
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        private ProductoService()
+        {
+            // Implement here the initialization of your singleton
+        }
+
         public void Add(Producto item)
         {
             try
             {
-                if (item == null)
-                {
-                    throw new ArgumentNullException(nameof(item));
-                }
-                if (string.IsNullOrEmpty(item.Descripcion))
-                {
-                    throw new Exception("El producto debe tener una descripción");
-                }
-                if (item.CapacidadEnGramos <= 0)
-                {
-                    throw new Exception("La capacidad del producto debe ser mayor a 0 gramos");
-                }
-                if (item.PrecioUnitario <= 0)
-                {
-                    throw new Exception("El precio del producto debe ser mayor a $0");
-                }
-                if (item.IdProducto == Guid.Empty)
-                {
-                    throw new Exception("El producto debe tener un ID");
-                }
+                ValidationHelper.NotNull(item, nameof(item));
+                ValidationHelper.NotEmptyGuid(item.IdProducto, nameof(item.IdProducto));
+                ValidationHelper.NotEmpty(item.Descripcion, nameof(item.Descripcion));
+                ValidationHelper.NotNull(item.CapacidadEnGramos, nameof(item.CapacidadEnGramos));
+                ValidationHelper.NotNull(item.PrecioUnitario, nameof(item.PrecioUnitario));
+                ValidationHelper.PositiveValue(item.CapacidadEnGramos, nameof(item.CapacidadEnGramos));
+                ValidationHelper.PositiveValue(item.PrecioUnitario, nameof(item.PrecioUnitario));
                 ProductoRepository.Current.Insert(item);
+                LoggerHelper.RegistrarAlta(item);
             }
             catch(Exception ex)
             {
@@ -48,14 +53,10 @@ namespace BLL.Implementations
         {
             try
             {
-                if (item == null)
-                {
-                    throw new ArgumentNullException(nameof(item));
-                }
-                if (item.IdProducto == Guid.Empty)
-                {
-                    throw new Exception("No se pudo encontrar el producto a eliminar");
-                }
+                ValidationHelper.NotNull(item, nameof(item));
+                ValidationHelper.NotEmptyGuid(item.IdProducto, nameof(item.IdProducto));
+                ProductoRepository.Current.Delete(item);
+                LoggerHelper.RegistrarBaja(item);
             }
             catch (Exception ex)
             {
@@ -97,31 +98,17 @@ namespace BLL.Implementations
         {
             try
             {
-                if (item == null)
-                {
-                    throw new ArgumentNullException(nameof(item));
-                }
-                if (string.IsNullOrEmpty(item.Descripcion))
-                {
-                    throw new Exception("El producto debe tener una descripción");
-                }
-                if (item.CapacidadEnGramos <= 0)
-                {
-                    throw new Exception("La capacidad del producto debe ser mayor a 0 gramos");
-                }
-                if (item.PrecioUnitario <= 0)
-                {
-                    throw new Exception("El precio del producto debe ser mayor a $0");
-                }
-                if (item.IdProducto == Guid.Empty)
-                {
-                    throw new Exception("El producto debe tener un ID");
-                }
+                ValidationHelper.NotNull(item, nameof(item));
+                ValidationHelper.NotEmpty(item.Descripcion, nameof(item.Descripcion));
+                ValidationHelper.NotEmptyGuid(item.IdProducto, nameof(item.IdProducto));
+                ValidationHelper.PositiveValue(item.CapacidadEnGramos, nameof(item.CapacidadEnGramos));
+                ValidationHelper.PositiveValue(item.PrecioUnitario, nameof(item.PrecioUnitario));
                 if (this.SelectOne(item.IdProducto) == null)
                 {
                     throw new Exception("No se encontró el producto a modificar");
                 }
                 ProductoRepository.Current.Update(item);
+                LoggerHelper.RegistrarModificacion(item);
             }
             catch (Exception ex)
             {

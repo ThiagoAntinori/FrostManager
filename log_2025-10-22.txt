@@ -1,0 +1,1 @@
+[2025-10-22 08:20:38.978 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]

@@ -33,7 +33,7 @@ namespace DAL.Implementations
 
         public void Delete(Producto obj)
         {
-            SqlHelper.ExecuteNonQuery("UPDATE PRODUCTO SET Borrado = TRUE WHERE IdProducto = @IdProducto",
+            SqlHelper.ExecuteNonQuery("UPDATE PRODUCTO SET Borrado = 1 WHERE IdProducto = @IdProducto",
                 CommandType.Text,
                 new SqlParameter[]
                 {
@@ -47,7 +47,7 @@ namespace DAL.Implementations
             {
                 Producto productoGet = null;
                 List<Producto> productos = new List<Producto>();
-                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdProducto, Descripcion, CapacidadEnGramos, PrecioUnitario, IdEnvase FROM PRODUCTO WHERE Borrado = FALSE",
+                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdProducto, Nombre, CapacidadEnGramos, PrecioUnitario, IdEnvase FROM PRODUCTO WHERE Borrado = 0",
                     CommandType.Text,
                     new SqlParameter[] { }))
                 {
@@ -74,7 +74,7 @@ namespace DAL.Implementations
             try
             {
                 Producto productoGet = null;
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdProducto, Descripcion, CapacidadEnGramos, PrecioUnitario, IdEnvase FROM PRODUCTO WHERE IdProducto = @IdProducto AND Borrado = FALSE",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdProducto, Nombre, CapacidadEnGramos, PrecioUnitario, IdEnvase FROM PRODUCTO WHERE IdProducto = @IdProducto AND Borrado = 0",
                     CommandType.Text,
                     new SqlParameter[] 
                     {
@@ -100,30 +100,35 @@ namespace DAL.Implementations
 
         public void Insert(Producto obj)
         {
-            SqlHelper.ExecuteNonQuery("INSERT INTO PRODUCTO (IdProducto, Descripcion, CapacidadEnGramos, PrecioUnitario, IdEnvase, Borrado VALUES (@IdProducto, @Descripcion, @CapacidadEnGramos, @PrecioUnitario, @IdEnvase, FALSE);",
+            SqlHelper.ExecuteNonQuery("INSERT INTO PRODUCTO (IdProducto, Nombre, CapacidadEnGramos, PrecioUnitario, IdEnvase, Borrado) VALUES (@IdProducto, @Nombre, @CapacidadEnGramos, @PrecioUnitario, @IdEnvase, 0);",
                 CommandType.Text,
                 new SqlParameter[]
                 {
                     new SqlParameter("@IdProducto", obj.IdProducto),
-                    new SqlParameter("@Descripcion", obj.Descripcion),
+                    new SqlParameter("@Nombre", obj.Descripcion),
                     new SqlParameter("@CapacidadEnGramos", obj.CapacidadEnGramos),
                     new SqlParameter("@PrecioUnitario", obj.PrecioUnitario),
-                    new SqlParameter("@IdEnvase", obj.EnvaseNecesario.IdEnvase)
+                    new SqlParameter("@IdEnvase", obj.EnvaseNecesario.IdInsumo)
                 });
         }
 
         public void Update(Producto obj)
         {
-            SqlHelper.ExecuteNonQuery("UPDATE PRODUCTO SET Descripcion = @Descripcion, CapacidadEnGramos = @CapacidadEnGramos, PrecioUnitario = @PrecioUnitario, IdEnvase = @IdEnvase WHERE IdProducto = @IdProducto",
+            SqlHelper.ExecuteNonQuery("UPDATE PRODUCTO SET Nombre = @Nombre, CapacidadEnGramos = @CapacidadEnGramos, PrecioUnitario = @PrecioUnitario, IdEnvase = @IdEnvase WHERE IdProducto = @IdProducto",
                 CommandType.Text,
                 new SqlParameter[]
                 {
                     new SqlParameter("@IdProducto", obj.IdProducto),
-                    new SqlParameter("@Descripcion", obj.Descripcion),
+                    new SqlParameter("@Nombre", obj.Descripcion),
                     new SqlParameter("@CapacidadEnGramos", obj.CapacidadEnGramos),
                     new SqlParameter("@PrecioUnitario", obj.PrecioUnitario),
-                    new SqlParameter("@IdEnvase", obj.EnvaseNecesario.IdEnvase)
+                    new SqlParameter("@IdEnvase", obj.EnvaseNecesario.IdInsumo)
                 });
+        }
+
+        public IEnumerable<Producto> GetAll(Producto obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

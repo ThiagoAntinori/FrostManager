@@ -8,10 +8,30 @@ namespace UI
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            bool mostrarLogin = true;
+
+            while (mostrarLogin)
+            {
+                mostrarLogin = false;
+
+                using (var login = new LoginForm())
+                {
+                    if (login.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var main = new MainForm())
+                        {
+                            if (main.ShowDialog() == DialogResult.Retry)
+                            {
+                                mostrarLogin = true;
+                            }
+                        }
+                    }
+                }
+            }
         }
+
     }
 }

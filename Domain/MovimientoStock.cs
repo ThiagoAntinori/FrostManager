@@ -13,5 +13,6 @@ namespace Domain
         public int Cantidad { get; set; }
         public DateTime FechaHora { get; set; }
         public TipoMovimientoStock TipoMovimiento { get; set; }
+        public string Motivo { get; set; }
     }
 }
