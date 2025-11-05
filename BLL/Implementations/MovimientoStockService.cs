@@ -42,7 +42,7 @@ namespace BLL.Implementations
 
                 item.FechaHora = DateTime.Now;
 
-                MovimientoStockRepository.Current.Insert(item);
+                MovimientoStockRepository.Current.Insert(item, null);
             }
             catch (Exception ex)
             {

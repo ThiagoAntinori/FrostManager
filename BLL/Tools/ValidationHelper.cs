@@ -32,7 +32,7 @@ namespace BLL.Tools
 
         public static void PositiveValue(int value, string paramName)
         {
-            if(value >= 0)
+            if(value <= 0)
             {
                 throw new ArgumentException($"El campo {paramName} debe ser mayor a 0");
             }
@@ -40,7 +40,7 @@ namespace BLL.Tools
 
         public static void PositiveValue(decimal value, string paramName)
         {
-            if(value >= 0)
+            if(value <= 0)
             {
                 throw new ArgumentException($"El campo {paramName} debe ser mayor a 0");
             }

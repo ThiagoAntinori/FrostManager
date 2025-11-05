@@ -95,12 +95,13 @@ namespace DAL.Implementations
             }
         }
 
-        public void Insert(MovimientoStock obj)
+        public void Insert(MovimientoStock obj, UnitOfWork uow = null)
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO MovimientoStock (IdMovimientoStock, IdInsumo, Cantidad, FechaHora, IdTipoMovimiento, Motivo) VALUES (@IdMovimientoStock, @IdInsumo, @Cantidad, @FechaHora, @IdTipoMovimmiento, @Motivo)",
+                SqlHelper.ExecuteNonQuery("INSERT INTO MovimientoStock (IdMovimientoStock, IdInsumo, Cantidad, FechaHora, IdTipoMovimiento, Motivo) VALUES (@IdMovimientoStock, @IdInsumo, @Cantidad, @FechaHora, @IdTipoMovimiento, @Motivo)",
                                             CommandType.Text,
+                                            uow?.Transaction,
                                             new SqlParameter[]
                                             {
                                                 new SqlParameter("@IdMovimientoStock", obj.IdMovimientoStock),
@@ -118,6 +119,11 @@ namespace DAL.Implementations
         }
 
         public void Update(MovimientoStock obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(MovimientoStock obj)
         {
             throw new NotImplementedException();
         }

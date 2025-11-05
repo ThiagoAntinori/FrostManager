@@ -1,8 +1,11 @@
 ﻿using DAL.Contracts;
+using DAL.Tools;
 using Domain;
+using Microsoft.Data.SqlClient;
 using Services.BLL.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -120,6 +123,25 @@ namespace DAL.Implementations
                 }
             }
             catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }
+        }
+
+        public void ActualizarStock(Insumo obj, UnitOfWork uow = null)
+        {
+            try
+            {
+                string updateStockQuery = @"
+                    UPDATE Insumo SET StockActual = @StockActual WHERE IdInsumo = @IdInsumo";
+                SqlHelper.ExecuteNonQuery(updateStockQuery, CommandType.Text, uow?.Transaction,
+                                            new SqlParameter[]
+                                            {
+                                                new SqlParameter("@StockActual", obj.StockActual),
+                                                new SqlParameter("@IdInsumo", obj.IdInsumo)
+                                            });
+            }
+            catch(Exception ex)
             {
                 ExceptionExtension.Handle(ex);
             }

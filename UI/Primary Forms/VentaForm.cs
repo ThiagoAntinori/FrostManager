@@ -1,4 +1,6 @@
-﻿using Services.BLL.Contracts;
+﻿using BLL.Implementations;
+using Domain;
+using Services.BLL.Contracts;
 using Services.BLL.Services;
 using Services.Domain.Security;
 using System;
@@ -38,15 +40,26 @@ namespace UI.Primary_Forms
         {
             try
             {
-                if(UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
+                if (UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
                 {
                     CambiarIdioma();
                 }
+                ActualizarDataGridViewProductos(ProductoService.Current.SelectAll());
             }
             catch (Exception ex)
             {
                 throw;
             }
         }
+
+        private void ActualizarDataGridViewProductos(IEnumerable<Producto> newDataSource)
+        {
+            dgvProductos.DataSource = null;
+            dgvProductos.DataSource = newDataSource;
+            dgvProductos.Columns["IdProducto"].Visible = false;
+            dgvProductos.Columns["PrecioUnitario"].DefaultCellStyle.Format = "e";
+        }
+
+
     }
 }

@@ -19,7 +19,7 @@ INSERT INTO PATENTE (IdPatente, Nombre, MenuItemName, FormName) VALUES
 (NEWID(), 'REPORTE_SABORES', 'btnReporteSabores', 'ReporteSaboresForm'),
 (NEWID(), 'REPORTE_ENTREGAS', 'btnReporteEntregas', 'ReporteEntregasForm'),
 (NEWID(), 'REPORTE_PROYECCION', 'btnReporteProyecciones', 'ReporteProyeccionForm'),
-(NEWID(), 'PANEL_ADMINISTRATIVO, 'btnAbrirPanelAdministrativo', 'MainAdministrativeForm');
+(NEWID(), 'PANEL_ADMINISTRATIVO', 'btnAbrirPanelAdministrativo', 'MainAdministrativeForm');
 
 -- Script de carga inicial de familias nativas del sistema
 
@@ -83,3 +83,24 @@ END
 
 INSERT INTO USUARIO_FAMILIA (IdUsuario, IdFamilia)
 VALUES (@AdminId, @IdFamiliaAdministrador)
+
+-- ================
+-- CARGA INICIAL DE ENUMS
+-- ==================
+
+INSERT INTO TipoMovimientoStock (IdTipoMovimientoStock, Descripcion, Borrado) VALUES (1, 'Ingreso', 0);
+INSERT INTO TipoMovimientoStock (IdTipoMovimientoStock, Descripcion, Borrado) VALUES (2, 'Egreso', 0);
+INSERT INTO TipoMovimientoStock (IdTipoMovimientoStock, Descripcion, Borrado) VALUES (3, 'Ajuste', 0);
+
+INSERT INTO MedioPago (IdMedioPago, Descripcion, Borrado) VALUES (1, 'Efectivo', 0);
+INSERT INTO MedioPago (IdMedioPago, Descripcion, Borrado) VALUES (2, 'Transferencia', 0);
+INSERT INTO MedioPago (IdMedioPago, Descripcion, Borrado) VALUES (3, 'Tarjeta', 0);
+
+INSERT INTO EstadoVenta (IdEstadoVenta, Descripcion, Borrado) VALUES (1, 'EnCurso', 0);
+INSERT INTO EstadoVenta (IdEstadoVenta, Descripcion, Borrado) VALUES (2, 'PendienteDePago', 0);
+INSERT INTO EstadoVenta (IdEstadoVenta, Descripcion, Borrado) VALUES (3, 'PendienteDeEntrega', 0);
+INSERT INTO EstadoVenta (IdEstadoVenta, Descripcion, Borrado) VALUES (4, 'Finalizada', 0);
+
+INSERT INTO EstadoPedido (IdEstadoPedido, Descripcion, Borrado) VALUES (1, 'EnPreparacion', 0);
+INSERT INTO EstadoPedido (IdEstadoPedido, Descripcion, Borrado) VALUES (2, 'EnCamino', 0);
+INSERT INTO EstadoPedido (IdEstadoPedido, Descripcion, Borrado) VALUES (3, 'Entregado', 0);

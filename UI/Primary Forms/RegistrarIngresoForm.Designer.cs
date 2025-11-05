@@ -37,9 +37,11 @@
             lblFiltrarTipoInsumo = new Label();
             label1 = new Label();
             lblDescripcionSeleccionado = new Label();
-            textBox2 = new TextBox();
+            txtCantidadAIngresar = new TextBox();
             lblCantidadIngreso = new Label();
             btnAceptar = new Button();
+            lblMotivo = new Label();
+            txtMotivo = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvInsumos).BeginInit();
             SuspendLayout();
             // 
@@ -53,12 +55,14 @@
             dgvInsumos.Name = "dgvInsumos";
             dgvInsumos.ReadOnly = true;
             dgvInsumos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvInsumos.Size = new Size(292, 347);
+            dgvInsumos.Size = new Size(292, 321);
             dgvInsumos.TabIndex = 0;
+            dgvInsumos.SelectionChanged += dgvInsumos_SelectionChanged;
             // 
             // lblSeleccionarInsumoAModificar
             // 
             lblSeleccionarInsumoAModificar.AutoSize = true;
+            lblSeleccionarInsumoAModificar.ForeColor = SystemColors.ActiveCaptionText;
             lblSeleccionarInsumoAModificar.Location = new Point(51, 32);
             lblSeleccionarInsumoAModificar.Name = "lblSeleccionarInsumoAModificar";
             lblSeleccionarInsumoAModificar.Size = new Size(181, 15);
@@ -68,7 +72,8 @@
             // lblBuscarDescripcion
             // 
             lblBuscarDescripcion.AutoSize = true;
-            lblBuscarDescripcion.Location = new Point(45, 480);
+            lblBuscarDescripcion.ForeColor = SystemColors.ActiveCaptionText;
+            lblBuscarDescripcion.Location = new Point(45, 456);
             lblBuscarDescripcion.Name = "lblBuscarDescripcion";
             lblBuscarDescripcion.Size = new Size(127, 15);
             lblBuscarDescripcion.TabIndex = 2;
@@ -76,14 +81,15 @@
             // 
             // txtDescripcionBuscar
             // 
-            txtDescripcionBuscar.Location = new Point(45, 507);
+            txtDescripcionBuscar.Location = new Point(45, 483);
             txtDescripcionBuscar.Name = "txtDescripcionBuscar";
             txtDescripcionBuscar.Size = new Size(187, 23);
             txtDescripcionBuscar.TabIndex = 3;
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(262, 507);
+            btnBuscar.ForeColor = SystemColors.ActiveCaptionText;
+            btnBuscar.Location = new Point(262, 483);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(75, 23);
             btnBuscar.TabIndex = 4;
@@ -104,6 +110,7 @@
             // lblFiltrarTipoInsumo
             // 
             lblFiltrarTipoInsumo.AutoSize = true;
+            lblFiltrarTipoInsumo.ForeColor = SystemColors.ActiveCaptionText;
             lblFiltrarTipoInsumo.Location = new Point(45, 72);
             lblFiltrarTipoInsumo.Name = "lblFiltrarTipoInsumo";
             lblFiltrarTipoInsumo.Size = new Size(144, 15);
@@ -113,6 +120,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.Location = new Point(398, 115);
             label1.Name = "label1";
             label1.Size = new Size(80, 15);
@@ -122,22 +130,24 @@
             // lblDescripcionSeleccionado
             // 
             lblDescripcionSeleccionado.AutoSize = true;
+            lblDescripcionSeleccionado.ForeColor = SystemColors.ActiveCaptionText;
             lblDescripcionSeleccionado.Location = new Point(398, 143);
             lblDescripcionSeleccionado.Name = "lblDescripcionSeleccionado";
             lblDescripcionSeleccionado.Size = new Size(12, 15);
             lblDescripcionSeleccionado.TabIndex = 8;
             lblDescripcionSeleccionado.Text = "-";
             // 
-            // textBox2
+            // txtCantidadAIngresar
             // 
-            textBox2.Location = new Point(398, 216);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(187, 23);
-            textBox2.TabIndex = 9;
+            txtCantidadAIngresar.Location = new Point(398, 216);
+            txtCantidadAIngresar.Name = "txtCantidadAIngresar";
+            txtCantidadAIngresar.Size = new Size(187, 23);
+            txtCantidadAIngresar.TabIndex = 9;
             // 
             // lblCantidadIngreso
             // 
             lblCantidadIngreso.AutoSize = true;
+            lblCantidadIngreso.ForeColor = SystemColors.ActiveCaptionText;
             lblCantidadIngreso.Location = new Point(398, 198);
             lblCantidadIngreso.Name = "lblCantidadIngreso";
             lblCantidadIngreso.Size = new Size(163, 15);
@@ -146,21 +156,42 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(449, 429);
+            btnAceptar.ForeColor = SystemColors.ActiveCaptionText;
+            btnAceptar.Location = new Point(449, 403);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(136, 33);
             btnAceptar.TabIndex = 11;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += btnAceptar_Click;
+            // 
+            // lblMotivo
+            // 
+            lblMotivo.AutoSize = true;
+            lblMotivo.ForeColor = SystemColors.ActiveCaptionText;
+            lblMotivo.Location = new Point(398, 277);
+            lblMotivo.Name = "lblMotivo";
+            lblMotivo.Size = new Size(162, 15);
+            lblMotivo.TabIndex = 12;
+            lblMotivo.Text = "Ingrese el motivo del ingreso:";
+            // 
+            // txtMotivo
+            // 
+            txtMotivo.Location = new Point(398, 295);
+            txtMotivo.Name = "txtMotivo";
+            txtMotivo.Size = new Size(187, 23);
+            txtMotivo.TabIndex = 13;
             // 
             // RegistrarIngresoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(624, 561);
+            Controls.Add(txtMotivo);
+            Controls.Add(lblMotivo);
             Controls.Add(btnAceptar);
             Controls.Add(lblCantidadIngreso);
-            Controls.Add(textBox2);
+            Controls.Add(txtCantidadAIngresar);
             Controls.Add(lblDescripcionSeleccionado);
             Controls.Add(label1);
             Controls.Add(lblFiltrarTipoInsumo);
@@ -190,8 +221,10 @@
         private Label lblFiltrarTipoInsumo;
         private Label label1;
         private Label lblDescripcionSeleccionado;
-        private TextBox textBox2;
+        private TextBox txtCantidadAIngresar;
         private Label lblCantidadIngreso;
         private Button btnAceptar;
+        private Label lblMotivo;
+        private TextBox txtMotivo;
     }
 }

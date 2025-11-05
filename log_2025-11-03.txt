@@ -1,0 +1,157 @@
+[2025-11-03 18:57:40.009 -03:00] [ERROR] [DAL Exception] Error de acceso a datos - Mensaje: Cannot insert the value NULL into column 'Borrado', table 'FrostManagerBusiness.dbo.Envase'; column does not allow nulls. INSERT fails.
+The statement has been terminated. [Excepción: Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'Borrado', table 'FrostManagerBusiness.dbo.Envase'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.Tools.SqlHelper.ExecuteNonQuery(String commandText, CommandType commandType, SqlParameter[] parameters) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Tools\SqlHelper.cs:line 35
+   at DAL.Implementations.EnvaseRepository.Insert(Envase obj) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Implementations\EnvaseRepository.cs:line 114
+ClientConnectionId:6bb11689-d486-448c-9573-7b6f2864db1f
+Error Number:515,State:2,Class:16, StackTrace:    at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.Tools.SqlHelper.ExecuteNonQuery(String commandText, CommandType commandType, SqlParameter[] parameters) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Tools\SqlHelper.cs:line 35
+   at DAL.Implementations.EnvaseRepository.Insert(Envase obj) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Implementations\EnvaseRepository.cs:line 114] []
+[2025-11-03 18:57:40.377 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ocurrió un error en la base de datos [] []
+[2025-11-03 18:59:51.908 -03:00] [ERROR] [DAL Exception] Error de acceso a datos - Mensaje: Incorrect syntax near 'i'. [Excepción: Microsoft.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'i'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at DAL.Tools.SqlHelper.ExecuteReader(String commandText, CommandType commandType, SqlParameter[] parameters) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Tools\SqlHelper.cs:line 86
+   at DAL.Implementations.EnvaseRepository.GetById(Guid id) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Implementations\EnvaseRepository.cs:line 87
+ClientConnectionId:3fc39c5c-4134-4b81-814a-06758b85842b
+Error Number:102,State:1,Class:15, StackTrace:    at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at DAL.Tools.SqlHelper.ExecuteReader(String commandText, CommandType commandType, SqlParameter[] parameters) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Tools\SqlHelper.cs:line 86
+   at DAL.Implementations.EnvaseRepository.GetById(Guid id) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Implementations\EnvaseRepository.cs:line 87] []
+[2025-11-03 18:59:52.260 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ocurrió un error en la base de datos [] []
+[2025-11-03 19:01:29.773 -03:00] [ERROR] [DAL Exception] Error de acceso a datos - Mensaje: Incorrect syntax near 'i'. [Excepción: Microsoft.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'i'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at DAL.Tools.SqlHelper.ExecuteReader(String commandText, CommandType commandType, SqlParameter[] parameters) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Tools\SqlHelper.cs:line 86
+   at DAL.Implementations.EnvaseRepository.GetById(Guid id) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Implementations\EnvaseRepository.cs:line 87
+ClientConnectionId:7db4b480-fc01-4fad-b9f3-872bdf20996b
+Error Number:102,State:1,Class:15, StackTrace:    at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at DAL.Tools.SqlHelper.ExecuteReader(String commandText, CommandType commandType, SqlParameter[] parameters) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Tools\SqlHelper.cs:line 86
+   at DAL.Implementations.EnvaseRepository.GetById(Guid id) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Implementations\EnvaseRepository.cs:line 87] []
+[2025-11-03 19:01:30.975 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ocurrió un error en la base de datos [] []
+[2025-11-03 21:00:47.236 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:01:17.024 -03:00] [ERROR] [DAL Exception] Error de acceso a datos - Mensaje: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_MovimientoStock_TipoMovimientoStock". The conflict occurred in database "FrostManagerBusiness", table "dbo.TipoMovimientoStock", column 'IdTipoMovimientoStock'.
+The statement has been terminated. [Excepción: Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_MovimientoStock_TipoMovimientoStock". The conflict occurred in database "FrostManagerBusiness", table "dbo.TipoMovimientoStock", column 'IdTipoMovimientoStock'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.Tools.SqlHelper.ExecuteNonQuery(String commandText, CommandType commandType, SqlTransaction transaction, SqlParameter[] parameters) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Tools\SqlHelper.cs:line 106
+   at DAL.Implementations.MovimientoStockRepository.Insert(MovimientoStock obj, UnitOfWork uof) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Implementations\MovimientoStockRepository.cs:line 102
+ClientConnectionId:555b3971-73ee-43f6-aa36-d3b257635e1d
+Error Number:547,State:0,Class:16, StackTrace:    at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.Tools.SqlHelper.ExecuteNonQuery(String commandText, CommandType commandType, SqlTransaction transaction, SqlParameter[] parameters) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Tools\SqlHelper.cs:line 106
+   at DAL.Implementations.MovimientoStockRepository.Insert(MovimientoStock obj, UnitOfWork uof) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Implementations\MovimientoStockRepository.cs:line 102] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:01:17.262 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ocurrió un error en la base de datos [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:17:01.481 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:17:27.755 -03:00] [ERROR] [DAL Exception] Error de acceso a datos - Mensaje: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_MovimientoStock_TipoMovimientoStock". The conflict occurred in database "FrostManagerBusiness", table "dbo.TipoMovimientoStock", column 'IdTipoMovimientoStock'.
+The statement has been terminated. [Excepción: Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_MovimientoStock_TipoMovimientoStock". The conflict occurred in database "FrostManagerBusiness", table "dbo.TipoMovimientoStock", column 'IdTipoMovimientoStock'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.Tools.SqlHelper.ExecuteNonQuery(String commandText, CommandType commandType, SqlTransaction transaction, SqlParameter[] parameters) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Tools\SqlHelper.cs:line 106
+   at DAL.Implementations.MovimientoStockRepository.Insert(MovimientoStock obj, UnitOfWork uof) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Implementations\MovimientoStockRepository.cs:line 102
+ClientConnectionId:c4a04112-7406-428c-a84c-a1c4de1fec31
+Error Number:547,State:0,Class:16, StackTrace:    at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String methodName)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at DAL.Tools.SqlHelper.ExecuteNonQuery(String commandText, CommandType commandType, SqlTransaction transaction, SqlParameter[] parameters) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Tools\SqlHelper.cs:line 106
+   at DAL.Implementations.MovimientoStockRepository.Insert(MovimientoStock obj, UnitOfWork uof) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\DAL\Implementations\MovimientoStockRepository.cs:line 102] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:17:27.980 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ocurrió un error en la base de datos [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:23:46.799 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:24:11.130 -03:00] [ERROR] [BLL Exception] Error en la lógica de negocio - Mensaje: Value cannot be null. (Parameter 'El objeto item no puede ser nulo.') [Excepción: System.ArgumentNullException: Value cannot be null. (Parameter 'El objeto item no puede ser nulo.')
+   at BLL.Tools.ValidationHelper.NotNull(Object obj, String paramName) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Tools\ValidationHelper.cs:line 15
+   at BLL.Implementations.InsumoService.RegistrarIngreso(Insumo item, MovimientoStock movimiento) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Implementations\InsumoService.cs:line 120, StackTrace:    at BLL.Tools.ValidationHelper.NotNull(Object obj, String paramName) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Tools\ValidationHelper.cs:line 15
+   at BLL.Implementations.InsumoService.RegistrarIngreso(Insumo item, MovimientoStock movimiento) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Implementations\InsumoService.cs:line 120] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:24:16.557 -03:00] [ERROR] [BLL Exception] Error en la lógica de negocio - Mensaje: Value cannot be null. (Parameter 'El objeto item no puede ser nulo.') [Excepción: System.ArgumentNullException: Value cannot be null. (Parameter 'El objeto item no puede ser nulo.')
+   at BLL.Tools.ValidationHelper.NotNull(Object obj, String paramName) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Tools\ValidationHelper.cs:line 15
+   at BLL.Implementations.InsumoService.RegistrarIngreso(Insumo item, MovimientoStock movimiento) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Implementations\InsumoService.cs:line 120, StackTrace:    at BLL.Tools.ValidationHelper.NotNull(Object obj, String paramName) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Tools\ValidationHelper.cs:line 15
+   at BLL.Implementations.InsumoService.RegistrarIngreso(Insumo item, MovimientoStock movimiento) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Implementations\InsumoService.cs:line 120] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:24:32.199 -03:00] [ERROR] [BLL Exception] Error en la lógica de negocio - Mensaje: Value cannot be null. (Parameter 'El objeto item no puede ser nulo.') [Excepción: System.ArgumentNullException: Value cannot be null. (Parameter 'El objeto item no puede ser nulo.')
+   at BLL.Tools.ValidationHelper.NotNull(Object obj, String paramName) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Tools\ValidationHelper.cs:line 15
+   at BLL.Implementations.InsumoService.RegistrarIngreso(Insumo item, MovimientoStock movimiento) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Implementations\InsumoService.cs:line 120, StackTrace:    at BLL.Tools.ValidationHelper.NotNull(Object obj, String paramName) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Tools\ValidationHelper.cs:line 15
+   at BLL.Implementations.InsumoService.RegistrarIngreso(Insumo item, MovimientoStock movimiento) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Implementations\InsumoService.cs:line 120] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:32:33.516 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:34:27.396 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-03 21:40:00.556 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]

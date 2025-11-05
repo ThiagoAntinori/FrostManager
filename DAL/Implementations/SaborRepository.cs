@@ -33,7 +33,20 @@ namespace DAL.Implementations
 
         public void Delete(Sabor obj)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                string deleteQuery = "UPDATE Sabor SET Borrado = 1 WHERE IdSabor = @IdSabor";
+                SqlHelper.ExecuteNonQuery(deleteQuery, CommandType.Text,
+                    new SqlParameter[]
+                    {
+                        new SqlParameter("@IdSabor", obj.IdInsumo)
+                    });
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }
         }
 
         public IEnumerable<Sabor> GetAll()
@@ -42,8 +55,12 @@ namespace DAL.Implementations
             {
                 Sabor saborGet = null;
                 List<Sabor> sabores = new List<Sabor>();
-
-                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdSabor, Descripcion, StockActual, StockMinimo FROM SABOR WHERE Borrado = 0",
+                string selectQuery = @"
+                    SELECT i.IdInsumo, i.Descripcion, i.StockActual, i.StockMinimo
+                    FROM Insumo i
+                    INNER JOIN Sabor s ON s.IdSabor = i.IdInsumo
+                    WHERE s.Borrado = 0";
+                using (SqlDataReader reader = SqlHelper.ExecuteReader(selectQuery,
                                                                         CommandType.Text,
                                                                         new SqlParameter[]
                                                                         {}))
@@ -71,7 +88,13 @@ namespace DAL.Implementations
             try
             {
                 Sabor saborGet = null;
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdSabor, Descripcion, StockActual, StockMinimo FROM SABOR WHERE IdSabor = @IdSabor AND Borrado = 0",
+                string selectQuery = @"
+                    SELECT i.IdInsumo, i.Descripcion, i.StockActual, i.StockMinimo
+                    FROM Insumo i
+                    INNER JOIN Sabor s ON s.IdSabor = i.IdInsumo
+                    WHERE i.IdInsumo = @IdSabor AND s.Borrado = 0";
+
+                using (SqlDataReader reader = SqlHelper.ExecuteReader(selectQuery,
                                                                     CommandType.Text,
                                                                     new SqlParameter[]
                                                                     {
@@ -99,7 +122,10 @@ namespace DAL.Implementations
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO SABOR (IdSabor, Descripcion, StockActual, StockMinimo, Borrado) VALUES (@IdSabor, @Descripcion, @StockActual, @StockMinimo, 0)",
+                string insertQuery = @"
+                    INSERT INTO Insumo (IdInsumo, Descripcion, StockActual, StockMinimo) VALUES (@IdSabor, @Descripcion, @StockActual, @StockMinimo);
+                    INSERT INTO Sabor (IdSabor, Borrado) VALUES (@IdSabor, 0);";
+                SqlHelper.ExecuteNonQuery(insertQuery,
                                             CommandType.Text,
                                             new SqlParameter[]
                                             {
@@ -119,7 +145,9 @@ namespace DAL.Implementations
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("UPDATE SABOR SET Descripcion = @Descripcion, StockActual = @StockActual, StockMinimo = @StockMinimo WHERE IdSabor = @IdSabor",
+                string updateQuery = @"
+                    UPDATE Insumo SET Descripcion = @Descripcion, StockActual = @StockActual, StockMinimo = @StockMinimo WHERE IdInsumo = @IdSabor AND Borrado = 0;";
+                SqlHelper.ExecuteNonQuery(updateQuery,
                                             CommandType.Text,
                                             new SqlParameter[]
                                             {
@@ -132,6 +160,7 @@ namespace DAL.Implementations
             catch (Exception ex)
             {
                 ExceptionExtension.Handle(ex);
+                throw;
             }
         }
     }

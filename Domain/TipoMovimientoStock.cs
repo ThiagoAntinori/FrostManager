@@ -8,7 +8,7 @@ namespace Domain
 {
     public enum TipoMovimientoStock
     {
-        Ingreso,
+        Ingreso = 1,
         Egreso,
         Ajuste
     }

@@ -29,20 +29,23 @@
         private void InitializeComponent()
         {
             txtBuscarProducto = new TextBox();
-            lvProductos = new ListView();
             lblSeleccioneProducto = new Label();
-            label1 = new Label();
-            numericUpDown1 = new NumericUpDown();
-            button1 = new Button();
-            listView1 = new ListView();
-            label2 = new Label();
-            button2 = new Button();
-            button3 = new Button();
-            checkBox1 = new CheckBox();
-            button4 = new Button();
-            label3 = new Label();
+            lblIngresarCantidad = new Label();
+            numCantidad = new NumericUpDown();
+            btnAñadir = new Button();
+            lblTotal = new Label();
+            btnEliminar = new Button();
+            btnCancelarVenta = new Button();
+            checkDelivery = new CheckBox();
+            btnConfirmar = new Button();
+            lblDetalleVenta = new Label();
             lblMontoTotal = new Label();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            btnBuscar = new Button();
+            dgvProductos = new DataGridView();
+            dgvDetalleVenta = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)numCantidad).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalleVenta).BeginInit();
             SuspendLayout();
             // 
             // txtBuscarProducto
@@ -53,19 +56,8 @@
             txtBuscarProducto.Location = new Point(42, 67);
             txtBuscarProducto.Name = "txtBuscarProducto";
             txtBuscarProducto.PlaceholderText = "Buscar por nombre";
-            txtBuscarProducto.Size = new Size(162, 25);
+            txtBuscarProducto.Size = new Size(142, 25);
             txtBuscarProducto.TabIndex = 0;
-            // 
-            // lvProductos
-            // 
-            lvProductos.Anchor = AnchorStyles.None;
-            lvProductos.Font = new Font("Segoe UI", 9.75F);
-            lvProductos.ForeColor = SystemColors.WindowText;
-            lvProductos.Location = new Point(42, 106);
-            lvProductos.Name = "lvProductos";
-            lvProductos.Size = new Size(162, 239);
-            lvProductos.TabIndex = 1;
-            lvProductos.UseCompatibleStateImageBehavior = false;
             // 
             // lblSeleccioneProducto
             // 
@@ -79,123 +71,112 @@
             lblSeleccioneProducto.TabIndex = 2;
             lblSeleccioneProducto.Text = "Seleccione un producto a añadir:";
             // 
-            // label1
+            // lblIngresarCantidad
             // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9.75F);
-            label1.ForeColor = SystemColors.WindowText;
-            label1.Location = new Point(41, 370);
-            label1.Name = "label1";
-            label1.Size = new Size(122, 17);
-            label1.TabIndex = 3;
-            label1.Text = "Ingrese la cantidad:";
+            lblIngresarCantidad.Anchor = AnchorStyles.None;
+            lblIngresarCantidad.AutoSize = true;
+            lblIngresarCantidad.Font = new Font("Segoe UI", 9.75F);
+            lblIngresarCantidad.ForeColor = SystemColors.WindowText;
+            lblIngresarCantidad.Location = new Point(41, 370);
+            lblIngresarCantidad.Name = "lblIngresarCantidad";
+            lblIngresarCantidad.Size = new Size(122, 17);
+            lblIngresarCantidad.TabIndex = 3;
+            lblIngresarCantidad.Text = "Ingrese la cantidad:";
             // 
-            // numericUpDown1
+            // numCantidad
             // 
-            numericUpDown1.Anchor = AnchorStyles.None;
-            numericUpDown1.Font = new Font("Segoe UI", 9.75F);
-            numericUpDown1.ForeColor = SystemColors.WindowText;
-            numericUpDown1.Location = new Point(156, 368);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(48, 25);
-            numericUpDown1.TabIndex = 4;
+            numCantidad.Anchor = AnchorStyles.None;
+            numCantidad.Font = new Font("Segoe UI", 9.75F);
+            numCantidad.ForeColor = SystemColors.WindowText;
+            numCantidad.Location = new Point(169, 368);
+            numCantidad.Name = "numCantidad";
+            numCantidad.Size = new Size(48, 25);
+            numCantidad.TabIndex = 4;
             // 
-            // button1
+            // btnAñadir
             // 
-            button1.Anchor = AnchorStyles.None;
-            button1.Font = new Font("Segoe UI", 9.75F);
-            button1.ForeColor = SystemColors.WindowText;
-            button1.Location = new Point(108, 418);
-            button1.Name = "button1";
-            button1.Size = new Size(96, 23);
-            button1.TabIndex = 5;
-            button1.Text = "Añadir";
-            button1.UseVisualStyleBackColor = true;
+            btnAñadir.Anchor = AnchorStyles.None;
+            btnAñadir.Font = new Font("Segoe UI", 9.75F);
+            btnAñadir.ForeColor = SystemColors.WindowText;
+            btnAñadir.Location = new Point(145, 418);
+            btnAñadir.Name = "btnAñadir";
+            btnAñadir.Size = new Size(96, 23);
+            btnAñadir.TabIndex = 5;
+            btnAñadir.Text = "Añadir";
+            btnAñadir.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // lblTotal
             // 
-            listView1.Anchor = AnchorStyles.None;
-            listView1.Font = new Font("Segoe UI", 9.75F);
-            listView1.ForeColor = SystemColors.WindowText;
-            listView1.Location = new Point(291, 106);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(312, 239);
-            listView1.TabIndex = 6;
-            listView1.UseCompatibleStateImageBehavior = false;
+            lblTotal.Anchor = AnchorStyles.None;
+            lblTotal.AutoSize = true;
+            lblTotal.Font = new Font("Segoe UI", 9.75F);
+            lblTotal.ForeColor = SystemColors.WindowText;
+            lblTotal.Location = new Point(519, 369);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(46, 17);
+            lblTotal.TabIndex = 7;
+            lblTotal.Text = "TOTAL:";
             // 
-            // label2
+            // btnEliminar
             // 
-            label2.Anchor = AnchorStyles.None;
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9.75F);
-            label2.ForeColor = SystemColors.WindowText;
-            label2.Location = new Point(519, 370);
-            label2.Name = "label2";
-            label2.Size = new Size(46, 17);
-            label2.TabIndex = 7;
-            label2.Text = "TOTAL:";
+            btnEliminar.Anchor = AnchorStyles.None;
+            btnEliminar.Font = new Font("Segoe UI", 9.75F);
+            btnEliminar.ForeColor = SystemColors.WindowText;
+            btnEliminar.Location = new Point(291, 366);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(138, 23);
+            btnEliminar.TabIndex = 8;
+            btnEliminar.Text = "Eliminar seleccionado";
+            btnEliminar.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnCancelarVenta
             // 
-            button2.Anchor = AnchorStyles.None;
-            button2.Font = new Font("Segoe UI", 9.75F);
-            button2.ForeColor = SystemColors.WindowText;
-            button2.Location = new Point(291, 366);
-            button2.Name = "button2";
-            button2.Size = new Size(138, 23);
-            button2.TabIndex = 8;
-            button2.Text = "Eliminar seleccionado";
-            button2.UseVisualStyleBackColor = true;
+            btnCancelarVenta.Anchor = AnchorStyles.None;
+            btnCancelarVenta.Font = new Font("Segoe UI", 9.75F);
+            btnCancelarVenta.ForeColor = SystemColors.WindowText;
+            btnCancelarVenta.Location = new Point(291, 418);
+            btnCancelarVenta.Name = "btnCancelarVenta";
+            btnCancelarVenta.Size = new Size(138, 23);
+            btnCancelarVenta.TabIndex = 9;
+            btnCancelarVenta.Text = "Cancelar Venta";
+            btnCancelarVenta.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // checkDelivery
             // 
-            button3.Anchor = AnchorStyles.None;
-            button3.Font = new Font("Segoe UI", 9.75F);
-            button3.ForeColor = SystemColors.WindowText;
-            button3.Location = new Point(291, 418);
-            button3.Name = "button3";
-            button3.Size = new Size(138, 23);
-            button3.TabIndex = 9;
-            button3.Text = "Cancelar Venta";
-            button3.UseVisualStyleBackColor = true;
+            checkDelivery.Anchor = AnchorStyles.None;
+            checkDelivery.AutoSize = true;
+            checkDelivery.Font = new Font("Segoe UI", 9.75F);
+            checkDelivery.ForeColor = SystemColors.WindowText;
+            checkDelivery.Location = new Point(291, 496);
+            checkDelivery.Name = "checkDelivery";
+            checkDelivery.Size = new Size(101, 21);
+            checkDelivery.TabIndex = 11;
+            checkDelivery.Text = "¿Es delivery?";
+            checkDelivery.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // btnConfirmar
             // 
-            checkBox1.Anchor = AnchorStyles.None;
-            checkBox1.AutoSize = true;
-            checkBox1.Font = new Font("Segoe UI", 9.75F);
-            checkBox1.ForeColor = SystemColors.WindowText;
-            checkBox1.Location = new Point(291, 520);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(101, 21);
-            checkBox1.TabIndex = 11;
-            checkBox1.Text = "¿Es delivery?";
-            checkBox1.UseVisualStyleBackColor = true;
+            btnConfirmar.Anchor = AnchorStyles.None;
+            btnConfirmar.Font = new Font("Segoe UI", 9.75F);
+            btnConfirmar.ForeColor = SystemColors.WindowText;
+            btnConfirmar.Location = new Point(475, 491);
+            btnConfirmar.Name = "btnConfirmar";
+            btnConfirmar.Size = new Size(128, 26);
+            btnConfirmar.TabIndex = 12;
+            btnConfirmar.Text = "Confirmar";
+            btnConfirmar.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // lblDetalleVenta
             // 
-            button4.Anchor = AnchorStyles.None;
-            button4.Font = new Font("Segoe UI", 9.75F);
-            button4.ForeColor = SystemColors.WindowText;
-            button4.Location = new Point(475, 515);
-            button4.Name = "button4";
-            button4.Size = new Size(128, 26);
-            button4.TabIndex = 12;
-            button4.Text = "Confirmar";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            label3.Anchor = AnchorStyles.None;
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9.75F);
-            label3.ForeColor = SystemColors.WindowText;
-            label3.Location = new Point(295, 37);
-            label3.Name = "label3";
-            label3.Size = new Size(102, 17);
-            label3.TabIndex = 13;
-            label3.Text = "Detalle de venta";
+            lblDetalleVenta.Anchor = AnchorStyles.None;
+            lblDetalleVenta.AutoSize = true;
+            lblDetalleVenta.Font = new Font("Segoe UI", 9.75F);
+            lblDetalleVenta.ForeColor = SystemColors.WindowText;
+            lblDetalleVenta.Location = new Point(295, 37);
+            lblDetalleVenta.Name = "lblDetalleVenta";
+            lblDetalleVenta.Size = new Size(102, 17);
+            lblDetalleVenta.TabIndex = 13;
+            lblDetalleVenta.Text = "Detalle de venta";
             // 
             // lblMontoTotal
             // 
@@ -209,30 +190,58 @@
             lblMontoTotal.TabIndex = 14;
             lblMontoTotal.Text = "0";
             // 
+            // btnBuscar
+            // 
+            btnBuscar.Location = new Point(190, 69);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(51, 23);
+            btnBuscar.TabIndex = 15;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.UseVisualStyleBackColor = true;
+            // 
+            // dgvProductos
+            // 
+            dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProductos.Location = new Point(42, 106);
+            dgvProductos.Name = "dgvProductos";
+            dgvProductos.Size = new Size(199, 239);
+            dgvProductos.TabIndex = 16;
+            // 
+            // dgvDetalleVenta
+            // 
+            dgvDetalleVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDetalleVenta.Location = new Point(295, 106);
+            dgvDetalleVenta.Name = "dgvDetalleVenta";
+            dgvDetalleVenta.Size = new Size(308, 239);
+            dgvDetalleVenta.TabIndex = 17;
+            // 
             // VentaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(624, 561);
+            Controls.Add(dgvDetalleVenta);
+            Controls.Add(dgvProductos);
+            Controls.Add(btnBuscar);
             Controls.Add(lblMontoTotal);
-            Controls.Add(label3);
-            Controls.Add(button4);
-            Controls.Add(checkBox1);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(label2);
-            Controls.Add(listView1);
-            Controls.Add(button1);
-            Controls.Add(numericUpDown1);
-            Controls.Add(label1);
+            Controls.Add(lblDetalleVenta);
+            Controls.Add(btnConfirmar);
+            Controls.Add(checkDelivery);
+            Controls.Add(btnCancelarVenta);
+            Controls.Add(btnEliminar);
+            Controls.Add(lblTotal);
+            Controls.Add(btnAñadir);
+            Controls.Add(numCantidad);
+            Controls.Add(lblIngresarCantidad);
             Controls.Add(lblSeleccioneProducto);
-            Controls.Add(lvProductos);
             Controls.Add(txtBuscarProducto);
             FormBorderStyle = FormBorderStyle.None;
             Name = "VentaForm";
             Text = "Form1";
             Load += VentaForm_Load;
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numCantidad).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalleVenta).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -242,16 +251,19 @@
         private TextBox txtBuscarProducto;
         private ListView lvProductos;
         private Label lblSeleccioneProducto;
-        private Label label1;
-        private NumericUpDown numericUpDown1;
-        private Button button1;
+        private Label lblIngresarCantidad;
+        private NumericUpDown numCantidad;
+        private Button btnEliminar;
         private ListView listView1;
-        private Label label2;
-        private Button button2;
-        private Button button3;
-        private CheckBox checkBox1;
-        private Button button4;
-        private Label label3;
+        private Label lblTotal;
+        private Button btnAñadir;
+        private Button btnCancelarVenta;
+        private CheckBox checkDelivery;
+        private Button btnConfirmar;
+        private Label lblDetalleVenta;
         private Label lblMontoTotal;
+        private Button btnBuscar;
+        private DataGridView dgvProductos;
+        private DataGridView dgvDetalleVenta;
     }
 }

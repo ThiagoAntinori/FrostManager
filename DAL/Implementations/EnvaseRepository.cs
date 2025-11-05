@@ -54,7 +54,12 @@ namespace DAL.Implementations
             {
                 Envase envaseGet = null;
                 List<Envase> envases = new List<Envase>();
-                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdEnvase, Descripcion, StockActual, StockMinimo, CapacidadEnGramos FROM ENVASE WHERE Borrado = 0",
+                string selectQuery = @"
+                    SELECT i.IdInsumo, i.Descripcion, i.StockActual, i.StockMinimo, e.CapacidadEnGramos
+                    FROM Insumo i
+                    INNER JOIN Envase e ON e.IdEnvase = i.IdInsumo
+                    WHERE e.Borrado = 0";
+                using (SqlDataReader reader = SqlHelper.ExecuteReader(selectQuery,
                         CommandType.Text,
                         new SqlParameter[] { }))
                 {
@@ -80,8 +85,13 @@ namespace DAL.Implementations
             try
             {
                 Envase envaseGet = null;
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdEnvase, Descripcion, StockActual, StockMinimo, CapacidadEnGramos FROM ENVASE WHERE IdEnvase = @IdEnvase",
-                                                                    CommandType.Text,
+                string selectQuery = @"
+                    SELECT i.IdInsumo, i.Descripcion, i.StockActual, i.StockMinimo, e.CapacidadEnGramos
+                    FROM Insumo i
+                    INNER JOIN Envase e ON e.IdEnvase = i.IdInsumo
+                    WHERE i.IdInsumo = @IdEnvase AND e.Borrado = 0";
+
+                using (SqlDataReader reader = SqlHelper.ExecuteReader(selectQuery, CommandType.Text,
                                                                     new SqlParameter[]
                                                                     {
                                                                         new SqlParameter("@IdEnvase", id)
@@ -108,7 +118,9 @@ namespace DAL.Implementations
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO ENVASE (IdEnvase, Descripcion, StockActual, StockMinimo, Borrado, CapacidadEnGramos) VALUES (@IdEnvase, @Descripcion, @StockActual, @StockMinimo, 0, @CapacidadEnGramos);",
+                string insertQuery = @"INSERT INTO Insumo (IdInsumo, Descripcion, StockActual, StockMinimo) VALUES (@IdEnvase, @Descripcion, @StockActual, @StockMinimo);
+                                        INSERT INTO Envase (IdEnvase, CapacidadEnGramos, Borrado) VALUES (@IdEnvase, @CapacidadEnGramos, 0);";
+                SqlHelper.ExecuteNonQuery(insertQuery,
                                         CommandType.Text,
                                         new SqlParameter[]
                                         {
@@ -129,7 +141,9 @@ namespace DAL.Implementations
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("UPDATE ENVASE SET Descripcion = @Descripcion, StockActual = @StockActual, StockMinimo = @StockMinimo, CapacidadEnGramos = @CapacidadEnGramos WHERE IdEnvase = @IdEnvase AND Borrado = 0",
+                string updateQuery = @"UPDATE Insumo SET Descripcion = @Descripcion, StockActual = @StockActual, StockMinimo = @StockMinimo WHERE IdEnvase = @IdEnvase;
+                                        UPDATE Envase SET CapacidadEnGramos = @CapacidadEnGramos WHERE IdEnvase = @IdEnvase AND Borrado = 0";
+                SqlHelper.ExecuteNonQuery(updateQuery,
                                     CommandType.Text,
                                     new SqlParameter[]
                                     {

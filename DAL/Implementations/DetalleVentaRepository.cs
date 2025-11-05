@@ -1,4 +1,5 @@
-﻿using DAL.Contracts;
+﻿using DAL.Adapter;
+using DAL.Contracts;
 using DAL.Tools;
 using Domain;
 using Microsoft.Data.SqlClient;
@@ -6,6 +7,7 @@ using Services.BLL.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,19 +39,66 @@ namespace DAL.Implementations
 
         public IEnumerable<DetalleVenta> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                DetalleVenta detalleVentaGet = null;
+                List<DetalleVenta> detallesVenta = new List<DetalleVenta>();
+                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdDetalleVenta, Cantidad, IdProducto, IdVenta FROM DetalleVenta",
+                                                                        CommandType.Text,
+                                                                        new SqlParameter[]{}))
+                {
+                    object[] values = new object[reader.FieldCount];
+
+                    while (reader.Read())
+                    {
+                        reader.GetValues(values);
+                        detalleVentaGet = DetalleVentaAdapter.Current.Adapt(values);
+                        detallesVenta.Add(detalleVentaGet);
+                    }
+                }
+                return detallesVenta;
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
 
         public DetalleVenta GetById(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DetalleVenta detalleVentaGet = null;
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdDetalleVenta, Cantidad, IdProducto, IdVenta FROM DetalleVenta WHERE IdDetalleVenta = @IdDetalleVenta AND Borrado = 0",
+                                                                        CommandType.Text,
+                                                                        new SqlParameter[] 
+                                                                        {
+                                                                            new SqlParameter("@IdDetalleVenta", id)
+                                                                        }))
+                {
+                    object[] values = new object[reader.FieldCount];
+
+                    if (reader.Read())
+                    {
+                        reader.GetValues(values);
+                        detalleVentaGet = DetalleVentaAdapter.Current.Adapt(values);
+                    }
+                }
+                return detalleVentaGet;
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
 
         public void Insert(DetalleVenta obj)
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO DetalleVenta (IdDetalleVenta, Cantidad, IdProducto, IdVenta) VALUES (@IdDetalleVenta, @Cantidad, @IdProducto, IdVenta",
+                SqlHelper.ExecuteNonQuery("INSERT INTO DetalleVenta (IdDetalleVenta, Cantidad, IdProducto, IdVenta) VALUES (@IdDetalleVenta, @Cantidad, @IdProducto, @IdVenta",
                                             CommandType.Text,
                                             new SqlParameter[]
                                             {
@@ -67,7 +116,51 @@ namespace DAL.Implementations
 
         public void Update(DetalleVenta obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                SqlHelper.ExecuteNonQuery("UPDATE DetalleVenta SET Cantidad = @Cantidad WHERE IdDetalleVenta = @IdDetalleVenta",
+                    CommandType.Text,
+                    new SqlParameter[]
+                    {
+                        new SqlParameter("@Cantidad", obj.Cantidad),
+                        new SqlParameter("@IdDetalleVenta", obj.IdDetalleVenta)
+                    });
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }   
+        }
+
+        public List<DetalleVenta> GetByIdVenta(Guid idVenta)
+        {
+            try
+            {
+                DetalleVenta detalleVentaGet = null;
+                List<DetalleVenta> detallesVenta = new List<DetalleVenta>();
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdDetalleVenta, Cantidad, IdProducto, IdVenta FROM DetalleVenta WHERE IdVenta = @IdVenta AND Borrado = 0",
+                                                                        CommandType.Text,
+                                                                        new SqlParameter[] 
+                                                                        {
+                                                                            new SqlParameter("@IdVenta", idVenta)
+                                                                        }))
+                {
+                    object[] values = new object[reader.FieldCount];
+
+                    while (reader.Read())
+                    {
+                        reader.GetValues(values);
+                        detalleVentaGet = DetalleVentaAdapter.Current.Adapt(values);
+                        detallesVenta.Add(detalleVentaGet);
+                    }
+                }
+                return detallesVenta;
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+                throw;
+            }
         }
     }
 }

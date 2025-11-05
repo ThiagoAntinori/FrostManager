@@ -113,15 +113,31 @@ namespace BLL.Implementations
             }
         }
 
-        public void RegistrarIngreso(Insumo item, int cantidadASumar)
+        public void RegistrarIngreso(Insumo item, MovimientoStock movimiento)
         {
             try
             {
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
-                ValidationHelper.PositiveValue(cantidadASumar, "Cantidad a sumar");
-                item.StockActual += cantidadASumar;
-                InsumoRepository.Current.Update(item);
+                ValidationHelper.PositiveValue(movimiento.Cantidad, "Cantidad a sumar");
+                ValidationHelper.NotNull(movimiento, nameof(movimiento));
+                ValidationHelper.NotEmptyGuid(movimiento.IdMovimientoStock, nameof(movimiento.IdMovimientoStock));
+                ValidationHelper.NotEmpty(movimiento.Motivo, nameof(movimiento.Motivo));
+                using (UnitOfWork uof = new UnitOfWork())
+                {
+                    try
+                    {
+                        item.StockActual += movimiento.Cantidad;
+                        InsumoRepository.Current.ActualizarStock(item, uof);
+                        MovimientoStockRepository.Current.Insert(movimiento, uof);
+                        uof.Commit();
+                    }
+                    catch(Exception ex)
+                    {
+                        uof.Rollback();
+                        throw;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -129,19 +145,32 @@ namespace BLL.Implementations
             }
         }
 
-        public void RegistrarEgreso(Insumo item, int cantidadARestar)
+        public void RegistrarEgreso(Insumo item, MovimientoStock movimiento)
         {
             try
             {
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
-                ValidationHelper.PositiveValue(cantidadARestar, "Cantidad a restar");
-                if (item.StockActual - cantidadARestar < 0)
+                ValidationHelper.PositiveValue(movimiento.Cantidad, "Cantidad a restar");
+                if (item.StockActual - movimiento.Cantidad < 0)
                 {
                     throw new Exception("No es posible restar la cantidad de stock");
                 }
-                item.StockActual -= cantidadARestar;
-                InsumoRepository.Current.Update(item);
+                using(UnitOfWork uof = new UnitOfWork())
+                {
+                    try
+                    {
+                        item.StockActual -= movimiento.Cantidad;
+                        InsumoRepository.Current.Update(item);
+                        MovimientoStockService.Current.Add(movimiento);
+                        uof.Commit();
+                    }
+                    catch(Exception ex)
+                    {
+                        uof.Rollback();
+                        throw;
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -8,8 +8,8 @@ namespace Domain
 {
     public class SaborSeleccionado
     {
-        public DetalleVenta Detalle { get; set; }
         public Sabor Sabor { get; set; }
         public int CantidadEnGramos { get; set; }
+        public Guid IdDetalleVenta { get; set; }
     }
 }

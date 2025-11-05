@@ -4,6 +4,7 @@ using DAL.Implementations;
 using Domain;
 using Services.BLL.Extensions;
 using Services.BLL.Services;
+using Services.Domain.Exceptions.BusinessExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace BLL.Implementations
 
                 if (this.ExisteCliente(item.DNI))
                 {
-                    throw new Exception("Ya existe un cliente con el mismo DNI");
+                    throw new ClienteExistenteException();
                 }
 
                 item.DVH = DigitoVerificadorService.Current.CalcularDigitoVerificadorHorizontal(item);
@@ -61,6 +62,7 @@ namespace BLL.Implementations
                 ClienteRepository.Current.Insert(item);
                 LoggerHelper.RegistrarAlta(item);
             }
+
             catch(Exception ex)
             {
                 ExceptionExtension.Handle(ex);
