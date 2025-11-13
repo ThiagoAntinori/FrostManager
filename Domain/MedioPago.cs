@@ -8,8 +8,9 @@ namespace Domain
 {
     public enum MedioPago
     {
-        Efectivo,
+        Efectivo = 1,
         Transferencia,
-        Tarjeta
+        Tarjeta,
+        NoAsignado
     }
 }

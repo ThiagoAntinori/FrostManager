@@ -1,6 +1,7 @@
 ﻿using BLL.Contracts;
 using BLL.Tools;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using Services.BLL.Extensions;
 using System;
@@ -44,11 +45,11 @@ namespace BLL.Implementations
                 {
                     throw new Exception("El stock mínimo del envase debe ser mayor a cero");
                 }
-                SaborRepository.Current.Insert(item);
+                Repository.GetSaborInstance().Insert(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -58,11 +59,11 @@ namespace BLL.Implementations
             {
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
-                SaborRepository.Current.Delete(item);
+                Repository.GetSaborInstance().Delete(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -70,11 +71,11 @@ namespace BLL.Implementations
         {
             try
             {
-                return SaborRepository.Current.GetAll();
+                return Repository.GetSaborInstance().GetAll();
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -84,11 +85,11 @@ namespace BLL.Implementations
             try
             {
                 ValidationHelper.NotEmptyGuid(id, nameof(id));
-                return SaborRepository.Current.GetById(id);
+                return Repository.GetSaborInstance().GetById(id);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -108,15 +109,15 @@ namespace BLL.Implementations
                 {
                     throw new Exception("El stock mínimo del envase debe ser mayor a cero");
                 }
-                if (SaborRepository.Current.GetById(item.IdInsumo) is null)
+                if (Repository.GetSaborInstance().GetById(item.IdInsumo) is null)
                 {
                     throw new Exception("No se encontró el sabor a modificar");
                 }
-                SaborRepository.Current.Update(item);
+                Repository.GetSaborInstance().Update(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
     }

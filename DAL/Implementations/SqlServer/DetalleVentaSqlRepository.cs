@@ -12,29 +12,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Implementations
+namespace DAL.Implementations.SqlServer
 {
-    public class DetalleVentaRepository : IGenericRepository<DetalleVenta>
+    public class DetalleVentaSqlRepository : IDetalleVentaRepository
     {
-
-        private readonly static DetalleVentaRepository _instance = new DetalleVentaRepository();
-
-        public static DetalleVentaRepository Current
+        public void Delete(DetalleVenta obj, UnitOfWork uow = null)
         {
-            get
+            try
             {
-                return _instance;
+                SqlHelper.ExecuteNonQuery("UPDATE DetalleVenta SET Borrado = 1 WHERE IdDetalleVenta = @IdDetalleVenta",
+                    CommandType.Text,
+                    uow?.Transaction,
+                    new SqlParameter[]
+                    {
+                        new SqlParameter("@IdDetalleVenta", obj.IdDetalleVenta)
+                    });
             }
-        }
-
-        private DetalleVentaRepository()
-        {
-            // Implement here the initialization of your singleton
-        }
-
-        public void Delete(DetalleVenta obj)
-        {
-            throw new NotImplementedException();
+            catch (Exception ex)
+            {
+                ex.Handle();
+            }
         }
 
         public IEnumerable<DetalleVenta> GetAll()
@@ -43,9 +40,9 @@ namespace DAL.Implementations
             {
                 DetalleVenta detalleVentaGet = null;
                 List<DetalleVenta> detallesVenta = new List<DetalleVenta>();
-                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdDetalleVenta, Cantidad, IdProducto, IdVenta FROM DetalleVenta",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdDetalleVenta, Cantidad, IdProducto, IdVenta FROM DetalleVenta WHERE Borrado = 0",
                                                                         CommandType.Text,
-                                                                        new SqlParameter[]{}))
+                                                                        new SqlParameter[] { }))
                 {
                     object[] values = new object[reader.FieldCount];
 
@@ -60,7 +57,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -72,7 +69,7 @@ namespace DAL.Implementations
                 DetalleVenta detalleVentaGet = null;
                 using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdDetalleVenta, Cantidad, IdProducto, IdVenta FROM DetalleVenta WHERE IdDetalleVenta = @IdDetalleVenta AND Borrado = 0",
                                                                         CommandType.Text,
-                                                                        new SqlParameter[] 
+                                                                        new SqlParameter[]
                                                                         {
                                                                             new SqlParameter("@IdDetalleVenta", id)
                                                                         }))
@@ -89,17 +86,18 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
 
-        public void Insert(DetalleVenta obj)
+        public void Insert(DetalleVenta obj, UnitOfWork uow = null)
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO DetalleVenta (IdDetalleVenta, Cantidad, IdProducto, IdVenta) VALUES (@IdDetalleVenta, @Cantidad, @IdProducto, @IdVenta",
+                SqlHelper.ExecuteNonQuery("INSERT INTO DetalleVenta (IdDetalleVenta, Cantidad, IdProducto, IdVenta, Borrado) VALUES (@IdDetalleVenta, @Cantidad, @IdProducto, @IdVenta, 0)",
                                             CommandType.Text,
+                                            uow?.Transaction,
                                             new SqlParameter[]
                                             {
                                                 new SqlParameter("@IdDetalleVenta", obj.IdDetalleVenta),
@@ -110,16 +108,17 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
-        public void Update(DetalleVenta obj)
+        public void Update(DetalleVenta obj, UnitOfWork uow = null)
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("UPDATE DetalleVenta SET Cantidad = @Cantidad WHERE IdDetalleVenta = @IdDetalleVenta",
+                SqlHelper.ExecuteNonQuery("UPDATE DetalleVenta SET Cantidad = @Cantidad WHERE IdDetalleVenta = @IdDetalleVenta AND Borrado = 0",
                     CommandType.Text,
+                    uow?.Transaction,
                     new SqlParameter[]
                     {
                         new SqlParameter("@Cantidad", obj.Cantidad),
@@ -128,8 +127,8 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
-            }   
+                ex.Handle();
+            }
         }
 
         public List<DetalleVenta> GetByIdVenta(Guid idVenta)
@@ -140,7 +139,7 @@ namespace DAL.Implementations
                 List<DetalleVenta> detallesVenta = new List<DetalleVenta>();
                 using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdDetalleVenta, Cantidad, IdProducto, IdVenta FROM DetalleVenta WHERE IdVenta = @IdVenta AND Borrado = 0",
                                                                         CommandType.Text,
-                                                                        new SqlParameter[] 
+                                                                        new SqlParameter[]
                                                                         {
                                                                             new SqlParameter("@IdVenta", idVenta)
                                                                         }))
@@ -158,7 +157,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }

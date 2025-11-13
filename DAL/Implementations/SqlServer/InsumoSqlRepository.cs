@@ -1,4 +1,5 @@
 ﻿using DAL.Contracts;
+using DAL.Implementations.Factory;
 using DAL.Tools;
 using Domain;
 using Microsoft.Data.SqlClient;
@@ -10,42 +11,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Implementations
+namespace DAL.Implementations.SqlServer
 {
-    public class InsumoRepository : IGenericRepository<Insumo>
+    public class InsumoSqlRepository : IInsumoRepository
     {
-
-        private readonly static InsumoRepository _instance = new InsumoRepository();
-
-        public static InsumoRepository Current
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-
-        private InsumoRepository()
-        {
-            // Implement here the initialization of your singleton
-        }
-
-        public void Delete(Insumo obj)
+        public void Delete(Insumo obj, UnitOfWork uow = null)
         {
             try
             {
-                if(obj is Envase envase)
+                if (obj is Envase envase)
                 {
-                    EnvaseRepository.Current.Delete(envase);
+                    Repository.GetEnvaseInstance().Delete(envase, uow);
                 }
-                else if(obj is Sabor sabor)
+                else if (obj is Sabor sabor)
                 {
-                    SaborRepository.Current.Delete(sabor);
+                    Repository.GetSaborInstance().Delete(sabor, uow);
                 }
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -53,8 +38,8 @@ namespace DAL.Implementations
         {
             try
             {
-                List<Insumo> envases = EnvaseRepository.Current.GetAll().Cast<Insumo>().ToList();
-                List<Insumo> sabores = SaborRepository.Current.GetAll().Cast<Insumo>().ToList();
+                List<Insumo> envases = Repository.GetEnvaseInstance().GetAll().Cast<Insumo>().ToList();
+                List<Insumo> sabores = Repository.GetEnvaseInstance().GetAll().Cast<Insumo>().ToList();
 
                 List<Insumo> insumos = new List<Insumo>();
                 insumos.AddRange(envases);
@@ -64,7 +49,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -73,11 +58,11 @@ namespace DAL.Implementations
         {
             try
             {
-                Envase envaseGet = EnvaseRepository.Current.GetById(id);
+                Envase envaseGet = Repository.GetEnvaseInstance().GetById(id);
                 if (envaseGet != null)
                     return envaseGet;
 
-                Sabor saborGet = SaborRepository.Current.GetById(id);
+                Sabor saborGet = Repository.GetSaborInstance().GetById(id);
                 if (saborGet != null)
                     return saborGet;
 
@@ -85,46 +70,46 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
 
-        public void Insert(Insumo obj)
+        public void Insert(Insumo obj, UnitOfWork uow = null)
         {
             try
             {
                 if (obj is Envase envase)
                 {
-                    EnvaseRepository.Current.Insert(envase);
+                    Repository.GetEnvaseInstance().Insert(envase, uow);
                 }
                 else if (obj is Sabor sabor)
                 {
-                    SaborRepository.Current.Insert(sabor);
+                    Repository.GetSaborInstance().Insert(sabor);
                 }
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
-        public void Update(Insumo obj)
+        public void Update(Insumo obj, UnitOfWork uow = null)
         {
             try
             {
-                if(obj is Envase envase)
+                if (obj is Envase envase)
                 {
-                    EnvaseRepository.Current.Update(envase);
+                    Repository.GetEnvaseInstance().Update(envase, uow);
                 }
-                else if(obj is Sabor sabor)
+                else if (obj is Sabor sabor)
                 {
-                    SaborRepository.Current.Update(sabor);
+                    Repository.GetSaborInstance().Update(sabor);
                 }
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -141,9 +126,33 @@ namespace DAL.Implementations
                                                 new SqlParameter("@IdInsumo", obj.IdInsumo)
                                             });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
+            }
+        }
+
+        public void RestarStock(Guid idInsumo, int cantidad, UnitOfWork uow)
+        {
+            try
+            {
+                string restarStockQuery = @"UPDATE Insumo SET StockActual = StockActual - @Cantidad
+                                            WHERE IdInsumo = @IdInsumo AND StockActual >= @Cantidad";
+
+                int rows = SqlHelper.ExecuteNonQuery(restarStockQuery, CommandType.Text,
+                    new SqlParameter[]
+                    {
+                        new SqlParameter("@Cantidad", cantidad),
+                        new SqlParameter("@IdInsumo", idInsumo)
+                    });
+                if(rows == 0)
+                {
+                    throw new Exception("No hay stock suficiente para el insumo");
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
             }
         }
     }

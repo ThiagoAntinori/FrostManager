@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services.BLL.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Services.Domain.Exceptions.BusinessExceptions
 {
     public class ClienteExistenteException : BusinessException
     {
-        public ClienteExistenteException(Exception ex = null) : base("Ya existe un cliente con el DNI ingresado", ex)
+        public ClienteExistenteException(Exception ex = null) : base("Ya existe un cliente con el DNI ingresado".Traducir(), ex)
         {
 
         }

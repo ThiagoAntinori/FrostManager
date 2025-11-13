@@ -1,5 +1,6 @@
 ﻿using DAL.Contracts;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace DAL.Adapter
             return new MovimientoStock()
             {
                 IdMovimientoStock = Guid.Parse(values[0].ToString()),
-                Insumo = InsumoRepository.Current.GetById(Guid.Parse(values[1].ToString())),
+                Insumo = Repository.GetInsumoInstance().GetById(Guid.Parse(values[1].ToString())),
                 Cantidad = Convert.ToInt32(values[2].ToString()),
                 FechaHora = Convert.ToDateTime(values[3].ToString()),
                 TipoMovimiento = (TipoMovimientoStock)Convert.ToInt32(values[4].ToString()),

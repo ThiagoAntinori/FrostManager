@@ -24,7 +24,7 @@ namespace BLL.Tools
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -37,7 +37,7 @@ namespace BLL.Tools
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -50,7 +50,7 @@ namespace BLL.Tools
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 

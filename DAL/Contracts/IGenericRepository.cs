@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Implementations.SqlServer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace DAL.Contracts
 {
     public interface IGenericRepository<T>
     {
-        void Insert(T obj);
-        void Update(T obj);
-        void Delete(T obj);
+        void Insert(T obj, UnitOfWork uow = null);
+        void Update(T obj, UnitOfWork uow = null);
+        void Delete(T obj, UnitOfWork uow = null);
         T GetById(Guid id);
         IEnumerable<T> GetAll();
     }

@@ -12,27 +12,11 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Implementations
+namespace DAL.Implementations.SqlServer
 {
-    public class ClienteRepository : IGenericRepository<Cliente>
+    public class ClienteSqlRepository : IClienteRepository
     {
-
-        private readonly static ClienteRepository _instance = new ClienteRepository();
-
-        public static ClienteRepository Current
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-
-        private ClienteRepository()
-        {
-            // Implement here the initialization of your singleton
-        }
-
-        public void Insert(Cliente obj)
+        public void Insert(Cliente obj, UnitOfWork uow = null)
         {
             try
             {
@@ -52,11 +36,11 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
-        public void Update(Cliente obj)
+        public void Update(Cliente obj, UnitOfWork uow = null)
         {
             try
             {
@@ -75,11 +59,11 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
-        public void Delete(Cliente obj)
+        public void Delete(Cliente obj, UnitOfWork uow = null)
         {
             try
             {
@@ -92,7 +76,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -121,7 +105,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -149,7 +133,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -175,7 +159,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -185,7 +169,7 @@ namespace DAL.Implementations
             try
             {
                 Cliente clienteGet = null;
-                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE DNI = @DNI AND Borrado = 0",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH FROM CLIENTE WHERE DNI = @DNI AND Borrado = 0",
                                                                     CommandType.Text,
                                                                     new SqlParameter[]
                                                                     {
@@ -202,9 +186,9 @@ namespace DAL.Implementations
                 }
                 return clienteGet;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }

@@ -1,6 +1,7 @@
 ﻿using BLL.Contracts;
 using BLL.Tools;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using Services.BLL.Extensions;
 using System;
@@ -43,11 +44,11 @@ namespace BLL.Implementations
                     throw new Exception("El telefono debe tener al menos 10 dígitos");
                 }
 
-                RepartidorRepository.Current.Insert(item);
+                Repository.GetRepartidorInstance().Insert(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -58,11 +59,11 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdRepartidor, nameof(item.IdRepartidor));
 
-                RepartidorRepository.Current.Delete(item);
+                Repository.GetRepartidorInstance().Delete(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -70,11 +71,11 @@ namespace BLL.Implementations
         {
             try
             {
-                return RepartidorRepository.Current.GetAll();
+                return Repository.GetRepartidorInstance().GetAll();
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -84,7 +85,7 @@ namespace BLL.Implementations
             try
             {
                 ValidationHelper.NotEmptyGuid(id, nameof(id));
-                Repartidor repartidor = RepartidorRepository.Current.GetById(id);
+                Repartidor repartidor = Repository.GetRepartidorInstance().GetById(id);
                 if(repartidor == null)
                 {
                     throw new Exception("No se encontró el objeto.");
@@ -93,7 +94,7 @@ namespace BLL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -111,15 +112,15 @@ namespace BLL.Implementations
                 {
                     throw new Exception("El telefono debe tener al menos 10 dígitos");
                 }
-                if(RepartidorRepository.Current.GetById(item.IdRepartidor) == null)
+                if(Repository.GetRepartidorInstance().GetById(item.IdRepartidor) == null)
                 {
                     throw new Exception("No se encontró el Repartidor a modificar.");
                 }
-                RepartidorRepository.Current.Update(item);
+                Repository.GetRepartidorInstance().Update(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
     }

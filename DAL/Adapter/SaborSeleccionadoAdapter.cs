@@ -1,5 +1,6 @@
 ﻿using DAL.Contracts;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace DAL.Adapter
         {
             return new SaborSeleccionado()
             {
-                Sabor = SaborRepository.Current.GetById(Guid.Parse(values[0].ToString())),
+                Sabor = Repository.GetSaborInstance().GetById(Guid.Parse(values[0].ToString())),
                 CantidadEnGramos = Convert.ToInt32(values[1].ToString()),
                 IdDetalleVenta = Guid.Parse(values[2].ToString())
             };

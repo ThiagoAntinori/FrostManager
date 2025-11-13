@@ -1,6 +1,7 @@
 ﻿using BLL.Contracts;
 using BLL.Tools;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using Services.BLL.Extensions;
 using System;
@@ -40,11 +41,11 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.IdVenta, nameof(item.IdDetalleVenta));
                 ValidationHelper.PositiveValue(item.Cantidad, nameof(item.Cantidad));
 
-                DetalleVentaRepository.Current.Insert(item);
+                Repository.GetDetalleVentaInstance().Insert(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -55,11 +56,11 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdDetalleVenta, nameof(item.IdDetalleVenta));
 
-                DetalleVentaRepository.Current.Delete(item);
+                Repository.GetDetalleVentaInstance().Delete(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }   
         }
 
@@ -67,11 +68,11 @@ namespace BLL.Implementations
         {
             try
             {
-                return DetalleVentaRepository.Current.GetAll();
+                return Repository.GetDetalleVentaInstance().GetAll();
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -83,11 +84,11 @@ namespace BLL.Implementations
             {
                 ValidationHelper.NotEmptyGuid(id, "ID");
 
-                return DetalleVentaRepository.Current.GetById(id);
+                return Repository.GetDetalleVentaInstance().GetById(id);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -100,11 +101,11 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.IdDetalleVenta, nameof(item.IdDetalleVenta));
                 ValidationHelper.PositiveValue(item.Cantidad, nameof(item.Cantidad));
 
-                DetalleVentaRepository.Current.Update(item);
+                Repository.GetDetalleVentaInstance().Update(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -114,11 +115,11 @@ namespace BLL.Implementations
             {
                 ValidationHelper.NotEmptyGuid(idVenta, "IdVenta");
 
-                return DetalleVentaRepository.Current.GetByIdVenta(idVenta);
+                return Repository.GetDetalleVentaInstance().GetByIdVenta(idVenta);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }

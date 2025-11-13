@@ -11,32 +11,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Implementations
+namespace DAL.Implementations.SqlServer
 {
-    public class RepartidorRepository : IGenericRepository<Repartidor>
+    public class RepartidorSqlRepository : IRepartidorRepository
     {
-
-        private readonly static RepartidorRepository _instance = new RepartidorRepository();
-
-        public static RepartidorRepository Current
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-
-        private RepartidorRepository()
-        {
-            // Implement here the initialization of your singleton
-        }
-
-        public void Delete(Repartidor obj)
+        public void Delete(Repartidor obj, UnitOfWork uow = null)
         {
             try
             {
                 SqlHelper.ExecuteNonQuery("UPDATE REPARTIDOR SET Activo = 0 WHERE IdRepartidor = @IdRepartidor",
                                             CommandType.Text,
+                                            uow?.Transaction,
                                             new SqlParameter[]
                                             {
                                                 new SqlParameter("@IdRepartidor", obj.IdRepartidor)
@@ -44,7 +29,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -57,7 +42,7 @@ namespace DAL.Implementations
                 List<Repartidor> repartidores = new List<Repartidor>();
                 using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdRepartidor, Nombre, Apellido, Telefono FROM REPARTIDOR WHERE Activo = 1",
                                                                     CommandType.Text,
-                                                                    new SqlParameter[] {}))
+                                                                    new SqlParameter[] { }))
                 {
                     object[] values = new object[reader.FieldCount];
 
@@ -72,7 +57,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -82,8 +67,8 @@ namespace DAL.Implementations
             try
             {
                 Repartidor repartidorGet = null;
-                
-                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdRepartidor, Nombre, Apellido, Telefono FROM REPARTIDOR WHERE IdRepartidor = @IdRepartidor AND Activo = 1",
+
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdRepartidor, Nombre, Apellido, Telefono FROM REPARTIDOR WHERE IdRepartidor = @IdRepartidor AND Activo = 1",
                                                                     CommandType.Text,
                                                                     new SqlParameter[]
                                                                     {
@@ -102,12 +87,12 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
 
-        public void Insert(Repartidor obj)
+        public void Insert(Repartidor obj, UnitOfWork uow = null)
         {
             try
             {
@@ -123,11 +108,11 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
-        public void Update(Repartidor obj)
+        public void Update(Repartidor obj, UnitOfWork uow = null)
         {
             try
             {
@@ -143,7 +128,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
     }

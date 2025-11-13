@@ -1,6 +1,7 @@
 ﻿using BLL.Contracts;
 using BLL.Tools;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using Services.BLL.Extensions;
 using System;
@@ -44,7 +45,7 @@ namespace BLL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -54,11 +55,11 @@ namespace BLL.Implementations
             {
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
-                InsumoRepository.Current.Delete(item);
+                Repository.GetInsumoInstance().Delete(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -66,11 +67,11 @@ namespace BLL.Implementations
         {
             try
             {
-                return InsumoRepository.Current.GetAll();
+                return Repository.GetInsumoInstance().GetAll();
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -80,7 +81,7 @@ namespace BLL.Implementations
             try
             {
                 ValidationHelper.NotEmptyGuid(id, "IdInsumo");
-                Insumo insumoGet = InsumoRepository.Current.GetById(id);
+                Insumo insumoGet = Repository.GetInsumoInstance().GetById(id);
                 if(insumoGet == null)
                 {
                     throw new Exception("No se encontró el insumo");
@@ -89,7 +90,7 @@ namespace BLL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -109,7 +110,7 @@ namespace BLL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -120,16 +121,14 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
                 ValidationHelper.PositiveValue(movimiento.Cantidad, "Cantidad a sumar");
-                ValidationHelper.NotNull(movimiento, nameof(movimiento));
-                ValidationHelper.NotEmptyGuid(movimiento.IdMovimientoStock, nameof(movimiento.IdMovimientoStock));
-                ValidationHelper.NotEmpty(movimiento.Motivo, nameof(movimiento.Motivo));
+                
                 using (UnitOfWork uof = new UnitOfWork())
                 {
                     try
                     {
                         item.StockActual += movimiento.Cantidad;
-                        InsumoRepository.Current.ActualizarStock(item, uof);
-                        MovimientoStockRepository.Current.Insert(movimiento, uof);
+                        Repository.GetInsumoInstance().ActualizarStock(item, uof);
+                        Repository.GetMovimientoStockInstance().Insert(movimiento, uof);
                         uof.Commit();
                     }
                     catch(Exception ex)
@@ -141,7 +140,7 @@ namespace BLL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -151,30 +150,75 @@ namespace BLL.Implementations
             {
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
+                ValidationHelper.NotNull(movimiento, nameof(movimiento));
+                ValidationHelper.NotEmptyGuid(movimiento.IdMovimientoStock, nameof(movimiento.IdMovimientoStock));
+                ValidationHelper.NotEmpty(movimiento.Motivo, nameof(movimiento.Motivo));
                 ValidationHelper.PositiveValue(movimiento.Cantidad, "Cantidad a restar");
                 if (item.StockActual - movimiento.Cantidad < 0)
                 {
                     throw new Exception("No es posible restar la cantidad de stock");
                 }
-                using(UnitOfWork uof = new UnitOfWork())
+                using(UnitOfWork uow = new UnitOfWork())
                 {
                     try
                     {
                         item.StockActual -= movimiento.Cantidad;
-                        InsumoRepository.Current.Update(item);
-                        MovimientoStockService.Current.Add(movimiento);
-                        uof.Commit();
+                        Repository.GetInsumoInstance().ActualizarStock(item, uow);
+                        Repository.GetMovimientoStockInstance().Insert(movimiento, uow);
+                        uow.Commit();
                     }
                     catch(Exception ex)
                     {
-                        uof.Rollback();
+                        uow.Rollback();
                         throw;
                     }
                 }
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
+            }
+        }
+
+        public void ActualizarStock(Insumo item, MovimientoStock movimiento)
+        {
+            ValidationHelper.NotNull(item, nameof(item));
+            ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
+            ValidationHelper.NotNull(movimiento, nameof(movimiento));
+            ValidationHelper.NotEmptyGuid(movimiento.IdMovimientoStock, nameof(movimiento.IdMovimientoStock));
+            ValidationHelper.NotEmpty(movimiento.Motivo, nameof(movimiento.Motivo));
+            ValidationHelper.PositiveValue(movimiento.Cantidad, "Nuevo stock");
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                try
+                {
+                    item.StockActual = movimiento.Cantidad;
+                    Repository.GetInsumoInstance().ActualizarStock(item, uow);
+                    Repository.GetMovimientoStockInstance().Insert(movimiento, uow);
+                    uow.Commit();
+                }
+                catch (Exception ex)
+                {
+                    uow.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        public bool VerificarStock(Insumo insumo, int cantidad)
+        {
+            try
+            {
+                ValidationHelper.NotNull(insumo, nameof(insumo));
+                ValidationHelper.NotEmptyGuid(insumo.IdInsumo, nameof(insumo.IdInsumo));
+                ValidationHelper.PositiveValue(cantidad, nameof(cantidad));
+                int insumoDisponible = Repository.GetInsumoInstance().GetById(insumo.IdInsumo).StockActual;
+                return insumoDisponible >= cantidad;
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+                throw;
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using DAL.Contracts;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using Services.BLL.Extensions;
 using System;
@@ -38,7 +39,7 @@ namespace DAL.Adapter
                     Descripcion = values[1].ToString(),
                     CapacidadEnGramos = Convert.ToInt32(values[2].ToString()),
                     PrecioUnitario = Convert.ToDecimal(values[3].ToString()),
-                    EnvaseNecesario = EnvaseRepository.Current.GetById(Guid.Parse(values[4].ToString())),
+                    EnvaseNecesario = Repository.GetEnvaseInstance().GetById(Guid.Parse(values[4].ToString())),
                 };
             }
             catch (Exception ex)

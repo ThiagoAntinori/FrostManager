@@ -11,27 +11,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Implementations
+namespace DAL.Implementations.SqlServer
 {
-    public class MovimientoStockRepository : IGenericRepository<MovimientoStock>
+    public class MovimientoStockSqlRepository : IMovimientoStockRepository
     {
-
-        private readonly static MovimientoStockRepository _instance = new MovimientoStockRepository();
-
-        public static MovimientoStockRepository Current
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-
-        private MovimientoStockRepository()
-        {
-            // Implement here the initialization of your singleton
-        }
-
-        public void Delete(MovimientoStock obj)
+        public void Delete(MovimientoStock obj, UnitOfWork uow = null)
         {
             throw new NotImplementedException();
         }
@@ -45,7 +29,7 @@ namespace DAL.Implementations
 
                 using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdMovimientoStock, IdInsumo, Cantidad, FechaHora, IdTipoMovimientoStock, Motivo FROM MovimientoStock WHERE Borrado = 0",
                                                                         CommandType.Text,
-                                                                        new SqlParameter[]{}))
+                                                                        new SqlParameter[] { }))
                 {
                     object[] values = new object[reader.FieldCount];
 
@@ -61,7 +45,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -71,7 +55,7 @@ namespace DAL.Implementations
             try
             {
                 MovimientoStock movimientoStockGet = null;
-                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdMovimientoStock, IdInsumo, Cantidad, FechaHora, IdTipoMovimientoStock, Motivo FROM MovimientoStock WHERE IdMovimientoStock = @IdMovimientoStock",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdMovimientoStock, IdInsumo, Cantidad, FechaHora, IdTipoMovimientoStock, Motivo FROM MovimientoStock WHERE IdMovimientoStock = @IdMovimientoStock",
                                                                         CommandType.Text,
                                                                         new SqlParameter[]
                                                                         {
@@ -90,7 +74,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -114,16 +98,11 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
-        public void Update(MovimientoStock obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(MovimientoStock obj)
+        public void Update(MovimientoStock obj, UnitOfWork uow = null)
         {
             throw new NotImplementedException();
         }

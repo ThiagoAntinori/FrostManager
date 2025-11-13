@@ -11,27 +11,11 @@ using System.Threading.Tasks;
 using Services.BLL.Extensions;
 using DAL.Adapter;
 
-namespace DAL.Implementations
+namespace DAL.Implementations.SqlServer
 {
-    public class SaborRepository : IGenericRepository<Sabor>
+    public class SaborSqlRepository : ISaborRepository
     {
-
-        private readonly static SaborRepository _instance = new SaborRepository();
-
-        public static SaborRepository Current
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-
-        private SaborRepository()
-        {
-            // Implement here the initialization of your singleton
-        }
-
-        public void Delete(Sabor obj)
+        public void Delete(Sabor obj, UnitOfWork uow = null)
         {
 
             try
@@ -45,7 +29,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -78,7 +62,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -113,12 +97,12 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
 
-        public void Insert(Sabor obj)
+        public void Insert(Sabor obj, UnitOfWork uow = null)
         {
             try
             {
@@ -137,11 +121,11 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
-        public void Update(Sabor obj)
+        public void Update(Sabor obj, UnitOfWork uow = null)
         {
             try
             {
@@ -159,7 +143,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }

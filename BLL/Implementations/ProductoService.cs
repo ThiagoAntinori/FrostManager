@@ -1,6 +1,7 @@
 ﻿using BLL.Contracts;
 using BLL.Tools;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using Services.BLL.Extensions;
 using System;
@@ -40,12 +41,12 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item.PrecioUnitario, nameof(item.PrecioUnitario));
                 ValidationHelper.PositiveValue(item.CapacidadEnGramos, nameof(item.CapacidadEnGramos));
                 ValidationHelper.PositiveValue(item.PrecioUnitario, nameof(item.PrecioUnitario));
-                ProductoRepository.Current.Insert(item);
+                Repository.GetProductoInstance().Insert(item);
                 LoggerHelper.RegistrarAlta(item);
             }
             catch(Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -55,12 +56,12 @@ namespace BLL.Implementations
             {
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdProducto, nameof(item.IdProducto));
-                ProductoRepository.Current.Delete(item);
+                Repository.GetProductoInstance().Delete(item);
                 LoggerHelper.RegistrarBaja(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -68,11 +69,11 @@ namespace BLL.Implementations
         {
             try
             {
-                return ProductoRepository.Current.GetAll();
+                return Repository.GetProductoInstance().GetAll();
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -85,11 +86,11 @@ namespace BLL.Implementations
                 {
                     throw new ArgumentNullException(nameof(id));
                 }
-                return ProductoRepository.Current.GetById(id);
+                return Repository.GetProductoInstance().GetById(id);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -107,12 +108,12 @@ namespace BLL.Implementations
                 {
                     throw new Exception("No se encontró el producto a modificar");
                 }
-                ProductoRepository.Current.Update(item);
+                Repository.GetProductoInstance().Update(item);
                 LoggerHelper.RegistrarModificacion(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 

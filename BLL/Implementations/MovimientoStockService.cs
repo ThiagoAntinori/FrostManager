@@ -1,6 +1,7 @@
 ﻿using BLL.Contracts;
 using BLL.Tools;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using Services.BLL.Extensions;
 using System;
@@ -42,11 +43,11 @@ namespace BLL.Implementations
 
                 item.FechaHora = DateTime.Now;
 
-                MovimientoStockRepository.Current.Insert(item, null);
+                Repository.GetMovimientoStockInstance().Insert(item, null);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -59,11 +60,11 @@ namespace BLL.Implementations
         {
             try
             {
-                return MovimientoStockRepository.Current.GetAll();
+                return Repository.GetMovimientoStockInstance().GetAll();
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }   
         }
@@ -72,7 +73,7 @@ namespace BLL.Implementations
         {
             try
             {
-                MovimientoStock movimientoStockGet = MovimientoStockRepository.Current.GetById(id);
+                MovimientoStock movimientoStockGet = Repository.GetMovimientoStockInstance().GetById(id);
                 if(movimientoStockGet == null)
                 {
                     throw new Exception("No se encontró el objeto.");
@@ -81,7 +82,7 @@ namespace BLL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }

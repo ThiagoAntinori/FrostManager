@@ -1,6 +1,7 @@
 ﻿using BLL.Contracts;
 using BLL.Tools;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using Services.BLL.Extensions;
 using System;
@@ -35,23 +36,14 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
                 ValidationHelper.NotEmpty(item.Descripcion, nameof(item.Descripcion));
-                if(item.StockActual <= 0)
-                {
-                    throw new Exception("El stock actual del envase debe ser mayor a cero.");
-                }
-                if(item.StockMinimo <= 0)
-                {
-                    throw new Exception("El stock mínimo del envase debe ser mayor a cero");
-                }
-                if(item.CapacidadEnGramos <= 0)
-                {
-                    throw new Exception("La capacidad en gramos del envase debe ser mayor a cero");
-                }
-                EnvaseRepository.Current.Insert(item);
+                ValidationHelper.PositiveValue(item.StockMinimo, nameof(item.StockMinimo));
+                ValidationHelper.PositiveValue(item.StockActual, nameof(item.StockActual));
+                ValidationHelper.PositiveValue(item.CapacidadEnGramos, nameof(item.CapacidadEnGramos));
+                Repository.GetEnvaseInstance().Insert(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -61,11 +53,11 @@ namespace BLL.Implementations
             {
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
-                EnvaseRepository.Current.Delete(item);
+                Repository.GetEnvaseInstance().Delete(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -73,11 +65,11 @@ namespace BLL.Implementations
         {
             try
             {
-                return EnvaseRepository.Current.GetAll();
+                return Repository.GetEnvaseInstance().GetAll();
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -87,11 +79,11 @@ namespace BLL.Implementations
             try
             {
                 ValidationHelper.NotEmptyGuid(id, nameof(id));
-                return EnvaseRepository.Current.GetById(id);
+                return Repository.GetEnvaseInstance().GetById(id);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -103,23 +95,14 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
                 ValidationHelper.NotEmpty(item.Descripcion, nameof(item.Descripcion));
-                if (item.StockActual <= 0)
-                {
-                    throw new Exception("El stock actual del envase debe ser mayor a cero.");
-                }
-                if (item.StockMinimo <= 0)
-                {
-                    throw new Exception("El stock mínimo del envase debe ser mayor a cero");
-                }
-                if (item.CapacidadEnGramos <= 0)
-                {
-                    throw new Exception("La capacidad en gramos del envase debe ser mayor a cero");
-                }
-                EnvaseRepository.Current.Update(item);
+                ValidationHelper.PositiveValue(item.StockMinimo, nameof(item.StockMinimo));
+                ValidationHelper.PositiveValue(item.StockActual, nameof(item.StockActual));
+                ValidationHelper.PositiveValue(item.CapacidadEnGramos, nameof(item.CapacidadEnGramos));
+                Repository.GetEnvaseInstance().Update(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using DAL.Contracts;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -29,13 +30,16 @@ namespace DAL.Adapter
 
         public DetalleVenta Adapt(object[] values)
         {
-            return new DetalleVenta()
+            DetalleVenta detalleVenta = new DetalleVenta()
             {
                 IdDetalleVenta = Guid.Parse(values[0].ToString()),
                 Cantidad = Convert.ToInt32(values[1].ToString()),
-                Producto = ProductoRepository.Current.GetById(Guid.Parse(values[2].ToString())),
-                IdVenta = Guid.Parse(values[3].ToString())
+                Producto = Repository.GetProductoInstance().GetById(Guid.Parse(values[2].ToString())),
+                IdVenta = Guid.Parse(values[3].ToString()),
             };
+
+            detalleVenta.SaboresSeleccionados = Repository.GetSaborSeleccionadoInstance().GetByIdDetalleVenta(detalleVenta.IdDetalleVenta);
+            return detalleVenta;
         }
     }
 }

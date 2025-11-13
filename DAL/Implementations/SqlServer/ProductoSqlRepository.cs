@@ -11,30 +11,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Implementations
+namespace DAL.Implementations.SqlServer
 {
-    public class ProductoRepository : IGenericRepository<Producto>
+    public class ProductoSqlRepository : IProductoRepository
     {
-
-        private readonly static ProductoRepository _instance = new ProductoRepository();
-
-        public static ProductoRepository Current
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-
-        private ProductoRepository()
-        {
-            // Implement here the initialization of your singleton
-        }
-
-        public void Delete(Producto obj)
+        public void Delete(Producto obj, UnitOfWork uow = null)
         {
             SqlHelper.ExecuteNonQuery("UPDATE PRODUCTO SET Borrado = 1 WHERE IdProducto = @IdProducto",
                 CommandType.Text,
+                uow?.Transaction,
                 new SqlParameter[]
                 {
                     new SqlParameter("@IdProducto", obj.IdProducto)
@@ -47,7 +32,7 @@ namespace DAL.Implementations
             {
                 Producto productoGet = null;
                 List<Producto> productos = new List<Producto>();
-                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdProducto, Nombre, CapacidadEnGramos, PrecioUnitario, IdEnvase FROM PRODUCTO WHERE Borrado = 0",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdProducto, Nombre, CapacidadEnGramos, PrecioUnitario, IdEnvase FROM PRODUCTO WHERE Borrado = 0",
                     CommandType.Text,
                     new SqlParameter[] { }))
                 {
@@ -64,7 +49,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -76,7 +61,7 @@ namespace DAL.Implementations
                 Producto productoGet = null;
                 using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdProducto, Nombre, CapacidadEnGramos, PrecioUnitario, IdEnvase FROM PRODUCTO WHERE IdProducto = @IdProducto AND Borrado = 0",
                     CommandType.Text,
-                    new SqlParameter[] 
+                    new SqlParameter[]
                     {
                         new SqlParameter("@IdProducto", id)
                     }))
@@ -93,12 +78,12 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
 
-        public void Insert(Producto obj)
+        public void Insert(Producto obj, UnitOfWork uow = null)
         {
             SqlHelper.ExecuteNonQuery("INSERT INTO PRODUCTO (IdProducto, Nombre, CapacidadEnGramos, PrecioUnitario, IdEnvase, Borrado) VALUES (@IdProducto, @Nombre, @CapacidadEnGramos, @PrecioUnitario, @IdEnvase, 0);",
                 CommandType.Text,
@@ -112,7 +97,7 @@ namespace DAL.Implementations
                 });
         }
 
-        public void Update(Producto obj)
+        public void Update(Producto obj, UnitOfWork uow = null)
         {
             SqlHelper.ExecuteNonQuery("UPDATE PRODUCTO SET Nombre = @Nombre, CapacidadEnGramos = @CapacidadEnGramos, PrecioUnitario = @PrecioUnitario, IdEnvase = @IdEnvase WHERE IdProducto = @IdProducto",
                 CommandType.Text,

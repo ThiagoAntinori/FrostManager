@@ -1,6 +1,7 @@
 ﻿using BLL.Contracts;
 using BLL.Tools;
-using DAL.Implementations;
+using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using Services.BLL.Extensions;
 using Services.BLL.Services;
@@ -59,13 +60,13 @@ namespace BLL.Implementations
 
                 item.DVH = DigitoVerificadorService.Current.CalcularDigitoVerificadorHorizontal(item);
 
-                ClienteRepository.Current.Insert(item);
+                Repository.GetClienteInstance().Insert(item, null);
                 LoggerHelper.RegistrarAlta(item);
             }
 
             catch(Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -76,18 +77,26 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdCliente, nameof(item.IdCliente));
 
-                ClienteRepository.Current.Delete(item);
+                Repository.GetClienteInstance().Delete(item);
                 LoggerHelper.RegistrarBaja(item);
             }
             catch(Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
         public IEnumerable<Cliente> SelectAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return Repository.GetClienteInstance().GetAll();
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+                throw;
+            }
         }
 
         public Cliente SelectOne(Guid id)
@@ -95,11 +104,11 @@ namespace BLL.Implementations
             try
             {
                 ValidationHelper.NotEmptyGuid(id, "ID");
-                return ClienteRepository.Current.GetById(id);
+                return Repository.GetClienteInstance().GetById(id);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -128,12 +137,12 @@ namespace BLL.Implementations
                     throw new Exception("No fue posible encontrar al cliente");
                 }
                 item.DVH = DigitoVerificadorService.Current.CalcularDigitoVerificadorHorizontal(item);
-                ClienteRepository.Current.Update(item);
+                Repository.GetClienteInstance().Update(item);
                 LoggerHelper.RegistrarModificacion(item);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -142,11 +151,11 @@ namespace BLL.Implementations
             try
             {
                 ValidationHelper.NotEmpty(dni, "DNI");
-                return ClienteRepository.Current.ExisteCliente(dni);
+                return Repository.GetClienteInstance().ExisteCliente(dni);
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -157,7 +166,7 @@ namespace BLL.Implementations
             try
             {
                 ValidationHelper.NotEmpty(DNI, "DNI");
-                Cliente clienteGet = ClienteRepository.Current.GetByDNI(DNI);
+                Cliente clienteGet = Repository.GetClienteInstance().GetByDNI(DNI);
                 if(clienteGet == null)
                 {
                     throw new Exception("No se pudo encontrar al cliente con el DNI ingresado");
@@ -166,7 +175,7 @@ namespace BLL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }

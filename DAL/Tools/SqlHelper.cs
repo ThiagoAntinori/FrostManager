@@ -90,31 +90,34 @@ namespace DAL.Tools
         }
 
         public static int ExecuteNonQuery(string commandText, CommandType commandType,
-                                        SqlTransaction transaction = null, params SqlParameter[] parameters)
+                                SqlTransaction transaction = null, params SqlParameter[] parameters)
         {
             CheckNullables(parameters);
 
-            SqlCommand cmd = new SqlCommand(commandText);
-
-            cmd.CommandType = commandType;
-            cmd.Parameters.AddRange(parameters);
-
             if (transaction != null)
             {
-                cmd.Connection = transaction.Connection;
-                cmd.Transaction = transaction;
-                return cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand(commandText, transaction.Connection, transaction))
+                {
+                    cmd.CommandType = commandType;
+                    cmd.Parameters.AddRange(parameters);
+                    return cmd.ExecuteNonQuery();
+                }
             }
             else
             {
                 using (SqlConnection conn = new SqlConnection(conString))
                 {
-                    cmd.Connection = conn;
                     conn.Open();
-                    return cmd.ExecuteNonQuery();
+                    using (SqlCommand cmd = new SqlCommand(commandText, conn))
+                    {
+                        cmd.CommandType = commandType;
+                        cmd.Parameters.AddRange(parameters);
+                        return cmd.ExecuteNonQuery();
+                    }
                 }
             }
         }
+
 
     }
 }

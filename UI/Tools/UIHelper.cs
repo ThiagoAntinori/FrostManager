@@ -1,4 +1,5 @@
-﻿using Services.BLL.Services;
+﻿using Services.BLL.Extensions;
+using Services.BLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace UI.Tools
                     }
                     if (ctrl.HasChildren)
                     {
-                        TraducirControles(ctrl.Controls);
+                        LimpiarCampos(ctrl.Controls);
                     }
                 }
             }
@@ -53,7 +54,7 @@ namespace UI.Tools
                         {
                             if (ctrl is Button || ctrl is Label)
                             {
-                                string nuevoTexto = IdiomaService.Current.Traducir(ctrl.Name);
+                                string nuevoTexto = ctrl.Name.Traducir();
                                 ctrl.Text = nuevoTexto == null ? ctrl.Text : nuevoTexto;
                             }
                         }

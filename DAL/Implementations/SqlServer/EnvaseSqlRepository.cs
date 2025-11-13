@@ -11,27 +11,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Implementations
+namespace DAL.Implementations.SqlServer
 {
-    public class EnvaseRepository : IGenericRepository<Envase>
+    public class EnvaseSqlRepository : IEnvaseRepository
     {
-
-        private readonly static EnvaseRepository _instance = new EnvaseRepository();
-
-        public static EnvaseRepository Current
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-
-        private EnvaseRepository()
-        {
-            // Implement here the initialization of your singleton
-        }
-
-        public void Delete(Envase obj)
+        public void Delete(Envase obj, UnitOfWork uow = null)
         {
             try
             {
@@ -75,7 +59,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
@@ -102,19 +86,19 @@ namespace DAL.Implementations
                     if (reader.Read())
                     {
                         reader.GetValues(values);
-                        envaseGet =  EnvaseAdapter.Current.Adapt(values);
+                        envaseGet = EnvaseAdapter.Current.Adapt(values);
                     }
                 }
                 return envaseGet;
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
             }
         }
 
-        public void Insert(Envase obj)
+        public void Insert(Envase obj, UnitOfWork uow = null)
         {
             try
             {
@@ -133,11 +117,11 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
-        public void Update(Envase obj)
+        public void Update(Envase obj, UnitOfWork uow = null)
         {
             try
             {
@@ -156,7 +140,7 @@ namespace DAL.Implementations
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
     }

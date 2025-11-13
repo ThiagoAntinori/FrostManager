@@ -56,7 +56,7 @@
             txtBuscarProducto.Location = new Point(42, 67);
             txtBuscarProducto.Name = "txtBuscarProducto";
             txtBuscarProducto.PlaceholderText = "Buscar por nombre";
-            txtBuscarProducto.Size = new Size(142, 25);
+            txtBuscarProducto.Size = new Size(130, 25);
             txtBuscarProducto.TabIndex = 0;
             // 
             // lblSeleccioneProducto
@@ -88,7 +88,7 @@
             numCantidad.Anchor = AnchorStyles.None;
             numCantidad.Font = new Font("Segoe UI", 9.75F);
             numCantidad.ForeColor = SystemColors.WindowText;
-            numCantidad.Location = new Point(169, 368);
+            numCantidad.Location = new Point(193, 368);
             numCantidad.Name = "numCantidad";
             numCantidad.Size = new Size(48, 25);
             numCantidad.TabIndex = 4;
@@ -104,6 +104,7 @@
             btnAñadir.TabIndex = 5;
             btnAñadir.Text = "Añadir";
             btnAñadir.UseVisualStyleBackColor = true;
+            btnAñadir.Click += btnAñadir_Click;
             // 
             // lblTotal
             // 
@@ -128,6 +129,7 @@
             btnEliminar.TabIndex = 8;
             btnEliminar.Text = "Eliminar seleccionado";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnCancelarVenta
             // 
@@ -140,6 +142,7 @@
             btnCancelarVenta.TabIndex = 9;
             btnCancelarVenta.Text = "Cancelar Venta";
             btnCancelarVenta.UseVisualStyleBackColor = true;
+            btnCancelarVenta.Click += btnCancelarVenta_Click;
             // 
             // checkDelivery
             // 
@@ -165,6 +168,7 @@
             btnConfirmar.TabIndex = 12;
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // lblDetalleVenta
             // 
@@ -206,6 +210,7 @@
             dgvProductos.Name = "dgvProductos";
             dgvProductos.Size = new Size(199, 239);
             dgvProductos.TabIndex = 16;
+            dgvProductos.SelectionChanged += dgvProductos_SelectionChanged;
             // 
             // dgvDetalleVenta
             // 
@@ -214,6 +219,7 @@
             dgvDetalleVenta.Name = "dgvDetalleVenta";
             dgvDetalleVenta.Size = new Size(308, 239);
             dgvDetalleVenta.TabIndex = 17;
+            dgvDetalleVenta.SelectionChanged += dgvDetalleVenta_SelectionChanged;
             // 
             // VentaForm
             // 
@@ -235,6 +241,7 @@
             Controls.Add(lblIngresarCantidad);
             Controls.Add(lblSeleccioneProducto);
             Controls.Add(txtBuscarProducto);
+            ForeColor = SystemColors.WindowText;
             FormBorderStyle = FormBorderStyle.None;
             Name = "VentaForm";
             Text = "Form1";

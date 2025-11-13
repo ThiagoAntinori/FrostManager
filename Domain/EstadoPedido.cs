@@ -8,7 +8,7 @@ namespace Domain
 {
     public enum EstadoPedido
     {
-        EnPreparacion,
+        EnPreparacion = 1,
         EnCamino,
         Entregado
     }

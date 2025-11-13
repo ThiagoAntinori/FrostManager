@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Implementations
+namespace DAL.Implementations.SqlServer
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
@@ -19,7 +19,7 @@ namespace DAL.Implementations
 
         public UnitOfWork()
         {
-            _connection = new SqlConnection (ConfigurationManager.ConnectionStrings["BusinessConString"].ConnectionString);
+            _connection = new SqlConnection(ConfigurationManager.ConnectionStrings["BusinessConString"].ConnectionString);
             _connection.Open();
             _transaction = _connection.BeginTransaction();
         }
