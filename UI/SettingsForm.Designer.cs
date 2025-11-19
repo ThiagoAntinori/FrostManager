@@ -67,6 +67,7 @@
             btnAplicar.TabIndex = 2;
             btnAplicar.Text = "Aplicar";
             btnAplicar.UseVisualStyleBackColor = true;
+            btnAplicar.Click += btnAplicar_Click;
             // 
             // cmbIdioma
             // 
@@ -145,6 +146,7 @@
             btnModificarContraseña.TabIndex = 4;
             btnModificarContraseña.Text = "Modificar";
             btnModificarContraseña.UseVisualStyleBackColor = true;
+            btnModificarContraseña.Click += btnModificarContraseña_Click;
             // 
             // txtNuevaContraseña
             // 

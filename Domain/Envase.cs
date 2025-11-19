@@ -9,5 +9,6 @@ namespace Domain
     public class Envase : Insumo
     {
         public int CapacidadEnGramos { get; set; }
+        public override string ToString() => Descripcion;
     }
 }

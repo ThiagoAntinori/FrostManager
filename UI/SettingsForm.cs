@@ -29,10 +29,12 @@ namespace UI
                     throw new Exception("No se encontró al usuario logueado.");
                 }
                 txtCorreo.Text = UsuarioLogueado.Current.Usuario.CorreoElectronico;
+                cmbIdioma.Items.Add("es-ES");
+                cmbIdioma.Items.Add("en-US");
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 MessageBox.Show(ex.Message);
             }
         }
@@ -41,7 +43,7 @@ namespace UI
         {
             try
             {
-                if(txtCorreo.Text != UsuarioLogueado.Current.Usuario.CorreoElectronico)
+                if (txtCorreo.Text != UsuarioLogueado.Current.Usuario.CorreoElectronico)
                 {
                     Usuario usuarioLogueado = UsuarioLogueado.Current.Usuario;
                     UsuarioService.Current.Update(usuarioLogueado);
@@ -50,7 +52,36 @@ namespace UI
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAplicar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show($"¿Desea cambiar el idioma a {cmbIdioma.SelectedItem}?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    IdiomaService.Current.CambiarIdioma((string)cmbIdioma.SelectedItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnModificarContraseña_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SesionService.CambiarContraseña(UsuarioLogueado.Current.Usuario.Nombre, txtContraseñaActual.Text, txtNuevaContraseña.Text);
+                MessageBox.Show("Contraseña cambiada correctamente");
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }

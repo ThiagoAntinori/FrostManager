@@ -10,6 +10,7 @@ namespace Domain
     {
         EnPreparacion = 1,
         EnCamino,
-        Entregado
+        Entregado,
+        Cancelado
     }
 }

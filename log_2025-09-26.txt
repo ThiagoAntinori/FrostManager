@@ -1,4 +1,0 @@
-[2025-09-26 19:45:34.607 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: El usuario no se encuentra habilitado. Contacte al administrador [] []
-[2025-09-26 19:45:47.115 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ingrese un nombre de usuario para iniciar sesión. [] []
-[2025-09-26 19:50:36.752 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
-[2025-09-26 19:54:49.676 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]

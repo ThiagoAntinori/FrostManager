@@ -66,7 +66,7 @@ namespace UI
             }
         }
 
-        private Form activeForm = null;
+        public static Form activeForm = null;
 
         private void openChildForm(Form childForm)
         {
@@ -89,6 +89,7 @@ namespace UI
             if (MessageBox.Show("¿Desea cerrar la ventana? Se perderán los datos no guardados", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 childForm.Close();
+                activeForm = null;
             }
         }
 
@@ -264,6 +265,90 @@ namespace UI
             try
             {
                 openChildForm(new RegistrarIngresoForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnConsultarCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new ConsultarClienteForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnVerPedidos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new GestionarPedidosForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAjustarStock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new AjustarStockForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnConsultarStock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new ConsultarStockActualForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnModificarProducto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new ModificarProductoForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new EliminarProductoForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new RegistrarRepartidorForm());
             }
             catch (Exception ex)
             {

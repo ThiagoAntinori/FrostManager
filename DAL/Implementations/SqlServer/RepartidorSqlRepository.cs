@@ -96,7 +96,7 @@ namespace DAL.Implementations.SqlServer
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO REPARTIDOR (IdRepartidor, Nombre, Apellido, Telefono, Activo) VALUES (@IdRepartidor, @Nombre, @Apellido, @Telefono, 0)",
+                SqlHelper.ExecuteNonQuery("INSERT INTO REPARTIDOR (IdRepartidor, Nombre, Apellido, Telefono, Activo) VALUES (@IdRepartidor, @Nombre, @Apellido, @Telefono, 1)",
                     CommandType.Text,
                     new SqlParameter[]
                     {

@@ -11,6 +11,6 @@ namespace DAL.Contracts
     public interface IInsumoRepository : IGenericRepository<Insumo>
     {
         void ActualizarStock(Insumo obj, UnitOfWork uow);
-        void RestarStock(Guid idInsumo, int cantidad, UnitOfWork uow);
+        bool RestarStock(Guid idInsumo, int cantidad, UnitOfWork uow);
     }
 }

@@ -40,8 +40,29 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.Producto.IdProducto, nameof(item.Producto.IdProducto));
                 ValidationHelper.NotEmptyGuid(item.IdVenta, nameof(item.IdDetalleVenta));
                 ValidationHelper.PositiveValue(item.Cantidad, nameof(item.Cantidad));
+                if(item.SaboresSeleccionados == null || !item.SaboresSeleccionados.Any())
+                {
+                    throw new Exception("El detalle debe tener al menos un sabor seleccionado");
+                }
 
-                Repository.GetDetalleVentaInstance().Insert(item);
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    try
+                    {
+                        Repository.GetDetalleVentaInstance().Insert(item, uow);
+                        foreach (SaborSeleccionado s in item.SaboresSeleccionados)
+                        {
+                            s.IdDetalleVenta = item.IdDetalleVenta;
+                            Repository.GetSaborSeleccionadoInstance().Insert(s, uow);
+                        }
+                        uow.Commit();
+                    }
+                    catch(Exception ex)
+                    {
+                        uow.Rollback();
+                        throw;
+                    }
+                }
             }
             catch (Exception ex)
             {

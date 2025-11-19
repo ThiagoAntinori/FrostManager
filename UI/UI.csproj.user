@@ -25,7 +25,19 @@
     <Compile Update="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Primary Forms\AjustarStockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Primary Forms\AltaClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\CobrarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\ConsultarClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\ConsultarStockActualForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Primary Forms\CrearInsumoForm.cs">
@@ -34,10 +46,31 @@
     <Compile Update="Primary Forms\CrearProductoForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Primary Forms\EliminarProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\GestionarPedidosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Primary Forms\ModificarClienteForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Primary Forms\ModificarProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Primary Forms\RegistrarIngresoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\RegistrarPedidoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\RegistrarRepartidorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\SeleccionarRepartidorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\SeleccionarSaboresForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Primary Forms\VentaForm.cs">

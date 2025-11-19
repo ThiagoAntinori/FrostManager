@@ -45,6 +45,7 @@ namespace BLL.Implementations
                 item.MedioDePago = MedioPago.NoAsignado;
                 item.EsDelivery = false;
                 Repository.GetVentaInstance().Insert(item);
+                LoggerHelper.RegistrarGenerico("INICIO", item);
             }
             catch (Exception ex)
             {
@@ -75,6 +76,7 @@ namespace BLL.Implementations
                             Repository.GetDetalleVentaInstance().Delete(detalle, uow);
                         }
                         uow.Commit();
+                        LoggerHelper.RegistrarGenerico("CANCELACIÓN", item);
                     }
                     catch(Exception ex)
                     {
@@ -191,7 +193,6 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.IdVenta, nameof(item.IdVenta));
                 if (item.Detalles == null || !item.Detalles.Any())
                     throw new ArgumentException("La venta debe contener al menos un producto.");
-                item.EstadoVenta = EstadoVenta.PendienteDePago;
                 Dictionary<Guid, int> insumosRequeridos = new Dictionary<Guid, int>();
                 foreach (DetalleVenta detalle in item.Detalles)
                 {
@@ -211,6 +212,7 @@ namespace BLL.Implementations
                     {
                         insumosRequeridos.TryAdd(s.Sabor.IdInsumo, 0);
                         insumosRequeridos[s.Sabor.IdInsumo] += totalPorSabor;
+                        s.CantidadEnGramos = gramosPorSaborPorUnidad;
                     }
                 }
 
@@ -222,18 +224,21 @@ namespace BLL.Implementations
                         {
                             Guid idInsumo = kv.Key;
                             int cantidad = kv.Value;
-                            Repository.GetInsumoInstance().RestarStock(idInsumo, cantidad, uow);
+                            if(!Repository.GetInsumoInstance().RestarStock(idInsumo, cantidad, uow))
+                            {
+                                throw new Exception($"No hay stock suficiente para realizar la venta (Insumo: {InsumoService.Current.SelectOne(idInsumo).Descripcion})");
+                            }
                         }
                         Repository.GetVentaInstance().Update(item, uow);
                         foreach (var detalle in item.Detalles)
                         {
-                            Repository.GetDetalleVentaInstance().Insert(detalle, uow);
                             foreach (var saborSeleccionado in detalle.SaboresSeleccionados)
                             {
-                                Repository.GetSaborSeleccionadoInstance().Insert(saborSeleccionado, uow);
+                                Repository.GetSaborSeleccionadoInstance().Update(saborSeleccionado, uow);
                             }
                         }
                         uow.Commit();
+                        LoggerHelper.RegistrarGenerico("CONFIRMACIÓN", item);
                     }
                     catch (Exception ex)
                     {
@@ -268,8 +273,8 @@ namespace BLL.Implementations
             try
             {
                 item.MedioDePago = medioDePago;
-                item.EstadoVenta = item.EsDelivery ? EstadoVenta.PendienteDeEntrega : EstadoVenta.Finalizada;
                 Repository.GetVentaInstance().Update(item);
+                LoggerHelper.RegistrarGenerico("COBRO", item);
             }
             catch(Exception ex)
             {

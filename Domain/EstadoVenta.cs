@@ -11,6 +11,7 @@ namespace Domain
         EnCurso = 1,
         PendienteDePago,
         PendienteDeEntrega,
-        Finalizada
+        Finalizada,
+        Cancelada
     }
 }

@@ -1,6 +1,0 @@
-[2025-11-04 01:14:51.976 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
-[2025-11-04 08:54:48.705 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
-[2025-11-04 09:08:30.217 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
-[2025-11-04 09:10:22.348 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
-[2025-11-04 13:49:08.612 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
-[2025-11-04 14:35:30.182 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]

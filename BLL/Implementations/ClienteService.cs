@@ -166,12 +166,7 @@ namespace BLL.Implementations
             try
             {
                 ValidationHelper.NotEmpty(DNI, "DNI");
-                Cliente clienteGet = Repository.GetClienteInstance().GetByDNI(DNI);
-                if(clienteGet == null)
-                {
-                    throw new Exception("No se pudo encontrar al cliente con el DNI ingresado");
-                }
-                return clienteGet;
+                return Repository.GetClienteInstance().GetByDNI(DNI);
             }
             catch (Exception ex)
             {

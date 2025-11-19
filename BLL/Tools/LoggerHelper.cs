@@ -54,6 +54,19 @@ namespace BLL.Tools
             }
         }
 
+        public static void RegistrarGenerico(string operacion, object entidad)
+        {
+            try
+            {
+                LogEntry registroGenerico = new LogEntry(DateTime.Now, LogLevel.Information, FormatearMensaje(operacion, entidad));
+                LoggerService.GetLogger().WriteLog(registroGenerico);
+            }
+            catch(Exception ex)
+            {
+                ex.Handle();
+            }
+        }
+
         private static string FormatearMensaje(string operacion, object entidad)
         {
             return $"{operacion} de {entidad.GetType().Name} (ID: {ObtenerId(entidad)}) por el usuario {UsuarioLogueado.Current.Usuario.Nombre}";
@@ -72,5 +85,7 @@ namespace BLL.Tools
 
             return "Sin ID";
         }
+
+
     }
 }

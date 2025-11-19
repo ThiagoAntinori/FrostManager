@@ -96,7 +96,7 @@ namespace UI.Primary_Forms
             dgvDetalleVenta.DataSource = newDataSource;
             dgvDetalleVenta.Columns["IdDetalleVenta"].Visible = false;
             dgvDetalleVenta.Columns["IdVenta"].Visible = false;
-            dgvDetalleVenta.Columns["Producto"].DataPropertyName = "Producto.Descripcion";
+            dgvDetalleVenta.Columns["Subtotal"].DefaultCellStyle.Format = "C";
             lblMontoTotal.Text = ventaEnCurso.CalcularTotal().ToString("C");
         }
 
@@ -104,8 +104,54 @@ namespace UI.Primary_Forms
         {
             try
             {
-                ventaEnCurso.EsDelivery = checkDelivery.Checked;
-                VentaService.Current.ConfirmarVenta(ventaEnCurso);
+                if(ventaEnCurso.EstadoVenta == EstadoVenta.EnCurso)
+                {
+                    ventaEnCurso.EsDelivery = checkDelivery.Checked;
+                    ventaEnCurso.EstadoVenta = EstadoVenta.PendienteDePago;
+                }
+                if(ventaEnCurso.EstadoVenta == EstadoVenta.PendienteDePago)
+                {
+                    using(CobrarForm cobrarForm = new CobrarForm())
+                    {
+                        if(cobrarForm.ShowDialog() == DialogResult.OK)
+                        {
+                            VentaService.Current.AsignarMedioPago(ventaEnCurso, cobrarForm.medioPagoSeleccionado);
+                            bool pedidoCreado = true;
+                            if (ventaEnCurso.EsDelivery)
+                            {
+                                using(RegistrarPedidoForm pedidoForm = new RegistrarPedidoForm())
+                                {
+                                    pedidoForm.ventaAsociada = ventaEnCurso;
+                                    var resultado = pedidoForm.ShowDialog();
+                                    pedidoCreado = (resultado == DialogResult.OK);
+                                }
+                            }
+                            if(ventaEnCurso.EsDelivery && !pedidoCreado)
+                            {
+                                MessageBox.Show("El pedido no fue completado. La venta será cancelada.", "Advertencia", MessageBoxButtons.OK);
+                                ventaEnCurso.EstadoVenta = EstadoVenta.Cancelada;
+                            }
+                            else
+                            {
+                                ventaEnCurso.EstadoVenta = ventaEnCurso.EsDelivery
+                                                            ? EstadoVenta.PendienteDeEntrega
+                                                            : EstadoVenta.Finalizada;
+                                VentaService.Current.ConfirmarVenta(ventaEnCurso);
+                            }
+
+                            VentaService.Current.Update(ventaEnCurso);
+                            MessageBox.Show("¡Venta registrada con éxito!");
+                        }
+                        else
+                        {
+                            ventaEnCurso.EstadoVenta = EstadoVenta.EnCurso;
+                            VentaService.Current.Update(ventaEnCurso);
+                            MessageBox.Show("El cobro fue cancelado. La venta sigue en curso", "Aviso");
+                        }
+                    }
+                }
+                
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -124,9 +170,16 @@ namespace UI.Primary_Forms
                     Cantidad = (int)numCantidad.Value,
                     IdVenta = ventaEnCurso.IdVenta
                 };
-                DetalleVentaService.Current.Add(nuevoDetalle);
-                ventaEnCurso.AgregarDetalle(nuevoDetalle);
-                //Selección de sabores
+
+                using(SeleccionarSaboresForm saboresForm = new SeleccionarSaboresForm())
+                {
+                    var result = saboresForm.ShowDialog();
+
+                    nuevoDetalle.SaboresSeleccionados = saboresForm.saboresSeleccionados;
+                    DetalleVentaService.Current.Add(nuevoDetalle);
+                    ventaEnCurso.AgregarDetalle(nuevoDetalle);
+                }
+                
                 ActualizarDataGridViewDetalles(DetalleVentaService.Current.GetByIdVenta(ventaEnCurso.IdVenta));
             }
             catch (Exception ex)
@@ -175,6 +228,7 @@ namespace UI.Primary_Forms
             {
                 DetalleVentaService.Current.Delete(detalleVentaSeleccionado);
                 ventaEnCurso.RemoverDetalle(detalleVentaSeleccionado);
+                ActualizarDataGridViewDetalles(DetalleVentaService.Current.GetByIdVenta(ventaEnCurso.IdVenta));
             }
             catch (Exception ex)
             {
@@ -189,7 +243,7 @@ namespace UI.Primary_Forms
                 if(MessageBox.Show("¿Desea cancelar la venta en curso?", "Atención", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     VentaService.Current.Delete(ventaEnCurso);
-                    MainForm.closeChildForm(this);
+                    this.Close();
                 }
             }
             catch(Exception ex)

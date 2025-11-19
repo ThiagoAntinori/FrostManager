@@ -207,7 +207,10 @@
             // 
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductos.Location = new Point(42, 106);
+            dgvProductos.MultiSelect = false;
             dgvProductos.Name = "dgvProductos";
+            dgvProductos.ReadOnly = true;
+            dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductos.Size = new Size(199, 239);
             dgvProductos.TabIndex = 16;
             dgvProductos.SelectionChanged += dgvProductos_SelectionChanged;
@@ -216,7 +219,10 @@
             // 
             dgvDetalleVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDetalleVenta.Location = new Point(295, 106);
+            dgvDetalleVenta.MultiSelect = false;
             dgvDetalleVenta.Name = "dgvDetalleVenta";
+            dgvDetalleVenta.ReadOnly = true;
+            dgvDetalleVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDetalleVenta.Size = new Size(308, 239);
             dgvDetalleVenta.TabIndex = 17;
             dgvDetalleVenta.SelectionChanged += dgvDetalleVenta_SelectionChanged;

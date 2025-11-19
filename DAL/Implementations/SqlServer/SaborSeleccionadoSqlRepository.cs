@@ -72,7 +72,7 @@ namespace DAL.Implementations.SqlServer
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO SaborSeleccionado (IdSabor, CantidadEnGramos, IdDetalleVenta) VALUES (@IdSabor, @CantidadEnGramos, @IdDetalleVenta)",
+                SqlHelper.ExecuteNonQuery("INSERT INTO SaborSeleccionado (IdSabor, CantidadEnGramos, IdDetalleVenta, Borrado) VALUES (@IdSabor, @CantidadEnGramos, @IdDetalleVenta, 0)",
                     CommandType.Text,
                     uow?.Transaction,
                     new SqlParameter[]
@@ -92,7 +92,7 @@ namespace DAL.Implementations.SqlServer
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("UPDATE SaborSeleccionado SET CantidadEnGramos = @CantidadEnGramos WHERE IdSabor = @IdSabor AND IdDetalleVenta = @IdDetalleVenta",
+                SqlHelper.ExecuteNonQuery("UPDATE SaborSeleccionado SET CantidadEnGramos = @CantidadEnGramos WHERE IdSabor = @IdSabor AND IdDetalleVenta = @IdDetalleVenta AND Borrado = 0",
                                             CommandType.Text,
                                             uow?.Transaction,
                                             new SqlParameter[]
@@ -114,7 +114,7 @@ namespace DAL.Implementations.SqlServer
             {
                 SaborSeleccionado saborGet = null;
                 List<SaborSeleccionado> saboresSeleccionados = new List<SaborSeleccionado>();
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdSabor, CantidadEnGramos, IdDetalleVenta FROM SaborSeleccionado WHERE IdSabor = @IdSabor",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdSabor, CantidadEnGramos, IdDetalleVenta FROM SaborSeleccionado WHERE IdSabor = @IdSabor AND Borrado = 0",
                     CommandType.Text,
                     new SqlParameter[]
                     {
@@ -145,7 +145,7 @@ namespace DAL.Implementations.SqlServer
             {
                 SaborSeleccionado saborGet = null;
                 List<SaborSeleccionado> saboresSeleccionados = new List<SaborSeleccionado>();
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdSabor, CantidadEnGramos, IdDetalleVenta FROM SaborSeleccionado WHERE IdDetalleVenta = @IdDetalleVenta",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdSabor, CantidadEnGramos, IdDetalleVenta FROM SaborSeleccionado WHERE IdDetalleVenta = @IdDetalleVenta AND Borrado = 0",
                     CommandType.Text,
                     new SqlParameter[]
                     {

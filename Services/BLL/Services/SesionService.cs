@@ -106,5 +106,40 @@ namespace Services.BLL.Services
                 ExceptionExtension.Handle(ex);
             }
         }
+
+        public static void CambiarContraseña(string nombreUsuario, string contraseñaActual, string nuevaContraseña)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(nombreUsuario))
+                {
+                    throw new Exception("El usuario es inválido");
+                }
+                if (string.IsNullOrEmpty(contraseñaActual))
+                {
+                    throw new Exception("Debe ingresar la contraseña actual o token");
+                }
+                if (string.IsNullOrEmpty(nuevaContraseña))
+                {
+                    throw new Exception("Debe ingresar la nueva contraseña");
+                }
+                if(nuevaContraseña.Length < 8)
+                {
+                    throw new Exception("La nueva contraseña debe tener al menos 8 caracteres");
+                }
+                Usuario usuarioACambiar = UsuarioRepository.Current.GetByCredentials(nombreUsuario, contraseñaActual);
+                if(usuarioACambiar == null)
+                {
+                    throw new Exception("Usuario o contraseña incorrectos");
+                }
+                usuarioACambiar.Password = CriptographyService.HashMd5(nuevaContraseña);
+                UsuarioRepository.Current.Update(usuarioACambiar);
+                LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Debug, $"Usuario {usuarioACambiar.Nombre} cambió su contraseña"));
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+            }
+        }
     }
 }

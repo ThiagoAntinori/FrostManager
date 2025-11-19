@@ -23,7 +23,11 @@ namespace Domain
 
         public void RemoverDetalle(DetalleVenta detalleARemover)
         {
-            Detalles.Remove(detalleARemover);
+            DetalleVenta detalleBuscado = Detalles.Where(d => d.IdDetalleVenta == detalleARemover.IdDetalleVenta).ToList().FirstOrDefault();
+            if(detalleBuscado != null)
+            {
+                Detalles.Remove(detalleBuscado);
+            }
         }
 
         public decimal CalcularTotal()

@@ -103,3 +103,14 @@ C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\Fr
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.pdb
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.genruntimeconfig.cache
 C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\ref\UI.dll
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.SeleccionarSaboresForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.CobrarForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.ConsultarClienteForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.RegistrarPedidoForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.AjustarStockForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.ConsultarStockActualForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.EliminarProductoForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.GestionarPedidosForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.ModificarProductoForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.RegistrarRepartidorForm.resources
+C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\UI\obj\Debug\net8.0-windows\UI.Primary_Forms.SeleccionarRepartidorForm.resources

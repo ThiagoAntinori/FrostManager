@@ -13,5 +13,6 @@ namespace Domain
         public int CapacidadEnGramos { get; set; }
         public decimal PrecioUnitario { get; set; }
         public Envase EnvaseNecesario { get; set; }
+        public override string ToString() => Descripcion;
     }
 }

@@ -44,9 +44,7 @@
             btnRegistrarInsumo = new Button();
             btnRegistrarEgreso = new Button();
             btnRegistrarIngreso = new Button();
-            btnCancelarPedido = new Button();
-            btnActualizarPedido = new Button();
-            btnVerPedidos = new Button();
+            btnGestionarPedidos = new Button();
             btnConsultarCliente = new Button();
             btnModificarCliente = new Button();
             btnRegistrarCliente = new Button();
@@ -85,9 +83,7 @@
             panelSideMenu.Controls.Add(btnRegistrarInsumo);
             panelSideMenu.Controls.Add(btnRegistrarEgreso);
             panelSideMenu.Controls.Add(btnRegistrarIngreso);
-            panelSideMenu.Controls.Add(btnCancelarPedido);
-            panelSideMenu.Controls.Add(btnActualizarPedido);
-            panelSideMenu.Controls.Add(btnVerPedidos);
+            panelSideMenu.Controls.Add(btnGestionarPedidos);
             panelSideMenu.Controls.Add(btnConsultarCliente);
             panelSideMenu.Controls.Add(btnModificarCliente);
             panelSideMenu.Controls.Add(btnRegistrarCliente);
@@ -105,43 +101,46 @@
             button1.BackColor = Color.Teal;
             button1.Dock = DockStyle.Top;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(0, 951);
+            button1.Location = new Point(0, 871);
             button1.Name = "button1";
             button1.Size = new Size(243, 40);
             button1.TabIndex = 31;
             button1.Text = "Registrar Repartidor";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // btnEliminarProducto
             // 
             btnEliminarProducto.BackColor = Color.Teal;
             btnEliminarProducto.Dock = DockStyle.Top;
             btnEliminarProducto.FlatStyle = FlatStyle.Flat;
-            btnEliminarProducto.Location = new Point(0, 911);
+            btnEliminarProducto.Location = new Point(0, 831);
             btnEliminarProducto.Name = "btnEliminarProducto";
             btnEliminarProducto.Size = new Size(243, 40);
             btnEliminarProducto.TabIndex = 30;
             btnEliminarProducto.Text = "Eliminar Producto";
             btnEliminarProducto.UseVisualStyleBackColor = false;
+            btnEliminarProducto.Click += btnEliminarProducto_Click;
             // 
             // btnModificarProducto
             // 
             btnModificarProducto.BackColor = Color.Teal;
             btnModificarProducto.Dock = DockStyle.Top;
             btnModificarProducto.FlatStyle = FlatStyle.Flat;
-            btnModificarProducto.Location = new Point(0, 871);
+            btnModificarProducto.Location = new Point(0, 791);
             btnModificarProducto.Name = "btnModificarProducto";
             btnModificarProducto.Size = new Size(243, 40);
             btnModificarProducto.TabIndex = 29;
             btnModificarProducto.Text = "Modificar Producto";
             btnModificarProducto.UseVisualStyleBackColor = false;
+            btnModificarProducto.Click += btnModificarProducto_Click;
             // 
             // btnCrearProducto
             // 
             btnCrearProducto.BackColor = Color.Teal;
             btnCrearProducto.Dock = DockStyle.Top;
             btnCrearProducto.FlatStyle = FlatStyle.Flat;
-            btnCrearProducto.Location = new Point(0, 831);
+            btnCrearProducto.Location = new Point(0, 751);
             btnCrearProducto.Name = "btnCrearProducto";
             btnCrearProducto.Size = new Size(243, 40);
             btnCrearProducto.TabIndex = 28;
@@ -154,7 +153,7 @@
             btnReporteProyecciones.BackColor = Color.Teal;
             btnReporteProyecciones.Dock = DockStyle.Top;
             btnReporteProyecciones.FlatStyle = FlatStyle.Flat;
-            btnReporteProyecciones.Location = new Point(0, 791);
+            btnReporteProyecciones.Location = new Point(0, 711);
             btnReporteProyecciones.Name = "btnReporteProyecciones";
             btnReporteProyecciones.Size = new Size(243, 40);
             btnReporteProyecciones.TabIndex = 23;
@@ -166,7 +165,7 @@
             btnReporteEntregas.BackColor = Color.Teal;
             btnReporteEntregas.Dock = DockStyle.Top;
             btnReporteEntregas.FlatStyle = FlatStyle.Flat;
-            btnReporteEntregas.Location = new Point(0, 751);
+            btnReporteEntregas.Location = new Point(0, 671);
             btnReporteEntregas.Name = "btnReporteEntregas";
             btnReporteEntregas.Size = new Size(243, 40);
             btnReporteEntregas.TabIndex = 22;
@@ -178,7 +177,7 @@
             btnReporteSabores.BackColor = Color.Teal;
             btnReporteSabores.Dock = DockStyle.Top;
             btnReporteSabores.FlatStyle = FlatStyle.Flat;
-            btnReporteSabores.Location = new Point(0, 711);
+            btnReporteSabores.Location = new Point(0, 631);
             btnReporteSabores.Name = "btnReporteSabores";
             btnReporteSabores.Size = new Size(243, 40);
             btnReporteSabores.TabIndex = 21;
@@ -190,7 +189,7 @@
             btnCierreCaja.BackColor = Color.Teal;
             btnCierreCaja.Dock = DockStyle.Top;
             btnCierreCaja.FlatStyle = FlatStyle.Flat;
-            btnCierreCaja.Location = new Point(0, 671);
+            btnCierreCaja.Location = new Point(0, 591);
             btnCierreCaja.Name = "btnCierreCaja";
             btnCierreCaja.Size = new Size(243, 40);
             btnCierreCaja.TabIndex = 20;
@@ -202,7 +201,7 @@
             btnReporteVentas.BackColor = Color.Teal;
             btnReporteVentas.Dock = DockStyle.Top;
             btnReporteVentas.FlatStyle = FlatStyle.Flat;
-            btnReporteVentas.Location = new Point(0, 631);
+            btnReporteVentas.Location = new Point(0, 551);
             btnReporteVentas.Name = "btnReporteVentas";
             btnReporteVentas.Size = new Size(243, 40);
             btnReporteVentas.TabIndex = 19;
@@ -214,31 +213,33 @@
             btnConsultarStock.BackColor = Color.Teal;
             btnConsultarStock.Dock = DockStyle.Top;
             btnConsultarStock.FlatStyle = FlatStyle.Flat;
-            btnConsultarStock.Location = new Point(0, 591);
+            btnConsultarStock.Location = new Point(0, 511);
             btnConsultarStock.Name = "btnConsultarStock";
             btnConsultarStock.Size = new Size(243, 40);
             btnConsultarStock.TabIndex = 18;
             btnConsultarStock.Text = "Consultar Stock actual";
             btnConsultarStock.UseVisualStyleBackColor = false;
+            btnConsultarStock.Click += btnConsultarStock_Click;
             // 
             // btnAjustarStock
             // 
             btnAjustarStock.BackColor = Color.Teal;
             btnAjustarStock.Dock = DockStyle.Top;
             btnAjustarStock.FlatStyle = FlatStyle.Flat;
-            btnAjustarStock.Location = new Point(0, 551);
+            btnAjustarStock.Location = new Point(0, 471);
             btnAjustarStock.Name = "btnAjustarStock";
             btnAjustarStock.Size = new Size(243, 40);
             btnAjustarStock.TabIndex = 17;
             btnAjustarStock.Text = "Ajustar Stock";
             btnAjustarStock.UseVisualStyleBackColor = false;
+            btnAjustarStock.Click += btnAjustarStock_Click;
             // 
             // btnRegistrarInsumo
             // 
             btnRegistrarInsumo.BackColor = Color.Teal;
             btnRegistrarInsumo.Dock = DockStyle.Top;
             btnRegistrarInsumo.FlatStyle = FlatStyle.Flat;
-            btnRegistrarInsumo.Location = new Point(0, 511);
+            btnRegistrarInsumo.Location = new Point(0, 431);
             btnRegistrarInsumo.Name = "btnRegistrarInsumo";
             btnRegistrarInsumo.Size = new Size(243, 40);
             btnRegistrarInsumo.TabIndex = 15;
@@ -251,7 +252,7 @@
             btnRegistrarEgreso.BackColor = Color.Teal;
             btnRegistrarEgreso.Dock = DockStyle.Top;
             btnRegistrarEgreso.FlatStyle = FlatStyle.Flat;
-            btnRegistrarEgreso.Location = new Point(0, 471);
+            btnRegistrarEgreso.Location = new Point(0, 391);
             btnRegistrarEgreso.Name = "btnRegistrarEgreso";
             btnRegistrarEgreso.Size = new Size(243, 40);
             btnRegistrarEgreso.TabIndex = 14;
@@ -263,7 +264,7 @@
             btnRegistrarIngreso.BackColor = Color.Teal;
             btnRegistrarIngreso.Dock = DockStyle.Top;
             btnRegistrarIngreso.FlatStyle = FlatStyle.Flat;
-            btnRegistrarIngreso.Location = new Point(0, 431);
+            btnRegistrarIngreso.Location = new Point(0, 351);
             btnRegistrarIngreso.Name = "btnRegistrarIngreso";
             btnRegistrarIngreso.Size = new Size(243, 40);
             btnRegistrarIngreso.TabIndex = 13;
@@ -271,41 +272,18 @@
             btnRegistrarIngreso.UseVisualStyleBackColor = false;
             btnRegistrarIngreso.Click += btnRegistrarIngreso_Click;
             // 
-            // btnCancelarPedido
+            // btnGestionarPedidos
             // 
-            btnCancelarPedido.BackColor = Color.Teal;
-            btnCancelarPedido.Dock = DockStyle.Top;
-            btnCancelarPedido.FlatStyle = FlatStyle.Flat;
-            btnCancelarPedido.Location = new Point(0, 391);
-            btnCancelarPedido.Name = "btnCancelarPedido";
-            btnCancelarPedido.Size = new Size(243, 40);
-            btnCancelarPedido.TabIndex = 25;
-            btnCancelarPedido.Text = "Cancelar Pedido";
-            btnCancelarPedido.UseVisualStyleBackColor = false;
-            // 
-            // btnActualizarPedido
-            // 
-            btnActualizarPedido.BackColor = Color.Teal;
-            btnActualizarPedido.Dock = DockStyle.Top;
-            btnActualizarPedido.FlatStyle = FlatStyle.Flat;
-            btnActualizarPedido.Location = new Point(0, 351);
-            btnActualizarPedido.Name = "btnActualizarPedido";
-            btnActualizarPedido.Size = new Size(243, 40);
-            btnActualizarPedido.TabIndex = 24;
-            btnActualizarPedido.Text = "Actualizar estado pedido";
-            btnActualizarPedido.UseVisualStyleBackColor = false;
-            // 
-            // btnVerPedidos
-            // 
-            btnVerPedidos.BackColor = Color.Teal;
-            btnVerPedidos.Dock = DockStyle.Top;
-            btnVerPedidos.FlatStyle = FlatStyle.Flat;
-            btnVerPedidos.Location = new Point(0, 311);
-            btnVerPedidos.Name = "btnVerPedidos";
-            btnVerPedidos.Size = new Size(243, 40);
-            btnVerPedidos.TabIndex = 12;
-            btnVerPedidos.Text = "Ver pedidos";
-            btnVerPedidos.UseVisualStyleBackColor = false;
+            btnGestionarPedidos.BackColor = Color.Teal;
+            btnGestionarPedidos.Dock = DockStyle.Top;
+            btnGestionarPedidos.FlatStyle = FlatStyle.Flat;
+            btnGestionarPedidos.Location = new Point(0, 311);
+            btnGestionarPedidos.Name = "btnGestionarPedidos";
+            btnGestionarPedidos.Size = new Size(243, 40);
+            btnGestionarPedidos.TabIndex = 12;
+            btnGestionarPedidos.Text = "Gestionar Pedidos";
+            btnGestionarPedidos.UseVisualStyleBackColor = false;
+            btnGestionarPedidos.Click += btnVerPedidos_Click;
             // 
             // btnConsultarCliente
             // 
@@ -318,6 +296,7 @@
             btnConsultarCliente.TabIndex = 11;
             btnConsultarCliente.Text = "Consultar Cliente";
             btnConsultarCliente.UseVisualStyleBackColor = false;
+            btnConsultarCliente.Click += btnConsultarCliente_Click;
             // 
             // btnModificarCliente
             // 
@@ -490,7 +469,7 @@
         private Button btnRegistrarInsumo;
         private Button btnRegistrarEgreso;
         private Button btnRegistrarIngreso;
-        private Button btnVerPedidos;
+        private Button btnGestionarPedidos;
         private Button btnConsultarCliente;
         private Button btnModificarCliente;
         private Button btnRegistrarCliente;
@@ -498,11 +477,8 @@
         private Button btnReporteEntregas;
         private Button btnReporteSabores;
         private Button btnCerrarSesion;
-        private Button btnActualizarPedido;
-        private Button btnCancelarPedido;
         private Panel panel3;
         private PictureBox pictureBox1;
-        private Panel panelChildForm;
         private PictureBox pictureBox2;
         private Button btnAbrirPanelAdministrativo;
         private Button btnConfiguracion;
@@ -510,5 +486,6 @@
         private Button btnEliminarProducto;
         private Button btnModificarProducto;
         private Button btnCrearProducto;
+        public Panel panelChildForm;
     }
 }

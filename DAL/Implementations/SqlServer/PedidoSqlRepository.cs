@@ -153,7 +153,7 @@ namespace DAL.Implementations.SqlServer
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO Pedido (IdPedido, HoraEnvio, HoraEntrega, IdEstadoPedido, IdVenta, IdCliente, IdRepartidor) VALUES (@IdPedido, @HoraEnvio, @HoraEntrega, @IdEstadoPedido, @IdVenta, @IdCliente, @IdRepartidor)",
+                SqlHelper.ExecuteNonQuery("INSERT INTO Pedido (IdPedido, HoraEnvio, HoraEntrega, IdEstadoPedido, IdVenta, IdCliente, IdRepartidor, Borrado) VALUES (@IdPedido, @HoraEnvio, @HoraEntrega, @IdEstadoPedido, @IdVenta, @IdCliente, @IdRepartidor, 0)",
                                             CommandType.Text,
                                             uow?.Transaction,
                                             new SqlParameter[]
@@ -176,7 +176,29 @@ namespace DAL.Implementations.SqlServer
 
         public void Update(Pedido obj, UnitOfWork uow = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                SqlHelper.ExecuteNonQuery("UPDATE INTO Pedido SET HoraEnvio = @HoraEnvio, HoraEntrega = @HoraEntrega, IdEstadoPedido = @IdEstadoPedido, IdVenta = @IdVenta, IdCliente = @IdCliente, IdRepartidor = @IdRepartidor WHERE IdPedido = @IdPedido AND Borrado = 0",
+                                            CommandType.Text,
+                                            uow?.Transaction,
+                                            new SqlParameter[]
+                                            {
+                                                new SqlParameter("@IdPedido", obj.IdPedido),
+                                                new SqlParameter("@HoraEnvio", obj.HoraEnvio),
+                                                new SqlParameter("@HoraEntrega", obj.HoraEntrega),
+                                                new SqlParameter("@IdEstadoPedido", (int)obj.Estado),
+                                                new SqlParameter("@IdVenta", obj.Venta.IdVenta),
+                                                new SqlParameter("@IdCliente", obj.Cliente.IdCliente),
+                                                new SqlParameter("@IdRepartidor", obj.Repartidor.IdRepartidor)
+                                            });
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionExtension.Handle(ex);
+            }
         }
+
+
     }
 }

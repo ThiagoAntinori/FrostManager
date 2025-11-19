@@ -39,7 +39,7 @@ namespace DAL.Implementations.SqlServer
             try
             {
                 List<Insumo> envases = Repository.GetEnvaseInstance().GetAll().Cast<Insumo>().ToList();
-                List<Insumo> sabores = Repository.GetEnvaseInstance().GetAll().Cast<Insumo>().ToList();
+                List<Insumo> sabores = Repository.GetSaborInstance().GetAll().Cast<Insumo>().ToList();
 
                 List<Insumo> insumos = new List<Insumo>();
                 insumos.AddRange(envases);
@@ -132,7 +132,7 @@ namespace DAL.Implementations.SqlServer
             }
         }
 
-        public void RestarStock(Guid idInsumo, int cantidad, UnitOfWork uow)
+        public bool RestarStock(Guid idInsumo, int cantidad, UnitOfWork uow)
         {
             try
             {
@@ -145,14 +145,12 @@ namespace DAL.Implementations.SqlServer
                         new SqlParameter("@Cantidad", cantidad),
                         new SqlParameter("@IdInsumo", idInsumo)
                     });
-                if(rows == 0)
-                {
-                    throw new Exception("No hay stock suficiente para el insumo");
-                }
+                return rows > 0;
             }
             catch (Exception ex)
             {
                 ex.Handle();
+                throw;
             }
         }
     }

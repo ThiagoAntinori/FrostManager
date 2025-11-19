@@ -188,6 +188,7 @@
             Controls.Add(btnRegistrar);
             Controls.Add(txtNombre);
             Controls.Add(lblNombre);
+            ForeColor = SystemColors.WindowText;
             FormBorderStyle = FormBorderStyle.None;
             MinimumSize = new Size(624, 561);
             Name = "ModificarClienteForm";
