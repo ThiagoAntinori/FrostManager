@@ -8,6 +8,10 @@ namespace Services.Domain.Security
 {
     public class Patente : Componente
     {
+        public Patente() : base()
+        {
+
+        }
         public string MenuItemName { get; set; }
         public string FormName { get; set; }
         public override void Agregar(Componente componente)

@@ -69,11 +69,11 @@ namespace Services.BLL.Extensions
                 BusinessException bllException = null;
                 if(ex is DataAccessException)
                 {
-                    bllException = new BusinessException("Ocurrió un error al intentar acceder a los datos", ex);
+                    bllException = new BusinessException("Ocurrió un error al intentar acceder a los datos\n", ex);
                 }
                 else
                 {
-                    bllException = new BusinessException("Ocurrió un error en la lógica de negocio - Detalle: " + ex.Message, ex);
+                    bllException = new BusinessException("Ocurrió un error en el sistema - Detalle: " + ex.Message, ex);
                 }
                 throw bllException;
             }
@@ -88,7 +88,7 @@ namespace Services.BLL.Extensions
             try
             {
                 LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Error, "[DAL Exception] Error de acceso a datos - Mensaje: " + ex.Message, ex));
-                DataAccessException dalException = new DataAccessException("Ocurrió un error en la base de datos", ex);
+                DataAccessException dalException = new DataAccessException("Ocurrió un error en la base de datos.", ex);
                 throw dalException;
             }
             catch(Exception exception)
@@ -102,7 +102,7 @@ namespace Services.BLL.Extensions
             try
             {
                 LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Error, "[Service Exception] Error en la configuración de sistema - Mensaje: " + ex.Message));
-                throw new Exception("Ocurrió un error en la configuración del sistema - " + ex.Message, ex);
+                throw new Exception("Ocurrió un error en el sistema - " + ex.Message, ex);
             }
             catch (Exception exception)
             {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Services.BLL.Extensions;
 using Services.DAL.Adapter;
 using Services.DAL.Contracts;
 using Services.DAL.Tools;
@@ -32,7 +33,12 @@ namespace Services.DAL.Implementations
 
         public void Delete(Patente item)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery("UPDATE PATENTE SET Borrado = 1 WHERE IdPatente = @IdPatente",
+                                            CommandType.Text,
+                                            new SqlParameter[]
+                                            {
+                                                new SqlParameter("@IdPatente", item.IdComponente)
+                                            });
         }
 
         public List<Patente> GetAll()
@@ -42,7 +48,7 @@ namespace Services.DAL.Implementations
                 List<Patente> patentes = new List<Patente>();
                 Patente patenteGet = null;
 
-                using(var reader = SqlHelper.ExecuteReader("SELECT IdPatente, Nombre, MenuItemName, FormName FROM PATENTE",
+                using(var reader = SqlHelper.ExecuteReader("SELECT IdPatente, Nombre, MenuItemName, FormName FROM PATENTE WHERE Borrado = 0",
                                                 CommandType.Text,
                                                 new SqlParameter[] { }))
                 {
@@ -68,7 +74,7 @@ namespace Services.DAL.Implementations
         {
             try
             {
-                using (var reader = SqlHelper.ExecuteReader("SELECT IdPatente, Nombre, MenuItemName, FormName FROM PATENTE WHERE IdPatente = @IdPatente",
+                using (var reader = SqlHelper.ExecuteReader("SELECT IdPatente, Nombre, MenuItemName, FormName FROM PATENTE WHERE IdPatente = @IdPatente AND Borrado = 0",
                                                             CommandType.Text,
                                                             new SqlParameter[]
                                                             {
@@ -96,7 +102,7 @@ namespace Services.DAL.Implementations
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO PATENTE (IdPatente, Nombre, MenuItemName, FormName) VALUES (@IdPatente, @Nombre, @MenuItemName, @FormName)",
+                SqlHelper.ExecuteNonQuery("INSERT INTO PATENTE (IdPatente, Nombre, MenuItemName, FormName, Borrado) VALUES (@IdPatente, @Nombre, @MenuItemName, @FormName, 0)",
                                             CommandType.Text,
                                             new SqlParameter[] 
                                             {
@@ -114,7 +120,23 @@ namespace Services.DAL.Implementations
 
         public void Update(Patente item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                SqlHelper.ExecuteNonQuery("UPDATE PATENTE SET Nombre = @Nombre, MenuItemName = @MenuItemName, FormName = @FormName WHERE IdPatente = @IdPatente",
+                                            CommandType.Text,
+                                            new SqlParameter[]
+                                            {
+                                                new SqlParameter("@Nombre", item.Nombre),
+                                                new SqlParameter("@MenuItemName", item.MenuItemName),
+                                                new SqlParameter("@FormName", item.FormName),
+                                                new SqlParameter("@IdPatente", item.IdComponente)
+                                            });
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+            }
+
         }
     }
 }

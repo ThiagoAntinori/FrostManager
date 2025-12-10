@@ -163,6 +163,7 @@
             // 
             // btnBuscar
             // 
+            btnBuscar.Anchor = AnchorStyles.None;
             btnBuscar.Location = new Point(483, 98);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(91, 23);
@@ -193,6 +194,7 @@
             MinimumSize = new Size(624, 561);
             Name = "ModificarClienteForm";
             Text = "ModificarClienteForm";
+            Load += ModificarClienteForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -42,6 +42,7 @@ namespace UI.Primary_Forms
             // 
             // dgvPedidos
             // 
+            dgvPedidos.Anchor = AnchorStyles.None;
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvPedidos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvPedidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -56,6 +57,7 @@ namespace UI.Primary_Forms
             // 
             // lblTituloPedidos
             // 
+            lblTituloPedidos.Anchor = AnchorStyles.None;
             lblTituloPedidos.AutoSize = true;
             lblTituloPedidos.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTituloPedidos.ForeColor = SystemColors.WindowText;
@@ -78,6 +80,7 @@ namespace UI.Primary_Forms
             // 
             // lblNuevoEstado
             // 
+            lblNuevoEstado.Anchor = AnchorStyles.None;
             lblNuevoEstado.AutoSize = true;
             lblNuevoEstado.ForeColor = SystemColors.ActiveCaptionText;
             lblNuevoEstado.Location = new Point(255, 385);
@@ -88,6 +91,7 @@ namespace UI.Primary_Forms
             // 
             // cmbNuevoEstado
             // 
+            cmbNuevoEstado.Anchor = AnchorStyles.None;
             cmbNuevoEstado.FormattingEnabled = true;
             cmbNuevoEstado.Location = new Point(255, 403);
             cmbNuevoEstado.Name = "cmbNuevoEstado";
@@ -96,6 +100,7 @@ namespace UI.Primary_Forms
             // 
             // btnActualizarEstado
             // 
+            btnActualizarEstado.Anchor = AnchorStyles.None;
             btnActualizarEstado.BackColor = Color.Lavender;
             btnActualizarEstado.FlatStyle = FlatStyle.Popup;
             btnActualizarEstado.ForeColor = SystemColors.WindowText;
@@ -109,6 +114,7 @@ namespace UI.Primary_Forms
             // 
             // btnCancelarPedido
             // 
+            btnCancelarPedido.Anchor = AnchorStyles.None;
             btnCancelarPedido.BackColor = Color.LightCoral;
             btnCancelarPedido.FlatStyle = FlatStyle.Popup;
             btnCancelarPedido.ForeColor = SystemColors.WindowText;

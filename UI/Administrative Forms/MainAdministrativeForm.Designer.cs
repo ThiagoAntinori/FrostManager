@@ -30,6 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainAdministrativeForm));
             panelSideMenu = new Panel();
+            btnVerBitacora = new Button();
+            btnEliminarPatente = new Button();
+            btnModificarPatente = new Button();
+            btnRegistrarPatente = new Button();
+            btnEliminarFamilia = new Button();
+            btnModificarFamilia = new Button();
+            btnRegistrarFamilia = new Button();
+            btnRespaldo = new Button();
             btnVerUsuarios = new Button();
             btnCambiarEstadoUsuario = new Button();
             btnEditarUsuario = new Button();
@@ -38,7 +46,6 @@
             pictureBox1 = new PictureBox();
             panelChildForm = new Panel();
             pictureBox2 = new PictureBox();
-            btnRespaldo = new Button();
             panelSideMenu.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -48,6 +55,14 @@
             // 
             // panelSideMenu
             // 
+            panelSideMenu.AutoScroll = true;
+            panelSideMenu.Controls.Add(btnVerBitacora);
+            panelSideMenu.Controls.Add(btnEliminarPatente);
+            panelSideMenu.Controls.Add(btnModificarPatente);
+            panelSideMenu.Controls.Add(btnRegistrarPatente);
+            panelSideMenu.Controls.Add(btnEliminarFamilia);
+            panelSideMenu.Controls.Add(btnModificarFamilia);
+            panelSideMenu.Controls.Add(btnRegistrarFamilia);
             panelSideMenu.Controls.Add(btnRespaldo);
             panelSideMenu.Controls.Add(btnVerUsuarios);
             panelSideMenu.Controls.Add(btnCambiarEstadoUsuario);
@@ -60,6 +75,126 @@
             panelSideMenu.Size = new Size(200, 450);
             panelSideMenu.TabIndex = 0;
             // 
+            // btnVerBitacora
+            // 
+            btnVerBitacora.Dock = DockStyle.Top;
+            btnVerBitacora.FlatAppearance.BorderSize = 0;
+            btnVerBitacora.FlatStyle = FlatStyle.Flat;
+            btnVerBitacora.Font = new Font("Microsoft JhengHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVerBitacora.ForeColor = SystemColors.ControlLightLight;
+            btnVerBitacora.Location = new Point(0, 567);
+            btnVerBitacora.Name = "btnVerBitacora";
+            btnVerBitacora.Size = new Size(183, 40);
+            btnVerBitacora.TabIndex = 12;
+            btnVerBitacora.Text = "Ver Bitácora";
+            btnVerBitacora.UseVisualStyleBackColor = true;
+            btnVerBitacora.Click += btnVerBitacora_Click;
+            // 
+            // btnEliminarPatente
+            // 
+            btnEliminarPatente.Dock = DockStyle.Top;
+            btnEliminarPatente.FlatAppearance.BorderSize = 0;
+            btnEliminarPatente.FlatStyle = FlatStyle.Flat;
+            btnEliminarPatente.Font = new Font("Microsoft JhengHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEliminarPatente.ForeColor = SystemColors.ControlLightLight;
+            btnEliminarPatente.Location = new Point(0, 527);
+            btnEliminarPatente.Name = "btnEliminarPatente";
+            btnEliminarPatente.Size = new Size(183, 40);
+            btnEliminarPatente.TabIndex = 11;
+            btnEliminarPatente.Text = "Eliminar Patente";
+            btnEliminarPatente.UseVisualStyleBackColor = true;
+            btnEliminarPatente.Click += btnEliminarPatente_Click;
+            // 
+            // btnModificarPatente
+            // 
+            btnModificarPatente.Dock = DockStyle.Top;
+            btnModificarPatente.FlatAppearance.BorderSize = 0;
+            btnModificarPatente.FlatStyle = FlatStyle.Flat;
+            btnModificarPatente.Font = new Font("Microsoft JhengHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModificarPatente.ForeColor = SystemColors.ControlLightLight;
+            btnModificarPatente.Location = new Point(0, 487);
+            btnModificarPatente.Name = "btnModificarPatente";
+            btnModificarPatente.Size = new Size(183, 40);
+            btnModificarPatente.TabIndex = 10;
+            btnModificarPatente.Text = "Modificar Patente";
+            btnModificarPatente.UseVisualStyleBackColor = true;
+            btnModificarPatente.Click += btnModificarPatente_Click;
+            // 
+            // btnRegistrarPatente
+            // 
+            btnRegistrarPatente.Dock = DockStyle.Top;
+            btnRegistrarPatente.FlatAppearance.BorderSize = 0;
+            btnRegistrarPatente.FlatStyle = FlatStyle.Flat;
+            btnRegistrarPatente.Font = new Font("Microsoft JhengHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRegistrarPatente.ForeColor = SystemColors.ControlLightLight;
+            btnRegistrarPatente.Location = new Point(0, 447);
+            btnRegistrarPatente.Name = "btnRegistrarPatente";
+            btnRegistrarPatente.Size = new Size(183, 40);
+            btnRegistrarPatente.TabIndex = 9;
+            btnRegistrarPatente.Text = "Registrar Patente";
+            btnRegistrarPatente.UseVisualStyleBackColor = true;
+            btnRegistrarPatente.Click += btnRegistrarPatente_Click;
+            // 
+            // btnEliminarFamilia
+            // 
+            btnEliminarFamilia.Dock = DockStyle.Top;
+            btnEliminarFamilia.FlatAppearance.BorderSize = 0;
+            btnEliminarFamilia.FlatStyle = FlatStyle.Flat;
+            btnEliminarFamilia.Font = new Font("Microsoft JhengHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEliminarFamilia.ForeColor = SystemColors.ControlLightLight;
+            btnEliminarFamilia.Location = new Point(0, 407);
+            btnEliminarFamilia.Name = "btnEliminarFamilia";
+            btnEliminarFamilia.Size = new Size(183, 40);
+            btnEliminarFamilia.TabIndex = 8;
+            btnEliminarFamilia.Text = "Eliminar Familia";
+            btnEliminarFamilia.UseVisualStyleBackColor = true;
+            btnEliminarFamilia.Click += btnEliminarFamilia_Click;
+            // 
+            // btnModificarFamilia
+            // 
+            btnModificarFamilia.Dock = DockStyle.Top;
+            btnModificarFamilia.FlatAppearance.BorderSize = 0;
+            btnModificarFamilia.FlatStyle = FlatStyle.Flat;
+            btnModificarFamilia.Font = new Font("Microsoft JhengHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModificarFamilia.ForeColor = SystemColors.ControlLightLight;
+            btnModificarFamilia.Location = new Point(0, 367);
+            btnModificarFamilia.Name = "btnModificarFamilia";
+            btnModificarFamilia.Size = new Size(183, 40);
+            btnModificarFamilia.TabIndex = 7;
+            btnModificarFamilia.Text = "Modificar Familia";
+            btnModificarFamilia.UseVisualStyleBackColor = true;
+            btnModificarFamilia.Click += btnModificarFamilia_Click;
+            // 
+            // btnRegistrarFamilia
+            // 
+            btnRegistrarFamilia.Dock = DockStyle.Top;
+            btnRegistrarFamilia.FlatAppearance.BorderSize = 0;
+            btnRegistrarFamilia.FlatStyle = FlatStyle.Flat;
+            btnRegistrarFamilia.Font = new Font("Microsoft JhengHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRegistrarFamilia.ForeColor = SystemColors.ControlLightLight;
+            btnRegistrarFamilia.Location = new Point(0, 327);
+            btnRegistrarFamilia.Name = "btnRegistrarFamilia";
+            btnRegistrarFamilia.Size = new Size(183, 40);
+            btnRegistrarFamilia.TabIndex = 6;
+            btnRegistrarFamilia.Text = "Registrar Familia";
+            btnRegistrarFamilia.UseVisualStyleBackColor = true;
+            btnRegistrarFamilia.Click += btnRegistrarFamilia_Click;
+            // 
+            // btnRespaldo
+            // 
+            btnRespaldo.Dock = DockStyle.Top;
+            btnRespaldo.FlatAppearance.BorderSize = 0;
+            btnRespaldo.FlatStyle = FlatStyle.Flat;
+            btnRespaldo.Font = new Font("Microsoft JhengHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRespaldo.ForeColor = SystemColors.ControlLightLight;
+            btnRespaldo.Location = new Point(0, 287);
+            btnRespaldo.Name = "btnRespaldo";
+            btnRespaldo.Size = new Size(183, 40);
+            btnRespaldo.TabIndex = 5;
+            btnRespaldo.Text = "Respaldar Datos";
+            btnRespaldo.UseVisualStyleBackColor = true;
+            btnRespaldo.Click += btnRespaldo_Click;
+            // 
             // btnVerUsuarios
             // 
             btnVerUsuarios.Dock = DockStyle.Top;
@@ -69,7 +204,7 @@
             btnVerUsuarios.ForeColor = SystemColors.ControlLightLight;
             btnVerUsuarios.Location = new Point(0, 247);
             btnVerUsuarios.Name = "btnVerUsuarios";
-            btnVerUsuarios.Size = new Size(200, 40);
+            btnVerUsuarios.Size = new Size(183, 40);
             btnVerUsuarios.TabIndex = 4;
             btnVerUsuarios.Text = "Ver Usuarios";
             btnVerUsuarios.UseVisualStyleBackColor = true;
@@ -80,11 +215,11 @@
             btnCambiarEstadoUsuario.Dock = DockStyle.Top;
             btnCambiarEstadoUsuario.FlatAppearance.BorderSize = 0;
             btnCambiarEstadoUsuario.FlatStyle = FlatStyle.Flat;
-            btnCambiarEstadoUsuario.Font = new Font("Microsoft JhengHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCambiarEstadoUsuario.Font = new Font("Microsoft JhengHei UI", 10.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCambiarEstadoUsuario.ForeColor = SystemColors.ControlLightLight;
             btnCambiarEstadoUsuario.Location = new Point(0, 207);
             btnCambiarEstadoUsuario.Name = "btnCambiarEstadoUsuario";
-            btnCambiarEstadoUsuario.Size = new Size(200, 40);
+            btnCambiarEstadoUsuario.Size = new Size(183, 40);
             btnCambiarEstadoUsuario.TabIndex = 3;
             btnCambiarEstadoUsuario.Text = "Cambiar Estado Usuario";
             btnCambiarEstadoUsuario.UseVisualStyleBackColor = true;
@@ -99,7 +234,7 @@
             btnEditarUsuario.ForeColor = SystemColors.ControlLightLight;
             btnEditarUsuario.Location = new Point(0, 167);
             btnEditarUsuario.Name = "btnEditarUsuario";
-            btnEditarUsuario.Size = new Size(200, 40);
+            btnEditarUsuario.Size = new Size(183, 40);
             btnEditarUsuario.TabIndex = 2;
             btnEditarUsuario.Text = "Modificar Usuario";
             btnEditarUsuario.UseVisualStyleBackColor = true;
@@ -114,7 +249,7 @@
             btnRegistrarUsuario.ForeColor = SystemColors.ControlLightLight;
             btnRegistrarUsuario.Location = new Point(0, 127);
             btnRegistrarUsuario.Name = "btnRegistrarUsuario";
-            btnRegistrarUsuario.Size = new Size(200, 40);
+            btnRegistrarUsuario.Size = new Size(183, 40);
             btnRegistrarUsuario.TabIndex = 1;
             btnRegistrarUsuario.Text = "Registrar Usuario";
             btnRegistrarUsuario.UseVisualStyleBackColor = true;
@@ -126,7 +261,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(200, 127);
+            panel1.Size = new Size(183, 127);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -135,7 +270,7 @@
             pictureBox1.Image = Properties.Resources.FrostManagerLogo;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(200, 127);
+            pictureBox1.Size = new Size(183, 127);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -161,21 +296,6 @@
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
             // 
-            // btnRespaldo
-            // 
-            btnRespaldo.Dock = DockStyle.Top;
-            btnRespaldo.FlatAppearance.BorderSize = 0;
-            btnRespaldo.FlatStyle = FlatStyle.Flat;
-            btnRespaldo.Font = new Font("Microsoft JhengHei UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRespaldo.ForeColor = SystemColors.ControlLightLight;
-            btnRespaldo.Location = new Point(0, 287);
-            btnRespaldo.Name = "btnRespaldo";
-            btnRespaldo.Size = new Size(200, 40);
-            btnRespaldo.TabIndex = 5;
-            btnRespaldo.Text = "Respaldar Datos";
-            btnRespaldo.UseVisualStyleBackColor = true;
-            btnRespaldo.Click += btnRespaldo_Click;
-            // 
             // MainAdministrativeForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -186,7 +306,8 @@
             Controls.Add(panelSideMenu);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainAdministrativeForm";
-            Text = "MainAdministrativeForm";
+            Text = "ADMINISTRACION | FROSTMANAGER";
+            Load += MainAdministrativeForm_Load;
             panelSideMenu.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -207,5 +328,12 @@
         private Panel panelChildForm;
         private PictureBox pictureBox2;
         private Button btnRespaldo;
+        private Button btnModificarFamilia;
+        private Button btnRegistrarFamilia;
+        private Button btnEliminarFamilia;
+        private Button btnRegistrarPatente;
+        private Button btnEliminarPatente;
+        private Button btnModificarPatente;
+        private Button btnVerBitacora;
     }
 }

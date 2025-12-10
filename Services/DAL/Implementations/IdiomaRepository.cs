@@ -45,7 +45,7 @@ namespace Services.DAL.Implementations
 
                 string localPath = $"{path}.{cultura}";
 
-                using(StreamReader sr = new StreamReader(localPath))
+                using (StreamReader sr = new StreamReader(localPath))
                 {
                     while (!sr.EndOfStream)
                     {
@@ -54,7 +54,7 @@ namespace Services.DAL.Implementations
                         string key = strings[0];
                         string value = strings[1];
 
-                        if(key.ToLower() == word.ToLower())
+                        if (key.ToLower() == word.ToLower())
                         {
                             return value;
                         }
@@ -62,12 +62,12 @@ namespace Services.DAL.Implementations
                 }
                 throw new WordNotFoundException();
             }
-            catch(WordNotFoundException wordNotFound)
+            catch (WordNotFoundException wordNotFound)
             {
                 AgregarDataKey(word);
                 throw;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExceptionExtension.Handle(ex);
                 throw;
@@ -82,14 +82,68 @@ namespace Services.DAL.Implementations
 
                 string localPath = $"{path}.{cultura}";
 
-                using(StreamWriter sw = new StreamWriter(localPath, true))
+                bool keyExists = false;
+                if (File.Exists(localPath))
                 {
-                    sw.WriteLine($"{key.ToLower()}=NOT_FOUND");
+                    string[] lines = File.ReadAllLines(localPath);
+                    foreach (string line in lines)
+                    {
+                        if (line.StartsWith(key.ToLower() + "="))
+                        {
+                            keyExists = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!keyExists)
+                {
+                    using (StreamWriter sw = new StreamWriter(localPath, true))
+                    {
+                        sw.WriteLine($"{key.ToLower()}=NOT_FOUND");
+                    }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
+            }
+        }
+
+        public List<string> ObtenerCodigosDeCulturaDisponibles()
+        {
+            try
+            {
+                List<string> codigos = new List<string>();
+                if (string.IsNullOrEmpty(folderPath) || !Directory.Exists(folderPath))
+                {
+                    return new List<string>
+                    {
+                        Thread.CurrentThread.CurrentCulture.Name
+                    };
+                }
+
+                string filePattern = $"{fileName}.*.resx";
+                string[] archivos = Directory.GetFiles(folderPath, $"{fileName}.*");
+
+                foreach (string archivo in archivos)
+                {
+                    string nombreArchivoCompleto = Path.GetFileName(archivo);
+
+                    if (nombreArchivoCompleto.Contains("."))
+                    {
+                        int lastDotIndex = nombreArchivoCompleto.LastIndexOf('.');
+                        string codigoCultura = nombreArchivoCompleto.Substring(lastDotIndex + 1);
+                        codigos.Add(codigoCultura);
+                    }
+                }
+
+                return codigos.Distinct().ToList();
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+                throw;
             }
         }
     }

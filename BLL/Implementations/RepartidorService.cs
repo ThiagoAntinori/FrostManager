@@ -4,6 +4,8 @@ using DAL.Implementations.Factory;
 using DAL.Implementations.SqlServer;
 using Domain;
 using Services.BLL.Extensions;
+using Services.BLL.Services;
+using Services.Domain.Exceptions.BusinessExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,13 +40,14 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.IdRepartidor, nameof(item.IdRepartidor));
                 ValidationHelper.NotEmpty(item.Nombre, nameof(item.Nombre));
                 ValidationHelper.NotEmpty(item.Apellido, nameof(item.Apellido));
-                ValidationHelper.NotEmpty(item.Telefono, nameof(item.Telefono));
-                if(item.Telefono.Length != 10)
+                ValidationHelper.NotEmpty(item.Email, nameof(item.Email));
+                if(!item.Email.Contains('@'))
                 {
-                    throw new Exception("El telefono debe tener al menos 10 dígitos");
+                    throw new DatosInvalidosException("Email", "Debe contener '@'");
                 }
 
                 Repository.GetRepartidorInstance().Insert(item);
+                LoggerHelper.RegistrarAlta(item);
             }
             catch (Exception ex)
             {
@@ -60,6 +63,7 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.IdRepartidor, nameof(item.IdRepartidor));
 
                 Repository.GetRepartidorInstance().Delete(item);
+                LoggerHelper.RegistrarBaja(item);
             }
             catch (Exception ex)
             {
@@ -86,10 +90,6 @@ namespace BLL.Implementations
             {
                 ValidationHelper.NotEmptyGuid(id, nameof(id));
                 Repartidor repartidor = Repository.GetRepartidorInstance().GetById(id);
-                if(repartidor == null)
-                {
-                    throw new Exception("No se encontró el objeto.");
-                }
                 return repartidor;
             }
             catch (Exception ex)
@@ -107,16 +107,42 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.IdRepartidor, nameof(item.IdRepartidor));
                 ValidationHelper.NotEmpty(item.Nombre, nameof(item.Nombre));
                 ValidationHelper.NotEmpty(item.Apellido, nameof(item.Apellido));
-                ValidationHelper.NotEmpty(item.Telefono, nameof(item.Telefono));
-                if (item.Telefono.Length != 10)
+                ValidationHelper.NotEmpty(item.Email, nameof(item.Email));
+                if (!item.Email.Contains('@'))
                 {
-                    throw new Exception("El telefono debe tener al menos 10 dígitos");
-                }
-                if(Repository.GetRepartidorInstance().GetById(item.IdRepartidor) == null)
-                {
-                    throw new Exception("No se encontró el Repartidor a modificar.");
+                    throw new DatosInvalidosException("Email", "Debe contener '@'");
                 }
                 Repository.GetRepartidorInstance().Update(item);
+                LoggerHelper.RegistrarModificacion(item);
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+            }
+        }
+
+        public void NotificarPedidoARepartidor(Pedido pedido)
+        {
+            try
+            {
+                ValidationHelper.NotNull(pedido, nameof(pedido));
+                ValidationHelper.NotNull(pedido.Repartidor, nameof(pedido.Repartidor));
+
+                StringBuilder cuerpo = new StringBuilder();
+                cuerpo.AppendLine("--- Detalle de Nuevo Pedido de Delivery ---");
+                cuerpo.AppendLine($"Fecha y Hora: {pedido.Venta.Fecha:dd/MM/yyyy} {pedido.Venta.Hora:hh:mm}");
+                cuerpo.AppendLine($"Monto Total: {pedido.Venta.CalcularTotal():C}");
+                cuerpo.AppendLine($"Medio de Pago: {pedido.Venta.MedioDePago.ToString()}");
+                cuerpo.AppendLine(new string('-', 30));
+
+                cuerpo.AppendLine("Detalles del Cliente:");
+                cuerpo.AppendLine($"Nombre: {pedido.Cliente.ToString()}");
+                cuerpo.AppendLine($"Dirección de Entrega: {pedido.Cliente.Direccion}");
+                cuerpo.AppendLine($"Teléfono: {pedido.Cliente.Telefono}");
+
+                string asunto = $"NUEVO PEDIDO ASOCIADO: Entrega a {pedido.Cliente.ToString()}";
+
+                EmailService.EnviarEmail(pedido.Repartidor.Email, asunto, cuerpo.ToString());
             }
             catch (Exception ex)
             {

@@ -33,7 +33,8 @@ namespace DAL.Adapter
                 IdRepartidor = Guid.Parse(values[0].ToString()),
                 Nombre = values[1].ToString(),
                 Apellido = values[2].ToString(),
-                Telefono = values[3].ToString(),
+                Email = values[3].ToString(),
+                Activo = bool.Parse(values[4].ToString())
             };
         }
     }

@@ -1,5 +1,7 @@
 ﻿using DAL.Contracts;
 using DAL.Implementations.SqlServer;
+using DAL.Tools;
+using Services.BLL.Extensions;
 using Services.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -108,7 +110,7 @@ namespace DAL.Implementations.Factory
         {
             if (backendType == "sqlserver")
             {
-                return new VentaRepository();
+                return new VentaSqlRepository();
             }
             throw new DataAccessException("No fue posible ingresar a los datos");
         }

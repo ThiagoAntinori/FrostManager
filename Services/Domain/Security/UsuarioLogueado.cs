@@ -9,6 +9,7 @@ namespace Services.Domain.Security
     public class UsuarioLogueado
     {
         public Usuario Usuario { get; private set; }
+        public static Dictionary<string, int> cantidadIntentos = new Dictionary<string, int>();
         public string IdiomaSeleccionado { get; private set; }
         private static UsuarioLogueado _instance;
         private static readonly object _lock = new object();
@@ -52,5 +53,15 @@ namespace Services.Domain.Security
             this.IdiomaSeleccionado = nuevoIdioma;
         }
 
+        public static void SumarIntento(string nombreUsuario)
+        {
+            cantidadIntentos.TryAdd(nombreUsuario, 0);
+            cantidadIntentos[nombreUsuario]++;
+        }
+
+        public static void ReiniciarIntentos()
+        {
+            cantidadIntentos = new Dictionary<string, int>();
+        }
     }
 }

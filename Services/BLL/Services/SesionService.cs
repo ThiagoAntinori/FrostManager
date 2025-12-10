@@ -9,6 +9,7 @@ using Services.BLL.Extensions;
 using Services.DAL.Implementations;
 using System.Net.Mail;
 using System.Net;
+using Services.Domain.Exceptions;
 
 namespace Services.BLL.Services
 {
@@ -29,7 +30,7 @@ namespace Services.BLL.Services
                 Usuario usuarioRegistrado = UsuarioService.Current.GetByCredentials(nombreUsuario, password);
                 if(usuarioRegistrado == null)
                 {
-                    throw new Exception("Usuario o contraseña incorrectos");
+                    throw new CredencialesIncorrectasException(nombreUsuario);
                 }
                 if (!usuarioRegistrado.EstaHabilitado)
                 {
@@ -38,9 +39,26 @@ namespace Services.BLL.Services
                 UsuarioLogueado.IniciarSesion(usuarioRegistrado);
                 LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Information, "Ocurrió un inicio de sesión."));
             }
+            catch(CredencialesIncorrectasException credEx)
+            {
+                UsuarioLogueado.SumarIntento(nombreUsuario);
+                if (UsuarioLogueado.cantidadIntentos[nombreUsuario] >= 3)
+                {
+                    Usuario usuarioADeshabilitar = UsuarioService.Current.GetByNombreUsuario(nombreUsuario);
+                    if (usuarioADeshabilitar.EstaHabilitado)
+                    {
+                        UsuarioService.Current.CambiarEstado(usuarioADeshabilitar);
+                    }
+                    throw new Exception(credEx.Message + "\nSe alcanzó el máximo de intentos y el usuario fue bloqueado. Contacte al administrador.");
+                }
+                else
+                {
+                    throw new Exception(credEx.Message + $"\nIntentos restantes: {UsuarioLogueado.cantidadIntentos[nombreUsuario]}");
+                }
+            }
             catch(Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
             }
         }
 
@@ -61,7 +79,7 @@ namespace Services.BLL.Services
                 {
                     throw new Exception("Ya hay un token activo. Revise su correo electrónico");
                 }
-                PasswordToken nuevoToken = new PasswordToken(Guid.NewGuid().ToString(), usuarioARecuperar, DateTime.Now.AddMinutes(15));
+                PasswordToken nuevoToken = new PasswordToken(Guid.NewGuid(), UsuarioService.Current.GenerarPassword(), usuarioARecuperar, DateTime.Now.AddMinutes(15));
                 PasswordTokenRepository.Current.Insert(nuevoToken);
                 string asunto = "Recuperación de contraseña - FrostManager";
                 string cuerpo = $"Hola {usuarioARecuperar.Nombre},\n\n" +
@@ -95,7 +113,7 @@ namespace Services.BLL.Services
                 {
                     throw new Exception("El token ya expiró. Solicite uno nuevo");
                 }
-                if(resetToken.Usuario == null || resetToken.Usuario.EstaHabilitado == false)
+                if(resetToken.Usuario == null || !resetToken.Usuario.EstaHabilitado)
                 {
                     throw new Exception("El usuario no existe o está deshabilitado");
                 }
@@ -127,10 +145,10 @@ namespace Services.BLL.Services
                 {
                     throw new Exception("La nueva contraseña debe tener al menos 8 caracteres");
                 }
-                Usuario usuarioACambiar = UsuarioRepository.Current.GetByCredentials(nombreUsuario, contraseñaActual);
+                Usuario usuarioACambiar = UsuarioService.Current.GetByCredentials(nombreUsuario, contraseñaActual);
                 if(usuarioACambiar == null)
                 {
-                    throw new Exception("Usuario o contraseña incorrectos");
+                    throw new Exception("Contraseña actual o token incorrectos.");
                 }
                 usuarioACambiar.Password = CriptographyService.HashMd5(nuevaContraseña);
                 UsuarioRepository.Current.Update(usuarioACambiar);
@@ -140,6 +158,47 @@ namespace Services.BLL.Services
             {
                 ex.Handle();
             }
+        }
+
+        public static void CambiarContraseña(string token, string nuevaContraseña)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(token))
+                {
+                    throw new Exception("Debe ingresar el token");
+                }
+                if (string.IsNullOrEmpty(nuevaContraseña))
+                {
+                    throw new Exception("Debe ingresar una nueva contraseña");
+                }
+                if(nuevaContraseña.Length < 8)
+                {
+                    throw new Exception("La nueva contraseña debe tener al menos 8 caracteres");
+                }
+                PasswordToken resetToken = PasswordTokenRepository.Current.GetByToken(token);
+                Usuario usuarioACambiar = resetToken.Usuario;
+                if (resetToken == null)
+                {
+                    throw new Exception("No se encontró el token ingresado");
+                }
+                if (resetToken.FechaVencimiento < DateTime.Now)
+                {
+                    throw new Exception("El token ya expiró. Solicite uno nuevo");
+                }
+                if (resetToken.Usuario == null || !resetToken.Usuario.EstaHabilitado)
+                {
+                    throw new Exception("El usuario no existe o está deshabilitado");
+                }
+                usuarioACambiar.Password = CriptographyService.HashMd5(nuevaContraseña);
+                UsuarioRepository.Current.Update(usuarioACambiar);
+                LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Debug, $"Usuario {usuarioACambiar.Nombre} cambió su contraseña"));
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+            }
+
         }
     }
 }

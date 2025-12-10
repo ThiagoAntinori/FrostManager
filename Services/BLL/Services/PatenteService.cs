@@ -1,4 +1,5 @@
 ﻿using Services.BLL.Contracts;
+using Services.BLL.Extensions;
 using Services.DAL.Implementations;
 using Services.Domain.Security;
 using System;
@@ -35,6 +36,10 @@ namespace Services.BLL.Services
                 {
                     throw new Exception("No se pudo registrar la patente.");
                 }
+                if(obj.IdComponente == Guid.Empty)
+                {
+                    throw new Exception("La patente debe tener un ID");
+                }
                 if (string.IsNullOrEmpty(obj.Nombre))
                 {
                     throw new Exception("La patente debe tener un nombre.");
@@ -43,14 +48,29 @@ namespace Services.BLL.Services
             }
             catch (Exception ex)
             {
-
-                throw;
+                ex.Handle();
             }
         }
 
-        public void Delete(Guid id)
+        public void Delete(Patente obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if(obj == null)
+                {
+                    throw new Exception("No se pudo eliminar la patente");
+                }
+                if(obj.IdComponente == Guid.Empty)
+                {
+                    throw new Exception("La patente a eliminar debe tener un ID");
+                }
+                PatenteRepository.Current.Delete(obj);
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+            }
+
         }
 
         public List<Patente> SelectAll()
@@ -67,21 +87,49 @@ namespace Services.BLL.Services
 
         public Patente SelectOne(Guid id)
         {
-            if(id == null || id == Guid.Empty)
+            try
             {
-                throw new Exception("El ID de patente no es válido");
+                if (id == null || id == Guid.Empty)
+                {
+                    throw new Exception("El ID de patente no es válido");
+                }
+                Patente patenteBuscada = PatenteRepository.Current.GetById(id);
+                if (patenteBuscada == null)
+                {
+                    throw new Exception("No se pudo encontrar la pantente con ese ID");
+                }
+                return patenteBuscada;
             }
-            Patente patenteBuscada = PatenteRepository.Current.GetById(id);
-            if(patenteBuscada == null)
+            catch (Exception ex)
             {
-                throw new Exception("No se pudo encontrar la pantente con ese ID");
+                ex.Handle();
+                throw;
             }
-            return patenteBuscada;
+
         }
 
         public void Update(Patente obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (obj == null)
+                {
+                    throw new Exception("No se pudo registrar la patente.");
+                }
+                if (obj.IdComponente == Guid.Empty)
+                {
+                    throw new Exception("La patente debe tener un ID");
+                }
+                if (string.IsNullOrEmpty(obj.Nombre))
+                {
+                    throw new Exception("La patente debe tener un nombre.");
+                }
+                PatenteRepository.Current.Update(obj);
+            }
+            catch(Exception ex)
+            {
+                ex.Handle();
+            }
         }
     }
 }

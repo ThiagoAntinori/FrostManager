@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BLL.Implementations
@@ -42,16 +43,8 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmpty(item.Apellido, nameof(item.Apellido));
                 ValidationHelper.NotEmpty(item.Telefono, nameof(item.Telefono));
                 ValidationHelper.NotEmpty(item.Direccion, nameof(item.DNI));
-
-                if (item.Telefono.Length != 10)
-                {
-                    throw new Exception("El telefono debe tener 10 dígitos");
-                }
-
-                if(item.DNI.Length < 7 || item.DNI.Length > 8)
-                {
-                    throw new Exception("El DNI debe tener entre 7 y 8 caracteres");
-                }
+                item.Telefono = NormalizarTelefono(item.Telefono);
+                item.DNI = NormalizarDni(item.DNI);
 
                 if (this.ExisteCliente(item.DNI))
                 {
@@ -76,7 +69,11 @@ namespace BLL.Implementations
             {
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdCliente, nameof(item.IdCliente));
-
+                IEnumerable<Cliente> registros = Repository.GetClienteInstance().GetAll();
+                if (!DigitoVerificadorService.Current.EsTablaConsistente<Cliente>(registros))
+                {
+                    DigitoVerificadorService.Current.HandleInconsistencia<Cliente>();
+                }
                 Repository.GetClienteInstance().Delete(item);
                 LoggerHelper.RegistrarBaja(item);
             }
@@ -86,10 +83,36 @@ namespace BLL.Implementations
             }
         }
 
+        private string NormalizarTelefono(string telefonoIngresado)
+        {
+            string normalizado = Regex.Replace(telefonoIngresado, @"[^\d\+]", "");
+
+            if (normalizado.Length < 7 || normalizado.Length > 15)
+            {
+                throw new DatosInvalidosException("Teléfono", "Debe tener entre 7 y 15 dígitos");
+            }
+            return normalizado;
+        }
+
+        private string NormalizarDni(string DniIngresado)
+        {
+            string normalizado = Regex.Replace(DniIngresado, @"[^\d]", "");
+            if (normalizado.Length < 7 || normalizado.Length > 8)
+            {
+                throw new DatosInvalidosException("DNI", "Debe tener entre 7 y 8 dígitos");
+            }
+            return normalizado;
+        }
+
         public IEnumerable<Cliente> SelectAll()
         {
             try
             {
+                IEnumerable<Cliente> registros = Repository.GetClienteInstance().GetAll();
+                if (!DigitoVerificadorService.Current.EsTablaConsistente<Cliente>(registros))
+                {
+                    DigitoVerificadorService.Current.HandleInconsistencia<Cliente>();
+                }
                 return Repository.GetClienteInstance().GetAll();
             }
             catch (Exception ex)
@@ -104,6 +127,11 @@ namespace BLL.Implementations
             try
             {
                 ValidationHelper.NotEmptyGuid(id, "ID");
+                IEnumerable<Cliente> registros = Repository.GetClienteInstance().GetAll();
+                if (!DigitoVerificadorService.Current.EsTablaConsistente<Cliente>(registros))
+                {
+                    DigitoVerificadorService.Current.HandleInconsistencia<Cliente>();
+                }
                 return Repository.GetClienteInstance().GetById(id);
             }
             catch (Exception ex)
@@ -123,15 +151,8 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmpty(item.Apellido, nameof(item.Apellido));
                 ValidationHelper.NotEmpty(item.Telefono, nameof(item.Telefono));
                 ValidationHelper.NotEmpty(item.Direccion, nameof(item.Direccion));
-
-                if (item.Telefono.Length != 10)
-                {
-                    throw new Exception("El telefono debe tener 10 dígitos");
-                }
-                if (item.DNI.Length < 7 || item.DNI.Length > 8)
-                {
-                    throw new Exception("El DNI debe tener entre 7 y 8 caracteres");
-                }
+                item.Telefono = NormalizarTelefono(item.Telefono);
+                item.DNI = NormalizarDni(item.DNI);
                 if (this.SelectOne(item.IdCliente) == null)
                 {
                     throw new Exception("No fue posible encontrar al cliente");
@@ -166,6 +187,11 @@ namespace BLL.Implementations
             try
             {
                 ValidationHelper.NotEmpty(DNI, "DNI");
+                IEnumerable<Cliente> registros = Repository.GetClienteInstance().GetAll();
+                if (!DigitoVerificadorService.Current.EsTablaConsistente<Cliente>(registros))
+                {
+                    DigitoVerificadorService.Current.HandleInconsistencia<Cliente>();
+                }
                 return Repository.GetClienteInstance().GetByDNI(DNI);
             }
             catch (Exception ex)

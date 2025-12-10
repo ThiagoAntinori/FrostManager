@@ -34,10 +34,11 @@ namespace Services.DAL.Implementations
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO PASSWORD_RESET (Token, IdUsuario, FechaVencimiento) VALUES (@Token, @IdUsuario, @FechaVencimiento)",
+                SqlHelper.ExecuteNonQuery("INSERT INTO PASSWORD_RESET (IdToken, Token, IdUsuario, FechaVencimiento) VALUES (@IdToken, @Token, @IdUsuario, @FechaVencimiento)",
                     CommandType.Text,
                     new SqlParameter[]
                     {
+                        new SqlParameter("@IdToken", passwordToken.IdToken),
                         new SqlParameter("@Token", passwordToken.Token),
                         new SqlParameter("@IdUsuario", passwordToken.Usuario.IdUsuario),
                         new SqlParameter("@FechaVencimiento", passwordToken.FechaVencimiento)
@@ -55,7 +56,7 @@ namespace Services.DAL.Implementations
             {
                 List<PasswordToken> tokens = new List<PasswordToken>();
                 PasswordToken passwordToken = null;
-                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT Token, IdUsuario, FechaVencimiento FROM PASSWORD_RESET WHERE IdUsuario = @IdUsuario",
+                using(SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdToken, Token, FechaVencimiento, IdUsuario FROM PASSWORD_RESET WHERE IdUsuario = @IdUsuario",
                     CommandType.Text,
                     new SqlParameter[]
                     {
@@ -69,10 +70,11 @@ namespace Services.DAL.Implementations
                         reader.GetValues(values);
                         passwordToken = new PasswordToken
                         {
-                            Token = values[0].ToString(),
+                            IdToken = Guid.Parse(values[0].ToString()),
+                            Token = values[1].ToString(),
                             FechaVencimiento = Convert.ToDateTime(values[2].ToString())
                         };
-                        passwordToken.Usuario = UsuarioRepository.Current.GetById(Guid.Parse(values[1].ToString()));
+                        passwordToken.Usuario = UsuarioRepository.Current.GetById(Guid.Parse(values[3].ToString()));
                         tokens.Add(passwordToken);
                     }
                     return tokens;
@@ -91,7 +93,7 @@ namespace Services.DAL.Implementations
             try
             {
                 PasswordToken passwordToken = null;
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT Token, IdUsuario, FechaVencimiento FROM PASSWORD_RESET WHERE Token = @Token",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdToken, Token, FechaVencimiento, IdUsuario FROM PASSWORD_RESET WHERE Token = @Token",
                     CommandType.Text,
                     new SqlParameter[]
                     {
@@ -105,10 +107,11 @@ namespace Services.DAL.Implementations
                         reader.GetValues(values);
                         passwordToken = new PasswordToken
                         {
-                            Token = values[0].ToString(),
+                            IdToken = Guid.Parse(values[0].ToString()),
+                            Token = values[1].ToString(),
                             FechaVencimiento = Convert.ToDateTime(values[2].ToString())
                         };
-                        passwordToken.Usuario = UsuarioRepository.Current.GetById(Guid.Parse(values[1].ToString()));
+                        passwordToken.Usuario = UsuarioRepository.Current.GetById(Guid.Parse(values[3].ToString()));
                         return passwordToken;
                     }
                 }
@@ -116,6 +119,7 @@ namespace Services.DAL.Implementations
             }
             catch (Exception ex)
             {
+                ex.Handle();
                 throw;
             }
         }

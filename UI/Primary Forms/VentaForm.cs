@@ -49,20 +49,33 @@ namespace UI.Primary_Forms
                     CambiarIdioma();
                 }
                 ActualizarDataGridViewProductos(ProductoService.Current.SelectAll());
-                if(VentaService.Current.SelectVentaEnCurso() != null)
+                ventaEnCurso = VentaService.Current.SelectVentaPendiente();
+                if (ventaEnCurso != null)
                 {
-                    if(MessageBox.Show("Hay una venta en curso, ¿Desea continuarla?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if(ventaEnCurso.EstadoVenta == EstadoVenta.EnCurso)
                     {
-                        ventaEnCurso = VentaService.Current.SelectVentaEnCurso();
-                        ActualizarDataGridViewDetalles(DetalleVentaService.Current.GetByIdVenta(ventaEnCurso.IdVenta));
+                        if (MessageBox.Show("Hay una venta en curso, ¿Desea continuarla?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            ActualizarDataGridViewDetalles(DetalleVentaService.Current.GetByIdVenta(ventaEnCurso.IdVenta));
+                        }
+                        else
+                        {
+                            VentaService.Current.Delete(ventaEnCurso);
+                            ventaEnCurso = new Venta()
+                            {
+                                IdVenta = Guid.NewGuid()
+                            };
+                            VentaService.Current.Add(ventaEnCurso);
+                        }
+                    }
+                    else if(ventaEnCurso.EstadoVenta == EstadoVenta.PendienteDePago)
+                    {
+                        btnConfirmar_Click(this, e);
+                        return;
                     }
                     else
                     {
-                        ventaEnCurso = new Venta()
-                        {
-                            IdVenta = Guid.NewGuid()
-                        };
-                        VentaService.Current.Add(ventaEnCurso);
+                        throw new Exception("Error al buscar ventas pendientes");
                     }
                 }
                 else
@@ -128,19 +141,23 @@ namespace UI.Primary_Forms
                             }
                             if(ventaEnCurso.EsDelivery && !pedidoCreado)
                             {
-                                MessageBox.Show("El pedido no fue completado. La venta será cancelada.", "Advertencia", MessageBoxButtons.OK);
-                                ventaEnCurso.EstadoVenta = EstadoVenta.Cancelada;
+                                MessageBox.Show("El pedido no fue completado. La venta seguirá en curso", "Advertencia", MessageBoxButtons.OK);
+                                ventaEnCurso.EstadoVenta = EstadoVenta.EnCurso;
                             }
                             else
                             {
-                                ventaEnCurso.EstadoVenta = ventaEnCurso.EsDelivery
-                                                            ? EstadoVenta.PendienteDeEntrega
-                                                            : EstadoVenta.Finalizada;
-                                VentaService.Current.ConfirmarVenta(ventaEnCurso);
+                                if (ventaEnCurso.EsDelivery)
+                                {
+                                    ventaEnCurso.EstadoVenta = EstadoVenta.PendienteDeEntrega;
+                                }
+                                else
+                                {
+                                    ventaEnCurso.EstadoVenta = EstadoVenta.Finalizada;
+                                    VentaService.Current.ConfirmarVenta(ventaEnCurso);
+                                }
                             }
-
                             VentaService.Current.Update(ventaEnCurso);
-                            MessageBox.Show("¡Venta registrada con éxito!");
+                            MessageBox.Show($"Registro de venta finalizado. Estado de venta: {ventaEnCurso.EstadoVenta}");
                         }
                         else
                         {
@@ -150,7 +167,6 @@ namespace UI.Primary_Forms
                         }
                     }
                 }
-                
                 this.Close();
             }
             catch (Exception ex)

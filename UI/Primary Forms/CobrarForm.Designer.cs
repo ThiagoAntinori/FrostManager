@@ -81,7 +81,7 @@
             Controls.Add(cmbMedioPago);
             Controls.Add(lblSeleccionarMedioPago);
             Name = "CobrarForm";
-            Text = "CobrarForm";
+            Text = "Cobrar Venta";
             Load += CobrarForm_Load;
             ResumeLayout(false);
             PerformLayout();

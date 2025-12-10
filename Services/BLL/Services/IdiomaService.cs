@@ -1,4 +1,5 @@
 ﻿using Services.BLL.Contracts;
+using Services.BLL.DTOs;
 using Services.BLL.Extensions;
 using Services.DAL.Implementations;
 using Services.Domain.Exceptions;
@@ -81,11 +82,47 @@ namespace Services.BLL.Services
             catch(WordNotFoundException wordNotFoundEx)
             {
                 CambiarIdioma(cultura);
-                ExceptionExtension.Handle(wordNotFoundEx);
+                wordNotFoundEx.Handle();
             }
             catch(Exception ex)
             {
                 ExceptionExtension.Handle(ex);
+            }
+        }
+
+        public List<IdiomaDTO> ObtenerIdiomasParaDisplay()
+        {
+            try
+            {
+                List<IdiomaDTO> idiomasDisplay = new List<IdiomaDTO>();
+                List<string> codigosCultura = IdiomaRepository.Current.ObtenerCodigosDeCulturaDisponibles();
+
+                foreach(string codigo in codigosCultura)
+                {
+                    try
+                    {
+                        CultureInfo info = new CultureInfo(codigo);
+                        idiomasDisplay.Add(new IdiomaDTO()
+                        {
+                            CodigoCultura = codigo,
+                            NombreDisplay = info.NativeName
+                        });
+                    }
+                    catch (CultureNotFoundException)
+                    {
+                        idiomasDisplay.Add(new IdiomaDTO()
+                        {
+                            CodigoCultura = codigo,
+                            NombreDisplay = $"Cultura Inválida ({codigo})"
+                        });
+                    }
+                }
+                return idiomasDisplay.OrderByDescending(i => i.CodigoCultura == Thread.CurrentThread.CurrentCulture.Name).ToList();
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+                throw;
             }
         }
     }

@@ -9,6 +9,7 @@ namespace DAL.Contracts
 {
     public interface IDetalleVentaRepository : IGenericRepository<DetalleVenta>
     {
-        List<DetalleVenta> GetByIdVenta(Guid idVenta);
+        IEnumerable<DetalleVenta> GetByIdVenta(Guid idVenta);
+        IEnumerable<DetalleVenta> GetDetallesPendientesByProducto(Guid IdProducto);
     }
 }

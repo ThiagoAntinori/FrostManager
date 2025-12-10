@@ -62,6 +62,7 @@
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductos.Size = new Size(530, 321);
             dgvProductos.TabIndex = 1;
+            dgvProductos.SelectionChanged += dgvProductos_SelectionChanged;
             // 
             // lblTitulo
             // 
@@ -77,16 +78,18 @@
             // 
             // lblBuscar
             // 
+            lblBuscar.Anchor = AnchorStyles.None;
             lblBuscar.AutoSize = true;
             lblBuscar.ForeColor = SystemColors.ActiveCaptionText;
             lblBuscar.Location = new Point(45, 456);
             lblBuscar.Name = "lblBuscar";
-            lblBuscar.Size = new Size(117, 15);
+            lblBuscar.Size = new Size(113, 15);
             lblBuscar.TabIndex = 3;
             lblBuscar.Text = "Buscar por Nombre:";
             // 
             // txtBuscarNombre
             // 
+            txtBuscarNombre.Anchor = AnchorStyles.None;
             txtBuscarNombre.Location = new Point(45, 483);
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(187, 23);
@@ -94,6 +97,7 @@
             // 
             // btnBuscar
             // 
+            btnBuscar.Anchor = AnchorStyles.None;
             btnBuscar.ForeColor = SystemColors.ActiveCaptionText;
             btnBuscar.Location = new Point(240, 483);
             btnBuscar.Name = "btnBuscar";
@@ -114,6 +118,7 @@
             btnEliminar.TabIndex = 6;
             btnEliminar.Text = "Eliminar Producto";
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // EliminarProductoForm
             // 
@@ -130,6 +135,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "EliminarProductoForm";
             Text = "EliminarProductoForm";
+            Load += EliminarProductoForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
             ResumeLayout(false);
             PerformLayout();

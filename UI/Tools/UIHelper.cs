@@ -2,7 +2,9 @@
 using Services.BLL.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,7 +54,7 @@ namespace UI.Tools
                     {
                         if (ctrl.Visible == true)
                         {
-                            if (ctrl is Button || ctrl is Label)
+                            if (ctrl is Button || ctrl is Label || ctrl is GroupBox || ctrl is CheckBox)
                             {
                                 string nuevoTexto = ctrl.Name.Traducir();
                                 ctrl.Text = nuevoTexto == null ? ctrl.Text : nuevoTexto;
@@ -67,7 +69,7 @@ namespace UI.Tools
             }
             catch (Exception ex)
             {
-                throw;
+                ex.Handle();
             }
         }
     }

@@ -10,5 +10,6 @@ namespace Services.DAL.Contracts
     public interface ILogger
     {
         void WriteLog(LogEntry log);
+        List<LogEntry> GetLogs();
     }
 }

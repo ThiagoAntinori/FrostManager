@@ -54,7 +54,7 @@ namespace BLL.Tools
             }
         }
 
-        public static void RegistrarGenerico(string operacion, object entidad)
+        public static void RegistrarOperacionGenerica(string operacion, object entidad)
         {
             try
             {
@@ -62,6 +62,19 @@ namespace BLL.Tools
                 LoggerService.GetLogger().WriteLog(registroGenerico);
             }
             catch(Exception ex)
+            {
+                ex.Handle();
+            }
+        }
+
+        public static void RegistrarAlerta(string mensaje)
+        {
+            try
+            {
+                LogEntry registroAlerta = new LogEntry(DateTime.Now, LogLevel.Warning, mensaje);
+                LoggerService.GetLogger().WriteLog(registroAlerta);
+            }
+            catch (Exception ex)
             {
                 ex.Handle();
             }

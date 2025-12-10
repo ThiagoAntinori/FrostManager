@@ -40,7 +40,7 @@ namespace DAL.Implementations.SqlServer
             {
                 Repartidor repartidorGet = null;
                 List<Repartidor> repartidores = new List<Repartidor>();
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdRepartidor, Nombre, Apellido, Telefono FROM REPARTIDOR WHERE Activo = 1",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdRepartidor, Nombre, Apellido, Email, Activo FROM REPARTIDOR",
                                                                     CommandType.Text,
                                                                     new SqlParameter[] { }))
                 {
@@ -68,7 +68,7 @@ namespace DAL.Implementations.SqlServer
             {
                 Repartidor repartidorGet = null;
 
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdRepartidor, Nombre, Apellido, Telefono FROM REPARTIDOR WHERE IdRepartidor = @IdRepartidor AND Activo = 1",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdRepartidor, Nombre, Apellido, Email, Activo FROM REPARTIDOR WHERE IdRepartidor = @IdRepartidor AND Activo = 1",
                                                                     CommandType.Text,
                                                                     new SqlParameter[]
                                                                     {
@@ -96,14 +96,14 @@ namespace DAL.Implementations.SqlServer
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO REPARTIDOR (IdRepartidor, Nombre, Apellido, Telefono, Activo) VALUES (@IdRepartidor, @Nombre, @Apellido, @Telefono, 1)",
+                SqlHelper.ExecuteNonQuery("INSERT INTO REPARTIDOR (IdRepartidor, Nombre, Apellido, Email, Activo) VALUES (@IdRepartidor, @Nombre, @Apellido, @Email, 1)",
                     CommandType.Text,
                     new SqlParameter[]
                     {
                         new SqlParameter("@IdRepartidor", obj.IdRepartidor),
                         new SqlParameter("@Nombre", obj.Nombre),
                         new SqlParameter("@Apellido", obj.Apellido),
-                        new SqlParameter("@Telefono", obj.Telefono)
+                        new SqlParameter("@Email", obj.Email)
                     });
             }
             catch (Exception ex)
@@ -116,14 +116,15 @@ namespace DAL.Implementations.SqlServer
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("UPDATE REPARTIDOR SET Nombre = @Nombre, Apellido = @Apellido, Telefono = @Telefono WHERE IdRepartidor = @IdRepartidor AND Activo = 0",
+                SqlHelper.ExecuteNonQuery("UPDATE REPARTIDOR SET Nombre = @Nombre, Apellido = @Apellido, Email = @Email, Activo = @Activo WHERE IdRepartidor = @IdRepartidor",
                     CommandType.Text,
                     new SqlParameter[]
                     {
                         new SqlParameter("@IdRepartidor", obj.IdRepartidor),
                         new SqlParameter("@Nombre", obj.Nombre),
                         new SqlParameter("@Apellido", obj.Apellido),
-                        new SqlParameter("@Telefono", obj.Telefono)
+                        new SqlParameter("@Email", obj.Email),
+                        new SqlParameter("@Activo", obj.Activo)
                     });
             }
             catch (Exception ex)

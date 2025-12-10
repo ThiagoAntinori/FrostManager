@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using DAL.Implementations.SqlServer;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace DAL.Contracts
         IEnumerable<Venta> GetByFecha(DateTime fecha);
         IEnumerable<Venta> GetByMedioPago(MedioPago medioPago);
         IEnumerable<Venta> GetByEstado(EstadoVenta estadoVenta);
-        Venta GetVentaEnCurso();
+        Venta GetVentaPendiente();
+        void CambiarEstado(Venta obj, EstadoVenta nuevoEstado, UnitOfWork uow = null);
     }
 }

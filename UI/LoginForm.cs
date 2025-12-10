@@ -4,6 +4,7 @@ using Services.Domain.Logging;
 using Services.BLL.Contracts;
 using BLL.Implementations;
 using Domain;
+using BLL.Tools;
 
 namespace UI
 {
@@ -45,7 +46,10 @@ namespace UI
         {
             try
             {
-                
+                if (!DigitoVerificadorService.Current.EsTablaConsistente<Cliente>(ClienteService.Current.SelectAll())) 
+                {
+                    DigitoVerificadorService.Current.HandleInconsistencia<Cliente>();
+                }
             }
             catch(Exception ex)
             {

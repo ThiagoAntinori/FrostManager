@@ -56,6 +56,11 @@ namespace BLL.Implementations
             {
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdProducto, nameof(item.IdProducto));
+                List<DetalleVenta> detallesPendientes = (List<DetalleVenta>)Repository.GetDetalleVentaInstance().GetDetallesPendientesByProducto(item.IdProducto);
+                if(detallesPendientes != null && detallesPendientes.Any())
+                {
+                    throw new Exception("No es posible eliminar el producto debido a que hay ventas en curso que lo utilizan.");
+                }
                 Repository.GetProductoInstance().Delete(item);
                 LoggerHelper.RegistrarBaja(item);
             }

@@ -9,8 +9,8 @@ namespace Domain
     public class Pedido
     {
         public Guid IdPedido { get; set; }
-        public DateTime HoraEnvio { get; set; }
-        public DateTime HoraEntrega { get; set; }
+        public DateTime? HoraEnvio { get; set; }
+        public DateTime? HoraEntrega { get; set; }
         public Venta Venta { get; set; }
         public EstadoPedido Estado { get; set; }
         public Cliente Cliente { get; set; }

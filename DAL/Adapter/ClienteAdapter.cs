@@ -1,5 +1,6 @@
 ﻿using DAL.Contracts;
 using Domain;
+using Services.BLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +35,8 @@ namespace DAL.Adapter
                 Nombre = values[1].ToString(),
                 Apellido = values[2].ToString(),
                 DNI = values[3].ToString(),
-                Telefono = values[4].ToString(),
-                Direccion = values[5].ToString(),
+                Telefono = CriptographyService.Decrypt(values[4].ToString()),
+                Direccion = CriptographyService.Decrypt(values[5].ToString()),
                 DVH = values[6].ToString()
             };
         }

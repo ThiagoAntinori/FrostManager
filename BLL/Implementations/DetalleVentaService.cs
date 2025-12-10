@@ -4,6 +4,7 @@ using DAL.Implementations.Factory;
 using DAL.Implementations.SqlServer;
 using Domain;
 using Services.BLL.Extensions;
+using Services.Domain.Exceptions.BusinessExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,11 @@ namespace BLL.Implementations
                 ValidationHelper.PositiveValue(item.Cantidad, nameof(item.Cantidad));
                 if(item.SaboresSeleccionados == null || !item.SaboresSeleccionados.Any())
                 {
-                    throw new Exception("El detalle debe tener al menos un sabor seleccionado");
+                    throw new DatosInvalidosException("Sabores seleccionados", "El detalle debe tener al menos un sabor seleccionado");
+                }
+                if(item.SaboresSeleccionados.Count > 4)
+                {
+                    throw new DatosInvalidosException("Sabores seleccionados", "Un producto puede tener hasta 4 sabores");
                 }
 
                 using (UnitOfWork uow = new UnitOfWork())
@@ -56,6 +61,7 @@ namespace BLL.Implementations
                             Repository.GetSaborSeleccionadoInstance().Insert(s, uow);
                         }
                         uow.Commit();
+                        LoggerHelper.RegistrarAlta(item);
                     }
                     catch(Exception ex)
                     {
@@ -78,6 +84,7 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.IdDetalleVenta, nameof(item.IdDetalleVenta));
 
                 Repository.GetDetalleVentaInstance().Delete(item);
+                LoggerHelper.RegistrarBaja(item);
             }
             catch (Exception ex)
             {
@@ -123,6 +130,7 @@ namespace BLL.Implementations
                 ValidationHelper.PositiveValue(item.Cantidad, nameof(item.Cantidad));
 
                 Repository.GetDetalleVentaInstance().Update(item);
+                LoggerHelper.RegistrarModificacion(item);
             }
             catch (Exception ex)
             {
@@ -136,7 +144,7 @@ namespace BLL.Implementations
             {
                 ValidationHelper.NotEmptyGuid(idVenta, "IdVenta");
 
-                return Repository.GetDetalleVentaInstance().GetByIdVenta(idVenta);
+                return (List<DetalleVenta>)Repository.GetDetalleVentaInstance().GetByIdVenta(idVenta);
             }
             catch (Exception ex)
             {

@@ -33,10 +33,10 @@
             label2 = new Label();
             txtNombreUsuario = new TextBox();
             txtCorreoElectronico = new TextBox();
-            lblRol = new Label();
-            cmbRol = new ComboBox();
             btnRegistrar = new Button();
             btnSalir = new Button();
+            btnSeleccionarFamilias = new Button();
+            btnSeleccionarPatentes = new Button();
             SuspendLayout();
             // 
             // lblDatosUsuario
@@ -95,35 +95,12 @@
             txtCorreoElectronico.Size = new Size(252, 24);
             txtCorreoElectronico.TabIndex = 4;
             // 
-            // lblRol
-            // 
-            lblRol.Anchor = AnchorStyles.None;
-            lblRol.AutoSize = true;
-            lblRol.Font = new Font("Microsoft YaHei UI", 9.75F);
-            lblRol.ForeColor = SystemColors.ActiveCaptionText;
-            lblRol.Location = new Point(172, 267);
-            lblRol.Name = "lblRol";
-            lblRol.Size = new Size(182, 19);
-            lblRol.TabIndex = 5;
-            lblRol.Text = "Seleccione el rol del usuario:";
-            // 
-            // cmbRol
-            // 
-            cmbRol.Anchor = AnchorStyles.None;
-            cmbRol.Font = new Font("Microsoft YaHei UI", 9.75F);
-            cmbRol.ForeColor = SystemColors.ActiveCaptionText;
-            cmbRol.FormattingEnabled = true;
-            cmbRol.Location = new Point(172, 289);
-            cmbRol.Name = "cmbRol";
-            cmbRol.Size = new Size(252, 27);
-            cmbRol.TabIndex = 6;
-            // 
             // btnRegistrar
             // 
             btnRegistrar.Anchor = AnchorStyles.None;
             btnRegistrar.Font = new Font("Microsoft YaHei UI", 9.75F);
             btnRegistrar.ForeColor = SystemColors.ActiveCaptionText;
-            btnRegistrar.Location = new Point(318, 350);
+            btnRegistrar.Location = new Point(318, 374);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(106, 31);
             btnRegistrar.TabIndex = 7;
@@ -145,16 +122,38 @@
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
+            // btnSeleccionarFamilias
+            // 
+            btnSeleccionarFamilias.Anchor = AnchorStyles.None;
+            btnSeleccionarFamilias.Location = new Point(172, 316);
+            btnSeleccionarFamilias.Name = "btnSeleccionarFamilias";
+            btnSeleccionarFamilias.Size = new Size(252, 39);
+            btnSeleccionarFamilias.TabIndex = 10;
+            btnSeleccionarFamilias.Text = "Seleccionar Familias";
+            btnSeleccionarFamilias.UseVisualStyleBackColor = true;
+            btnSeleccionarFamilias.Click += btnSeleccionarFamilias_Click;
+            // 
+            // btnSeleccionarPatentes
+            // 
+            btnSeleccionarPatentes.Anchor = AnchorStyles.None;
+            btnSeleccionarPatentes.Location = new Point(172, 260);
+            btnSeleccionarPatentes.Name = "btnSeleccionarPatentes";
+            btnSeleccionarPatentes.Size = new Size(252, 39);
+            btnSeleccionarPatentes.TabIndex = 9;
+            btnSeleccionarPatentes.Text = "Seleccionar Patentes";
+            btnSeleccionarPatentes.UseVisualStyleBackColor = true;
+            btnSeleccionarPatentes.Click += btnSeleccionarPatentes_Click;
+            // 
             // RegistrarUsuarioForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
             ClientSize = new Size(600, 450);
+            Controls.Add(btnSeleccionarFamilias);
+            Controls.Add(btnSeleccionarPatentes);
             Controls.Add(btnSalir);
             Controls.Add(btnRegistrar);
-            Controls.Add(cmbRol);
-            Controls.Add(lblRol);
             Controls.Add(txtCorreoElectronico);
             Controls.Add(txtNombreUsuario);
             Controls.Add(label2);
@@ -175,9 +174,9 @@
         private Label label2;
         private TextBox txtNombreUsuario;
         private TextBox txtCorreoElectronico;
-        private Label lblRol;
-        private ComboBox cmbRol;
         private Button btnRegistrar;
         private Button btnSalir;
+        private Button btnSeleccionarFamilias;
+        private Button btnSeleccionarPatentes;
     }
 }

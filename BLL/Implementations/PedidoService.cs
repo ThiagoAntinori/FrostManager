@@ -1,9 +1,11 @@
 ﻿using BLL.Contracts;
 using BLL.Tools;
 using DAL.Implementations.Factory;
+using DAL.Implementations.SqlServer;
 using Domain;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.BLL.Extensions;
+using Services.Domain.Exceptions.BusinessExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,10 +46,9 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.Repartidor.IdRepartidor, nameof(item.Repartidor.IdRepartidor));
 
                 item.Estado = EstadoPedido.EnPreparacion;
-                item.HoraEnvio = DateTime.Now;
-                item.HoraEntrega = DateTime.Now;
 
                 Repository.GetPedidoInstance().Insert(item);
+                LoggerHelper.RegistrarAlta(item);
             }
             catch (Exception ex)
             {
@@ -63,6 +64,7 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.IdPedido, nameof(item.IdPedido));
 
                 Repository.GetPedidoInstance().Delete(item);
+                LoggerHelper.RegistrarBaja(item);
             }
             catch (Exception ex)
             {
@@ -112,6 +114,7 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.Repartidor.IdRepartidor, nameof(item.Repartidor.IdRepartidor));
 
                 Repository.GetPedidoInstance().Update(item);
+                LoggerHelper.RegistrarModificacion(item);
             }
             catch(Exception ex)
             {
@@ -127,17 +130,52 @@ namespace BLL.Implementations
                 ValidationHelper.NotEmptyGuid(item.IdPedido, nameof(item.IdPedido));
                 ValidationHelper.NotNull(nuevoEstado, nameof(nuevoEstado));
 
-                item.Estado = nuevoEstado;
-                if(nuevoEstado == EstadoPedido.EnCamino)
+                if (item.Estado == nuevoEstado)
                 {
+                    return;
+                }
+                if (item.Estado == EstadoPedido.Entregado || item.Estado == EstadoPedido.Cancelado)
+                {
+                    throw new Exception($"El pedido ya se encuentra en estado final ({item.Estado}). No es posible modificar.");
+                }
+
+                switch (item.Estado)
+                {
+                    case EstadoPedido.EnPreparacion:
+                        if (nuevoEstado != EstadoPedido.EnCamino && nuevoEstado != EstadoPedido.Cancelado)
+                        {
+                            throw new TransicionEstadoInvalidaException("Pedido", item.Estado.ToString(), nuevoEstado.ToString());
+                        }
+                        break;
+
+                    case EstadoPedido.EnCamino:
+                        if (nuevoEstado != EstadoPedido.Entregado && nuevoEstado != EstadoPedido.Cancelado)
+                        {
+                            throw new TransicionEstadoInvalidaException("Pedido", item.Estado.ToString(), nuevoEstado.ToString());
+                        }
+                        break;
+                }
+
+                item.Estado = nuevoEstado;
+
+                if (item.Estado == EstadoPedido.EnCamino)
+                {
+                    ValidationHelper.NotNull(item.Repartidor, nameof(item.Repartidor));
+                    RepartidorService.Current.NotificarPedidoARepartidor(item);
                     item.HoraEnvio = DateTime.Now;
                 }
-                else if(nuevoEstado == EstadoPedido.Entregado)
+                if (item.Estado == EstadoPedido.Entregado)
                 {
                     item.HoraEntrega = DateTime.Now;
+                    VentaService.Current.ConfirmarVenta(item.Venta);
+                }
+                else if (item.Estado == EstadoPedido.Cancelado)
+                {
+                    VentaService.Current.CambiarEstado(item.Venta, EstadoVenta.Cancelada);
                 }
 
                 Repository.GetPedidoInstance().Update(item);
+                LoggerHelper.RegistrarModificacion(item);
             }
             catch(Exception ex)
             {
@@ -156,10 +194,29 @@ namespace BLL.Implementations
 
                 item.Repartidor = repartidor;
                 Repository.GetPedidoInstance().Update(item);
+                LoggerHelper.RegistrarModificacion(item);
             }
             catch(Exception ex)
             {
                 ex.Handle();
+            }
+        }
+
+        public IEnumerable<Pedido> SelectByPeriodo(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                if (fechaInicio > fechaFin)
+                {
+                    throw new Exception("La fecha de inicio debe ser posterior a la de fin");
+                }
+
+                return Repository.GetPedidoInstance().GetByPeriodo(fechaInicio, fechaFin);
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+                throw;
             }
         }
     }

@@ -1,0 +1,31 @@
+[2025-11-26 00:09:34.186 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:09:42.567 -03:00] [INFORMATION] INICIO de Venta (ID: 5031bc94-fbb8-4163-b599-06fa8fd8175c) por el usuario admin [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:10:04.213 -03:00] [INFORMATION] COBRO de Venta (ID: 5031bc94-fbb8-4163-b599-06fa8fd8175c) por el usuario admin [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:14:05.452 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:16:15.841 -03:00] [INFORMATION] INICIO de Venta (ID: c31733fd-c171-4a16-aa22-1f20ad669e9e) por el usuario admin [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:16:32.594 -03:00] [INFORMATION] COBRO de Venta (ID: c31733fd-c171-4a16-aa22-1f20ad669e9e) por el usuario admin [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:19:48.778 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:20:13.412 -03:00] [INFORMATION] INICIO de Venta (ID: c8cedc9e-0f0d-4ccf-8f03-fddfc5a97229) por el usuario admin [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:20:37.516 -03:00] [INFORMATION] COBRO de Venta (ID: c8cedc9e-0f0d-4ccf-8f03-fddfc5a97229) por el usuario admin [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:23:12.192 -03:00] [INFORMATION] CONFIRMACIÓN de Venta (ID: 2e061a2c-b67b-42ad-8738-ab8a70ab7a62) por el usuario admin [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:27:12.083 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:29:48.922 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:30:01.143 -03:00] [ERROR] [BLL Exception] Error en la lógica de negocio - Mensaje: La fecha de inicio debe ser posterior a la de fin [Excepción: System.Exception: La fecha de inicio debe ser posterior a la de fin
+   at BLL.Implementations.PedidoService.SelectByPeriodo(DateTime fechaInicio, DateTime fechaFin) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Implementations\PedidoService.cs:line 204, StackTrace:    at BLL.Implementations.PedidoService.SelectByPeriodo(DateTime fechaInicio, DateTime fechaFin) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Implementations\PedidoService.cs:line 204] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:30:03.320 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ocurrió un error en el sistema - Detalle: La fecha de inicio debe ser posterior a la de fin [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:32:40.567 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:33:08.590 -03:00] [ERROR] [BLL Exception] Error en la lógica de negocio - Mensaje: La fecha de inicio debe ser posterior a la de fin [Excepción: System.Exception: La fecha de inicio debe ser posterior a la de fin
+   at BLL.Implementations.PedidoService.SelectByPeriodo(DateTime fechaInicio, DateTime fechaFin) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Implementations\PedidoService.cs:line 204, StackTrace:    at BLL.Implementations.PedidoService.SelectByPeriodo(DateTime fechaInicio, DateTime fechaFin) in C:\Users\thiag\Desktop\PROJECTS\TRABAJO DE DIPLOMA\FrostManager_\FrostManager\FrostManager\BLL\Implementations\PedidoService.cs:line 204] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 00:33:08.896 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ocurrió un error en el sistema - Detalle: La fecha de inicio debe ser posterior a la de fin [] [Usuario logueado: admin, ID: ef00b330-ce36-4875-bc29-da95c6092c14]
+[2025-11-26 08:25:08.929 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Cannot insert the value NULL into column 'IdToken', table 'FrostManagerServices.dbo.PASSWORD_RESET'; column does not allow nulls. INSERT fails.
+The statement has been terminated. [] []
+[2025-11-26 08:25:10.268 -03:00] [ERROR] [Service Exception] Error en la configuración de sistema - Mensaje: Ocurrió un error en el sistema - Cannot insert the value NULL into column 'IdToken', table 'FrostManagerServices.dbo.PASSWORD_RESET'; column does not allow nulls. INSERT fails.
+The statement has been terminated. [] []
+[2025-11-26 08:31:53.843 -03:00] [ERROR] Error SMTP al enviar el Email con asunto: Recuperación de contraseña - FrostManager y cuerpo: Hola Thiago20,
+
+Hemos recibido una solicitud para restablecer tu contraseña.
+Tu código de recuperación es: XEC9UKG5
+Este código expira el 26/11/2025 08:45:45.
+
+Si no solicitaste este cambio, ignora este mensaje. para el destinatario thiagoantinori02@gmail.com 
+Detalles del error: Failure sending mail. [] []

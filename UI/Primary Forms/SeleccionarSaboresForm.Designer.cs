@@ -44,9 +44,13 @@
             // 
             // dgvSabores
             // 
+            dgvSabores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSabores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSabores.Location = new Point(32, 90);
+            dgvSabores.MultiSelect = false;
             dgvSabores.Name = "dgvSabores";
+            dgvSabores.ReadOnly = true;
+            dgvSabores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSabores.Size = new Size(244, 283);
             dgvSabores.TabIndex = 0;
             dgvSabores.SelectionChanged += dgvSabores_SelectionChanged;
@@ -76,6 +80,7 @@
             btnBuscar.TabIndex = 3;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // btnAñadir
             // 
@@ -89,9 +94,12 @@
             // 
             // dgvSaboresSeleccionados
             // 
+            dgvSaboresSeleccionados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSaboresSeleccionados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSaboresSeleccionados.Location = new Point(363, 90);
             dgvSaboresSeleccionados.Name = "dgvSaboresSeleccionados";
+            dgvSaboresSeleccionados.ReadOnly = true;
+            dgvSaboresSeleccionados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSaboresSeleccionados.Size = new Size(244, 283);
             dgvSaboresSeleccionados.TabIndex = 5;
             // 

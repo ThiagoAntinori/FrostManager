@@ -6,6 +6,7 @@ using Domain;
 using Microsoft.EntityFrameworkCore.Internal;
 using Services.BLL.Extensions;
 using Services.Domain.Exceptions;
+using Services.Domain.Exceptions.BusinessExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,7 @@ namespace BLL.Implementations
                 item.MedioDePago = MedioPago.NoAsignado;
                 item.EsDelivery = false;
                 Repository.GetVentaInstance().Insert(item);
-                LoggerHelper.RegistrarGenerico("INICIO", item);
+                LoggerHelper.RegistrarOperacionGenerica("INICIO", item);
             }
             catch (Exception ex)
             {
@@ -65,7 +66,7 @@ namespace BLL.Implementations
                     try
                     {
                         Repository.GetVentaInstance().Delete(item, uow);
-                        List<DetalleVenta> detallesDeVenta = Repository.GetDetalleVentaInstance().GetByIdVenta(item.IdVenta);
+                        List<DetalleVenta> detallesDeVenta = Repository.GetDetalleVentaInstance().GetByIdVenta(item.IdVenta).ToList();
                         foreach (DetalleVenta detalle in detallesDeVenta)
                         {
                             List<SaborSeleccionado> saboresSeleccionados = Repository.GetSaborSeleccionadoInstance().GetByIdDetalleVenta(detalle.IdDetalleVenta);
@@ -76,7 +77,7 @@ namespace BLL.Implementations
                             Repository.GetDetalleVentaInstance().Delete(detalle, uow);
                         }
                         uow.Commit();
-                        LoggerHelper.RegistrarGenerico("CANCELACIÓN", item);
+                        LoggerHelper.RegistrarOperacionGenerica("CANCELACIÓN", item);
                     }
                     catch(Exception ex)
                     {
@@ -131,6 +132,7 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item.EstadoVenta, nameof(item.EstadoVenta));
 
                 Repository.GetVentaInstance().Update(item);
+                LoggerHelper.RegistrarModificacion(item);
             }
             catch (Exception ex)
             {
@@ -155,12 +157,15 @@ namespace BLL.Implementations
             }
         }
 
-        public IEnumerable<Venta> GetByFecha(DateTime fecha)
+        public IEnumerable<Venta> SelectByFecha(DateTime fecha)
         {
             try
             {
                 ValidationHelper.NotNull(fecha, nameof(fecha));
-
+                if(fecha.Date > DateTime.Today)
+                {
+                    throw new Exception("La fecha debe ser anterior a la de hoy");
+                }
                 return Repository.GetVentaInstance().GetByFecha(fecha);
             }
             catch (Exception ex)
@@ -226,7 +231,12 @@ namespace BLL.Implementations
                             int cantidad = kv.Value;
                             if(!Repository.GetInsumoInstance().RestarStock(idInsumo, cantidad, uow))
                             {
-                                throw new Exception($"No hay stock suficiente para realizar la venta (Insumo: {InsumoService.Current.SelectOne(idInsumo).Descripcion})");
+                                throw new StockInsuficienteException(Repository.GetInsumoInstance().GetById(idInsumo).Descripcion, cantidad);
+                            }
+                            Insumo insumoUtilizado = InsumoService.Current.SelectOne(idInsumo);
+                            if (insumoUtilizado.StockActual < insumoUtilizado.StockMinimo)
+                            {
+                                InsumoService.Current.NotificarBajoStock(insumoUtilizado);
                             }
                         }
                         Repository.GetVentaInstance().Update(item, uow);
@@ -238,7 +248,7 @@ namespace BLL.Implementations
                             }
                         }
                         uow.Commit();
-                        LoggerHelper.RegistrarGenerico("CONFIRMACIÓN", item);
+                        LoggerHelper.RegistrarOperacionGenerica("CONFIRMACIÓN", item);
                     }
                     catch (Exception ex)
                     {
@@ -253,13 +263,13 @@ namespace BLL.Implementations
             }
         }
 
-        public Venta SelectVentaEnCurso()
+        public Venta SelectVentaPendiente()
         {
             try
             {
-                Venta ventaEnCurso = Repository.GetVentaInstance().GetVentaEnCurso();
+                Venta ventaPendiente = Repository.GetVentaInstance().GetVentaPendiente();
 
-                return ventaEnCurso;
+                return ventaPendiente;
             }
             catch (Exception ex)
             {
@@ -274,7 +284,20 @@ namespace BLL.Implementations
             {
                 item.MedioDePago = medioDePago;
                 Repository.GetVentaInstance().Update(item);
-                LoggerHelper.RegistrarGenerico("COBRO", item);
+                LoggerHelper.RegistrarOperacionGenerica("COBRO", item);
+            }
+            catch(Exception ex)
+            {
+                ex.Handle();
+            }
+        }
+
+        public void CambiarEstado(Venta item, EstadoVenta nuevoEstado)
+        {
+            try
+            {
+                Repository.GetVentaInstance().CambiarEstado(item, nuevoEstado);
+                LoggerHelper.RegistrarModificacion(item);
             }
             catch(Exception ex)
             {

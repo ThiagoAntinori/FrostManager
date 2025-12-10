@@ -52,13 +52,13 @@ namespace UI
                 {
                     throw new Exception("No se le asignó ningún permiso. Contacte al administrador.");
                 }
-                //foreach (Control ctrl in panelSideMenu.Controls)
-                //{
-                //    if (ctrl is Button)
-                //    {
-                //        ctrl.Visible = patentesUsuario.Select(p => p.MenuItemName).Contains(ctrl.Name);
-                //    }
-                //}
+                foreach (Control ctrl in panelSideMenu.Controls)
+                {
+                    if (ctrl is Button)
+                    {
+                        ctrl.Visible = patentesUsuario.Select(p => p.MenuItemName).Contains(ctrl.Name);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -86,18 +86,15 @@ namespace UI
 
         public static void closeChildForm(Form childForm)
         {
-            if (MessageBox.Show("¿Desea cerrar la ventana? Se perderán los datos no guardados", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                childForm.Close();
-                activeForm = null;
-            }
+            childForm.Close();
+            activeForm = null;
         }
 
         private void btnRegistrarCliente_Click(object sender, EventArgs e)
         {
             try
             {
-                openChildForm(new AltaClienteForm());
+                openChildForm(new RegistrarClienteForm());
             }
             catch (Exception ex)
             {
@@ -122,49 +119,6 @@ namespace UI
             }
         }
 
-        public static void TraducirControles(Control.ControlCollection controles)
-        {
-            try
-            {
-                foreach (Control ctrl in controles)
-                {
-                    if (ctrl.Name != null)
-                    {
-                        if (ctrl.Visible == true)
-                        {
-                            if (ctrl is Button || ctrl is Label)
-                            {
-                                string nuevoTexto = IdiomaService.Current.Traducir(ctrl.Name);
-                                ctrl.Text = nuevoTexto == null ? ctrl.Text : nuevoTexto;
-                            }
-                        }
-                    }
-                    if (ctrl.HasChildren)
-                    {
-                        UIHelper.TraducirControles(ctrl.Controls);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        private void btnConfiguracion_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (MessageBox.Show("¿Desea cambiar de idioma a Inglés?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    IdiomaService.Current.CambiarIdioma("en-US");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
@@ -349,6 +303,78 @@ namespace UI
             try
             {
                 openChildForm(new RegistrarRepartidorForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnCierreCaja_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new CierreCajaDiariaForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnReporteVentas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new ReporteVentasForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnReporteSabores_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new ReporteSaboresForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnReporteEntregas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new ReporteEntregasForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnModificarRepartidor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new ModificarRepartidorForm());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnRegistrarEgreso_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openChildForm(new RegistrarEgresoForm());
             }
             catch (Exception ex)
             {

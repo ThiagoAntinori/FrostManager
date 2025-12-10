@@ -4,16 +4,46 @@
     <Compile Update="Administrative Forms\CambiarEstadoUsuarioForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Administrative Forms\EliminarFamiliaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Administrative Forms\EliminarPatenteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Administrative Forms\MainAdministrativeForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Administrative Forms\ModificarFamiliaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Administrative Forms\ModificarPatenteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Administrative Forms\ModificarUsuarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Administrative Forms\RegistrarFamiliaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Administrative Forms\RegistrarPatenteForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Administrative Forms\RegistrarUsuarioForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Administrative Forms\RespaldoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Administrative Forms\SeleccionarFamiliasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Administrative Forms\SeleccionarPatentesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Administrative Forms\VerBitacoraForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Administrative Forms\VerDetallesBitacoraForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Administrative Forms\VerUsuariosForm.cs">
@@ -28,7 +58,10 @@
     <Compile Update="Primary Forms\AjustarStockForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Primary Forms\AltaClienteForm.cs">
+    <Compile Update="Primary Forms\RegistrarClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\CierreCajaDiariaForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Primary Forms\CobrarForm.cs">
@@ -58,6 +91,12 @@
     <Compile Update="Primary Forms\ModificarProductoForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Primary Forms\ModificarRepartidorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\RegistrarEgresoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Primary Forms\RegistrarIngresoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +104,15 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Primary Forms\RegistrarRepartidorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\ReporteEntregasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\ReporteSaboresForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Primary Forms\ReporteVentasForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Primary Forms\SeleccionarRepartidorForm.cs">

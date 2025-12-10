@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Services.BLL.Extensions;
 using Services.DAL.Tools;
 using Services.Domain.Security;
 using System;
@@ -28,7 +29,7 @@ namespace Services.DAL.Implementations
             // Implement here the initialization of your singleton
         }
 
-        public void Add(Familia obj)
+        public void Add(Familia obj, UnitOfWork uow = null)
         {
             try
             {
@@ -43,6 +44,7 @@ namespace Services.DAL.Implementations
                             "INSERT INTO FAMILIA_PATENTE (IdFamilia, IdPatente) " +
                             "VALUES (@IdFamilia, @IdPatente) " +
                             "END", CommandType.Text,
+                            uow?.Transaction,
                             new SqlParameter[]
                             {
                                 new SqlParameter("@IdFamilia", obj.IdComponente),
@@ -97,6 +99,24 @@ namespace Services.DAL.Implementations
             catch (Exception ex)
             {
                 throw;
+            }
+        }
+
+        public void DeleteByFamilia(Guid idFamilia, UnitOfWork uow = null)
+        {
+            try
+            {
+                SqlHelper.ExecuteNonQuery("DELETE FROM FAMILIA_PATENTE WHERE IdFamilia = @IdFamilia",
+                                            CommandType.Text,
+                                            uow?.Transaction,
+                                            new SqlParameter[]
+                                            {
+                                                new SqlParameter("@IdFamilia", idFamilia)
+                                            });
+            }
+            catch(Exception ex)
+            {
+                ex.Handle();
             }
         }
     }

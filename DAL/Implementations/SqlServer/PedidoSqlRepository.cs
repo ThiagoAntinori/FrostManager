@@ -26,8 +26,12 @@ namespace DAL.Implementations.SqlServer
             {
                 Pedido pedidoGet = null;
                 List<Pedido> pedidos = new List<Pedido>();
+                string selectQuery = @"SELECT p.IdPedido, p.HoraEnvio, p.HoraEntrega, p.IdEstadoPedido, p.IdVenta, p.IdCliente, p.IdRepartidor 
+                                        FROM Pedido p
+                                        INNER JOIN Venta v ON v.IdVenta = p.IdVenta
+                                        ORDER BY v.Fecha DESC";
 
-                using (SqlDataReader reader = SqlHelper.ExecuteReader("SELECT IdPedido, HoraEnvio, HoraEntrega, IdEstadoPedido, IdVenta, IdCliente, IdRepartidor FROM Pedido",
+                using (SqlDataReader reader = SqlHelper.ExecuteReader(selectQuery,
                     CommandType.Text,
                     new SqlParameter[]{}))
                 {
@@ -111,7 +115,7 @@ namespace DAL.Implementations.SqlServer
             }
         }
 
-        public List<Pedido> GetByPeriodo(DateOnly fechaInicio, DateOnly fechaFin)
+        public List<Pedido> GetByPeriodo(DateTime fechaInicio, DateTime fechaFin)
         {
             try
             {
@@ -121,14 +125,15 @@ namespace DAL.Implementations.SqlServer
                 string selectQuery = @"SELECT p.IdPedido, p.HoraEnvio, p.HoraEntrega, p.IdEstadoPedido, p.IdVenta, p.IdCliente, p.IdRepartidor 
                                         FROM Pedido p
                                         INNER JOIN Venta v ON v.IdVenta = p.IdVenta
-                                        WHERE v.Fecha BETWEEN @FechaInicio AND @FechaFin";
+                                        WHERE v.Fecha BETWEEN @FechaInicio AND @FechaFin
+                                        ORDER BY v.Fecha DESC";
 
                 using (SqlDataReader reader = SqlHelper.ExecuteReader(selectQuery,
                     CommandType.Text,
                     new SqlParameter[] 
                     {
                         new SqlParameter("@FechaInicio", fechaInicio),
-                        new SqlParameter("@FechaFin", fechaInicio)
+                        new SqlParameter("@FechaFin", fechaFin)
                     }))
                 {
                     object[] values = new object[reader.FieldCount];
@@ -159,8 +164,8 @@ namespace DAL.Implementations.SqlServer
                                             new SqlParameter[]
                                             {
                                                 new SqlParameter("@IdPedido", obj.IdPedido),
-                                                new SqlParameter("@HoraEnvio", obj.HoraEnvio),
-                                                new SqlParameter("@HoraEntrega", obj.HoraEntrega),
+                                                new SqlParameter("@HoraEnvio", (object)obj.HoraEnvio),
+                                                new SqlParameter("@HoraEntrega", (object)obj.HoraEntrega),
                                                 new SqlParameter("@IdEstadoPedido", (int)obj.Estado),
                                                 new SqlParameter("@IdVenta", obj.Venta.IdVenta),
                                                 new SqlParameter("@IdCliente", obj.Cliente.IdCliente),
@@ -178,14 +183,14 @@ namespace DAL.Implementations.SqlServer
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("UPDATE INTO Pedido SET HoraEnvio = @HoraEnvio, HoraEntrega = @HoraEntrega, IdEstadoPedido = @IdEstadoPedido, IdVenta = @IdVenta, IdCliente = @IdCliente, IdRepartidor = @IdRepartidor WHERE IdPedido = @IdPedido AND Borrado = 0",
+                SqlHelper.ExecuteNonQuery("UPDATE Pedido SET HoraEnvio = @HoraEnvio, HoraEntrega = @HoraEntrega, IdEstadoPedido = @IdEstadoPedido, IdVenta = @IdVenta, IdCliente = @IdCliente, IdRepartidor = @IdRepartidor WHERE IdPedido = @IdPedido AND Borrado = 0",
                                             CommandType.Text,
                                             uow?.Transaction,
                                             new SqlParameter[]
                                             {
                                                 new SqlParameter("@IdPedido", obj.IdPedido),
-                                                new SqlParameter("@HoraEnvio", obj.HoraEnvio),
-                                                new SqlParameter("@HoraEntrega", obj.HoraEntrega),
+                                                new SqlParameter("@HoraEnvio", (object)obj.HoraEnvio),
+                                                new SqlParameter("@HoraEntrega", (object)obj.HoraEntrega),
                                                 new SqlParameter("@IdEstadoPedido", (int)obj.Estado),
                                                 new SqlParameter("@IdVenta", obj.Venta.IdVenta),
                                                 new SqlParameter("@IdCliente", obj.Cliente.IdCliente),
@@ -199,6 +204,23 @@ namespace DAL.Implementations.SqlServer
             }
         }
 
-
+        public void CambiarEstado(Pedido obj, EstadoPedido nuevoEstado, UnitOfWork uow = null)
+        {
+            try
+            {
+                SqlHelper.ExecuteNonQuery("UPDATE Pedido SET IdEstadoPedido = @IdEstadoPedido WHERE IdPedido = @IdPedido AND Borrado = 0",
+                                            CommandType.Text,
+                                            uow?.Transaction,
+                                            new SqlParameter[]
+                                            {
+                                                new SqlParameter("@IdPedido", obj.IdPedido),
+                                                new SqlParameter("@IdEstadoPedido", (int)nuevoEstado)
+                                            });
+            }
+            catch(Exception ex)
+            {
+                ex.Handle();
+            }
+        }
     }
 }

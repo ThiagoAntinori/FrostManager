@@ -69,6 +69,7 @@
             btnModificar.TabIndex = 8;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = false;
+            btnModificar.Click += btnModificar_Click;
             // 
             // txtNombre
             // 
@@ -99,9 +100,9 @@
             lblDatosProducto.ForeColor = SystemColors.WindowText;
             lblDatosProducto.Location = new Point(350, 140);
             lblDatosProducto.Name = "lblDatosProducto";
-            lblDatosProducto.Size = new Size(140, 17);
+            lblDatosProducto.Size = new Size(128, 17);
             lblDatosProducto.TabIndex = 5;
-            lblDatosProducto.Text = "Datos del Producto ID:";
+            lblDatosProducto.Text = "Datos del Producto:";
             // 
             // txtCapacidad
             // 
@@ -168,6 +169,7 @@
             // 
             // dgvProductos
             // 
+            dgvProductos.Anchor = AnchorStyles.None;
             dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvProductos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -178,19 +180,22 @@
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProductos.Size = new Size(270, 321);
             dgvProductos.TabIndex = 16;
+            dgvProductos.SelectionChanged += dgvProductos_SelectionChanged;
             // 
             // lblBuscar
             // 
+            lblBuscar.Anchor = AnchorStyles.None;
             lblBuscar.AutoSize = true;
             lblBuscar.ForeColor = SystemColors.ActiveCaptionText;
             lblBuscar.Location = new Point(45, 456);
             lblBuscar.Name = "lblBuscar";
-            lblBuscar.Size = new Size(117, 15);
+            lblBuscar.Size = new Size(113, 15);
             lblBuscar.TabIndex = 17;
             lblBuscar.Text = "Buscar por Nombre:";
             // 
             // txtBuscarNombre
             // 
+            txtBuscarNombre.Anchor = AnchorStyles.None;
             txtBuscarNombre.Location = new Point(45, 483);
             txtBuscarNombre.Name = "txtBuscarNombre";
             txtBuscarNombre.Size = new Size(187, 23);
@@ -198,6 +203,7 @@
             // 
             // btnBuscar
             // 
+            btnBuscar.Anchor = AnchorStyles.None;
             btnBuscar.ForeColor = SystemColors.ActiveCaptionText;
             btnBuscar.Location = new Point(240, 483);
             btnBuscar.Name = "btnBuscar";
@@ -205,6 +211,7 @@
             btnBuscar.TabIndex = 19;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // ModificarProductoForm
             // 
@@ -229,6 +236,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ModificarProductoForm";
             Text = "ModificarProductoForm";
+            Load += ModificarProductoForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
             ResumeLayout(false);
             PerformLayout();

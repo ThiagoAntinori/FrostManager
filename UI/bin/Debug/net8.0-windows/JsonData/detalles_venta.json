@@ -1,0 +1,64 @@
+[
+  {
+    "IdDetalleVenta": "8d6607de-17b7-4d0d-8ab6-9f4d7a750ed6",
+    "Cantidad": 1,
+    "Subtotal": 12000,
+    "Producto": {
+      "IdProducto": "875f8eae-3076-4984-9581-2fdf7aa7147c",
+      "Descripcion": "1 Kilo",
+      "CapacidadEnGramos": 1000,
+      "PrecioUnitario": 12000,
+      "EnvaseNecesario": {
+        "CapacidadEnGramos": 1000,
+        "IdInsumo": "d0d7910d-4297-4b40-855e-63c25cf8cbd4",
+        "Descripcion": "Envase 1kg",
+        "StockActual": 66,
+        "StockMinimo": 10
+      }
+    },
+    "IdVenta": "56d85649-1361-46ca-b64c-f2142f8e0477",
+    "SaboresSeleccionados": [
+      {
+        "Sabor": {
+          "IdInsumo": "0da3a03a-da2c-469e-9e5e-c6d9465dbc6e",
+          "Descripcion": "Dulce de leche Oreo",
+          "StockActual": 7500,
+          "StockMinimo": 1000
+        },
+        "CantidadEnGramos": 1000,
+        "IdDetalleVenta": "8d6607de-17b7-4d0d-8ab6-9f4d7a750ed6"
+      }
+    ]
+  },
+  {
+    "IdDetalleVenta": "c89c7d96-bbe3-4c41-b128-c262209e8eae",
+    "Cantidad": 2,
+    "Subtotal": 14000,
+    "Producto": {
+      "IdProducto": "3a5ca872-deb0-4f89-ba9c-af723047b1bf",
+      "Descripcion": "1/2 kilo",
+      "CapacidadEnGramos": 500,
+      "PrecioUnitario": 7000,
+      "EnvaseNecesario": {
+        "CapacidadEnGramos": 500,
+        "IdInsumo": "d05f5ef7-befa-42c9-8f05-ac7492e60f2c",
+        "Descripcion": "Envase 1/2 kilo",
+        "StockActual": 7,
+        "StockMinimo": 9
+      }
+    },
+    "IdVenta": "197faca9-c34b-40a9-904b-1753c770d7f2",
+    "SaboresSeleccionados": [
+      {
+        "Sabor": {
+          "IdInsumo": "0da3a03a-da2c-469e-9e5e-c6d9465dbc6e",
+          "Descripcion": "Dulce de leche Oreo",
+          "StockActual": 7500,
+          "StockMinimo": 1000
+        },
+        "CantidadEnGramos": 500,
+        "IdDetalleVenta": "c89c7d96-bbe3-4c41-b128-c262209e8eae"
+      }
+    ]
+  }
+]

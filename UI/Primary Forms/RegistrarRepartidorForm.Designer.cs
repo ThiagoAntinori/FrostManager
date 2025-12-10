@@ -37,8 +37,6 @@
             lblApellido = new Label();
             txtDni = new TextBox();
             lblDni = new Label();
-            txtTelefono = new TextBox();
-            lblTelefono = new Label();
             txtEmail = new TextBox();
             lblEmail = new Label();
             SuspendLayout();
@@ -143,32 +141,11 @@
             lblDni.TabIndex = 7;
             lblDni.Text = "DNI";
             // 
-            // txtTelefono
-            // 
-            txtTelefono.Anchor = AnchorStyles.None;
-            txtTelefono.ForeColor = SystemColors.WindowText;
-            txtTelefono.Location = new Point(149, 333);
-            txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(317, 23);
-            txtTelefono.TabIndex = 10;
-            // 
-            // lblTelefono
-            // 
-            lblTelefono.Anchor = AnchorStyles.None;
-            lblTelefono.AutoSize = true;
-            lblTelefono.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTelefono.ForeColor = SystemColors.WindowText;
-            lblTelefono.Location = new Point(149, 313);
-            lblTelefono.Name = "lblTelefono";
-            lblTelefono.Size = new Size(59, 17);
-            lblTelefono.TabIndex = 9;
-            lblTelefono.Text = "Teléfono";
-            // 
             // txtEmail
             // 
             txtEmail.Anchor = AnchorStyles.None;
             txtEmail.ForeColor = SystemColors.WindowText;
-            txtEmail.Location = new Point(149, 407);
+            txtEmail.Location = new Point(149, 335);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(317, 23);
             txtEmail.TabIndex = 12;
@@ -179,7 +156,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblEmail.ForeColor = SystemColors.WindowText;
-            lblEmail.Location = new Point(149, 387);
+            lblEmail.Location = new Point(149, 315);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(40, 17);
             lblEmail.TabIndex = 11;
@@ -192,8 +169,6 @@
             ClientSize = new Size(624, 561);
             Controls.Add(txtEmail);
             Controls.Add(lblEmail);
-            Controls.Add(txtTelefono);
-            Controls.Add(lblTelefono);
             Controls.Add(txtDni);
             Controls.Add(lblDni);
             Controls.Add(txtApellido);
@@ -206,6 +181,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "RegistrarRepartidorForm";
             Text = "RegistrarRepartidorForm";
+            Load += RegistrarRepartidorForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -221,8 +197,6 @@
         private Label lblApellido;
         private TextBox txtDni;
         private Label lblDni;
-        private TextBox txtTelefono;
-        private Label lblTelefono;
         private TextBox txtEmail;
         private Label lblEmail;
     }

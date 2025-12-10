@@ -12,7 +12,7 @@ namespace Services.BLL.Contracts
 
         void Update(T obj);
 
-        void Delete(Guid id);
+        void Delete(T obj);
 
         List<T> SelectAll();
 

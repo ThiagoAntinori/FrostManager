@@ -1,4 +1,6 @@
-﻿using Services.BLL.Services;
+﻿using Services.BLL.Contracts;
+using Services.BLL.Extensions;
+using Services.BLL.Services;
 using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
@@ -9,21 +11,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Tools;
 
 namespace UI.Administrative_Forms
 {
-    public partial class ModificarUsuarioForm : Form
+    public partial class ModificarUsuarioForm : Form, ITraducible
     {
         private Usuario usuarioSeleccionado = null;
         public ModificarUsuarioForm()
         {
             InitializeComponent();
+            IdiomaService.Current.Suscribir(this);
         }
 
         private void ModificarUsuarioForm_Load(object sender, EventArgs e)
         {
             try
             {
+                if (UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
+                {
+                    CambiarIdioma();
+                }
                 CargarDataGridUsuarios(dgvUsuarios);
             }
             catch (Exception ex)
@@ -74,7 +82,7 @@ namespace UI.Administrative_Forms
                 usuarioSeleccionado.Nombre = txtNombreUsuario.Text;
                 usuarioSeleccionado.CorreoElectronico = txtCorreoElectronico.Text;
                 UsuarioService.Current.Update(usuarioSeleccionado);
-                MessageBox.Show("Se modificó el usuario correctamente");
+                MessageBox.Show("MODIFICADO_OK".Traducir(), "Operación Exitosa".Traducir(), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtNombreUsuario.Text = string.Empty;
                 txtCorreoElectronico.Text = string.Empty;
                 CargarDataGridUsuarios(dgvUsuarios);
@@ -93,6 +101,18 @@ namespace UI.Administrative_Forms
         private void btnSalir_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        public void CambiarIdioma()
+        {
+            try
+            {
+                UIHelper.TraducirControles(this.Controls);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

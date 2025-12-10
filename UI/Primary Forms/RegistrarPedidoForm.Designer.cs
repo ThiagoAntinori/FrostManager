@@ -85,6 +85,7 @@
             Controls.Add(btnBuscarCliente);
             Name = "RegistrarPedidoForm";
             Text = "RegistrarPedidoForm";
+            Load += RegistrarPedidoForm_Load;
             ResumeLayout(false);
         }
 

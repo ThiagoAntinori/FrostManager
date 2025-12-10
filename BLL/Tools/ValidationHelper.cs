@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services.Domain.Exceptions.BusinessExceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace BLL.Tools
         {
             if(value <= 0)
             {
-                throw new ArgumentException($"El campo {paramName} debe ser mayor a 0");
+                throw new DatosInvalidosException(paramName, "Debe ser mayor a 0");
             }
         }
 
@@ -42,7 +43,7 @@ namespace BLL.Tools
         {
             if(value <= 0)
             {
-                throw new ArgumentException($"El campo {paramName} debe ser mayor a 0");
+                throw new DatosInvalidosException(paramName, "Debe ser mayor a 0");
             }
         }
     }

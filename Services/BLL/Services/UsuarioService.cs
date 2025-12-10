@@ -1,6 +1,7 @@
 ﻿using Services.BLL.Contracts;
 using Services.BLL.Extensions;
 using Services.DAL.Implementations;
+using Services.Domain.Logging;
 using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,7 @@ namespace Services.BLL.Services
                 obj.Password = CriptographyService.HashMd5(obj.Password);
                 obj.EstaHabilitado = true;
                 UsuarioRepository.Current.Insert(obj);
+                LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Information, $"Se registró un nuevo usuario. ID: {obj.IdUsuario}. Nombre: {obj.Nombre}"));
             }
             catch (Exception ex)
             {
@@ -80,6 +82,7 @@ namespace Services.BLL.Services
                     throw new Exception("Ya existe un usuario con ese nombre");
                 }
                 UsuarioRepository.Current.Update(obj);
+                LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Information, $"Se modificó un usuario. ID: {obj.IdUsuario}. Nombre: {obj.Nombre}"));
             }
             catch(Exception ex)
             {
@@ -87,7 +90,7 @@ namespace Services.BLL.Services
             }
         }
 
-        public void Delete(Guid id)
+        public void Delete(Usuario obj)
         {
             throw new NotImplementedException();
         }
@@ -107,7 +110,15 @@ namespace Services.BLL.Services
 
         public Usuario SelectOne(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return UsuarioRepository.Current.GetById(id);
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+                throw;
+            }
         }
 
         public bool ExisteUsuario(Usuario usuario)
@@ -145,10 +156,32 @@ namespace Services.BLL.Services
                 }
                 usuario.Privilegios.Add(componente);
                 UsuarioComponenteRepository.Current.Add(usuario);
+                LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Information, $"Se modificaron los permisos de un usuario. ID: {usuario.IdUsuario}. Nombre: {usuario.Nombre}"));
             }
             catch (Exception ex)
             {
                 ExceptionExtension.Handle(ex);
+            }
+        }
+
+        public void AddComponentes(Usuario usuario, List<Componente> componentes)
+        {
+            try
+            {
+                if(componentes == null || !componentes.Any())
+                {
+                    throw new Exception("Ingrese los componentes a añadir");
+                }
+                foreach(Componente comp in componentes)
+                {
+                    usuario.Privilegios.Add(comp);
+                    UsuarioComponenteRepository.Current.Add(usuario);
+                }
+                LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Information, $"Se modificaron los permisos de un usuario. ID: {usuario.IdUsuario}. Nombre: {usuario.Nombre}"));
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
             }
         }
 
@@ -161,6 +194,7 @@ namespace Services.BLL.Services
                     throw new ArgumentNullException(nameof(usuario));
                 }
                 UsuarioRepository.Current.CambiarEstado(usuario);
+                LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Information, $"Se modificó el estado de un usuario. ID: {usuario.IdUsuario}. Nombre: {usuario.Nombre}"));
             }
             catch (Exception ex)
             {
@@ -195,6 +229,35 @@ namespace Services.BLL.Services
             catch (Exception ex)
             {
                 ExceptionExtension.Handle(ex);
+                throw;
+            }
+        }
+
+        public List<Usuario> GetByPatente(string nombrePatente)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(nombrePatente))
+                {
+                    throw new Exception("No se pudo buscar los usuarios por patente");
+                }
+
+                List<Usuario> usuarios = UsuarioRepository.Current.GetAll();
+                List<Usuario> usuariosConPatente = new List<Usuario>();
+                foreach(Usuario usuario in usuarios)
+                {
+                    List<string> nombresPatente = usuario.GetAllPatentes().Select(p => p.Nombre).ToList();
+                    if (nombresPatente.Contains(nombrePatente))
+                    {
+                        usuariosConPatente.Add(usuario);
+                    }
+                }
+
+                return usuariosConPatente;
+            }
+            catch(Exception ex)
+            {
+                ex.Handle();
                 throw;
             }
         }

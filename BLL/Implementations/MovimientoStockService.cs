@@ -44,6 +44,7 @@ namespace BLL.Implementations
                 item.FechaHora = DateTime.Now;
 
                 Repository.GetMovimientoStockInstance().Insert(item, null);
+                LoggerHelper.RegistrarAlta(item);
             }
             catch (Exception ex)
             {
@@ -74,10 +75,6 @@ namespace BLL.Implementations
             try
             {
                 MovimientoStock movimientoStockGet = Repository.GetMovimientoStockInstance().GetById(id);
-                if(movimientoStockGet == null)
-                {
-                    throw new Exception("No se encontró el objeto.");
-                }
                 return movimientoStockGet;
             }
             catch (Exception ex)

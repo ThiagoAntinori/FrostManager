@@ -48,6 +48,7 @@
             // 
             // dgvInsumos
             // 
+            dgvInsumos.Anchor = AnchorStyles.None;
             dgvInsumos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvInsumos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvInsumos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -58,9 +59,11 @@
             dgvInsumos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvInsumos.Size = new Size(292, 321);
             dgvInsumos.TabIndex = 0;
+            dgvInsumos.SelectionChanged += dgvInsumos_SelectionChanged;
             // 
             // lblSeleccionarInsumo
             // 
+            lblSeleccionarInsumo.Anchor = AnchorStyles.None;
             lblSeleccionarInsumo.AutoSize = true;
             lblSeleccionarInsumo.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSeleccionarInsumo.ForeColor = SystemColors.WindowText;
@@ -72,6 +75,7 @@
             // 
             // lblBuscarDescripcion
             // 
+            lblBuscarDescripcion.Anchor = AnchorStyles.None;
             lblBuscarDescripcion.AutoSize = true;
             lblBuscarDescripcion.ForeColor = SystemColors.ActiveCaptionText;
             lblBuscarDescripcion.Location = new Point(45, 456);
@@ -82,6 +86,7 @@
             // 
             // txtDescripcionBuscar
             // 
+            txtDescripcionBuscar.Anchor = AnchorStyles.None;
             txtDescripcionBuscar.Location = new Point(45, 483);
             txtDescripcionBuscar.Name = "txtDescripcionBuscar";
             txtDescripcionBuscar.Size = new Size(187, 23);
@@ -89,6 +94,7 @@
             // 
             // btnBuscar
             // 
+            btnBuscar.Anchor = AnchorStyles.None;
             btnBuscar.ForeColor = SystemColors.ActiveCaptionText;
             btnBuscar.Location = new Point(262, 483);
             btnBuscar.Name = "btnBuscar";
@@ -96,18 +102,22 @@
             btnBuscar.TabIndex = 4;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // cmbTipoInsumo
             // 
+            cmbTipoInsumo.Anchor = AnchorStyles.None;
             cmbTipoInsumo.FormattingEnabled = true;
             cmbTipoInsumo.Items.AddRange(new object[] { "Envase", "Sabor" });
             cmbTipoInsumo.Location = new Point(216, 72);
             cmbTipoInsumo.Name = "cmbTipoInsumo";
             cmbTipoInsumo.Size = new Size(121, 23);
             cmbTipoInsumo.TabIndex = 5;
+            cmbTipoInsumo.SelectedIndexChanged += cmbTipoInsumo_SelectedIndexChanged;
             // 
             // lblFiltrarTipoInsumo
             // 
+            lblFiltrarTipoInsumo.Anchor = AnchorStyles.None;
             lblFiltrarTipoInsumo.AutoSize = true;
             lblFiltrarTipoInsumo.ForeColor = SystemColors.ActiveCaptionText;
             lblFiltrarTipoInsumo.Location = new Point(45, 72);
@@ -118,6 +128,7 @@
             // 
             // lblSeleccionado
             // 
+            lblSeleccionado.Anchor = AnchorStyles.None;
             lblSeleccionado.AutoSize = true;
             lblSeleccionado.ForeColor = SystemColors.ActiveCaptionText;
             lblSeleccionado.Location = new Point(398, 115);
@@ -128,6 +139,7 @@
             // 
             // lblDescripcionSeleccionado
             // 
+            lblDescripcionSeleccionado.Anchor = AnchorStyles.None;
             lblDescripcionSeleccionado.AutoSize = true;
             lblDescripcionSeleccionado.ForeColor = SystemColors.ActiveCaptionText;
             lblDescripcionSeleccionado.Location = new Point(398, 143);
@@ -138,6 +150,7 @@
             // 
             // txtCantidadAjustar
             // 
+            txtCantidadAjustar.Anchor = AnchorStyles.None;
             txtCantidadAjustar.Location = new Point(398, 216);
             txtCantidadAjustar.Name = "txtCantidadAjustar";
             txtCantidadAjustar.Size = new Size(187, 23);
@@ -145,6 +158,7 @@
             // 
             // lblCantidadAjuste
             // 
+            lblCantidadAjuste.Anchor = AnchorStyles.None;
             lblCantidadAjuste.AutoSize = true;
             lblCantidadAjuste.ForeColor = SystemColors.ActiveCaptionText;
             lblCantidadAjuste.Location = new Point(398, 198);
@@ -155,6 +169,7 @@
             // 
             // btnAceptarAjuste
             // 
+            btnAceptarAjuste.Anchor = AnchorStyles.None;
             btnAceptarAjuste.BackColor = Color.Lavender;
             btnAceptarAjuste.FlatStyle = FlatStyle.Popup;
             btnAceptarAjuste.ForeColor = SystemColors.WindowText;
@@ -164,9 +179,11 @@
             btnAceptarAjuste.TabIndex = 11;
             btnAceptarAjuste.Text = "Aceptar Ajuste";
             btnAceptarAjuste.UseVisualStyleBackColor = false;
+            btnAceptarAjuste.Click += btnAceptarAjuste_Click;
             // 
             // lblMotivo
             // 
+            lblMotivo.Anchor = AnchorStyles.None;
             lblMotivo.AutoSize = true;
             lblMotivo.ForeColor = SystemColors.ActiveCaptionText;
             lblMotivo.Location = new Point(398, 277);
@@ -177,6 +194,7 @@
             // 
             // txtMotivo
             // 
+            txtMotivo.Anchor = AnchorStyles.None;
             txtMotivo.Location = new Point(398, 295);
             txtMotivo.Name = "txtMotivo";
             txtMotivo.Size = new Size(187, 23);
@@ -216,6 +234,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "AjustarStockForm";
             Text = "AjustarStockForm";
+            Load += AjustarStockForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvInsumos).EndInit();
             ResumeLayout(false);
             PerformLayout();

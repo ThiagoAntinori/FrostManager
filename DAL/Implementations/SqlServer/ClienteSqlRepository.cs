@@ -4,6 +4,7 @@ using DAL.Tools;
 using Domain;
 using Microsoft.Data.SqlClient;
 using Services.BLL.Extensions;
+using Services.BLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,6 +21,8 @@ namespace DAL.Implementations.SqlServer
         {
             try
             {
+                string telefonoEncriptado = CriptographyService.Encrypt(obj.Telefono);
+                string direccionEncriptada = CriptographyService.Encrypt(obj.Direccion);
                 SqlHelper.ExecuteNonQuery("INSERT INTO CLIENTE (IdCliente, Nombre, Apellido, DNI, Telefono, Direccion, DVH, Borrado)" +
                     "                       VALUES (@IdCliente, @Nombre, @Apellido, @DNI, @Telefono, @Direccion, @DVH, 0)",
                                             CommandType.Text,
@@ -29,8 +32,8 @@ namespace DAL.Implementations.SqlServer
                                                 new SqlParameter("@Nombre", obj.Nombre),
                                                 new SqlParameter("@Apellido", obj.Apellido),
                                                 new SqlParameter("@DNI", obj.DNI),
-                                                new SqlParameter("@Telefono", obj.Telefono),
-                                                new SqlParameter("@Direccion", obj.Direccion),
+                                                new SqlParameter("@Telefono", telefonoEncriptado),
+                                                new SqlParameter("@Direccion", direccionEncriptada),
                                                 new SqlParameter("@DVH", obj.DVH)
                                             });
             }

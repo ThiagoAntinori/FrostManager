@@ -32,9 +32,13 @@ namespace DAL.Adapter
             Pedido pedidoAdaptado = new Pedido()
             {
                 IdPedido = Guid.Parse(values[0].ToString()),
-                HoraEnvio = DateTime.Parse(values[1].ToString()),
-                HoraEntrega = DateTime.Parse(values[2].ToString()),
-                Estado = Enum.GetValues(typeof(EstadoPedido)).Cast<EstadoPedido>().ToList()[Convert.ToInt32(values[3].ToString())]
+                HoraEnvio = string.IsNullOrEmpty(values[1].ToString())
+                            ? (DateTime?)null
+                            : DateTime.Parse(values[1].ToString()),
+                HoraEntrega = string.IsNullOrEmpty(values[2].ToString())
+                            ? (DateTime?)null
+                            : DateTime.Parse(values[2].ToString()),
+                Estado = Enum.GetValues(typeof(EstadoPedido)).Cast<EstadoPedido>().ToList()[Convert.ToInt32(values[3].ToString()) - 1]
             };
             pedidoAdaptado.Venta = Repository.GetVentaInstance().GetById(Guid.Parse(values[4].ToString()));
             pedidoAdaptado.Cliente = Repository.GetClienteInstance().GetById(Guid.Parse(values[5].ToString()));

@@ -1,0 +1,23 @@
+[
+  {
+    "CapacidadEnGramos": 250,
+    "IdInsumo": "6f2fea37-79e0-4009-b8df-2e858e62d878",
+    "Descripcion": "1/4 kilo",
+    "StockActual": 100,
+    "StockMinimo": 20
+  },
+  {
+    "CapacidadEnGramos": 500,
+    "IdInsumo": "d05f5ef7-befa-42c9-8f05-ac7492e60f2c",
+    "Descripcion": "Envase 1/2 kilo",
+    "StockActual": 7,
+    "StockMinimo": 9
+  },
+  {
+    "CapacidadEnGramos": 1000,
+    "IdInsumo": "d0d7910d-4297-4b40-855e-63c25cf8cbd4",
+    "Descripcion": "Envase 1kg",
+    "StockActual": 66,
+    "StockMinimo": 10
+  }
+]

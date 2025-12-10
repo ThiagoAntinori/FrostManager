@@ -40,7 +40,7 @@ namespace DAL.Adapter
                 EstadoVenta = Enum.GetValues(typeof(EstadoVenta)).Cast<EstadoVenta>().ToList()[Convert.ToInt32(values[5].ToString()) - 1],
             };
 
-            List<DetalleVenta> detalles = Repository.GetDetalleVentaInstance().GetByIdVenta(venta.IdVenta);
+            List<DetalleVenta> detalles = Repository.GetDetalleVentaInstance().GetByIdVenta(venta.IdVenta).ToList();
 
             foreach(var d in detalles)
             {

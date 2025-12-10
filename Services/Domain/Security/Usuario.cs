@@ -40,5 +40,7 @@ namespace Services.Domain.Security
                 }
             }
         }
+
+        public override string ToString() => Nombre;
     }
 }

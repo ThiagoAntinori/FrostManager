@@ -36,13 +36,14 @@
             lblBuscarDescripcion = new Label();
             txtDescripcionBuscar = new TextBox();
             btnBuscar = new Button();
+            btnConsultar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvStock).BeginInit();
             SuspendLayout();
             // 
             // dgvStock
             // 
             dgvStock.Anchor = AnchorStyles.None;
-            dgvStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStock.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStock.Location = new Point(45, 115);
@@ -52,6 +53,7 @@
             dgvStock.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvStock.Size = new Size(530, 321);
             dgvStock.TabIndex = 0;
+            dgvStock.SelectionChanged += dgvStock_SelectionChanged;
             // 
             // lblTituloStock
             // 
@@ -61,7 +63,7 @@
             lblTituloStock.ForeColor = SystemColors.WindowText;
             lblTituloStock.Location = new Point(45, 32);
             lblTituloStock.Name = "lblTituloStock";
-            lblTituloStock.Size = new Size(89, 17);
+            lblTituloStock.Size = new Size(86, 17);
             lblTituloStock.TabIndex = 1;
             lblTituloStock.Text = "Stock Actual:";
             // 
@@ -78,6 +80,7 @@
             // 
             // lblFiltrarTipoInsumo
             // 
+            lblFiltrarTipoInsumo.Anchor = AnchorStyles.None;
             lblFiltrarTipoInsumo.AutoSize = true;
             lblFiltrarTipoInsumo.ForeColor = SystemColors.ActiveCaptionText;
             lblFiltrarTipoInsumo.Location = new Point(45, 72);
@@ -88,15 +91,18 @@
             // 
             // cmbTipoInsumo
             // 
+            cmbTipoInsumo.Anchor = AnchorStyles.None;
             cmbTipoInsumo.FormattingEnabled = true;
             cmbTipoInsumo.Items.AddRange(new object[] { "Envase", "Sabor" });
-            cmbTipoInsumo.Location = new Point(216, 72);
+            cmbTipoInsumo.Location = new Point(216, 69);
             cmbTipoInsumo.Name = "cmbTipoInsumo";
             cmbTipoInsumo.Size = new Size(121, 23);
             cmbTipoInsumo.TabIndex = 6;
+            cmbTipoInsumo.SelectedValueChanged += cmbTipoInsumo_SelectedValueChanged;
             // 
             // lblBuscarDescripcion
             // 
+            lblBuscarDescripcion.Anchor = AnchorStyles.None;
             lblBuscarDescripcion.AutoSize = true;
             lblBuscarDescripcion.ForeColor = SystemColors.ActiveCaptionText;
             lblBuscarDescripcion.Location = new Point(45, 456);
@@ -107,6 +113,7 @@
             // 
             // txtDescripcionBuscar
             // 
+            txtDescripcionBuscar.Anchor = AnchorStyles.None;
             txtDescripcionBuscar.Location = new Point(45, 483);
             txtDescripcionBuscar.Name = "txtDescripcionBuscar";
             txtDescripcionBuscar.Size = new Size(187, 23);
@@ -114,6 +121,7 @@
             // 
             // btnBuscar
             // 
+            btnBuscar.Anchor = AnchorStyles.None;
             btnBuscar.ForeColor = SystemColors.ActiveCaptionText;
             btnBuscar.Location = new Point(262, 483);
             btnBuscar.Name = "btnBuscar";
@@ -122,11 +130,23 @@
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
             // 
+            // btnConsultar
+            // 
+            btnConsultar.Anchor = AnchorStyles.None;
+            btnConsultar.Location = new Point(424, 476);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(151, 35);
+            btnConsultar.TabIndex = 11;
+            btnConsultar.Text = "Consultar";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
+            // 
             // ConsultarStockActualForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(624, 561);
+            Controls.Add(btnConsultar);
             Controls.Add(btnBuscar);
             Controls.Add(txtDescripcionBuscar);
             Controls.Add(lblBuscarDescripcion);
@@ -138,6 +158,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ConsultarStockActualForm";
             Text = "ConsultarStockActualForm";
+            Load += ConsultarStockActualForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvStock).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -153,5 +174,6 @@
         private Label lblBuscarDescripcion;
         private TextBox txtDescripcionBuscar;
         private Button btnBuscar;
+        private Button btnConsultar;
     }
 }

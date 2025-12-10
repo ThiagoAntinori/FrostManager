@@ -1,4 +1,6 @@
-﻿using Services.BLL.Extensions;
+﻿using Services.BLL.Contracts;
+using Services.BLL.DTOs;
+using Services.BLL.Extensions;
 using Services.BLL.Services;
 using Services.Domain.Security;
 using System;
@@ -10,27 +12,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Tools;
 
 namespace UI
 {
-    public partial class SettingsForm : Form
+    public partial class SettingsForm : Form, ITraducible
     {
         public SettingsForm()
         {
             InitializeComponent();
+            IdiomaService.Current.Suscribir(this);
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
             try
             {
+                if (UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
+                {
+                    CambiarIdioma();
+                }
                 if (UsuarioLogueado.Current.Usuario == null)
                 {
                     throw new Exception("No se encontró al usuario logueado.");
                 }
                 txtCorreo.Text = UsuarioLogueado.Current.Usuario.CorreoElectronico;
-                cmbIdioma.Items.Add("es-ES");
-                cmbIdioma.Items.Add("en-US");
+                ConfigurarComboIdiomas();
             }
             catch (Exception ex)
             {
@@ -46,13 +53,13 @@ namespace UI
                 if (txtCorreo.Text != UsuarioLogueado.Current.Usuario.CorreoElectronico)
                 {
                     Usuario usuarioLogueado = UsuarioLogueado.Current.Usuario;
+                    usuarioLogueado.CorreoElectronico = txtCorreo.Text;
                     UsuarioService.Current.Update(usuarioLogueado);
                     MessageBox.Show("El correo electrónico fue actualizado con exito");
                 }
             }
             catch (Exception ex)
             {
-                ex.Handle();
                 MessageBox.Show(ex.Message);
             }
         }
@@ -61,14 +68,16 @@ namespace UI
         {
             try
             {
-                if (MessageBox.Show($"¿Desea cambiar el idioma a {cmbIdioma.SelectedItem}?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if(cmbIdioma.SelectedValue != null)
                 {
-                    IdiomaService.Current.CambiarIdioma((string)cmbIdioma.SelectedItem);
+                    if (MessageBox.Show($"¿Desea cambiar el idioma a {cmbIdioma.Text}?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        IdiomaService.Current.CambiarIdioma((string)cmbIdioma.SelectedValue);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                ex.Handle();
                 MessageBox.Show(ex.Message);
             }
         }
@@ -79,10 +88,33 @@ namespace UI
             {
                 SesionService.CambiarContraseña(UsuarioLogueado.Current.Usuario.Nombre, txtContraseñaActual.Text, txtNuevaContraseña.Text);
                 MessageBox.Show("Contraseña cambiada correctamente");
+                UIHelper.LimpiarCampos(this.Controls);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ConfigurarComboIdiomas()
+        {
+            List<IdiomaDTO> idiomas = IdiomaService.Current.ObtenerIdiomasParaDisplay();
+            cmbIdioma.DataSource = idiomas;
+            cmbIdioma.DisplayMember = "NombreDisplay";
+            cmbIdioma.ValueMember = "CodigoCultura";
+            string culturaActual = UsuarioLogueado.Current.IdiomaSeleccionado;
+            cmbIdioma.SelectedValue = culturaActual;
+        }
+
+        public void CambiarIdioma()
+        {
+            try
+            {
+                UIHelper.TraducirControles(this.Controls);
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }

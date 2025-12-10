@@ -37,14 +37,8 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
                 ValidationHelper.NotEmpty(item.Descripcion, nameof(item.Descripcion));
-                if (item.StockActual <= 0)
-                {
-                    throw new Exception("El stock actual del envase debe ser mayor a cero.");
-                }
-                if (item.StockMinimo <= 0)
-                {
-                    throw new Exception("El stock mínimo del envase debe ser mayor a cero");
-                }
+                ValidationHelper.PositiveValue(item.StockActual, nameof(item.StockActual));
+                ValidationHelper.PositiveValue(item.StockMinimo, nameof(item.StockMinimo));
                 Repository.GetSaborInstance().Insert(item);
             }
             catch (Exception ex)
@@ -60,6 +54,7 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
                 Repository.GetSaborInstance().Delete(item);
+                LoggerHelper.RegistrarBaja(item);
             }
             catch (Exception ex)
             {
@@ -101,19 +96,14 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
                 ValidationHelper.NotEmpty(item.Descripcion, nameof(item.Descripcion));
-                if (item.StockActual <= 0)
-                {
-                    throw new Exception("El stock actual del envase debe ser mayor a cero.");
-                }
-                if (item.StockMinimo <= 0)
-                {
-                    throw new Exception("El stock mínimo del envase debe ser mayor a cero");
-                }
+                ValidationHelper.PositiveValue(item.StockActual, nameof(item.StockActual));
+                ValidationHelper.PositiveValue(item.StockMinimo, nameof(item.StockMinimo));
                 if (Repository.GetSaborInstance().GetById(item.IdInsumo) is null)
                 {
                     throw new Exception("No se encontró el sabor a modificar");
                 }
                 Repository.GetSaborInstance().Update(item);
+                LoggerHelper.RegistrarModificacion(item);
             }
             catch (Exception ex)
             {

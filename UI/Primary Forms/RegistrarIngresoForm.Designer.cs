@@ -47,6 +47,7 @@
             // 
             // dgvInsumos
             // 
+            dgvInsumos.Anchor = AnchorStyles.None;
             dgvInsumos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvInsumos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvInsumos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -61,6 +62,7 @@
             // 
             // lblSeleccionarInsumoAModificar
             // 
+            lblSeleccionarInsumoAModificar.Anchor = AnchorStyles.None;
             lblSeleccionarInsumoAModificar.AutoSize = true;
             lblSeleccionarInsumoAModificar.ForeColor = SystemColors.ActiveCaptionText;
             lblSeleccionarInsumoAModificar.Location = new Point(51, 32);
@@ -71,6 +73,7 @@
             // 
             // lblBuscarDescripcion
             // 
+            lblBuscarDescripcion.Anchor = AnchorStyles.None;
             lblBuscarDescripcion.AutoSize = true;
             lblBuscarDescripcion.ForeColor = SystemColors.ActiveCaptionText;
             lblBuscarDescripcion.Location = new Point(45, 456);
@@ -81,6 +84,7 @@
             // 
             // txtDescripcionBuscar
             // 
+            txtDescripcionBuscar.Anchor = AnchorStyles.None;
             txtDescripcionBuscar.Location = new Point(45, 483);
             txtDescripcionBuscar.Name = "txtDescripcionBuscar";
             txtDescripcionBuscar.Size = new Size(187, 23);
@@ -88,6 +92,7 @@
             // 
             // btnBuscar
             // 
+            btnBuscar.Anchor = AnchorStyles.None;
             btnBuscar.ForeColor = SystemColors.ActiveCaptionText;
             btnBuscar.Location = new Point(262, 483);
             btnBuscar.Name = "btnBuscar";
@@ -99,6 +104,7 @@
             // 
             // cmbTipoInsumo
             // 
+            cmbTipoInsumo.Anchor = AnchorStyles.None;
             cmbTipoInsumo.FormattingEnabled = true;
             cmbTipoInsumo.Items.AddRange(new object[] { "Envase", "Sabor" });
             cmbTipoInsumo.Location = new Point(216, 72);
@@ -109,6 +115,7 @@
             // 
             // lblFiltrarTipoInsumo
             // 
+            lblFiltrarTipoInsumo.Anchor = AnchorStyles.None;
             lblFiltrarTipoInsumo.AutoSize = true;
             lblFiltrarTipoInsumo.ForeColor = SystemColors.ActiveCaptionText;
             lblFiltrarTipoInsumo.Location = new Point(45, 72);
@@ -119,6 +126,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.ForeColor = SystemColors.ActiveCaptionText;
             label1.Location = new Point(398, 115);
@@ -129,6 +137,7 @@
             // 
             // lblDescripcionSeleccionado
             // 
+            lblDescripcionSeleccionado.Anchor = AnchorStyles.None;
             lblDescripcionSeleccionado.AutoSize = true;
             lblDescripcionSeleccionado.ForeColor = SystemColors.ActiveCaptionText;
             lblDescripcionSeleccionado.Location = new Point(398, 143);
@@ -139,6 +148,7 @@
             // 
             // txtCantidadAIngresar
             // 
+            txtCantidadAIngresar.Anchor = AnchorStyles.None;
             txtCantidadAIngresar.Location = new Point(398, 216);
             txtCantidadAIngresar.Name = "txtCantidadAIngresar";
             txtCantidadAIngresar.Size = new Size(187, 23);
@@ -146,6 +156,7 @@
             // 
             // lblCantidadIngreso
             // 
+            lblCantidadIngreso.Anchor = AnchorStyles.None;
             lblCantidadIngreso.AutoSize = true;
             lblCantidadIngreso.ForeColor = SystemColors.ActiveCaptionText;
             lblCantidadIngreso.Location = new Point(398, 198);
@@ -156,6 +167,7 @@
             // 
             // btnAceptar
             // 
+            btnAceptar.Anchor = AnchorStyles.None;
             btnAceptar.ForeColor = SystemColors.ActiveCaptionText;
             btnAceptar.Location = new Point(449, 403);
             btnAceptar.Name = "btnAceptar";
@@ -167,6 +179,7 @@
             // 
             // lblMotivo
             // 
+            lblMotivo.Anchor = AnchorStyles.None;
             lblMotivo.AutoSize = true;
             lblMotivo.ForeColor = SystemColors.ActiveCaptionText;
             lblMotivo.Location = new Point(398, 277);
@@ -177,6 +190,7 @@
             // 
             // txtMotivo
             // 
+            txtMotivo.Anchor = AnchorStyles.None;
             txtMotivo.Location = new Point(398, 295);
             txtMotivo.Name = "txtMotivo";
             txtMotivo.Size = new Size(187, 23);

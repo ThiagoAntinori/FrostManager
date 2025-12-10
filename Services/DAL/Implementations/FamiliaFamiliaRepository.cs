@@ -30,7 +30,7 @@ namespace Services.DAL.Implementations
             // Implement here the initialization of your singleton
         }
 
-        public void Add(Familia obj)
+        public void Add(Familia obj, UnitOfWork uow = null)
         {
             try
             {
@@ -46,6 +46,7 @@ namespace Services.DAL.Implementations
                             "VALUES (@IdFamiliaPadre, @IdPatenteHijo) " +
                             "END ",
                             CommandType.Text,
+                            uow?.Transaction,
                             new SqlParameter[]
                             {
                                 new SqlParameter("@IdFamiliaPadre", obj.IdComponente),
@@ -60,12 +61,13 @@ namespace Services.DAL.Implementations
             }
         }
 
-        public void Delete(Familia familiaPadre, Familia familiaHijo)
+        public void Delete(Familia familiaPadre, Familia familiaHijo, UnitOfWork uow = null)
         {
             try
             {
                 SqlHelper.ExecuteNonQuery("DELETE FROM FAMILIA_FAMILIA WHERE IdFamiliaPadre = @IdFamiliaPadre AND IdFamiliaHijo = @IdFamiliaHijo",
                                             CommandType.Text,
+                                            uow?.Transaction,
                                             new SqlParameter[]
                                             {
                                                 new SqlParameter("@IdFamiliaPadre", familiaPadre.IdComponente),
@@ -102,6 +104,24 @@ namespace Services.DAL.Implementations
                 }
             }
             catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public void DeleteByFamiliaPadre(Guid idFamiliaPadre, UnitOfWork uow = null)
+        {
+            try
+            {
+                SqlHelper.ExecuteNonQuery("DELETE FROM FAMILIA_FAMILIA WHERE IdFamiliaPadre = @IdFamiliaPadre",
+                                            CommandType.Text,
+                                            uow?.Transaction,
+                                            new SqlParameter[]
+                                            {
+                                                new SqlParameter("@IdFamiliaPadre", idFamiliaPadre)
+                                            });
+            }
+            catch (Exception ex)
             {
                 throw;
             }

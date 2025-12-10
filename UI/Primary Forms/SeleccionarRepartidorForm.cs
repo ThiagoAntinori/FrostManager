@@ -1,5 +1,8 @@
 ﻿using BLL.Implementations;
 using Domain;
+using Services.BLL.Contracts;
+using Services.BLL.Services;
+using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,24 +12,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Tools;
 
 namespace UI.Primary_Forms
 {
-    public partial class SeleccionarRepartidorForm : Form
+    public partial class SeleccionarRepartidorForm : Form, ITraducible
     {
         public Repartidor repartidorSeleccionado;
         public SeleccionarRepartidorForm()
         {
             InitializeComponent();
+            IdiomaService.Current.Suscribir(this);
         }
 
         private void SeleccionarRepartidorForm_Load(object sender, EventArgs e)
         {
             try
             {
+                if (UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
+                {
+                    CambiarIdioma();
+                }
                 dgvRepartidores.DataSource = null;
-                dgvRepartidores.DataSource = RepartidorService.Current.SelectAll();
+                dgvRepartidores.DataSource = RepartidorService.Current.SelectAll().Where(r => r.Activo == true).ToList();
                 dgvRepartidores.Columns["IdRepartidor"].Visible = false;
+                dgvRepartidores.Columns["Activo"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -75,6 +85,18 @@ namespace UI.Primary_Forms
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void CambiarIdioma()
+        {
+            try
+            {
+                UIHelper.TraducirControles(this.Controls);
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }

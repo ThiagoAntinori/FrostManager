@@ -1,4 +1,6 @@
-﻿namespace UI
+﻿using Org.BouncyCastle.Asn1.Crmf;
+
+namespace UI
 {
     partial class RecuperarContraseñaForm
     {
@@ -29,92 +31,229 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecuperarContraseñaForm));
-            lblIngresarNombreUsuario = new Label();
-            txtNombreUsuario = new TextBox();
-            btnEnviarToken = new Button();
-            label1 = new Label();
+            panelSolicitarToken = new Panel();
+            btnSolicitarToken = new Button();
+            txtUsuarioSolicitud = new TextBox();
+            lblTituloSolicitud = new Label();
+            lblUsuarioSolicitud = new Label();
+            panelRestablecer = new Panel();
+            btnRestablecerContrasena = new Button();
+            txtConfirmarNuevaPassword = new TextBox();
+            lblConfirmarNuevaPassword = new Label();
+            txtNuevaPassword = new TextBox();
+            lblNuevaPassword = new Label();
             txtToken = new TextBox();
-            btnIngresar = new Button();
+            lblToken = new Label();
+            lblTituloRestablecer = new Label();
+            btnCerrar = new Button();
+            panelSolicitarToken.SuspendLayout();
+            panelRestablecer.SuspendLayout();
             SuspendLayout();
             // 
-            // lblIngresarNombreUsuario
+            // panelSolicitarToken
             // 
-            lblIngresarNombreUsuario.AutoSize = true;
-            lblIngresarNombreUsuario.Location = new Point(38, 44);
-            lblIngresarNombreUsuario.Name = "lblIngresarNombreUsuario";
-            lblIngresarNombreUsuario.Size = new Size(166, 15);
-            lblIngresarNombreUsuario.TabIndex = 0;
-            lblIngresarNombreUsuario.Text = "Ingrese su nombre de usuario:";
+            panelSolicitarToken.Anchor = AnchorStyles.None;
+            panelSolicitarToken.BorderStyle = BorderStyle.FixedSingle;
+            panelSolicitarToken.Controls.Add(btnSolicitarToken);
+            panelSolicitarToken.Controls.Add(txtUsuarioSolicitud);
+            panelSolicitarToken.Controls.Add(lblTituloSolicitud);
+            panelSolicitarToken.Controls.Add(lblUsuarioSolicitud);
+            panelSolicitarToken.Location = new Point(20, 40);
+            panelSolicitarToken.Name = "panelSolicitarToken";
+            panelSolicitarToken.Size = new Size(300, 120);
+            panelSolicitarToken.TabIndex = 0;
             // 
-            // txtNombreUsuario
+            // btnSolicitarToken
             // 
-            txtNombreUsuario.Location = new Point(38, 62);
-            txtNombreUsuario.Name = "txtNombreUsuario";
-            txtNombreUsuario.Size = new Size(260, 23);
-            txtNombreUsuario.TabIndex = 1;
+            btnSolicitarToken.Anchor = AnchorStyles.None;
+            btnSolicitarToken.BackColor = Color.LightBlue;
+            btnSolicitarToken.Location = new Point(195, 78);
+            btnSolicitarToken.Name = "btnSolicitarToken";
+            btnSolicitarToken.Size = new Size(95, 30);
+            btnSolicitarToken.TabIndex = 2;
+            btnSolicitarToken.Text = "Solicitar Token";
+            btnSolicitarToken.UseVisualStyleBackColor = false;
+            btnSolicitarToken.Click += btnSolicitarToken_Click;
             // 
-            // btnEnviarToken
+            // txtUsuarioSolicitud
             // 
-            btnEnviarToken.Location = new Point(38, 91);
-            btnEnviarToken.Name = "btnEnviarToken";
-            btnEnviarToken.Size = new Size(89, 23);
-            btnEnviarToken.TabIndex = 2;
-            btnEnviarToken.Text = "Enviar Token";
-            btnEnviarToken.UseVisualStyleBackColor = true;
-            btnEnviarToken.Click += btnEnviarToken_Click;
+            txtUsuarioSolicitud.Anchor = AnchorStyles.None;
+            txtUsuarioSolicitud.Location = new Point(15, 49);
+            txtUsuarioSolicitud.Name = "txtUsuarioSolicitud";
+            txtUsuarioSolicitud.Size = new Size(275, 23);
+            txtUsuarioSolicitud.TabIndex = 1;
             // 
-            // label1
+            // lblTituloSolicitud
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(38, 162);
-            label1.Name = "label1";
-            label1.Size = new Size(168, 15);
-            label1.TabIndex = 3;
-            label1.Text = "Ingrese el Token de validación:";
+            lblTituloSolicitud.Anchor = AnchorStyles.None;
+            lblTituloSolicitud.AutoSize = true;
+            lblTituloSolicitud.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloSolicitud.Location = new Point(12, 5);
+            lblTituloSolicitud.Name = "lblTituloSolicitud";
+            lblTituloSolicitud.Size = new Size(106, 16);
+            lblTituloSolicitud.TabIndex = 0;
+            lblTituloSolicitud.Text = "Solicitar Token:";
+            // 
+            // lblUsuarioSolicitud
+            // 
+            lblUsuarioSolicitud.Anchor = AnchorStyles.None;
+            lblUsuarioSolicitud.AutoSize = true;
+            lblUsuarioSolicitud.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblUsuarioSolicitud.Location = new Point(12, 29);
+            lblUsuarioSolicitud.Name = "lblUsuarioSolicitud";
+            lblUsuarioSolicitud.Size = new Size(188, 17);
+            lblUsuarioSolicitud.TabIndex = 3;
+            lblUsuarioSolicitud.Text = "Nombre de usuario o Email:";
+            // 
+            // panelRestablecer
+            // 
+            panelRestablecer.Anchor = AnchorStyles.None;
+            panelRestablecer.BorderStyle = BorderStyle.FixedSingle;
+            panelRestablecer.Controls.Add(btnRestablecerContrasena);
+            panelRestablecer.Controls.Add(txtConfirmarNuevaPassword);
+            panelRestablecer.Controls.Add(lblConfirmarNuevaPassword);
+            panelRestablecer.Controls.Add(txtNuevaPassword);
+            panelRestablecer.Controls.Add(lblNuevaPassword);
+            panelRestablecer.Controls.Add(txtToken);
+            panelRestablecer.Controls.Add(lblToken);
+            panelRestablecer.Controls.Add(lblTituloRestablecer);
+            panelRestablecer.Location = new Point(20, 168);
+            panelRestablecer.Name = "panelRestablecer";
+            panelRestablecer.Size = new Size(300, 150);
+            panelRestablecer.TabIndex = 1;
+            // 
+            // btnRestablecerContrasena
+            // 
+            btnRestablecerContrasena.Anchor = AnchorStyles.None;
+            btnRestablecerContrasena.BackColor = Color.LightBlue;
+            btnRestablecerContrasena.Location = new Point(195, 115);
+            btnRestablecerContrasena.Name = "btnRestablecerContrasena";
+            btnRestablecerContrasena.Size = new Size(95, 30);
+            btnRestablecerContrasena.TabIndex = 6;
+            btnRestablecerContrasena.Text = "Restablecer";
+            btnRestablecerContrasena.UseVisualStyleBackColor = false;
+            btnRestablecerContrasena.Click += btnRestablecerContrasena_Click;
+            // 
+            // txtConfirmarNuevaPassword
+            // 
+            txtConfirmarNuevaPassword.Anchor = AnchorStyles.None;
+            txtConfirmarNuevaPassword.Location = new Point(148, 86);
+            txtConfirmarNuevaPassword.Name = "txtConfirmarNuevaPassword";
+            txtConfirmarNuevaPassword.Size = new Size(142, 23);
+            txtConfirmarNuevaPassword.TabIndex = 5;
+            txtConfirmarNuevaPassword.UseSystemPasswordChar = true;
+            // 
+            // lblConfirmarNuevaPassword
+            // 
+            lblConfirmarNuevaPassword.Anchor = AnchorStyles.None;
+            lblConfirmarNuevaPassword.AutoSize = true;
+            lblConfirmarNuevaPassword.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblConfirmarNuevaPassword.Location = new Point(148, 66);
+            lblConfirmarNuevaPassword.Name = "lblConfirmarNuevaPassword";
+            lblConfirmarNuevaPassword.Size = new Size(157, 17);
+            lblConfirmarNuevaPassword.TabIndex = 7;
+            lblConfirmarNuevaPassword.Text = "Confirmar Contraseña:";
+            // 
+            // txtNuevaPassword
+            // 
+            txtNuevaPassword.Anchor = AnchorStyles.None;
+            txtNuevaPassword.Location = new Point(12, 86);
+            txtNuevaPassword.Name = "txtNuevaPassword";
+            txtNuevaPassword.Size = new Size(130, 23);
+            txtNuevaPassword.TabIndex = 4;
+            txtNuevaPassword.UseSystemPasswordChar = true;
+            // 
+            // lblNuevaPassword
+            // 
+            lblNuevaPassword.Anchor = AnchorStyles.None;
+            lblNuevaPassword.AutoSize = true;
+            lblNuevaPassword.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNuevaPassword.Location = new Point(12, 66);
+            lblNuevaPassword.Name = "lblNuevaPassword";
+            lblNuevaPassword.Size = new Size(135, 17);
+            lblNuevaPassword.TabIndex = 6;
+            lblNuevaPassword.Text = "Nueva Contraseña:";
             // 
             // txtToken
             // 
-            txtToken.Location = new Point(38, 180);
+            txtToken.Anchor = AnchorStyles.None;
+            txtToken.Location = new Point(148, 38);
             txtToken.Name = "txtToken";
-            txtToken.Size = new Size(260, 23);
-            txtToken.TabIndex = 4;
+            txtToken.Size = new Size(142, 23);
+            txtToken.TabIndex = 3;
             // 
-            // btnIngresar
+            // lblToken
             // 
-            btnIngresar.Location = new Point(38, 209);
-            btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(89, 23);
-            btnIngresar.TabIndex = 5;
-            btnIngresar.Text = "Ingresar";
-            btnIngresar.UseVisualStyleBackColor = true;
-            btnIngresar.Click += btnIngresar_Click;
+            lblToken.Anchor = AnchorStyles.None;
+            lblToken.AutoSize = true;
+            lblToken.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblToken.Location = new Point(148, 18);
+            lblToken.Name = "lblToken";
+            lblToken.Size = new Size(110, 17);
+            lblToken.TabIndex = 5;
+            lblToken.Text = "Token Recibido:";
+            // 
+            // lblTituloRestablecer
+            // 
+            lblTituloRestablecer.Anchor = AnchorStyles.None;
+            lblTituloRestablecer.AutoSize = true;
+            lblTituloRestablecer.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloRestablecer.Location = new Point(12, 5);
+            lblTituloRestablecer.Name = "lblTituloRestablecer";
+            lblTituloRestablecer.Size = new Size(247, 16);
+            lblTituloRestablecer.TabIndex = 4;
+            lblTituloRestablecer.Text = "Restablecer Contraseña (con Token):";
+            // 
+            // btnCerrar
+            // 
+            btnCerrar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnCerrar.BackColor = Color.IndianRed;
+            btnCerrar.FlatStyle = FlatStyle.Flat;
+            btnCerrar.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCerrar.ForeColor = Color.White;
+            btnCerrar.Location = new Point(312, 5);
+            btnCerrar.Name = "btnCerrar";
+            btnCerrar.Size = new Size(27, 27);
+            btnCerrar.TabIndex = 2;
+            btnCerrar.Text = "X";
+            btnCerrar.UseVisualStyleBackColor = false;
             // 
             // RecuperarContraseñaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightSteelBlue;
-            ClientSize = new Size(348, 278);
-            Controls.Add(btnIngresar);
-            Controls.Add(txtToken);
-            Controls.Add(label1);
-            Controls.Add(btnEnviarToken);
-            Controls.Add(txtNombreUsuario);
-            Controls.Add(lblIngresarNombreUsuario);
+            BackColor = Color.PaleTurquoise;
+            ClientSize = new Size(344, 331);
+            Controls.Add(btnCerrar);
+            Controls.Add(panelRestablecer);
+            Controls.Add(panelSolicitarToken);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximumSize = new Size(360, 370);
             Name = "RecuperarContraseñaForm";
-            Text = "Recuperación de Contraseña";
+            Text = "RECUPERAR CONTRASEÑA";
+            panelSolicitarToken.ResumeLayout(false);
+            panelSolicitarToken.PerformLayout();
+            panelRestablecer.ResumeLayout(false);
+            panelRestablecer.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label lblIngresarNombreUsuario;
-        private TextBox txtNombreUsuario;
-        private Button btnEnviarToken;
-        private Label label1;
+        private Panel panelSolicitarToken;
+        private Label lblTituloSolicitud;
+        private TextBox txtUsuarioSolicitud;
+        private Button btnSolicitarToken;
+        private Panel panelRestablecer;
+        private Label lblTituloRestablecer;
         private TextBox txtToken;
-        private Button btnIngresar;
+        private Label lblToken;
+        private TextBox txtConfirmarNuevaPassword;
+        private Label lblConfirmarNuevaPassword;
+        private TextBox txtNuevaPassword;
+        private Label lblNuevaPassword;
+        private Button btnRestablecerContrasena;
+        private Button btnCerrar;
+        private Label lblUsuarioSolicitud;
     }
 }

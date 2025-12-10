@@ -1,4 +1,5 @@
-﻿using Services.BLL.Services;
+﻿using Services.BLL.Contracts;
+using Services.BLL.Services;
 using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
@@ -9,14 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Tools;
 
 namespace UI.Administrative_Forms
 {
-    public partial class CambiarEstadoUsuarioForm : Form
+    public partial class CambiarEstadoUsuarioForm : Form, ITraducible
     {
         public CambiarEstadoUsuarioForm()
         {
             InitializeComponent();
+            IdiomaService.Current.Suscribir(this);
         }
 
         private Usuario usuarioSeleccionado = null;
@@ -25,6 +28,10 @@ namespace UI.Administrative_Forms
         {
             try
             {
+                if (UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
+                {
+                    CambiarIdioma();
+                }
                 ModificarUsuarioForm.CargarDataGridUsuarios(dgvUsuarios);
             }
             catch (Exception ex)
@@ -74,6 +81,18 @@ namespace UI.Administrative_Forms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void CambiarIdioma()
+        {
+            try
+            {
+                UIHelper.TraducirControles(this.Controls);
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }

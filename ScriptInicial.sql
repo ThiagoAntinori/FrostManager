@@ -6,10 +6,13 @@ INSERT INTO PATENTE (IdPatente, Nombre, MenuItemName, FormName) VALUES
 (NEWID(), 'REGISTRAR_CLIENTE', 'btnRegistrarCliente', 'RegistrarClienteForm'),
 (NEWID(), 'MODIFICAR_CLIENTE', 'btnModificarCliente', 'ModificarClienteForm'),
 (NEWID(), 'CONSULTAR_CLIENTE', 'btnConsultarCliente', 'ConsultarClienteForm'),
-(NEWID(), 'VER_PEDIDOS', 'btnVerPedidos', 'VerPedidosForm'),
-(NEWID(), 'ACTUALIZAR_PEDIDO', 'btnActualizarPedido', 'ActualizarPedidoForm'),
-(NEWID(), 'CANCELAR_PEDIDO', 'btnCancelarPedido', 'CancelarPedidoForm'),
-(NEWID(), 'REGISTAR_INGRESO', 'btnRegistrarIngreso', 'RegistrarIngresoForm'),
+(NEWID(), 'GESTIONAR_PEDIDOS', 'btnGestionarPedidos', 'GestionarPedidosForm'),
+(NEWID(), 'REGISTRAR_PRODUCTO', 'btnRegistrarProducto', 'RegistrarProductoForm'),
+(NEWID(), 'ELIMINAR_PRODUCTO', 'btnEliminarProducto', 'EliminarProductoForm'),
+(NEWID(), 'MODIFICAR_PRODUCTO', 'btnModificarProducto', 'ModificarProductoForm'),
+(NEWID(), 'REGISTRAR_REPARTIDOR', 'btnRegistrarRepartidor', 'RegistrarRepartidorForm'),
+(NEWID(), 'MODIFICAR_REPARTIDOR', 'btnModificarRepartidor', 'ModificarRepartidorForm'),
+(NEWID(), 'REGISTRAR_INGRESO', 'btnRegistrarIngreso', 'RegistrarIngresoForm'),
 (NEWID(), 'REGISTRAR_EGRESO', 'btnRegistrarEgreso', 'RegistrarEgresoForm'),
 (NEWID(), 'REGISTRAR_INSUMO', 'btnRegistrarInsumo', 'RegistrarInsumoForm'),
 (NEWID(), 'AJUSTAR_STOCK', 'btnAjustarStock', 'AjustarStockForm'),
@@ -18,7 +21,6 @@ INSERT INTO PATENTE (IdPatente, Nombre, MenuItemName, FormName) VALUES
 (NEWID(), 'CIERRE_CAJA', 'btnCierreCaja', 'CierreCajaForm'),
 (NEWID(), 'REPORTE_SABORES', 'btnReporteSabores', 'ReporteSaboresForm'),
 (NEWID(), 'REPORTE_ENTREGAS', 'btnReporteEntregas', 'ReporteEntregasForm'),
-(NEWID(), 'REPORTE_PROYECCION', 'btnReporteProyecciones', 'ReporteProyeccionForm'),
 (NEWID(), 'PANEL_ADMINISTRATIVO', 'btnAbrirPanelAdministrativo', 'MainAdministrativeForm');
 
 -- Script de carga inicial de familias nativas del sistema
@@ -36,7 +38,7 @@ INSERT INTO FAMILIA (IdFamilia, Nombre) VALUES
 INSERT INTO FAMILIA_PATENTE (IdFamilia, IdPatente)
 SELECT @IdFamiliaAtencion, IdPatente 
 FROM PATENTE 
-WHERE Nombre IN ('REGISTRAR_VENTA', 'REGISTRAR_CLIENTE', 'MODIFICAR_CLIENTE', 'CONSULTAR_CLIENTE', 'VER_PEDIDOS', 'ACTUALIZAR_PEDIDO', 'CANCELAR_PEDIDO', 'CIERRE_CAJA');
+WHERE Nombre IN ('REGISTRAR_VENTA', 'REGISTRAR_CLIENTE', 'MODIFICAR_CLIENTE', 'CONSULTAR_CLIENTE', 'GESTIONAR_PEDIDOS', 'CIERRE_CAJA');
 
 INSERT INTO FAMILIA_PATENTE (IdFamilia, IdPatente)
 SELECT @IdFamiliaInventario, IdPatente
@@ -46,7 +48,7 @@ WHERE Nombre IN ('REGISTRAR_INGRESO', 'REGISTRAR_EGRESO', 'REGISTRAR_INSUMO', 'A
 INSERT INTO FAMILIA_PATENTE (IdFamilia, IdPatente)
 SELECT @IdFamiliaAdministrador, IdPatente
 FROM PATENTE
-WHERE Nombre IN ('REPORTE_VENTAS', 'REPORTE_SABORES', 'REPORTE_ENTREGAS', 'REPORTE_PROYECCION', 'PANEL_ADMINISTRATIVO')
+WHERE Nombre IN ('REPORTE_VENTAS', 'REPORTE_SABORES', 'REPORTE_ENTREGAS', 'REPORTE_PROYECCION', 'PANEL_ADMINISTRATIVO', 'REGISTRAR_PRODUCTO', 'MODIFICAR_PRODUCTO', 'ELIMINAR_PRODUCTO', 'REGISTRAR_REPARTIDOR', 'MODIFICAR_REPARTIDOR')
 
 INSERT INTO FAMILIA_FAMILIA (IdFamiliaPadre, IdFamiliaHijo)
 SELECT @IdFamiliaAdministrador, @IdFamiliaInventario
@@ -55,7 +57,7 @@ INSERT INTO FAMILIA_FAMILIA (IdFamiliaPadre, IdFamiliaHijo)
 SELECT @IdFamiliaAdministrador, @IdFamiliaAtencion
 
 -- ==============================
--- CREACIN DEL USUARIO ADMIN
+-- CREACION DEL USUARIO ADMIN
 -- ==============================
 
 DECLARE @IdAdmin UNIQUEIDENTIFIER = NEWID();

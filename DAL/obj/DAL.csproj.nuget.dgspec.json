@@ -195,6 +195,14 @@
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
               "version": "[9.0.8, )"
+            },
+            "itext": {
+              "target": "Package",
+              "version": "[9.4.0, )"
+            },
+            "itext.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[9.4.0, )"
             }
           },
           "imports": [

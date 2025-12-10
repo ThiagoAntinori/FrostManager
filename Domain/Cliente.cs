@@ -15,5 +15,7 @@ namespace Domain
         public string Telefono { get; set; }
         public string Direccion { get; set; }
         public string DVH { get; set; }
+
+        public override string ToString() => $"{Nombre} {Apellido}";
     }
 }

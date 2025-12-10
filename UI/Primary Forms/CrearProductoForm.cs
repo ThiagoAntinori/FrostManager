@@ -1,6 +1,9 @@
 ﻿using BLL.Implementations;
 using Domain;
+using Services.BLL.Contracts;
 using Services.BLL.Extensions;
+using Services.BLL.Services;
+using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +17,24 @@ using UI.Tools;
 
 namespace UI.Primary_Forms
 {
-    public partial class CrearProductoForm : Form
+    public partial class CrearProductoForm : Form, ITraducible
     {
         public CrearProductoForm()
         {
             InitializeComponent();
+            IdiomaService.Current.Suscribir(this);
+        }
+
+        public void CambiarIdioma()
+        {
+            try
+            {
+                UIHelper.TraducirControles(this.Controls);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -35,7 +51,7 @@ namespace UI.Primary_Forms
                 };
 
                 ProductoService.Current.Add(nuevoProducto);
-                MessageBox.Show("Producto registrado exitosamente");
+                MessageBox.Show("REGISTRADO_OK".Traducir(), "Operación Exitosa".Traducir(), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 UIHelper.LimpiarCampos(this.Controls);
             }
             catch (Exception ex)
@@ -49,12 +65,16 @@ namespace UI.Primary_Forms
         {
             try
             {
+                if (UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
+                {
+                    CambiarIdioma();
+                }
                 cmbEnvaseNecesario.DataSource = EnvaseService.Current.SelectAll();
                 cmbEnvaseNecesario.DisplayMember = "Descripcion";
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                MessageBox.Show(ex.Message);
             }
         }
     }

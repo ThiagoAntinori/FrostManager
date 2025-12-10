@@ -55,9 +55,20 @@ namespace Services.BLL.Services
             }
         }
 
-        public void Delete(Guid id)
+        public void Delete(Familia obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if(obj.IdComponente == Guid.Empty)
+                {
+                    throw new Exception("La familia a eliminar debe tener un ID");
+                }
+                FamiliaRepository.Current.Delete(obj);
+            }
+            catch(Exception ex)
+            {
+                ex.Handle();
+            }
         }
 
         public List<Familia> SelectAll()
@@ -88,7 +99,22 @@ namespace Services.BLL.Services
 
         public void Update(Familia obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (string.IsNullOrEmpty(obj.Nombre))
+                {
+                    throw new Exception("La familia debe tener un nombre");
+                }
+                if (obj.ChildrenCount() <= 0)
+                {
+                    throw new Exception("La familia debe tener al menos un componente");
+                }
+                FamiliaRepository.Current.Update(obj);
+            }
+            catch(Exception ex)
+            {
+                ex.Handle();
+            }
         }
     }
 }

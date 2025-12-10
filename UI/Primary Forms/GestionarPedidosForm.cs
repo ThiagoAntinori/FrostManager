@@ -3,6 +3,7 @@ using Domain;
 using Services.BLL.Contracts;
 using Services.BLL.Extensions;
 using Services.BLL.Services;
+using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,8 +30,12 @@ namespace UI.Primary_Forms
         {
             try
             {
-                ActualizarDgvPedidos((List<Pedido>)PedidoService.Current.SelectAll());
-                cmbNuevoEstado.DataSource = Enum.GetValues(typeof(EstadoPedido)).Cast<EstadoPedido>().ToList();
+                if (UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
+                {
+                    CambiarIdioma();
+                }
+                ActualizarDgvPedidos(PedidoService.Current.SelectAll());
+                cmbNuevoEstado.DataSource = Enum.GetValues(typeof(EstadoPedido)).Cast<EstadoPedido>().Where(e => e != EstadoPedido.Cancelado).ToList();
             }
             catch (Exception ex)
             {
@@ -38,10 +43,17 @@ namespace UI.Primary_Forms
             }
         }
 
-        private void ActualizarDgvPedidos(List<Pedido> dataSource)
+        private void ActualizarDgvPedidos(IEnumerable<Pedido> dataSource)
         {
             dgvPedidos.DataSource = null;
             dgvPedidos.DataSource = dataSource;
+            dgvPedidos.Columns["IdPedido"].Visible = false;
+            dgvPedidos.Columns["Venta"].Visible = false;
+            dgvPedidos.Columns["HoraEnvio"].HeaderText = "Hora de envío";
+            dgvPedidos.Columns["HoraEntrega"].HeaderText = "Hora de entrega";
+            dgvPedidos.Columns["Estado"].HeaderText = "Estado";
+            dgvPedidos.Columns["Cliente"].HeaderText = "Cliente";
+            dgvPedidos.Columns["Repartidor"].HeaderText = "Repartidor asignado";
         }
 
         private void dgvPedidos_SelectionChanged(object sender, EventArgs e)
@@ -72,10 +84,11 @@ namespace UI.Primary_Forms
             {
                 PedidoService.Current.CambiarEstado(pedidoSeleccionado, (EstadoPedido)cmbNuevoEstado.SelectedItem);
                 MessageBox.Show("Pedido actualizado correctamente");
+                ActualizarDgvPedidos(PedidoService.Current.SelectAll());
             }
             catch (Exception ex)
             {
-                ex.Handle();
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -87,6 +100,7 @@ namespace UI.Primary_Forms
                 {
                     PedidoService.Current.CambiarEstado(pedidoSeleccionado, EstadoPedido.Cancelado);
                     MessageBox.Show("Pedido cancelado exitosamente");
+                    ActualizarDgvPedidos(PedidoService.Current.SelectAll());
                 }
             }
             catch(Exception ex)

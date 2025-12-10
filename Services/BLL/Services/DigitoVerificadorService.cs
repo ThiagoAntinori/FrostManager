@@ -1,4 +1,6 @@
 ﻿using Services.BLL.Extensions;
+using Services.Domain.Logging;
+using Services.Domain.Security;
 using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
@@ -66,8 +68,69 @@ namespace Services.BLL.Services
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                ex.Handle();
                 throw;
+            }
+        }
+
+        public bool EsTablaConsistente<T>(IEnumerable<T> registros)
+        {
+            try
+            {
+                if(registros == null || !registros.Any())
+                {
+                    return true;
+                }
+
+                PropertyInfo propDVH = ObtenerPropiedadDVH<T>();
+                if(propDVH == null)
+                {
+                    return true;
+                }
+
+                foreach (var entidad in registros)
+                {
+                    string dvhActual = propDVH.GetValue(entidad)?.ToString() ?? "";
+                    string dvhCalculado = CalcularDigitoVerificadorHorizontal(entidad);
+
+                    if (!string.Equals(dvhActual, dvhCalculado, StringComparison.Ordinal))
+                        return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+                throw;
+            }
+        }
+
+        private PropertyInfo ObtenerPropiedadDVH<T>()
+        {
+            var prop = typeof(T)
+            .GetProperties()
+            .FirstOrDefault(p => p.Name.Equals("DVH", StringComparison.OrdinalIgnoreCase));
+
+
+            return prop;
+        }
+
+        public void HandleInconsistencia<T>()
+        {
+            try
+            {
+                string message = $"Se detectó una inconsistencia en los datos de la tabla '{typeof(T).Name}' en la base de datos. Recomendamos verificar los datos manualmente.";
+                LoggerService.GetLogger().WriteLog(new LogEntry(DateTime.Now, LogLevel.Warning, message));
+                List<Usuario> usuariosAutorizados = UsuarioService.Current.GetByPatente("RECIBIR_ALERTAS_DATOS");
+                foreach (var usuario in usuariosAutorizados.Where(u => !string.IsNullOrEmpty(u.CorreoElectronico)))
+                {
+                    EmailService.EnviarEmail(usuario.CorreoElectronico, "Alerta de Inconsistencia de datos - FrostManager", message);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
             }
         }
     }

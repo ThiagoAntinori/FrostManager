@@ -1,5 +1,9 @@
 ﻿using BLL.Implementations;
 using Domain;
+using Services.BLL.Contracts;
+using Services.BLL.Extensions;
+using Services.BLL.Services;
+using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +17,13 @@ using UI.Tools;
 
 namespace UI.Primary_Forms
 {
-    public partial class RegistrarIngresoForm : Form
+    public partial class RegistrarIngresoForm : Form, ITraducible
     {
         private Insumo insumoSeleccionado = null;
         public RegistrarIngresoForm()
         {
             InitializeComponent();
+            IdiomaService.Current.Suscribir(this);
         }
 
         private void cmbTipoInsumo_SelectedIndexChanged(object sender, EventArgs e)
@@ -26,7 +31,10 @@ namespace UI.Primary_Forms
 
             try
             {
-                FiltrarPorTipoInsumo(cmbTipoInsumo.Text);
+                if(cmbTipoInsumo.SelectedIndex >= 0)
+                {
+                    FiltrarPorTipoInsumo(cmbTipoInsumo.Text);
+                }
             }
             catch (Exception ex)
             {
@@ -65,8 +73,8 @@ namespace UI.Primary_Forms
                     Insumo = insumoSeleccionado
                 };
                 InsumoService.Current.RegistrarIngreso(insumoSeleccionado, movimientoStockIngreso);
-                ActualizarListadoInsumos(dgvInsumos);
-                MessageBox.Show("Se registró el ingreso correctamente");
+                ActualizarListadoInsumos();
+                MessageBox.Show("REGISTRADO_OK".Traducir(), "Operación Exitosa".Traducir(), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 UIHelper.LimpiarCampos(this.Controls);
                 insumoSeleccionado = null;
 
@@ -78,10 +86,13 @@ namespace UI.Primary_Forms
 
         }
 
-        private void ActualizarListadoInsumos(DataGridView dgv)
+        private void ActualizarListadoInsumos()
         {
-            dgv.DataSource = null;
-            dgv.DataSource = InsumoService.Current.SelectAll();
+            dgvInsumos.DataSource = null;
+            dgvInsumos.DataSource = InsumoService.Current.SelectAll();
+            dgvInsumos.Columns["IdInsumo"].Visible = false;
+            dgvInsumos.Columns["StockActual"].HeaderText = "Stock Actual";
+            dgvInsumos.Columns["StockMinimo"].HeaderText = "Stock Mínimo";
         }
 
         private void FiltrarPorTipoInsumo(string tipoInsumo)
@@ -101,6 +112,9 @@ namespace UI.Primary_Forms
             }
             dgvInsumos.DataSource = null;
             dgvInsumos.DataSource = insumosPorFiltro;
+            dgvInsumos.Columns["IdInsumo"].Visible = false;
+            dgvInsumos.Columns["StockActual"].HeaderText = "Stock Actual";
+            dgvInsumos.Columns["StockMinimo"].HeaderText = "Stock Mínimo";
         }
 
         private void BuscarPorDescripcion(string descripcion)
@@ -118,7 +132,19 @@ namespace UI.Primary_Forms
         {
             try
             {
-                ActualizarListadoInsumos(dgvInsumos);
+                if (UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
+                {
+                    CambiarIdioma();
+                }
+                ActualizarListadoInsumos();
+                cmbTipoInsumo.DataSource = null;
+                cmbTipoInsumo.DataSource = new List<string>()
+                {
+                    "Envase",
+                    "Sabor",
+                    "(Todos)"
+                };
+                cmbTipoInsumo.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -147,6 +173,18 @@ namespace UI.Primary_Forms
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        public void CambiarIdioma()
+        {
+            try
+            {
+                UIHelper.TraducirControles(this.Controls);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

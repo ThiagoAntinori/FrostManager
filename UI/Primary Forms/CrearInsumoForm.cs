@@ -2,7 +2,10 @@
 using BLL.Implementations;
 using BLL.Tools;
 using Domain;
+using Services.BLL.Contracts;
 using Services.BLL.Extensions;
+using Services.BLL.Services;
+using Services.Domain.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,25 +19,27 @@ using UI.Tools;
 
 namespace UI.Primary_Forms
 {
-    public partial class CrearInsumoForm : Form
+    public partial class CrearInsumoForm : Form, ITraducible
     {
         public CrearInsumoForm()
         {
             InitializeComponent();
+            IdiomaService.Current.Suscribir(this);
         }
 
         private void CrearInsumoForm_Load(object sender, EventArgs e)
         {
-
             try
             {
-
+                if (UsuarioLogueado.Current.IdiomaSeleccionado != "es-ES")
+                {
+                    CambiarIdioma();
+                }
             }
             catch (Exception ex)
             {
-                ExceptionExtension.Handle(ex);
+                MessageBox.Show(ex.Message);
             }
-
         }
 
         private void cmbTipoInsumo_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,12 +76,24 @@ namespace UI.Primary_Forms
                     sabor.Descripcion = txtDescripcion.Text;
                 }
                 InsumoService.Current.Add(nuevoInsumo);
-                MessageBox.Show("Insumo creado correctamente.");
+                MessageBox.Show("REGISTRADO_OK".Traducir(), "Operación Exitosa".Traducir(), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 UIHelper.LimpiarCampos(this.Controls);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void CambiarIdioma()
+        {
+            try
+            {
+                UIHelper.TraducirControles(this.Controls);
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }

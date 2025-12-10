@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using Services.Domain.Logging;
 
 namespace Services.BLL.Services
 {
@@ -27,10 +28,18 @@ namespace Services.BLL.Services
                     smtp.Send(mail);
                 }
             }
+            catch(SmtpException smptEx)
+            {
+                LoggerService.GetLogger().WriteLog
+                    (new LogEntry(DateTime.Now, LogLevel.Error, 
+                    $"Error SMTP al enviar el Email con asunto: {asunto} y cuerpo: {cuerpo} para el destinatario {destinatario} \nDetalles del error: {smptEx.Message}"));
+            }
 			catch (Exception ex)
 			{
-				ExceptionExtension.Handle(ex);
-			}
+                LoggerService.GetLogger().WriteLog
+                    (new LogEntry(DateTime.Now, LogLevel.Error,
+                    $"Error Genérico al enviar el Email con asunto: {asunto} y cuerpo: {cuerpo} para el destinatario {destinatario}"));
+            }
         }
     }
 }

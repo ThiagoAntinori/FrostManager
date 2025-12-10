@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panelSideMenu = new Panel();
-            button1 = new Button();
+            btnModificarRepartidor = new Button();
+            btnRegistrarRepartidor = new Button();
             btnEliminarProducto = new Button();
             btnModificarProducto = new Button();
-            btnCrearProducto = new Button();
-            btnReporteProyecciones = new Button();
+            btnRegistrarProducto = new Button();
             btnReporteEntregas = new Button();
             btnReporteSabores = new Button();
-            btnCierreCaja = new Button();
             btnReporteVentas = new Button();
+            btnCierreCaja = new Button();
             btnConsultarStock = new Button();
             btnAjustarStock = new Button();
             btnRegistrarInsumo = new Button();
@@ -69,15 +69,15 @@
             // 
             panelSideMenu.AutoScroll = true;
             panelSideMenu.BackColor = Color.LightSteelBlue;
-            panelSideMenu.Controls.Add(button1);
+            panelSideMenu.Controls.Add(btnModificarRepartidor);
+            panelSideMenu.Controls.Add(btnRegistrarRepartidor);
             panelSideMenu.Controls.Add(btnEliminarProducto);
             panelSideMenu.Controls.Add(btnModificarProducto);
-            panelSideMenu.Controls.Add(btnCrearProducto);
-            panelSideMenu.Controls.Add(btnReporteProyecciones);
+            panelSideMenu.Controls.Add(btnRegistrarProducto);
             panelSideMenu.Controls.Add(btnReporteEntregas);
             panelSideMenu.Controls.Add(btnReporteSabores);
-            panelSideMenu.Controls.Add(btnCierreCaja);
             panelSideMenu.Controls.Add(btnReporteVentas);
+            panelSideMenu.Controls.Add(btnCierreCaja);
             panelSideMenu.Controls.Add(btnConsultarStock);
             panelSideMenu.Controls.Add(btnAjustarStock);
             panelSideMenu.Controls.Add(btnRegistrarInsumo);
@@ -96,25 +96,38 @@
             panelSideMenu.Size = new Size(260, 516);
             panelSideMenu.TabIndex = 0;
             // 
-            // button1
+            // btnModificarRepartidor
             // 
-            button1.BackColor = Color.Teal;
-            button1.Dock = DockStyle.Top;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(0, 871);
-            button1.Name = "button1";
-            button1.Size = new Size(243, 40);
-            button1.TabIndex = 31;
-            button1.Text = "Registrar Repartidor";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnModificarRepartidor.BackColor = Color.Teal;
+            btnModificarRepartidor.Dock = DockStyle.Top;
+            btnModificarRepartidor.FlatStyle = FlatStyle.Flat;
+            btnModificarRepartidor.Location = new Point(0, 871);
+            btnModificarRepartidor.Name = "btnModificarRepartidor";
+            btnModificarRepartidor.Size = new Size(243, 40);
+            btnModificarRepartidor.TabIndex = 32;
+            btnModificarRepartidor.Text = "Modificar Repartidor";
+            btnModificarRepartidor.UseVisualStyleBackColor = false;
+            btnModificarRepartidor.Click += btnModificarRepartidor_Click;
+            // 
+            // btnRegistrarRepartidor
+            // 
+            btnRegistrarRepartidor.BackColor = Color.Teal;
+            btnRegistrarRepartidor.Dock = DockStyle.Top;
+            btnRegistrarRepartidor.FlatStyle = FlatStyle.Flat;
+            btnRegistrarRepartidor.Location = new Point(0, 831);
+            btnRegistrarRepartidor.Name = "btnRegistrarRepartidor";
+            btnRegistrarRepartidor.Size = new Size(243, 40);
+            btnRegistrarRepartidor.TabIndex = 31;
+            btnRegistrarRepartidor.Text = "Registrar Repartidor";
+            btnRegistrarRepartidor.UseVisualStyleBackColor = false;
+            btnRegistrarRepartidor.Click += button1_Click;
             // 
             // btnEliminarProducto
             // 
             btnEliminarProducto.BackColor = Color.Teal;
             btnEliminarProducto.Dock = DockStyle.Top;
             btnEliminarProducto.FlatStyle = FlatStyle.Flat;
-            btnEliminarProducto.Location = new Point(0, 831);
+            btnEliminarProducto.Location = new Point(0, 791);
             btnEliminarProducto.Name = "btnEliminarProducto";
             btnEliminarProducto.Size = new Size(243, 40);
             btnEliminarProducto.TabIndex = 30;
@@ -127,7 +140,7 @@
             btnModificarProducto.BackColor = Color.Teal;
             btnModificarProducto.Dock = DockStyle.Top;
             btnModificarProducto.FlatStyle = FlatStyle.Flat;
-            btnModificarProducto.Location = new Point(0, 791);
+            btnModificarProducto.Location = new Point(0, 751);
             btnModificarProducto.Name = "btnModificarProducto";
             btnModificarProducto.Size = new Size(243, 40);
             btnModificarProducto.TabIndex = 29;
@@ -135,30 +148,18 @@
             btnModificarProducto.UseVisualStyleBackColor = false;
             btnModificarProducto.Click += btnModificarProducto_Click;
             // 
-            // btnCrearProducto
+            // btnRegistrarProducto
             // 
-            btnCrearProducto.BackColor = Color.Teal;
-            btnCrearProducto.Dock = DockStyle.Top;
-            btnCrearProducto.FlatStyle = FlatStyle.Flat;
-            btnCrearProducto.Location = new Point(0, 751);
-            btnCrearProducto.Name = "btnCrearProducto";
-            btnCrearProducto.Size = new Size(243, 40);
-            btnCrearProducto.TabIndex = 28;
-            btnCrearProducto.Text = "Crear Producto";
-            btnCrearProducto.UseVisualStyleBackColor = false;
-            btnCrearProducto.Click += btnCrearProducto_Click;
-            // 
-            // btnReporteProyecciones
-            // 
-            btnReporteProyecciones.BackColor = Color.Teal;
-            btnReporteProyecciones.Dock = DockStyle.Top;
-            btnReporteProyecciones.FlatStyle = FlatStyle.Flat;
-            btnReporteProyecciones.Location = new Point(0, 711);
-            btnReporteProyecciones.Name = "btnReporteProyecciones";
-            btnReporteProyecciones.Size = new Size(243, 40);
-            btnReporteProyecciones.TabIndex = 23;
-            btnReporteProyecciones.Text = "Reporte de Proyecciones de stock";
-            btnReporteProyecciones.UseVisualStyleBackColor = false;
+            btnRegistrarProducto.BackColor = Color.Teal;
+            btnRegistrarProducto.Dock = DockStyle.Top;
+            btnRegistrarProducto.FlatStyle = FlatStyle.Flat;
+            btnRegistrarProducto.Location = new Point(0, 711);
+            btnRegistrarProducto.Name = "btnRegistrarProducto";
+            btnRegistrarProducto.Size = new Size(243, 40);
+            btnRegistrarProducto.TabIndex = 28;
+            btnRegistrarProducto.Text = "Registrar Producto";
+            btnRegistrarProducto.UseVisualStyleBackColor = false;
+            btnRegistrarProducto.Click += btnCrearProducto_Click;
             // 
             // btnReporteEntregas
             // 
@@ -171,6 +172,7 @@
             btnReporteEntregas.TabIndex = 22;
             btnReporteEntregas.Text = "Reporte de Entregas por período";
             btnReporteEntregas.UseVisualStyleBackColor = false;
+            btnReporteEntregas.Click += btnReporteEntregas_Click;
             // 
             // btnReporteSabores
             // 
@@ -183,30 +185,33 @@
             btnReporteSabores.TabIndex = 21;
             btnReporteSabores.Text = "Reporte de Sabores mas vendidos";
             btnReporteSabores.UseVisualStyleBackColor = false;
-            // 
-            // btnCierreCaja
-            // 
-            btnCierreCaja.BackColor = Color.Teal;
-            btnCierreCaja.Dock = DockStyle.Top;
-            btnCierreCaja.FlatStyle = FlatStyle.Flat;
-            btnCierreCaja.Location = new Point(0, 591);
-            btnCierreCaja.Name = "btnCierreCaja";
-            btnCierreCaja.Size = new Size(243, 40);
-            btnCierreCaja.TabIndex = 20;
-            btnCierreCaja.Text = "Cierre de caja diaria";
-            btnCierreCaja.UseVisualStyleBackColor = false;
+            btnReporteSabores.Click += btnReporteSabores_Click;
             // 
             // btnReporteVentas
             // 
             btnReporteVentas.BackColor = Color.Teal;
             btnReporteVentas.Dock = DockStyle.Top;
             btnReporteVentas.FlatStyle = FlatStyle.Flat;
-            btnReporteVentas.Location = new Point(0, 551);
+            btnReporteVentas.Location = new Point(0, 591);
             btnReporteVentas.Name = "btnReporteVentas";
             btnReporteVentas.Size = new Size(243, 40);
             btnReporteVentas.TabIndex = 19;
             btnReporteVentas.Text = "Reporte de Ventas por período";
             btnReporteVentas.UseVisualStyleBackColor = false;
+            btnReporteVentas.Click += btnReporteVentas_Click;
+            // 
+            // btnCierreCaja
+            // 
+            btnCierreCaja.BackColor = Color.Teal;
+            btnCierreCaja.Dock = DockStyle.Top;
+            btnCierreCaja.FlatStyle = FlatStyle.Flat;
+            btnCierreCaja.Location = new Point(0, 551);
+            btnCierreCaja.Name = "btnCierreCaja";
+            btnCierreCaja.Size = new Size(243, 40);
+            btnCierreCaja.TabIndex = 20;
+            btnCierreCaja.Text = "Cierre de caja diaria";
+            btnCierreCaja.UseVisualStyleBackColor = false;
+            btnCierreCaja.Click += btnCierreCaja_Click;
             // 
             // btnConsultarStock
             // 
@@ -258,6 +263,7 @@
             btnRegistrarEgreso.TabIndex = 14;
             btnRegistrarEgreso.Text = "Registrar Egreso de insumo";
             btnRegistrarEgreso.UseVisualStyleBackColor = false;
+            btnRegistrarEgreso.Click += btnRegistrarEgreso_Click;
             // 
             // btnRegistrarIngreso
             // 
@@ -384,6 +390,7 @@
             // 
             // btnConfiguracion
             // 
+            btnConfiguracion.Anchor = AnchorStyles.Right;
             btnConfiguracion.BackColor = Color.DarkCyan;
             btnConfiguracion.FlatStyle = FlatStyle.Popup;
             btnConfiguracion.Location = new Point(772, 10);
@@ -411,6 +418,7 @@
             panelChildForm.BackColor = Color.MintCream;
             panelChildForm.Controls.Add(pictureBox2);
             panelChildForm.Dock = DockStyle.Fill;
+            panelChildForm.ForeColor = SystemColors.WindowText;
             panelChildForm.Location = new Point(260, 0);
             panelChildForm.Name = "panelChildForm";
             panelChildForm.Size = new Size(624, 516);
@@ -473,7 +481,6 @@
         private Button btnConsultarCliente;
         private Button btnModificarCliente;
         private Button btnRegistrarCliente;
-        private Button btnReporteProyecciones;
         private Button btnReporteEntregas;
         private Button btnReporteSabores;
         private Button btnCerrarSesion;
@@ -482,10 +489,11 @@
         private PictureBox pictureBox2;
         private Button btnAbrirPanelAdministrativo;
         private Button btnConfiguracion;
-        private Button button1;
+        private Button btnRegistrarRepartidor;
         private Button btnEliminarProducto;
         private Button btnModificarProducto;
-        private Button btnCrearProducto;
+        private Button btnRegistrarProducto;
         public Panel panelChildForm;
+        private Button btnModificarRepartidor;
     }
 }

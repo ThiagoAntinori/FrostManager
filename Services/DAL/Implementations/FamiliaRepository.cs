@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Services.BLL.Extensions;
 using Services.DAL.Adapter;
 using Services.DAL.Contracts;
 using Services.DAL.Tools;
@@ -34,15 +35,19 @@ namespace Services.DAL.Implementations
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("INSERT INTO FAMILIA (IdFamilia, Nombre) VALUES (@IdFamilia, @Nombre)",
+                using(UnitOfWork uow = new UnitOfWork())
+                {
+                    SqlHelper.ExecuteNonQuery("INSERT INTO FAMILIA (IdFamilia, Nombre, Borrado) VALUES (@IdFamilia, @Nombre, 0)",
                                             CommandType.Text,
+                                            uow.Transaction,
                                             new SqlParameter[]
                                             {
                                                 new SqlParameter("@IdFamilia", item.IdComponente),
                                                 new SqlParameter("@Nombre", item.Nombre)
                                             });
-                FamiliaFamiliaRepository.Current.Add(item);
-                FamiliaPatenteRepository.Current.Add(item);
+                    FamiliaFamiliaRepository.Current.Add(item, uow);
+                    FamiliaPatenteRepository.Current.Add(item, uow);
+                }
             }
             catch(Exception ex)
             {
@@ -52,12 +57,53 @@ namespace Services.DAL.Implementations
 
         public void Delete(Familia item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                SqlHelper.ExecuteNonQuery("UPDATE FAMILIA SET Borrado = 1 WHERE IdFamilia = @IdFamilia",
+                                            CommandType.Text,
+                                            new SqlParameter[]
+                                            {
+                                                new SqlParameter("@IdFamilia", item.IdComponente)
+                                            });
+            }
+            catch(Exception ex)
+            {
+                ex.Handle();
+            }
         }
 
         public void Update(Familia item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using(UnitOfWork uow = new UnitOfWork())
+                {
+                    try
+                    {
+                        SqlHelper.ExecuteNonQuery("UPDATE Familia SET Nombre = @Nombre WHERE IdFamilia = @IdFamilia",
+                                            CommandType.Text,
+                                            new SqlParameter[]
+                                            {
+                                                new SqlParameter("@Nombre", item.Nombre),
+                                                new SqlParameter("@IdFamilia", item.IdComponente)
+                                            });
+                        FamiliaPatenteRepository.Current.DeleteByFamilia(item.IdComponente, uow);
+                        FamiliaPatenteRepository.Current.Add(item, uow);
+                        FamiliaFamiliaRepository.Current.DeleteByFamiliaPadre(item.IdComponente, uow);
+                        FamiliaFamiliaRepository.Current.Add(item, uow);
+                        uow.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        uow.Rollback();
+                        throw;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                ex.Handle();
+            }
         }
 
         public List<Familia> GetAll()
@@ -66,7 +112,7 @@ namespace Services.DAL.Implementations
             {
                 List<Familia> familias = new List<Familia>();
                 Familia familiaGet = null;
-                using(var reader = SqlHelper.ExecuteReader("SELECT IdFamilia, Nombre FROM FAMILIA",
+                using(var reader = SqlHelper.ExecuteReader("SELECT IdFamilia, Nombre FROM FAMILIA WHERE Borrado = 0",
                                                             System.Data.CommandType.Text,
                                                             new SqlParameter[] {}))
                 {
@@ -91,7 +137,7 @@ namespace Services.DAL.Implementations
         {
             try
             {
-                using (var reader = SqlHelper.ExecuteReader("SELECT IdFamilia, Nombre FROM FAMILIA WHERE IdFamilia = @IdFamilia",
+                using (var reader = SqlHelper.ExecuteReader("SELECT IdFamilia, Nombre FROM FAMILIA WHERE IdFamilia = @IdFamilia AND Borrado = 0",
                                                             CommandType.Text,
                                                             new SqlParameter[]
                                                             {

@@ -40,6 +40,7 @@ namespace BLL.Implementations
                 ValidationHelper.PositiveValue(item.StockActual, nameof(item.StockActual));
                 ValidationHelper.PositiveValue(item.CapacidadEnGramos, nameof(item.CapacidadEnGramos));
                 Repository.GetEnvaseInstance().Insert(item);
+                LoggerHelper.RegistrarAlta(item);
             }
             catch (Exception ex)
             {
@@ -54,6 +55,7 @@ namespace BLL.Implementations
                 ValidationHelper.NotNull(item, nameof(item));
                 ValidationHelper.NotEmptyGuid(item.IdInsumo, nameof(item.IdInsumo));
                 Repository.GetEnvaseInstance().Delete(item);
+                LoggerHelper.RegistrarBaja(item);
             }
             catch (Exception ex)
             {
@@ -99,6 +101,7 @@ namespace BLL.Implementations
                 ValidationHelper.PositiveValue(item.StockActual, nameof(item.StockActual));
                 ValidationHelper.PositiveValue(item.CapacidadEnGramos, nameof(item.CapacidadEnGramos));
                 Repository.GetEnvaseInstance().Update(item);
+                LoggerHelper.RegistrarModificacion(item);
             }
             catch (Exception ex)
             {

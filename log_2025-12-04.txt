@@ -1,0 +1,8 @@
+[2025-12-04 08:11:57.122 -03:00] [WARNING] Se detectó una inconsistencia en los datos de la tabla 'Cliente' en la base de datos. Recomendamos verificar los datos manualmente. [] []
+[2025-12-04 08:21:29.132 -03:00] [WARNING] Se detectó una inconsistencia en los datos de la tabla 'Cliente' en la base de datos. Recomendamos verificar los datos manualmente. [] []
+[2025-12-04 22:02:45.025 -03:00] [WARNING] Se detectó una inconsistencia en los datos de la tabla 'Cliente' en la base de datos. Recomendamos verificar los datos manualmente. [] []
+[2025-12-04 22:06:23.851 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: 919ab06c-3b30-4d88-bd5c-bb89fde6452e]
+[2025-12-04 22:20:12.914 -03:00] [WARNING] Se detectó una inconsistencia en los datos de la tabla 'Cliente' en la base de datos. Recomendamos verificar los datos manualmente. [] []
+[2025-12-04 22:20:24.244 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: 919ab06c-3b30-4d88-bd5c-bb89fde6452e]
+[2025-12-04 22:26:50.839 -03:00] [WARNING] Se detectó una inconsistencia en los datos de la tabla 'Cliente' en la base de datos. Recomendamos verificar los datos manualmente. [] []
+[2025-12-04 22:28:12.785 -03:00] [INFORMATION] Ocurrió un inicio de sesión. [] [Usuario logueado: admin, ID: 919ab06c-3b30-4d88-bd5c-bb89fde6452e]

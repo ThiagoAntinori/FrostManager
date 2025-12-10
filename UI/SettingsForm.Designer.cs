@@ -49,6 +49,7 @@
             // 
             // gbIdioma
             // 
+            gbIdioma.Anchor = AnchorStyles.None;
             gbIdioma.Controls.Add(btnAplicar);
             gbIdioma.Controls.Add(cmbIdioma);
             gbIdioma.Controls.Add(lblSeleccionarIdioma);
@@ -88,6 +89,7 @@
             // 
             // gbCorreo
             // 
+            gbCorreo.Anchor = AnchorStyles.None;
             gbCorreo.Controls.Add(btnModificarCorreo);
             gbCorreo.Controls.Add(txtCorreo);
             gbCorreo.Controls.Add(lblCorreoElectronico);
@@ -126,6 +128,7 @@
             // 
             // gbCambiarContraseña
             // 
+            gbCambiarContraseña.Anchor = AnchorStyles.None;
             gbCambiarContraseña.Controls.Add(btnModificarContraseña);
             gbCambiarContraseña.Controls.Add(txtNuevaContraseña);
             gbCambiarContraseña.Controls.Add(txtContraseñaActual);
@@ -176,9 +179,9 @@
             lblContraseñaActual.AutoSize = true;
             lblContraseñaActual.Location = new Point(35, 36);
             lblContraseñaActual.Name = "lblContraseñaActual";
-            lblContraseñaActual.Size = new Size(148, 15);
+            lblContraseñaActual.Size = new Size(105, 15);
             lblContraseñaActual.TabIndex = 0;
-            lblContraseñaActual.Text = "Contraseña actual o token:";
+            lblContraseñaActual.Text = "Contraseña actual:";
             // 
             // SettingsForm
             // 

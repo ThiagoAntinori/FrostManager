@@ -131,7 +131,7 @@ namespace DAL.Implementations.SqlServer
             }
         }
 
-        public List<DetalleVenta> GetByIdVenta(Guid idVenta)
+        public IEnumerable<DetalleVenta> GetByIdVenta(Guid idVenta)
         {
             try
             {
@@ -142,6 +142,45 @@ namespace DAL.Implementations.SqlServer
                                                                         new SqlParameter[]
                                                                         {
                                                                             new SqlParameter("@IdVenta", idVenta)
+                                                                        }))
+                {
+                    object[] values = new object[reader.FieldCount];
+
+                    while (reader.Read())
+                    {
+                        reader.GetValues(values);
+                        detalleVentaGet = DetalleVentaAdapter.Current.Adapt(values);
+                        detallesVenta.Add(detalleVentaGet);
+                    }
+                }
+                return detallesVenta;
+            }
+            catch (Exception ex)
+            {
+                ex.Handle();
+                throw;
+            }
+        }
+
+        public IEnumerable<DetalleVenta> GetDetallesPendientesByProducto(Guid idProducto)
+        {
+            try
+            {
+                DetalleVenta detalleVentaGet = null;
+                List<DetalleVenta> detallesVenta = new List<DetalleVenta>();
+
+                string selectQuery = @"SELECT dv.IdDetalleVenta, dv.Cantidad, dv.IdProducto, dv.IdVenta 
+                                        FROM DetalleVenta dv
+                                        INNER JOIN Venta v ON v.IdVenta = dv.IdVenta
+                                        WHERE dv.IdProducto = @IdProducto AND dv.Borrado = 0 AND v.IdEstadoVenta IN (@IdEstadoEnCurso, @IdEstadoPendientePago)";
+
+                using (SqlDataReader reader = SqlHelper.ExecuteReader(selectQuery,
+                                                                        CommandType.Text,
+                                                                        new SqlParameter[]
+                                                                        {
+                                                                            new SqlParameter("@IdProducto", idProducto),
+                                                                            new SqlParameter("@IdEstadoEnCurso", (int)EstadoVenta.EnCurso),
+                                                                            new SqlParameter("@IdEstadoPendientePago", (int)EstadoVenta.PendienteDePago)
                                                                         }))
                 {
                     object[] values = new object[reader.FieldCount];

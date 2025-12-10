@@ -88,5 +88,34 @@ namespace Services.DAL.Tools
                 return reader;
             }
         }
+
+        public static int ExecuteNonQuery(string commandText, CommandType commandType,
+                                SqlTransaction transaction = null, params SqlParameter[] parameters)
+        {
+            CheckNullables(parameters);
+
+            if (transaction != null)
+            {
+                using (SqlCommand cmd = new SqlCommand(commandText, transaction.Connection, transaction))
+                {
+                    cmd.CommandType = commandType;
+                    cmd.Parameters.AddRange(parameters);
+                    return cmd.ExecuteNonQuery();
+                }
+            }
+            else
+            {
+                using (SqlConnection conn = new SqlConnection(conString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(commandText, conn))
+                    {
+                        cmd.CommandType = commandType;
+                        cmd.Parameters.AddRange(parameters);
+                        return cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
     }
 }

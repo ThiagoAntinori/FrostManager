@@ -9,7 +9,7 @@ namespace Services.Domain.Security
     public class Familia : Componente
     {
         public List<Componente> children = new List<Componente>();
-        public Familia()
+        public Familia() : base()
         {
 
         }

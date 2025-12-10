@@ -60,13 +60,14 @@ namespace Services.DAL.Implementations
         {
             try
             {
-                SqlHelper.ExecuteNonQuery("UPDATE USUARIO SET Nombre = @Nombre, CorreoElectronico = @CorreoElectronico WHERE IdUsuario = @IdUsuario",
+                SqlHelper.ExecuteNonQuery("UPDATE USUARIO SET Nombre = @Nombre, CorreoElectronico = @CorreoElectronico, Password = @Password WHERE IdUsuario = @IdUsuario",
                     CommandType.Text,
                     new SqlParameter[]
                     {
                         new SqlParameter("@Nombre", item.Nombre),
                         new SqlParameter("@CorreoElectronico", item.CorreoElectronico),
-                        new SqlParameter("@IdUsuario", item.IdUsuario)
+                        new SqlParameter("@IdUsuario", item.IdUsuario),
+                        new SqlParameter("@Password", item.Password)
                     });
             }
             catch (Exception ex)
